@@ -231,7 +231,6 @@ VALUES (1, 'Dell Inspiron 16 5630', 'Dell', 23990000, 'new', 33, TRUE),
         
         
         
-        
 
 
 
