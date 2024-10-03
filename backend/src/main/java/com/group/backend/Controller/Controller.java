@@ -17,4 +17,9 @@ public class Controller {
     public Laptop getLaptopById(@PathVariable long id){
         return laptopService.getLaptopById(id);
     }
+
+    @GetMapping("/home")
+    public String home(){
+        return "This is home page";
+    }
 }
