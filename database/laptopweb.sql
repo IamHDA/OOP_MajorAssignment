@@ -43,11 +43,11 @@ CREATE TABLE `Status` (
   `Description` NVARCHAR(100)
 );
 
-CREATE TABLE `Feedback` (
+CREATE TABLE `Comment` (
   `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
   `UserID` BIGINT,
-  `OrderLapID` BIGINT,
-  `Comment` NVARCHAR(255),
+  `LaptopID` BIGINT,
+  `Content` NVARCHAR(255),
   `RatingValue` SMALLINT,
   `Post_At` TIMESTAMP,
   `Update_At` TIMESTAMP
@@ -80,7 +80,7 @@ CREATE TABLE `Image` (
   `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
   `LaptopID` BIGINT,
   `Name` VARCHAR(100),
-  `File_Path` VARCHAR(50)
+  `File_Path` VARCHAR(100)
 );
 
 CREATE TABLE `Cart_Detail` (
@@ -95,11 +95,11 @@ CREATE TABLE `Specification` (
   `CPU` VARCHAR(30),
   `RAM` VARCHAR(30),
   `ROM` VARCHAR(30),
-  `Screen` VARCHAR(30),
+  `Screen` VARCHAR(50),
   `GPU` VARCHAR(30),
-  `Battery` VARCHAR(20),
+  `Battery` VARCHAR(50),
   `Weight` FLOAT,
-  `Webcam` VARCHAR(30),
+  `Webcam` VARCHAR(50),
   `Operating_System` VARCHAR(20),
   `Connection_Port` VARCHAR(255),
   `Mux_Switch` BOOLEAN,
@@ -110,8 +110,11 @@ CREATE TABLE `Specification` (
 ALTER TABLE `User`
 ADD CONSTRAINT FK_UserRole FOREIGN KEY (`RoleID`) REFERENCES `Role` (`ID`);
 
-ALTER TABLE `Feedback`
-ADD CONSTRAINT FK_FeedbackUser FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
+ALTER TABLE `Comment`
+ADD CONSTRAINT FK_CommentUser FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
+
+ALTER TABLE `Comment`
+ADD CONSTRAINT FK_CommentProduct FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
 
 ALTER TABLE `Cart_Detail`
 ADD CONSTRAINT FK_CartUser FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
@@ -134,9 +137,6 @@ ADD CONSTRAINT FK_OrderDetailOrder FOREIGN KEY (`OrderID`) REFERENCES `Order` (`
 ALTER TABLE `Order_Detail`
 ADD CONSTRAINT FK_OrderDetailLaptop FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
 
-ALTER TABLE `Feedback`
-ADD CONSTRAINT FK_FeedbackOrderDetail FOREIGN KEY (`OrderLapID`) REFERENCES `Order_Detail` (`ID`);
-
 ALTER TABLE `Laptop`
 ADD CONSTRAINT FK_SpecLaptop FOREIGN KEY (`SpecID`) REFERENCES `Specification` (`ID`);
 
@@ -148,6 +148,8 @@ ADD CONSTRAINT FK_LaptopCategoryLaptop FOREIGN KEY (`LaptopID`) REFERENCES `Lapt
 
 ALTER TABLE `LaptopCategory`
 ADD CONSTRAINT FK_LaptopCategoryCategory FOREIGN KEY (`CateID`) REFERENCES `Category` (`ID`);
+
+
 
 
 
