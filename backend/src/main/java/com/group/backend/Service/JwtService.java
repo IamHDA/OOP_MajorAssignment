@@ -1,9 +1,13 @@
 package com.group.backend.Service;
 
+import com.group.backend.Entity.User;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
@@ -14,41 +18,57 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 @Service
 public class JwtService {
 
-    private String secretKey;
+    private SecretKey secretKey = Jwts.SIG.HS256.key().build();
 
-    public JwtService() {
-        secretKey = generateSecretKey();
-    }
+    private String secretString = Encoders.BASE64URL.encode(secretKey.getEncoded());
 
-    public String generateSecretKey() {
-        try{
-            KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA256");
-            SecretKey key = keyGen.generateKey();
-            System.out.println("Secret Key: " + key.toString());
-            return Base64.getEncoder().encodeToString(key.getEncoded());
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public String generateToken(String username) {
-        Map<String, Object> claims = new HashMap<>();
-
+    public String generateToken(User user) {
         return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(username)
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 3))
+                .subject(user.getUsername())
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 3))
                 .signWith(getKey())
                 .compact();
     }
 
-    private Key getKey(){
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+    private SecretKey getKey(){
+        byte[] keyBytes = Decoders.BASE64URL.decode(secretString);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    public Claims extractAllClaims(String token){
+        return Jwts.parser()
+                .verifyWith(getKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
+        Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+    public String extractUsername(String token){
+        return extractClaim(token, Claims::getSubject);
+    }
+
+    public boolean isValid(String token, UserDetails userDetails){
+        String username = extractUsername(token);
+        return userDetails.getUsername().equals(username) && !isTokenExpired(token);
+
+    }
+
+    private boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+
+    private Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
     }
 }

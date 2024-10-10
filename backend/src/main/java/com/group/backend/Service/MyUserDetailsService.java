@@ -1,6 +1,6 @@
 package com.group.backend.Service;
 
-import com.group.backend.Model.User;
+import com.group.backend.Entity.User;
 import com.group.backend.Model.UserPrincipal;
 import com.group.backend.Respository.UserRespository;
 import org.springframework.beans.factory.annotation.Autowired;
