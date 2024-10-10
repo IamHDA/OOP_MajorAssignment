@@ -1,4 +1,4 @@
-package com.group.backend.Service;
+package com.group.backend.Config;
 
 public class AuthenticationResponse {
 
@@ -7,6 +7,7 @@ public class AuthenticationResponse {
     public AuthenticationResponse(String token) {
         this.token = token;
     }
+
     public String getToken() {
         return token;
     }

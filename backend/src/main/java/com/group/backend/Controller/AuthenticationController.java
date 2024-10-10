@@ -1,7 +1,7 @@
 package com.group.backend.Controller;
 
 import com.group.backend.Entity.User;
-import com.group.backend.Service.AuthenticationResponse;
+import com.group.backend.Config.AuthenticationResponse;
 import com.group.backend.Service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

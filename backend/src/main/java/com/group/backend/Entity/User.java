@@ -1,7 +1,11 @@
 package com.group.backend.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -17,6 +21,9 @@ public class User {
     private String pass;
     private boolean roleID;
     private String userAddress;
+
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
 
     public String getRole(){
         if(roleID) return "ADMIN";

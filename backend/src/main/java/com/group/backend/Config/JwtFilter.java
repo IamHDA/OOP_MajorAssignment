@@ -1,6 +1,5 @@
 package com.group.backend.Config;
 
-import com.group.backend.Entity.User;
 import com.group.backend.Service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

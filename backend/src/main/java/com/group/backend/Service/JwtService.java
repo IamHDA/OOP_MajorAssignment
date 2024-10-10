@@ -1,12 +1,16 @@
 package com.group.backend.Service;
 
+import com.group.backend.Entity.Token;
 import com.group.backend.Entity.User;
+import com.group.backend.Respository.TokenRepository;
+import com.group.backend.Respository.UserRespository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -14,18 +18,20 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Service
 public class JwtService {
 
-    private SecretKey secretKey = Jwts.SIG.HS256.key().build();
+    private final TokenRepository tokenRepo;
 
+    private SecretKey secretKey = Jwts.SIG.HS256.key().build();
     private String secretString = Encoders.BASE64URL.encode(secretKey.getEncoded());
+
+    public JwtService(TokenRepository tokenRepo) {
+        this.tokenRepo = tokenRepo;
+    }
 
     public String generateToken(User user) {
         return Jwts.builder()
@@ -60,7 +66,8 @@ public class JwtService {
 
     public boolean isValid(String token, UserDetails userDetails){
         String username = extractUsername(token);
-        return userDetails.getUsername().equals(username) && !isTokenExpired(token);
+        boolean isValidToken = tokenRepo.findByToken(token).map(t -> !t.isLoggedOut()).orElse(false);
+        return userDetails.getUsername().equals(username) && !isTokenExpired(token) && isValidToken;
 
     }
 
