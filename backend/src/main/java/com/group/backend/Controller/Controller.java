@@ -20,6 +20,6 @@ public class Controller {
 
     @GetMapping("/home")
     public String home(){
-        return "This is home page";
+        return "This is home page.";
     }
 }

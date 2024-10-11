@@ -10,7 +10,6 @@ public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String token;
     @Column(name = "isLoggedOut")
     private boolean loggedOut;
     @ManyToOne
