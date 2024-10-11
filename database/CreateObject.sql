@@ -2,7 +2,11 @@ CREATE TABLE `User` (
   `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
   `Name` NVARCHAR(100),
   `Email` VARCHAR(50),
+<<<<<<< HEAD
   `Phone` VARCHAR(12),
+=======
+  `Phone` VARCHAR(11),
+>>>>>>> 5abbf03 (response token)
   `Username` VARCHAR(50) UNIQUE,
   `Pass` VARCHAR(50),
   `RoleID` BIT,
@@ -62,7 +66,10 @@ CREATE TABLE `Order` (
   `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
   `UserID` BIGINT,
   `Shipping_Address` NVARCHAR(100),
+<<<<<<< HEAD
   `Phone` VARCHAR(12),
+=======
+>>>>>>> 5abbf03 (response token)
   `Status` BIGINT,
   `Shipping_Method` BIGINT,
   `Total_Price` INT
@@ -127,9 +134,12 @@ ALTER TABLE `Order`
 ADD CONSTRAINT FK_OrderStatus FOREIGN KEY (`Status`) REFERENCES `Status` (`ID`);
 
 ALTER TABLE `Order`
+<<<<<<< HEAD
 ADD CONSTRAINT FK_OrderPhoneUser FOREIGN KEY (`Phone`) REFERENCES `User` (`Phone`);
 
 ALTER TABLE `Order`
+=======
+>>>>>>> 5abbf03 (response token)
 ADD CONSTRAINT FK_OrderShippingMethod FOREIGN KEY (`Shipping_Method`) REFERENCES `Shipping_Method` (`ID`);
 
 ALTER TABLE `Order_Detail`

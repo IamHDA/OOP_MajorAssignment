@@ -15,8 +15,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+<<<<<<< HEAD
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+=======
+>>>>>>> 5abbf03 (response token)
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -43,7 +46,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(crsf -> crsf.disable())
                 .authorizeHttpRequests(request -> request
+<<<<<<< HEAD
                         .requestMatchers("/login", "/register")
+=======
+                        .requestMatchers("/login", "/register", "refresh_token")
+>>>>>>> 5abbf03 (response token)
                         .permitAll()
                         .anyRequest()
                         .authenticated())

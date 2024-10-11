@@ -21,10 +21,17 @@ public class CustomLogoutHandler implements LogoutHandler {
         if(authHeader == null && !authHeader.startsWith("Bearer ")) {
             return;
         }
+<<<<<<< HEAD
         String token = authHeader.substring(7);
         Token storedToken = tokenRepo.findByToken(token).orElse(null);
 
         if(token != null){
+=======
+        String accessToken = authHeader.substring(7);
+        Token storedToken = tokenRepo.findByAccessToken(accessToken).orElse(null);
+
+        if(accessToken != null){
+>>>>>>> 5abbf03 (response token)
             storedToken.setLoggedOut(true);
             tokenRepo.save(storedToken);
         }
