@@ -2,7 +2,7 @@ CREATE TABLE `User` (
   `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
   `Name` NVARCHAR(100),
   `Email` VARCHAR(50),
-  `Phone` VARCHAR(11),
+  `Phone` VARCHAR(12),
   `Username` VARCHAR(50) UNIQUE,
   `Pass` VARCHAR(50),
   `RoleID` BIT,
@@ -62,6 +62,7 @@ CREATE TABLE `Order` (
   `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
   `UserID` BIGINT,
   `Shipping_Address` NVARCHAR(100),
+  `Phone` VARCHAR(12),
   `Status` BIGINT,
   `Shipping_Method` BIGINT,
   `Total_Price` INT
@@ -125,6 +126,10 @@ ADD CONSTRAINT FK_OrderUser FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
 ALTER TABLE `Order`
 ADD CONSTRAINT FK_OrderStatus FOREIGN KEY (`Status`) REFERENCES `Status` (`ID`);
 
+CREATE INDEX idx_user_phone ON `User` (`Phone`);
+ALTER TABLE `Order`
+ADD CONSTRAINT FK_OrderPhoneUser FOREIGN KEY (`Phone`) REFERENCES `User` (`Phone`);
+
 ALTER TABLE `Order`
 ADD CONSTRAINT FK_OrderShippingMethod FOREIGN KEY (`Shipping_Method`) REFERENCES `Shipping_Method` (`ID`);
 
@@ -145,4 +150,3 @@ ADD CONSTRAINT FK_LaptopCategoryLaptop FOREIGN KEY (`LaptopID`) REFERENCES `Lapt
 
 ALTER TABLE `LaptopCategory`
 ADD CONSTRAINT FK_LaptopCategoryCategory FOREIGN KEY (`CateID`) REFERENCES `Category` (`ID`);
-

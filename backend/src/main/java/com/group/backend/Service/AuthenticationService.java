@@ -5,7 +5,6 @@ import com.group.backend.Entity.Token;
 import com.group.backend.Entity.User;
 import com.group.backend.Respository.TokenRepository;
 import com.group.backend.Respository.UserRespository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

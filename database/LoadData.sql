@@ -96,3 +96,15 @@ VALUES (4, 1), (4, 2), (1, 3),
        (2, 7), (2, 8), (4, 9),
        (4, 10), (2, 11), (4, 12);
 -- pause here
+
+INSERT INTO shipping_method(NAME, PRICE)
+VALUES ('Nhận ở cửa hàng', 0),
+       ('Giao hàng nhanh', 50000),
+       ('Giao hàng hỏa tốc', 99000);
+-- pause here
+
+INSERT INTO status (NAME, DESCRIPTION)
+VALUES ('Đang giao', 'Chú ý điện thoại để nhận hàng nhé'),
+       ('Đã giao', 'Cho shop xin đánh giá về sản phẩm nhé'),
+       ('Đã hủy', 'Mọi thông tin chi tiết hơn xin liên hệ shop');
+-- pause here
