@@ -131,6 +131,9 @@ ALTER TABLE `Order`
 ADD CONSTRAINT FK_OrderPhoneUser FOREIGN KEY (`Phone`) REFERENCES `User` (`Phone`);
 
 ALTER TABLE `Order`
+ADD CONSTRAINT FK_OrderPhoneUser FOREIGN KEY (`Phone`) REFERENCES `User` (`Phone`);
+
+ALTER TABLE `Order`
 ADD CONSTRAINT FK_OrderShippingMethod FOREIGN KEY (`Shipping_Method`) REFERENCES `Shipping_Method` (`ID`);
 
 ALTER TABLE `Order_Detail`

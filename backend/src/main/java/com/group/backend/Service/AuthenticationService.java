@@ -7,6 +7,7 @@ import com.group.backend.Respository.TokenRepository;
 import com.group.backend.Respository.UserRespository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,10 @@ public class AuthenticationService {
     private final UserRespository userRepo;
     private final TokenRepository tokenRepository;
 
+    public BCryptPasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     public AuthenticationService(UserRespository userRepo, JwtService jwtService, AuthenticationManager authenticationManager, TokenRepository tokenRepository) {
         this.userRepo = userRepo;
         this.jwtService = jwtService;
@@ -28,11 +33,12 @@ public class AuthenticationService {
         this.tokenRepository = tokenRepository;
     }
 
-    public BCryptPasswordEncoder encoder(){
-        return new BCryptPasswordEncoder();
-    }
 
-    public AuthenticationResponse register(@RequestBody User request){
+    public AuthenticationResponse register(@RequestBody User request) {
+        if(userRepo.findByUsername(request.getUsername()).isPresent()) {
+            return new AuthenticationResponse(null, null, "Username is already in use");
+        }
+
         User user = new User();
 
         user.setUsername(request.getUsername());
@@ -41,35 +47,60 @@ public class AuthenticationService {
 
         userRepo.save(user);
 
-        String jwtToken = jwtService.generateToken(user);
-        saveUserToken(jwtToken, user);
+        String accessToken = jwtService.generateAccessToken(user);
+        String refreshToken = jwtService.generateRefreshToken(user);
 
-        return new AuthenticationResponse(jwtToken);
+        saveUserToken(accessToken, refreshToken, user);
+
+        return new AuthenticationResponse(accessToken, refreshToken, "User registration successful");
     }
 
-    public AuthenticationResponse login(@RequestBody User request){
+
+    public AuthenticationResponse login(@RequestBody User request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPass()));
 
-        User user = userRepo.findByUsername(request.getUsername());
-        String jwtToken = jwtService.generateToken(user);
+        User user = userRepo.findByUsername(request.getUsername()).orElseThrow();
 
-        List<Token> validTokeByUser = tokenRepository.findAllTokenByUser(user.getId());
-        if(!validTokeByUser.isEmpty()){
-            validTokeByUser.forEach(t -> {
+        String accessToken = jwtService.generateAccessToken(user);
+        String refreshToken = jwtService.generateRefreshToken(user);
+
+        List<Token> validTokenByUser = tokenRepository.findAllAccessTokenByUser(user.getId());
+        if (!validTokenByUser.isEmpty()) {
+            validTokenByUser.forEach(t -> {
+
                 t.setLoggedOut(true);
             });
         }
 
-        tokenRepository.saveAll(validTokeByUser);
+        saveUserToken(accessToken, refreshToken, user);
 
-        saveUserToken(jwtToken, user);
-
-        return new AuthenticationResponse(jwtToken);
+        return new AuthenticationResponse(accessToken, refreshToken, "User login successful");
     }
 
-    private void saveUserToken(String jwtToken, User user) {
+    public ResponseEntity refreshToken(HttpServletRequest request, HttpServletResponse response) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
+        String token = authHeader.substring(7);
+        String username = jwtService.extractUsername(token);
+
+        User user = userRepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        if (jwtService.isValidRefreshToken(token, user)) {
+            String accessToken = jwtService.generateAccessToken(user);
+            String refreshToken = jwtService.generateRefreshToken(user);
+
+            saveUserToken(accessToken, refreshToken, user);
+
+            return new ResponseEntity(new AuthenticationResponse(accessToken, refreshToken, "New Token generated"), HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    }
+
+    private void saveUserToken(String accessToken, String refreshToken, User user) {
         Token token = new Token();
-        token.setToken(jwtToken);
+        token.setAccessToken(accessToken);
+        token.setRefreshToken(refreshToken);
         token.setLoggedOut(false);
         token.setUser(user);
         tokenRepository.save(token);
