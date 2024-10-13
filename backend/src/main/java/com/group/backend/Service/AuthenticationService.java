@@ -45,6 +45,7 @@ public class AuthenticationService {
 
         User user = new User();
 
+        user.setName(request.getName());
         user.setUsername(request.getUsername());
         user.setPass(encoder().encode(request.getPass()));
         user.setRoleID(false);
