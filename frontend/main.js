@@ -1,28 +1,28 @@
-var header__top__account__register = document.getElementById("myHeader__top__account__register");
-var header__top__account__login = document.getElementById("myHeader__top__account__login");
-var register__box = document.getElementById("myRegister__box");
-var login__box = document.getElementById("myLogin__box");
-var exitRegisterBox = document.getElementById("registerBoxExit");
-var exitLoginBox = document.getElementById("loginBoxExit");
-var darklight = document.getElementById("darklight");
+// var header__top__account__register = document.getElementById("myHeader__top__account__register");
+// var header__top__account__login = document.getElementById("myHeader__top__account__login");
+// var register__box = document.getElementById("myRegister__box");
+// var login__box = document.getElementById("myLogin__box");
+// var exitRegisterBox = document.getElementById("registerBoxExit");
+// var exitLoginBox = document.getElementById("loginBoxExit");
+// var darklight = document.getElementById("darklight");
 
-//register and login
+// //register and login
 
-header__top__account__register.addEventListener('click', function(){
-    register__box.style.display = 'block';
-});
+// header__top__account__register.addEventListener('click', function(){
+//     register__box.style.display = 'block';
+// });
 
-header__top__account__login.addEventListener('click', function(){
-    login__box.style.display = 'block';
-});
+// header__top__account__login.addEventListener('click', function(){
+//     login__box.style.display = 'block';
+// });
 
-exitRegisterBox.addEventListener('click', function(){
-    register__box.style.display = 'none';
-});
+// exitRegisterBox.addEventListener('click', function(){
+//     register__box.style.display = 'none';
+// });
 
-exitLoginBox.addEventListener('click', function(){
-   login__box.style.display = 'none';
-});
+// exitLoginBox.addEventListener('click', function(){
+//    login__box.style.display = 'none';
+// });
 
 // header__top
 
@@ -59,6 +59,45 @@ hotrotragop.addEventListener('click', function(e){
     mienphivanchuyen__box.style.display = 'none';   
 });
 
+hotrotragop.style.transition = "0.5s";
+
+hotrotragop.addEventListener('mousemove', function(){
+    hotrotragop.style.fontSize = "17px";
+});
+
+hotrotragop.addEventListener('mouseout', function(){
+    hotrotragop.style.fontSize = "15px";
+});
+
+giauudainhat.style.transition = "0.5s";
+
+giauudainhat.addEventListener('mousemove', function(){
+    giauudainhat.style.fontSize = "17px";
+});
+
+giauudainhat.addEventListener('mouseout', function(){
+    giauudainhat.style.fontSize = "15px";
+});
+
+mienphivanchuyen.style.transition = "0.5s";
+
+mienphivanchuyen.addEventListener('mousemove', function(){
+    mienphivanchuyen.style.fontSize = "17px";
+});
+
+mienphivanchuyen.addEventListener('mouseout', function(){
+    mienphivanchuyen.style.fontSize = "15px";
+});
+
+baohanhtannha.style.transition = "0.5s";
+
+baohanhtannha.addEventListener('mousemove', function(){
+    baohanhtannha.style.fontSize = "17px";
+});
+
+baohanhtannha.addEventListener('mouseout', function(){
+    baohanhtannha.style.fontSize = "15px";
+});
 giauudainhat.addEventListener('click', function(e){
     giauudainhat__box.style.display = 'block';
     hotrotragop__box.style.display = 'none';

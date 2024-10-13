@@ -9,6 +9,7 @@ body{
     width: auto;
     background-color:whitesmoke;
     position: relative;
+    font-family: "SF Pro Display", sans-serif;
 }
 
 a{
@@ -121,7 +122,7 @@ a{
     background-color: rgb(0,91,173);
     border: none;
     margin-left: 10px;
-    margin-right: 30px;
+    margin-right: 20px;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -157,7 +158,7 @@ a{
 
 .header__mid__selection{
     height: 50px;
-    width: auto;
+    width: 770px;
     background-color: rgb(0,91,173);
     display: flex;
     align-items: center;
@@ -191,8 +192,7 @@ a{
 .header__mid__hotline{
     height: 100%;
     width: auto;
-    margin-left: auto;
-    margin-right: 0px;
+    /* margin-left: 20px; */
     border: none;
     background-color: rgb(0,91,173);
     display: flex;
@@ -439,8 +439,8 @@ a{
 .register__box{
     display: none;
     position: absolute;
-    top: 200px;
-    height: 75%;
+    top: 0px;
+    height: 100%;
     width: 100%;    
     background-color: #726d6d22;
 } 
@@ -449,7 +449,7 @@ a{
     width: 800px;
     height: 485px;
     display: flex;
-    margin: auto;
+    margin: 200px auto;
     background-color: white;
     border-radius: 15px;
 }
@@ -497,21 +497,15 @@ a{
 }
 
 .register__box__content p{
-    margin-bottom: 35px;
     margin-left: 45px; 
+    margin-bottom: 30px;
     font-size: 16px;
     font-weight: 400;
     font-family: "SF Pro Display", sans-serif;
 }
 
-.register__box__password{
-    display: flex;
-    height: 25px;
-    width: 150px;
-}
-
 .register__box__content input{
-    margin-bottom: 35px;
+    margin-bottom: 30px;
     margin-left: 45px; 
     border: none;
     outline: none;
@@ -520,11 +514,25 @@ a{
     width: 360px;
 }
 
+.register__box__password{
+    display: flex;
+    height: 25px;
+    width: 150px;
+    margin-bottom: 15px;
+}
+.register__war1, .register__war2, .register__war3, .register__war4, .register__war5{    
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 15px;
+    margin-left: 50px;
+    margin-bottom: 5px;
+    color: red;
+    display: none;
+}
 .register__box__content button{
     height: 40px;
     width: 370px;
     margin-left: 45px;
-    margin-top: 30px;
+    margin-top: 10px;
     border-radius: 10px;
     font-family: "SF Pro Display", sans-serif;
     background-color: rgb(0, 102, 193);
@@ -541,6 +549,54 @@ a{
     background-color: white;
     width: 30px;
     height: 30px;
+    cursor: pointer;
+}
+
+/* Đăng ký thành công */
+
+.success__register{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 55%;
+    display: none;
+}
+
+.success__register__container{
+    height: 350px;
+    width: 500px;
+    margin: 200px auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+.success__register__container i{
+    margin-top: 50px;
+    font-size: 60px;
+    font-weight: 600;
+    color: white;
+    padding: 25px;
+    background-color: #17b021fc;
+    border-radius: 50%;
+}
+
+.success__register__container h1{
+    margin-top: 30px;
+}
+
+.success__register__container button{
+    margin-top: 30px;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    background-color: #17b021fc;
     cursor: pointer;
 }
 

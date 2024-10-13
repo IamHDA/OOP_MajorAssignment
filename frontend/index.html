@@ -188,7 +188,7 @@
     <!--register__box-->
     <div class="register__box" id = "myRegister__box">
         <div class="register__box__container">
-            <div class="register__box__img">
+            <div class="register__box__img">    
                 <img src="./image/Trangchu/Screenshot 2024-10-02 180154.png" alt="">
                 <h1>Mua sắm tại LapTop PTIT</h1>
                 <p>Siêu ưu đãi mỗi ngày</p>
@@ -197,18 +197,32 @@
             <div class="register__box__content">
                 <h1>Tạo tài khoản</h1>
                 <p>Vui lòng cho chúng tôi biết thông tin của bạn</p>
-                <input type="text" placeholder="Tên bạn">
-                <input type="text" placeholder="Email">
+                <input type="text" id = "register__name" placeholder="Tên bạn">
+                <input type="text" id = "register__userName" placeholder="Tên đăng nhập">
                 <div class="register__box__password">
-                    <input type="password" placeholder="Mật khẩu">
-                    <input type="password" placeholder="Nhập lại mật khẩu">
+                    <input type="password" id = "register__userPassword1" placeholder="Mật khẩu">
+                    <input type="password" id = "register__userPassword2" placeholder="Nhập lại mật khẩu">
                 </div>
-                <button>Tạo tài khoản</button>
+                <div class="register__war1" id = "register__war1">- Yêu cầu hãy nhập tên của bạn</div>
+                <div class="register__war2" id = "register__war2">- Yêu cầu hãy nhập Tên đăng nhập</div>
+                <div class="register__war3" id = "register__war3">- Tên đăng nhập cần ít nhất 5 ký tự</div>
+                <div class="register__war4" id = "register__war4">- Mật khẩu không khớp</div>
+                <div class="register__war5" id = "register__war5">- Mật khẩu có tối thiểu 6 ký tự</div>
+                <button id = "register__submit">Tạo tài khoản</button>
             </div>
 
            <button class="exit" id="registerBoxExit">
                 <i class="fa-solid fa-x"></i>
            </button>
+        </div>
+    </div>
+
+    <!-- Dang ky thanh cong-->
+    <div class="success__register">
+        <div class="success__register__container">
+            <i class="fa-solid fa-check"></i>
+            <h1>Đăng ký thành công</h1>
+            <button class = "exit__success__register">Đóng</button>
         </div>
     </div>
     <!--login__box-->
@@ -433,4 +447,5 @@
     </div>
 
     <script src="./main.js"></script>
+    <script src = "./register.js"></script>
 </body>
