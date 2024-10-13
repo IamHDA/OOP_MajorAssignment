@@ -5,6 +5,10 @@ import com.group.backend.Entity.Token;
 import com.group.backend.Entity.User;
 import com.group.backend.Respository.TokenRepository;
 import com.group.backend.Respository.UserRespository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -41,6 +45,7 @@ public class AuthenticationService {
 
         User user = new User();
 
+        user.setName(request.getName());
         user.setUsername(request.getUsername());
         user.setPass(encoder().encode(request.getPass()));
         user.setRoleID(false);
