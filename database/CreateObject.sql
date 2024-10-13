@@ -126,10 +126,6 @@ ADD CONSTRAINT FK_OrderUser FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
 ALTER TABLE `Order`
 ADD CONSTRAINT FK_OrderStatus FOREIGN KEY (`Status`) REFERENCES `Status` (`ID`);
 
-CREATE INDEX idx_user_phone ON `User` (`Phone`);
-ALTER TABLE `Order`
-ADD CONSTRAINT FK_OrderPhoneUser FOREIGN KEY (`Phone`) REFERENCES `User` (`Phone`);
-
 ALTER TABLE `Order`
 ADD CONSTRAINT FK_OrderPhoneUser FOREIGN KEY (`Phone`) REFERENCES `User` (`Phone`);
 
