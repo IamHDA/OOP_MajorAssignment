@@ -1,0 +1,742 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 1500px;
+    width: auto;
+    background-color:whitesmoke;
+    position: relative;
+    font-family: "SF Pro Display", sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+.header{
+    height: auto;
+    width: 100%;
+    min-width: 1200px;
+    margin-bottom: 0px;
+}
+
+.header__top{
+    height: 45px;
+    width: 100%;
+    min-width: 1200px;
+    background-color:rgb(0, 102, 193);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.header__top__container{
+    min-width: 1200px;
+    display: flex;
+    align-items: center;
+}
+
+.header__top__hotline ul{
+    height: 100%;
+    width: auto;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.header__top__hotline ul li{
+    height: 30px;
+    width: 180px;
+    border-radius: 20px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(91.56deg, rgb(245, 33, 148) 2.74%, rgb(250, 159, 44) 96.84%);
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    font-weight: 600;
+    font-family: "SF Pro Display", sans-serif;
+    cursor: pointer;
+}
+
+.header__top__hotline ul li i{
+    margin-right: 10px;
+}
+
+.header__top__account{
+    height: 100%;
+    width: auto;
+    margin-left: auto;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.header__top__account button{
+    height: 100%;
+    width: auto;
+    border: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgb(0,91,173);
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "SF Pro Display", sans-serif;
+    cursor: pointer;
+}
+
+.header__top__account h6{
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    font-weight: 9000;
+}
+
+.header__mid{
+    height: 70px;
+    width: 100%;
+    min-width: 1200px;
+    background-color:  rgb(0,91,173);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header__mid__container{
+    height: 100%;
+    width: 1200px;
+    display: flex;
+    align-items: center;
+}
+
+.header__mid__logo, .header__mid__logo a{
+    height: 100%;
+    width: auto;
+    background-color: rgb(0,91,173);
+    border: none;
+    margin-left: 10px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
+.header__mid .logo__img{
+    height: 50px;
+    width: 60px;
+    margin-right: 3px;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background: #22222222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: 700;
+    color: red;
+    font-family: "SF Pro Display", sans-serif;
+}
+
+.header__mid .logo__text{
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-family: "SF Pro Display", sans-serif;
+}
+
+.header__mid .logo__text .bottom-line{
+    font-size: 12px;
+    margin-left: 9px;
+}
+
+.header__mid__selection{
+    height: 50px;
+    width: 770px;
+    background-color: rgb(0,91,173);
+    display: flex;
+    align-items: center;
+}
+
+.header__mid__selection button{
+    background-color:  rgb(0,91,173);
+    border: none;
+}
+
+.header__mid__selection button div{
+    height: 100%;
+    width: auto;
+    border: none;
+    margin-right: 20px;
+    background-color:  rgb(0,91,173);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-weight: 400;
+    font-family: "SF Pro Display", sans-serif;
+    cursor: pointer;
+}
+
+.header__mid__selection button i{
+    margin-right: 5px;
+}
+
+.header__mid__hotline{
+    height: 100%;
+    width: auto;
+    /* margin-left: 20px; */
+    border: none;
+    background-color: rgb(0,91,173);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.header__mid__hotline i{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 5px;
+    background-color:rgb(255, 255, 255) ;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+.header__mid__hotline__text{
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: 300;
+    font-family: "SF Pro Display", sans-serif;
+}
+
+
+.header__mid__cart{
+    height: 35px;
+    width: 35px;
+    border: none;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: 20px;
+    color:  black;
+    cursor: pointer;
+}
+
+
+/* ---------header__bottom---------------- */
+.header__bottom{    
+    height: 70px;
+    width: 100%;
+    min-width: 1200px;
+    margin-bottom: 0px;
+    background-color: rgb(0,91,173);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0px;
+    z-index: 1000;
+}
+
+.header__bottom__container{
+    height: 100%;
+    width: 1200px;
+    display: flex;
+    align-items: center;
+}
+
+.header__bottom__catalog{
+    height: 40px;
+    width: 185px;
+    border-width: 2px;
+    border-color: rgb(250, 250, 250);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0,91,173);
+    color: rgb(250, 250, 250);
+    font-size: 12px;
+    font-weight: 600;
+    font-family: "SF Pro Display", sans-serif;
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+.header__bottom__catalog i{
+    margin-right: 10px;
+}
+
+.search-input{
+    height: 25px;
+    width: 700px;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    font-family: "SF Pro Display", sans-serif;
+    margin-left: 50px;
+    outline: none;
+}
+
+.header__bottom__search{
+    height: 40px;
+    width: 800px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(250, 250, 250);
+    border-radius: 30px;
+}
+
+.search-button{
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: #74cdff;
+    color: rgb(250, 250, 250);
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.darklight{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-left: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ---------------content--------------------- */
+
+.content{
+    height: auto;
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    min-width: 1200px;
+}
+
+.content__container{
+    height: auto;
+    width: 1200px;
+    max-width: 1200px;
+}
+
+    /* ---------------------catalog ----------------------*/
+.catalog{
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.catalog__container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+    /* catalog__list */
+.catalog__list__container{
+    width: auto;
+    height: auto;
+}
+
+.catalog__list{
+    height: auto;
+    width: 290px;
+    margin-right: 10px;
+}
+.catalog__list button{
+    width: 290px;
+    height: 39px;
+    border: none;
+    background-color:white;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "SF Pro Display", sans-serif;
+    cursor: pointer;
+}
+
+.catalog__first{
+    border-radius: 15px 15px 0 0;
+}
+
+.catalog__last{
+    border-radius: 0 0 15px 15px;
+}
+
+.catalog__list button:hover{
+    background-color: rgb(190, 221, 248);
+    color: rgb(71,160,240);
+}   
+    /* catalog__image */
+
+.catalog__image{
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog__image__1{
+    height:auto;
+    width: auto;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.catalog__image__1__1 img{
+    height: 380px;
+    width: auto;
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.catalog__image__1__2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.catalog__image__1__2 img{
+    height: auto;
+    width: 275px;
+    border-radius: 10px;
+}
+
+.catalog__image__2 {
+    height: auto;
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.catalog__image__2 img{
+    height: auto;
+    width: 275px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+
+
+/* register__box */
+.register__box{
+    display: none;
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 100%;    
+    background-color: #726d6d22;
+} 
+
+.register__box__container{
+    width: 800px;
+    height: 485px;
+    display: flex;
+    margin: 200px auto;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.register__box__img{
+    height: 100%;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.register__box__img h1{
+    font-size: 18px;
+    font-weight: 800;
+    color: rgb(0, 102, 193);
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.register__box__img p{
+    font-size: 15px;
+}
+
+.register__box__img img{
+    height: 280px;
+    width: 225px;
+}
+
+.register__box__content{
+    height: 100%;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.register__box__content h1{
+    margin-top: 75px;
+    margin-left: 45px; 
+    margin-bottom: 5px;
+    font-size: 28px;
+    font-weight: 700;
+    font-family: "SF Pro Display", sans-serif;
+}
+
+.register__box__content p{
+    margin-left: 45px; 
+    margin-bottom: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "SF Pro Display", sans-serif;
+}
+
+.register__box__content input{
+    margin-bottom: 30px;
+    margin-left: 45px; 
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #1d141477;
+    height: 25px;
+    width: 360px;
+}
+
+.register__box__password{
+    display: flex;
+    height: 25px;
+    width: 150px;
+    margin-bottom: 15px;
+}
+.register__war1, .register__war2, .register__war3, .register__war4, .register__war5{    
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 15px;
+    margin-left: 50px;
+    margin-bottom: 5px;
+    color: red;
+    display: none;
+}
+.register__box__content button{
+    height: 40px;
+    width: 370px;
+    margin-left: 45px;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-family: "SF Pro Display", sans-serif;
+    background-color: rgb(0, 102, 193);
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.register__box__container .exit{
+    margin-left: 165px;
+    margin-top: 20px;
+    border: none;
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+/* Đăng ký thành công */
+
+.success__register{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 55%;
+    display: none;
+}
+
+.success__register__container{
+    height: 350px;
+    width: 500px;
+    margin: 200px auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+.success__register__container i{
+    margin-top: 50px;
+    font-size: 60px;
+    font-weight: 600;
+    color: white;
+    padding: 25px;
+    background-color: #17b021fc;
+    border-radius: 50%;
+}
+
+.success__register__container h1{
+    margin-top: 30px;
+}
+
+.success__register__container button{
+    margin-top: 30px;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    background-color: #17b021fc;
+    cursor: pointer;
+}
+
+/* login__box */
+
+.login__box{
+    display: none;
+    position: absolute;
+    top: 200px;
+    height: 75%;
+    width: 100%;    
+    background-color: #726d6d22;
+} 
+
+.login__box__container{
+    width: 800px;
+    height: 485px;
+    display: flex;
+    margin: auto;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.login__box__img{
+    height: 100%;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login__box__img h1{
+    font-size: 18px;
+    font-weight: 800;
+    color: rgb(0, 102, 193);
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.login__box__img p{
+    font-size: 15px;
+}
+
+.login__box__img img{
+    height: 280px;
+    width: 225px;
+}
+
+.login__box__content{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-left: 45px;
+    font-family: "SF Pro Display", sans-serif;
+}
+
+.login__box__content h1{
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 70px;
+}
+
+.login__box__content span{
+    display: flex;
+}
+
+.login__box__content button, .login__box__content h2{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.login__box__content span button{
+    background-color: white;
+    border: none;
+    color: rgb(25, 136, 236);
+    cursor: pointer;
+    text-decoration: underline;
+    margin-right: 3px;
+    margin-bottom: 30px;
+}
+
+.login__box__content input{
+    height: 30px;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #1d141477;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.login__box__content h3{
+    color: rgb(250, 82, 82);
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 5px;
+    display: none;
+}
+
+.login__box__content #losePassword{
+    font-size:14px;
+    font-weight: 600;
+    height:auto;
+    width: 110px;
+    margin-top: 10px;
+    margin-left: 300px;
+    border: none;
+    background-color: white;
+}
+
+.login__box__content #login__button{
+    height: 40px;
+    width: 330px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color:  rgb(0, 102, 193);
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.login__box__content p{
+    font-size: 16px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.login__box__container .exit{
+    border: none;
+    background-color:white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 1000px;
+}

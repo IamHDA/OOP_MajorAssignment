@@ -20,6 +20,7 @@ public class User {
     private String username;
     private String pass;
     private boolean roleID;
+    @Column(name = "UserAddress")
     private String userAddress;
 
     @OneToMany(mappedBy = "user")
