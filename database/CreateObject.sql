@@ -9,11 +9,6 @@ CREATE TABLE `User` (
   `UserAddress` NVARCHAR(100)
 );
 
-CREATE TABLE `Role` (
-  `ID` BIT PRIMARY KEY,
-  `Name` VARCHAR(9)
-);
-
 CREATE TABLE `Laptop` (
   `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
   `SpecID` BIGINT,
@@ -105,9 +100,6 @@ CREATE TABLE `Specification` (
   `Mux_Switch` BOOLEAN
 );
 
-ALTER TABLE `User`
-ADD CONSTRAINT FK_UserRole FOREIGN KEY (`RoleID`) REFERENCES `Role` (`ID`);
-
 ALTER TABLE `Comment`
 ADD CONSTRAINT FK_CommentUser FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
 
@@ -125,9 +117,6 @@ ADD CONSTRAINT FK_OrderUser FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
 
 ALTER TABLE `Order`
 ADD CONSTRAINT FK_OrderStatus FOREIGN KEY (`Status`) REFERENCES `Status` (`ID`);
-
-ALTER TABLE `Order`
-ADD CONSTRAINT FK_OrderPhoneUser FOREIGN KEY (`Phone`) REFERENCES `User` (`Phone`);
 
 ALTER TABLE `Order`
 ADD CONSTRAINT FK_OrderShippingMethod FOREIGN KEY (`Shipping_Method`) REFERENCES `Shipping_Method` (`ID`);

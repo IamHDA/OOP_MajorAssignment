@@ -1,6 +1,3 @@
-INSERT INTO role (ID, Name)
-VALUES (1, 'Admin'), (0, 'Customer');
--- pause here
 INSERT INTO specification (CPU, RAM, ROM, Screen, GPU, Battery, Weight, Webcam, Operating_System, Connection_Port, Mux_Switch)
 VALUES ('Intel core i5-1340P (12 cores, 16 Threads, up to 4.6GHz, 12MB cache)', '16GB LPDDR5 4800MHz', 'SSD 512GB M.2 PCIe NVMe', '16'''' FHD+ (1920 x 1200; 16:10) Anti-Glare Non-Touch 250nits WVA Display with ComfortView Support', 'Intel Iris Xe Graphics', '4-Cell, 54Wh', '1.85 kg', 'HD camera', 'Window 11 Home', '2x USB 3.2 Gen 1 Type A
 		1x USB Type-C Thunderbolt 4.0 port with DisplayPort and Power Delivery
