@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthenticationController {
 
+
     @Autowired
     private final AuthenticationService authenticationService;
     
@@ -30,4 +31,10 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> login(@RequestBody User request){
         return ResponseEntity.ok(authenticationService.login(request));
     }
+
+    @PostMapping("/refresh_token")
+    public ResponseEntity<AuthenticationResponse> refreshToken(HttpServletRequest request, HttpServletResponse response){
+        return authenticationService.refreshToken(request, response);
+    }
+
 }

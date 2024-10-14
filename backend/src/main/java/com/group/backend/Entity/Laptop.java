@@ -3,6 +3,8 @@ package com.group.backend.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "laptop")
@@ -10,12 +12,30 @@ public class Laptop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ID;
-    private long SpecID;
-    private String Name;
-    private String Brand;
-    private int Price;
-    private String Status;
-    private short Sale;
-    private boolean Available;
+    private long id;
+    private String name;
+    private String brand;
+    private int price;
+    private String status;
+    private short sale;
+    private boolean available;
+
+    @OneToOne
+    @JoinColumn(name = "specification_id", nullable = false)
+    private Specification specification;
+
+    @OneToMany(mappedBy = "laptop")
+    private List<Cart_Detail> cartDetails;
+
+    @OneToMany(mappedBy = "laptop")
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "laptop")
+    private List<Image> images;
+
+    @OneToMany(mappedBy = "laptop")
+    private List<Order_Detail> orderDetails;
+
+    @OneToMany(mappedBy = "laptop")
+    private List<Laptop_Category> laptopCategories;
 }

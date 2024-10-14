@@ -19,14 +19,18 @@ public class User {
     private String phone;
     private String username;
     private String pass;
-    private boolean roleID;
+    private String role;
     private String userAddress;
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 
-    public String getRole(){
-        if(roleID) return "ADMIN";
-        return "Customer";
-    }
+    @OneToMany(mappedBy = "user")
+    private List<Cart_Detail> cartDetails;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> order;
 }

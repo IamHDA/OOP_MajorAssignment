@@ -12,6 +12,9 @@ public class Token {
     private int id;
     @Column(name = "isLoggedOut")
     private boolean loggedOut;
+    private String accessToken;
+    @Column(name = "refreshToken")
+    private String refreshToken;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
