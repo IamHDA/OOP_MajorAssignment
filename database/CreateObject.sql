@@ -113,7 +113,13 @@ ALTER TABLE `Status` ADD FOREIGN KEY (`OrderID`) REFERENCES `Order` (`ID`);
 
 ALTER TABLE `Shipping_Method` ADD FOREIGN KEY (`OrderID`) REFERENCES `Order` (`ID`);
 
+<<<<<<< HEAD
+CREATE INDEX idx_user_phone ON `User` (`Phone`);
+ALTER TABLE `Order`
+ADD CONSTRAINT FK_OrderPhoneUser FOREIGN KEY (`Phone`) REFERENCES `User` (`Phone`);
+=======
 ALTER TABLE `Comment` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
+>>>>>>> d4b2bce466f07ae3591dd15190aef8f1fd1f8eac
 
 ALTER TABLE `Order_Detail` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
 
