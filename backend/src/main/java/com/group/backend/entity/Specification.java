@@ -14,11 +14,11 @@ public class Specification {
     private String ram;
     private String rom;
     private String screen;
-    private String graphics_card;
+    private String graphicsCard;
     private String battery;
-    private float weight;
+    private String weight;
     private String webcam;
-    private String operating_system;
-    private String connection_port;
-    private boolean mux_switch;
+    private String operatingSystem;
+    private String connectionPort;
+    private boolean muxSwitch;
 }

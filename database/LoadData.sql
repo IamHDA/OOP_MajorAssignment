@@ -1,11 +1,14 @@
-INSERT INTO specification (CPU, RAM, ROM, Screen, GPU, Battery, Weight, Webcam, Operating_System, Connection_Port, Mux_Switch)
+ALTER TABLE specification
+MODIFY connection_port VARCHAR(500);
+customer_order
+INSERT INTO specification (cpu, ram, rom, screen, graphics_card, battery, weight, webcam, operating_system, connection_port, mux_switch)
 VALUES ('Intel core i5-1340P (12 cores, 16 Threads, up to 4.6GHz, 12MB cache)', '16GB LPDDR5 4800MHz', 'SSD 512GB M.2 PCIe NVMe', '16'''' FHD+ (1920 x 1200; 16:10) Anti-Glare Non-Touch 250nits WVA Display with ComfortView Support', 'Intel Iris Xe Graphics', '4-Cell, 54Wh', '1.85 kg', 'HD camera', 'Window 11 Home', '2x USB 3.2 Gen 1 Type A
 		1x USB Type-C Thunderbolt 4.0 port with DisplayPort and Power Delivery
 		1x HDMI 1.4 port
 		1x  SD-card slot
-		1x Jack tai nghe 3.5mm
+		1x Jack tai nghe 3.5mmlaptop
 		1x Power-adapter port 4.5 mm x 2.9 mm DC-in', FALSE),
-       ('Intel Core i7-1360P (1.6GHz up to 5.0Hz, 12 Cores, 16 Threads, 18MB Cache)', '16GB LPDDR5 4800MHz', 'SSD 512GB M.2 PCIe NVMe', '16'''' FHD+ (1920 x 1200; 16:10) Anti-Glare Non-Touch 250nits WVA Display with ComfortView Support', 'Intel Iris Xe Graphics', '4-Cell, 54Wh', '1.85 kg', 'HD camera', 'Window 11 Home', '2x USB 3.2 Gen 1 Type A
+       ('Intel Core i7-1360P (1.6GHz up to 5.0Hz, 12 Cores, 16 Threads, 18MB Cache)', '16GB LPDDR5 4800MHz', 'SSD 512GB M.2 PCIe NVMe', '16'''' FHD+ (1920 x 1200; 16:10) Anti-Glare Non-Touch 250nits WVA Display with ComfortView Support', 'Intel Iris Xe Graphics', '4-Cell, 54Wh', '1.85kg', 'HD camera', 'Window 11 Home', '2x USB 3.2 Gen 1 Type A
 		1x USB Type-C Thunderbolt 4.0 port with DisplayPort and Power Delivery
 		1x HDMI 1.4 port
 		1x  SD-card slot
@@ -64,7 +67,7 @@ VALUES ('Intel core i5-1340P (12 cores, 16 Threads, up to 4.6GHz, 12MB cache)', 
         FALSE);
 -- pause here
 
-INSERT INTO laptop (SpecID, Name, Brand, Price, Status, Sale, Available)
+INSERT INTO laptop (specification_id, name, brand, price, status, sale, available)
 VALUES (1, 'Dell Inspiron 16 5630', 'Dell', 23990000, 'new', 33, TRUE),
         (2, 'Dell Inspiron 16 5630', 'Dell', 26990000, 'new', 20, TRUE),
         (3, 'Dell Inspiron 16 5620', 'Dell', 19990000, 'new', 16, TRUE),
@@ -79,7 +82,7 @@ VALUES (1, 'Dell Inspiron 16 5630', 'Dell', 23990000, 'new', 33, TRUE),
         ( 12, 'Lenovo ThinkPad E14 Gen 5', 'Lenovo', 23990000, 'New', 9, True);
 -- pause here
 
-INSERT INTO category ( Name)
+INSERT INTO category (name)
 VALUES ( 'Học tập - văn phòng cơ bản'),
        ('Laptop Gaming'),
        ('Laptop Đồ họa - hiệu năng cao'),
@@ -87,21 +90,57 @@ VALUES ( 'Học tập - văn phòng cơ bản'),
        ('Laptop Like new');
 -- pause here
 
-INSERT INTO laptopcategory(CATEID, LAPTOPID)
+INSERT INTO laptop_category(category_id, laptop_id)
 VALUES (4, 1), (4, 2), (1, 3),
        (1, 4), (1, 5), (4, 6),
        (2, 7), (2, 8), (4, 9),
        (4, 10), (2, 11), (4, 12);
 -- pause here
 
-INSERT INTO shipping_method(NAME, PRICE)
-VALUES ('Nhận ở cửa hàng', 0),
-       ('Giao hàng nhanh', 50000),
-       ('Giao hàng hỏa tốc', 99000);
--- pause here
+-- INSERT INTO user(email, name, pass, role)
+-- VALUES	('huaduyanh090@gmail.com', 'Hứa Duy Anh', '$2a$10$VN1MG9ERTzFvqyld3phW0OSddS4lpj.IjeoZNr5vYLYrHRiyFXgqW', 'Customer'),
+-- 		('huaduyanh2004@gmail.com', 'Hứa Thứ 2', '$2a$10$qEMm./PTcZQaya1U4mbtS.rdGJD8JLG1UNZ3PX2fDSrN8D8k1Uxb2', 'Customer'),
+--         ('huaduyanhls123@gmail.com', 'Hứa Thứ 3', '$2a$10$9tUhD9TgotJr20a7ysxbguAiAL6U4FNH..nHAlyWg2epLsiLGFRq6', 'Customer');
+-- phần này để làm cảnh, dùng postman để đăng ký với đường dẫn (http://localhost:8080/register)
 
-INSERT INTO status (NAME, DESCRIPTION)
+INSERT INTO status (name, description)
 VALUES ('Đang giao', 'Chú ý điện thoại để nhận hàng nhé'),
        ('Đã giao', 'Cho shop xin đánh giá về sản phẩm nhé'),
        ('Đã hủy', 'Mọi thông tin chi tiết hơn xin liên hệ shop');
 -- pause here
+
+INSERT INTO cart_detail(laptop_id, user_id, quantity)
+VALUES	(1, 1, 1), (2, 1, 1), (4, 1, 1), (5, 1, 1),
+		(3, 2, 1), (6, 2, 1), (7, 2, 1), (8, 2, 1),
+        (9, 3, 1), (10, 3, 1), (11, 3, 1), (12, 3, 1);
+-- pause here
+
+INSERT INTO shipping_method(name, price)
+VALUES ('Nhận ở cửa hàng', 0),
+       ('Giao hàng nhanh', 30000),
+       ('Giao hàng hỏa tốc', 70000);
+-- pause here
+
+INSERT INTO customer_order(shipping_address, total_price, shipping_method_id, status_id, user_id)
+VALUES	('Số 1, Đường Láng, Quận Đống Đa, Hà Nội', 78997000, 3, 2, 1),
+		('Số 10, Phố Huế, Quận Hai Bà Trưng, Hà Nội', 19990000, 2, 1, 1),
+        ('Số 50, Đường Kim Mã, Quận Ba Đình, Hà Nội', 39980000, 1, 2, 2),
+        ('Số 25, Phố Trần Duy Hưng, Quận Cầu Giấy, Hà Nội', 27990000, 3, 1, 2),
+        ('Số 123, Phố Tràng Thi, Quận Hoàn Kiếm, Hà Nội', 55980000, 1, 1, 3);
+-- pause here
+
+INSERT INTO order_detail(quantity, unit_price, laptop_id, customer_order_id)
+VALUES	(1, 26990000, 2, 1), (1, 25990000, 10, 1), (1, 25990000, 11, 1), (1, 23990000, 5, 2),
+		(1, 19990000, 3, 2), (1, 19990000, 4, 2), (1, 27990000, 9, 2),
+        (2, 27990000, 8, 3);
+-- pause here
+
+INSERT INTO laptop_comment(comment, post_at, update_at, laptop_id, user_id)
+VALUES	('Laptop dùng sướng mỗi tội hơi nóng', '2024-10-15 17:48:23', null, 8, 3),
+		('Không có gì để chê', '2024-10-10 15:48:23', null, 11, 1),
+        ('Sản phẩm này đẹp ghê', '2024-10-15 17:48:23', null, 9, 2);
+-- pause here
+
+        
+        
+

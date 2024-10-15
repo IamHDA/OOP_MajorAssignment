@@ -1,9 +1,8 @@
 CREATE TABLE `User` (
   `ID` BIGINT PRIMARY KEY,
   `Name` NVARCHAR(100),
-  `Email` VARCHAR(50),
+  `Email` VARCHAR(50) UNIQUE,
   `Phone` VARCHAR(11),
-  `Username` VARCHAR(50) UNIQUE,
   `Pass` VARCHAR(50),
   `Role` VARCHAR(10),
   `UserAdress` NVARCHAR(100)
@@ -38,7 +37,7 @@ CREATE TABLE `Status` (
   `Description` NVARCHAR(100)
 );
 
-CREATE TABLE `Comment` (
+CREATE TABLE `Laptop_Comment` (
   `ID` BIGINT PRIMARY KEY,
   `UserID` BIGINT,
   `LaptopID` BIGINT,
@@ -54,7 +53,7 @@ CREATE TABLE `Shipping_Method` (
   `Price` INT
 );
 
-CREATE TABLE `Order` (
+CREATE TABLE `Customer_Order` (
   `ID` BIGINT PRIMARY KEY,
   `UserID` BIGINT,
   `Shipping_Address` NVARCHAR(100),
@@ -71,7 +70,7 @@ CREATE TABLE `Order_Detail` (
 
 CREATE TABLE `Image` (
   `ID` BIGINT PRIMARY KEY,
-  `LaptopID` BIGINT,
+  `LaptopID` bigint,
   `Name` VARCHAR(100),
   `File_Path` VARCHAR(50)
 );
@@ -80,8 +79,7 @@ CREATE TABLE `Cart_Detail` (
   `ID` BIGINT PRIMARY KEY,
   `UserID` BIGINT,
   `LaptopID` BIGINT,
-  `Quantity` INT,
-  `Unit_Price` INT
+  `Quantity` INT
 );
 
 CREATE TABLE `Specification` (
@@ -99,27 +97,21 @@ CREATE TABLE `Specification` (
   `Mux_Switch` BOOLEAN
 );
 
-ALTER TABLE `Comment` ADD FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
+ALTER TABLE `Laptop_Comment` ADD FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
 
 ALTER TABLE `Cart_Detail` ADD FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
 
-ALTER TABLE `Order` ADD FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
+ALTER TABLE `Customer_Order` ADD FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
 
 ALTER TABLE `Cart_Detail` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
 
-ALTER TABLE `Order_Detail` ADD FOREIGN KEY (`OrderID`) REFERENCES `Order` (`ID`);
+ALTER TABLE `Order_Detail` ADD FOREIGN KEY (`OrderID`) REFERENCES `Customer_Order` (`ID`);
 
-ALTER TABLE `Status` ADD FOREIGN KEY (`OrderID`) REFERENCES `Order` (`ID`);
+ALTER TABLE `Status` ADD FOREIGN KEY (`OrderID`) REFERENCES `Customer_Order` (`ID`);
 
-ALTER TABLE `Shipping_Method` ADD FOREIGN KEY (`OrderID`) REFERENCES `Order` (`ID`);
+ALTER TABLE `Shipping_Method` ADD FOREIGN KEY (`OrderID`) REFERENCES `Customer_Order` (`ID`);
 
-<<<<<<< HEAD
-CREATE INDEX idx_user_phone ON `User` (`Phone`);
-ALTER TABLE `Order`
-ADD CONSTRAINT FK_OrderPhoneUser FOREIGN KEY (`Phone`) REFERENCES `User` (`Phone`);
-=======
-ALTER TABLE `Comment` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
->>>>>>> d4b2bce466f07ae3591dd15190aef8f1fd1f8eac
+ALTER TABLE `Laptop_Comment` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
 
 ALTER TABLE `Order_Detail` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
 

@@ -3,6 +3,8 @@ package com.group.backend.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "status")
@@ -14,7 +16,6 @@ public class Status {
     private String name;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "customerOrder_id")
-    private Order order;
+    @OneToMany(mappedBy = "status")
+    private List<Order> orders;
 }

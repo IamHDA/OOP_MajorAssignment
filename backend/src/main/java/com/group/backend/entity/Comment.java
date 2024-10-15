@@ -14,8 +14,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String Comment;
-    private Timestamp post_at;
-    private Timestamp update_at;
+    private Timestamp postAt;
+    private Timestamp updateAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

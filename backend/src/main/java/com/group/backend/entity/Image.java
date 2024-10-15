@@ -12,7 +12,7 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    private String filepath;
+    private String filePath;
 
     @ManyToOne
     @JoinColumn(name = "laptop_id")

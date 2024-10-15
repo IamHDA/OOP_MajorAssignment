@@ -20,12 +20,14 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private Status status;
+
+    @ManyToOne
+    @JoinColumn(name = "shippingMethod_id")
+    private Shipping_Method shippingMethod;
+
     @OneToMany(mappedBy = "order")
     private List<Order_Detail> orderDetails;
-
-    @OneToMany(mappedBy = "order")
-    private List<Status> status;
-
-    @OneToMany(mappedBy = "order")
-    private List<Shipping_Method> shipping_methods;
 }
