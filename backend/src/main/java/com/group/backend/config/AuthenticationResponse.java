@@ -9,10 +9,4 @@ public class AuthenticationResponse {
     private String accessToken;
     private String refreshToken;
     private String message;
-
-    public AuthenticationResponse(String message){
-        this.message = message;
-    }
-
-
 }

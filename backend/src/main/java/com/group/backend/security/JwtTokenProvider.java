@@ -1,7 +1,7 @@
-package com.group.backend.config;
+package com.group.backend.security;
 
 import com.group.backend.entity.User;
-import com.group.backend.respository.TokenRepository;
+import com.group.backend.repository.TokenRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;

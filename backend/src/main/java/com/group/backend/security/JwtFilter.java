@@ -1,4 +1,4 @@
-package com.group.backend.config;
+package com.group.backend.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

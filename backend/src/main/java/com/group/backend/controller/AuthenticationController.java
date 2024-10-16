@@ -1,6 +1,7 @@
 package com.group.backend.controller;
 
-import com.group.backend.entity.User;
+import com.group.backend.dto.payload.LoginRequest;
+import com.group.backend.dto.payload.RegisterRequest;
 import com.group.backend.config.AuthenticationResponse;
 import com.group.backend.service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,12 +24,12 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody User request){
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request){
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody User request){
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest request){
         return ResponseEntity.ok(authenticationService.login(request));
     }
 

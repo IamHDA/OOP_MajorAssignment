@@ -1,4 +1,4 @@
-package com.group.backend.config;
+package com.group.backend.security;
 
 import com.group.backend.entity.User;
 import lombok.NoArgsConstructor;

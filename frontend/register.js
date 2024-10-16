@@ -115,8 +115,8 @@ registerSubmit.addEventListener('click', function(e){
     if(ok1 == 1 && ok2 == 1 && ok3 == 1 && ok4 == 1 && ok5 == 1){
         const dataUser = {
             dataName: name,
-            dataUserName: userName,
-            dataUserPassWord: userPassword1,
+            dataEmail: userName,
+            dataUserPassword: userPassword1,
         };
 
         // push data ve backend

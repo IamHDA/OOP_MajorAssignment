@@ -19,6 +19,7 @@ public class Specification {
     private String weight;
     private String webcam;
     private String operatingSystem;
+    @Column(length = 500)
     private String connectionPort;
     private boolean muxSwitch;
 }

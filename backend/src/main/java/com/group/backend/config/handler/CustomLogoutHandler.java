@@ -1,7 +1,7 @@
 package com.group.backend.config.handler;
 
 import com.group.backend.entity.Token;
-import com.group.backend.respository.TokenRepository;
+import com.group.backend.repository.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;

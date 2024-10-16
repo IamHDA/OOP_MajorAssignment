@@ -1,11 +1,13 @@
 package com.group.backend.service;
 
 import com.group.backend.config.AuthenticationResponse;
-import com.group.backend.config.JwtTokenProvider;
+import com.group.backend.dto.payload.LoginRequest;
+import com.group.backend.dto.payload.RegisterRequest;
 import com.group.backend.entity.Token;
 import com.group.backend.entity.User;
-import com.group.backend.respository.TokenRepository;
-import com.group.backend.respository.UserRespository;
+import com.group.backend.repository.TokenRepository;
+import com.group.backend.repository.UserRepository;
+import com.group.backend.security.JwtTokenProvider;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -24,14 +26,14 @@ public class AuthenticationService {
 
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
-    private final UserRespository userRepo;
+    private final UserRepository userRepo;
     private final TokenRepository tokenRepository;
 
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
 
-    public AuthenticationService(UserRespository userRepo, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, TokenRepository tokenRepository) {
+    public AuthenticationService(UserRepository userRepo, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, TokenRepository tokenRepository) {
         this.userRepo = userRepo;
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
@@ -39,16 +41,14 @@ public class AuthenticationService {
     }
 
 
-    public AuthenticationResponse register(@RequestBody User request) {
-        if(userRepo.findByEmail(request.getEmail()).isPresent()) {
+    public AuthenticationResponse register(@RequestBody RegisterRequest request) {
+        if(userRepo.findByEmail(request.getDataEmail()).isPresent()) {
             return new AuthenticationResponse(null, null, "Username is already in use");
         }
-
         User user = new User();
-
-        user.setName(request.getName());
-        user.setEmail(request.getEmail());
-        user.setPass(encoder().encode(request.getPass()));
+        user.setName(request.getDataName());
+        user.setEmail(request.getDataEmail());
+        user.setPass(encoder().encode(request.getDataUserPassword()));
         user.setRole("Customer");
 
         userRepo.save(user);
@@ -62,10 +62,10 @@ public class AuthenticationService {
     }
 
 
-    public AuthenticationResponse login(@RequestBody User request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPass()));
+    public AuthenticationResponse login(@RequestBody LoginRequest request) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getDataEmail(), request.getDataUserPassword()));
 
-        User user = userRepo.findByEmail(request.getEmail()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        User user = userRepo.findByEmail(request.getDataEmail()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         String accessToken = jwtTokenProvider.generateAccessToken(user);
         String refreshToken = jwtTokenProvider.generateRefreshToken(user);

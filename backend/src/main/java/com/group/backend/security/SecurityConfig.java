@@ -1,4 +1,4 @@
-package com.group.backend.config;
+package com.group.backend.security;
 
 import com.group.backend.config.handler.CustomLogoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors(config -> config.configurationSource(corsConfigurationSource()))
+        http.cors(config -> config.configurationSource(customCorsConfiguration()))
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/login", "/register", "refresh_token")
@@ -66,13 +66,11 @@ public class SecurityConfig {
     }
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource customCorsConfiguration() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://127.0.0.1:5500");
-        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE"));
+        configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:5500"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
-        configuration.addExposedHeader("Authorization");
-        configuration.setMaxAge(3600L);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

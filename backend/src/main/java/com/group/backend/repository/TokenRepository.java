@@ -1,4 +1,4 @@
-package com.group.backend.respository;
+package com.group.backend.repository;
 
 import com.group.backend.entity.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
