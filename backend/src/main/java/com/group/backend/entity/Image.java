@@ -1,5 +1,6 @@
 package com.group.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,6 +16,7 @@ public class Image {
     private String filePath;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "laptop_id")
     private Laptop laptop;
 }

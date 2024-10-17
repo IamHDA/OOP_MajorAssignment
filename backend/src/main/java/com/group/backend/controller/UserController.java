@@ -1,11 +1,11 @@
 package com.group.backend.controller;
 
-import com.group.backend.dto.OrderDTO;
 import com.group.backend.dto.UserDTO;
+import com.group.backend.entity.User;
 import com.group.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,12 +16,19 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/info")
-    public UserDTO showInformation(){
-        return userService.getInformation();
+    public ResponseEntity<UserDTO> showInformation(){
+        return ResponseEntity.ok(userService.getInformation());
     }
 
-    @GetMapping("/orders")
-    public List<OrderDTO> showOrders(){
-        return userService.getCurrentOrders();
+    @PutMapping("/changeInfo")
+    public ResponseEntity<UserDTO> changeInfo(@RequestBody UserDTO userDTO){
+        return ResponseEntity.ok(userService.changeInfo(userDTO));
     }
+
+    @PutMapping("/changePass")
+    public ResponseEntity<UserDTO> changePass(@RequestBody UserDTO userDTO){
+        return ResponseEntity.ok(userService.changeInfo(userDTO));
+    }
+
+
 }

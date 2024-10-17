@@ -1,9 +1,12 @@
 package com.group.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import net.minidev.json.annotate.JsonIgnore;
 
 import java.util.List;
@@ -11,6 +14,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "user")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +40,5 @@ public class User {
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "user")
-    @JsonManagedReference
     private List<Order> orders;
 }

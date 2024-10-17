@@ -32,4 +32,15 @@ public class OrderServiceImp implements OrderService {
                 .collect(Collectors.toList());
         return thisUserOrder;
     }
+
+    @Override
+    public List<OrderDTO> getAllOrders() {
+        List<Order> orders = orderRepo.findAll();
+        List<OrderDTO> allOrders = orders.stream()
+                .map(order -> modelMapper.map(order, OrderDTO.class))
+                .collect(Collectors.toList());
+        return allOrders;
+    }
+
+
 }

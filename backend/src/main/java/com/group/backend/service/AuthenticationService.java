@@ -1,6 +1,7 @@
 package com.group.backend.service;
 
 import com.group.backend.config.AuthenticationResponse;
+import com.group.backend.config.Encoder;
 import com.group.backend.dto.payload.LoginRequest;
 import com.group.backend.dto.payload.RegisterRequest;
 import com.group.backend.entity.Token;
@@ -10,6 +11,7 @@ import com.group.backend.repository.UserRepository;
 import com.group.backend.security.JwtTokenProvider;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,16 +26,14 @@ import java.util.List;
 @Service
 public class AuthenticationService {
 
+    private final Encoder encoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepo;
     private final TokenRepository tokenRepository;
 
-    public BCryptPasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    public AuthenticationService(UserRepository userRepo, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, TokenRepository tokenRepository) {
+    public AuthenticationService(Encoder encoder, UserRepository userRepo, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, TokenRepository tokenRepository) {
+        this.encoder = encoder;
         this.userRepo = userRepo;
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
@@ -43,12 +43,12 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(@RequestBody RegisterRequest request) {
         if(userRepo.findByEmail(request.getDataEmail()).isPresent()) {
-            return new AuthenticationResponse(null, null, "Username is already in use");
+            return new AuthenticationResponse(null, null, "Email is already in use");
         }
         User user = new User();
         user.setName(request.getDataName());
         user.setEmail(request.getDataEmail());
-        user.setPass(encoder().encode(request.getDataUserPassword()));
+        user.setPass(encoder.encode().encode(request.getDataUserPassword()));
         user.setRole("Customer");
 
         userRepo.save(user);

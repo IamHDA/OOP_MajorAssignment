@@ -1,14 +1,16 @@
 package com.group.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
 @Entity
 @Data
 @Table(name = "customerOrder")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Order {
 
     @Id
@@ -19,7 +21,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference
+    @JsonIgnore
     private User user;
 
     @ManyToOne
@@ -28,8 +30,12 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "shippingMethod_id")
+    @JsonBackReference
+    @ToString.Exclude
     private Shipping_Method shippingMethod;
 
     @OneToMany(mappedBy = "order")
+    @JsonManagedReference
+    @ToString.Exclude
     private List<Order_Detail> orderDetails;
 }

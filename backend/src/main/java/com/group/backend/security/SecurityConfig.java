@@ -1,5 +1,6 @@
 package com.group.backend.security;
 
+import com.group.backend.config.Encoder;
 import com.group.backend.config.handler.CustomLogoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -47,7 +48,7 @@ public class SecurityConfig {
         http.cors(config -> config.configurationSource(customCorsConfiguration()))
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/login", "/register", "refresh_token")
+                        .requestMatchers("/login", "/register", "refresh_token", "/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
