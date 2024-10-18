@@ -1,13 +1,14 @@
 package com.group.backend.config;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 import java.util.List;
 
-@Component
+@Configuration
 public class CustomCorsConfigurationcheck implements CorsConfigurationSource {
     @Override
     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {

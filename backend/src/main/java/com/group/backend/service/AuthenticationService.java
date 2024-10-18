@@ -1,7 +1,6 @@
 package com.group.backend.service;
 
-import com.group.backend.config.AuthenticationResponse;
-import com.group.backend.config.Encoder;
+import com.group.backend.dto.AuthenticationResponse;
 import com.group.backend.dto.payload.LoginRequest;
 import com.group.backend.dto.payload.RegisterRequest;
 import com.group.backend.entity.Token;
@@ -26,13 +25,14 @@ import java.util.List;
 @Service
 public class AuthenticationService {
 
-    private final Encoder encoder;
+    @Autowired
+    private final BCryptPasswordEncoder encoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepo;
     private final TokenRepository tokenRepository;
 
-    public AuthenticationService(Encoder encoder, UserRepository userRepo, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, TokenRepository tokenRepository) {
+    public AuthenticationService(BCryptPasswordEncoder encoder, UserRepository userRepo, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, TokenRepository tokenRepository) {
         this.encoder = encoder;
         this.userRepo = userRepo;
         this.jwtTokenProvider = jwtTokenProvider;
@@ -48,7 +48,7 @@ public class AuthenticationService {
         User user = new User();
         user.setName(request.getDataName());
         user.setEmail(request.getDataEmail());
-        user.setPass(encoder.encode().encode(request.getDataUserPassword()));
+        user.setPass(encoder.encode(request.getDataUserPassword()));
         user.setRole("Customer");
 
         userRepo.save(user);

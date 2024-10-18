@@ -1,13 +1,11 @@
 package com.group.backend.controller;
 
+import com.group.backend.dto.PasswordDTO;
 import com.group.backend.dto.UserDTO;
-import com.group.backend.entity.User;
 import com.group.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 public class UserController {
@@ -26,8 +24,8 @@ public class UserController {
     }
 
     @PutMapping("/changePass")
-    public ResponseEntity<UserDTO> changePass(@RequestBody UserDTO userDTO){
-        return ResponseEntity.ok(userService.changeInfo(userDTO));
+    public ResponseEntity<PasswordDTO> changePass(@RequestBody PasswordDTO passwordDTO){
+        return ResponseEntity.ok(userService.changePass(passwordDTO));
     }
 
 

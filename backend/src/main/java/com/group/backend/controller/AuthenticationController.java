@@ -2,7 +2,7 @@ package com.group.backend.controller;
 
 import com.group.backend.dto.payload.LoginRequest;
 import com.group.backend.dto.payload.RegisterRequest;
-import com.group.backend.config.AuthenticationResponse;
+import com.group.backend.dto.AuthenticationResponse;
 import com.group.backend.service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
