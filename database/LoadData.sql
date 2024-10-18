@@ -141,6 +141,22 @@ VALUES	('Laptop dùng sướng mỗi tội hơi nóng', '2024-10-15 17:48:23', n
         ('Sản phẩm này đẹp ghê', '2024-10-15 17:48:23', null, 9, 2);
 -- pause here
 
+INSERT INTO image (file_path, laptop_id)
+VALUES	('../../image/DellInspiron165630_1', 1), ('../../image/DellInspiron165630_2', 1), ('../../image/DellInspiron165630_3', 1), ('../../image/DellInspiron165630_4', 1), ('../../image/DellInspiron165630_5', 1), ('../../image/DellInspiron165630_6', 1), ('../../image/DellInspiron165630_7', 1),
+		('../../image/DellInspiron165630_1', 2), ('../../image/DellInspiron165630_2', 2), ('../../image/DellInspiron165630_3', 2), ('../../image/DellInspiron165630_4', 2), ('../../image/DellInspiron165630_5', 2), ('../../image/DellInspiron165630_6', 2), ('../../image/DellInspiron165630_7', 2),
+        ('../../image/DellInspiron165620_1', 3), ('../../image/DellInspiron165620_2', 3), ('../../image/DellInspiron165620_3', 3), ('../../image/DellInspiron165620_4', 3), ('../../image/DellInspiron165620_5', 3), ('../../image/DellInspiron165620_6', 3),
+        ('../../image/DellInspiron74452-in-1_1', 4), ('../../image/DellInspiron74452-in-1_2', 4), ('../../image/DellInspiron74452-in-1_3', 4), ('../../image/DellInspiron74452-in-1_4', 4), ('../../image/DellInspiron74452-in-1_5', 4), ('../../image/DellInspiron74452-in-1_6', 4), ('../../image/DellInspiron74452-in-1_7', 4),
+        ('../../image/AcerAspire5A515-58GM-53PZ_1', 5), ('../../image/AcerAspire5A515-58GM-53PZ_2', 5), ('../../image/AcerAspire5A515-58GM-53PZ_3', 5), ('../../image/AcerAspire5A515-58GM-53PZ_4', 5), ('../../image/AcerAspire5A515-58GM-53PZ_5', 5), ('../../image/AcerAspire5A515-58GM-53PZ_6', 5),
+        ('../../image/AcerSwiftGo14AISFG14-73-53X7_1', 6), ('../../image/AcerSwiftGo14AISFG14-73-53X7_2', 6), ('../../image/AcerSwiftGo14AISFG14-73-53X7_3', 6), ('../../image/AcerSwiftGo14AISFG14-73-53X7_4', 6), ('../../image/AcerSwiftGo14AISFG14-73-53X7_5', 6), ('../../image/AcerSwiftGo14AISFG14-73-53X7_6', 6),
+        ('../../image/AcerNitro5AN515-5856CH_1', 7), ('../../image/AcerNitro5AN515-5856CH_2', 7), ('../../image/AcerNitro5AN515-5856CH_3', 7), ('../../image/AcerNitro5AN515-5856CH_4', 7), ('../../image/AcerNitro5AN515-5856CH_5', 7), ('../../image/AcerNitro5AN515-5856CH_6', 7),
+        ('../../image/ASUSTUFGamingA16AdvantageEdition2023FA617NT_1', 8), ('../../image/ASUSTUFGamingA16AdvantageEdition2023FA617NT_2', 8), ('../../image/ASUSTUFGamingA16AdvantageEdition2023FA617NT_3', 8), ('../../image/ASUSTUFGamingA16AdvantageEdition2023FA617NT_4', 8), ('../../image/ASUSTUFGamingA16AdvantageEdition2023FA617NT_5', 8), ('../../image/ASUSTUFGamingA16AdvantageEdition2023FA617NT_6', 8),
+        ('../../image/AsusZenbook14OLEDQ425MA2024_1', 9), ('../../image/AsusZenbook14OLEDQ425MA2024_2', 9), ('../../image/AsusZenbook14OLEDQ425MA2024_3', 9), ('../../image/AsusZenbook14OLEDQ425MA2024_4', 9), ('../../image/AsusZenbook14OLEDQ425MA2024_5', 9), ('../../image/AsusZenbook14OLEDQ425MA2024_6', 9), ('../../image/AsusZenbook14OLEDQ425MA2024_7', 9),
+		('../../image/LenovoThinkbook14G6+2024_1', 10), ('../../image/LenovoThinkbook14G6+2024_2', 10), ('../../image/LenovoThinkbook14G6+2024_3', 10), ('../../image/LenovoThinkbook14G6+2024_4', 10), ('../../image/LenovoThinkbook14G6+2024_5', 10), ('../../image/LenovoThinkbook14G6+2024_6', 10),
+        ('../../image/LenovoLOQ202415ARP9_1', 11), ('../../image/LenovoLOQ202415ARP9_2', 11), ('../../image/LenovoLOQ202415ARP9_3', 11), ('../../image/LenovoLOQ202415ARP9_4', 11), ('../../image/LenovoLOQ202415ARP9_5', 11), ('../../image/LenovoLOQ202415ARP9_6', 11),
+        ('../../image/LenovoThinkPadE14Gen5_1', 12), ('../../image/LenovoThinkPadE14Gen5_2', 12), ('../../image/LenovoThinkPadE14Gen5_3', 12), ('../../image/LenovoThinkPadE14Gen5_4', 12), ('../../image/LenovoThinkPadE14Gen5_5', 12), ('../../image/LenovoThinkPadE14Gen5_6', 12), ('../../image/LenovoThinkPadE14Gen5_7', 12), ('../../image/LenovoThinkPadE14Gen5_8', 12)
+
+
+
         
         
 

@@ -13,17 +13,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/info")
+    @GetMapping("/user/info")
     public ResponseEntity<UserDTO> showInformation(){
         return ResponseEntity.ok(userService.getInformation());
     }
 
-    @PutMapping("/changeInfo")
+    @PutMapping("/user/changeInfo")
     public ResponseEntity<UserDTO> changeInfo(@RequestBody UserDTO userDTO){
         return ResponseEntity.ok(userService.changeInfo(userDTO));
     }
 
-    @PutMapping("/changePass")
+    @PutMapping("/user/changePass")
     public ResponseEntity<PasswordDTO> changePass(@RequestBody PasswordDTO passwordDTO){
         return ResponseEntity.ok(userService.changePass(passwordDTO));
     }
