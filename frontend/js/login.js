@@ -37,16 +37,6 @@ loginButton.addEventListener('click', function(){
         },
         body: JSON.stringify(data) // Chuyển dữ liệu thành JSON
     })
-
-    // lay trang thai tu server tra ve(User not found/ User login successful)
-
-    // fetch('http://localhost:3000/status',{
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'Authorization': 'Bearer token'
-    //     }
-    // })
     .then(response => {
         return response.json();
     })
@@ -62,14 +52,18 @@ loginButton.addEventListener('click', function(){
             document.querySelector('.header__top__account').style.display = 'none';
             document.querySelector('.header__top__login-success').style.display = 'block';
 
+            localStorage.setItem('accessToken', response.accessToken);
+            localStorage.setItem('refreshToken', response.refreshToken);
+
             var tmp = '';
             var tmpname = '';
+            var accessToken = localStorage.getItem('accessToken');
             // Lay ten 
             fetch('http://localhost:8080/info', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer token'
+                    'Authorization': `Bearer ${accessToken}`
                 }
             })
             .then(response => {
