@@ -27,6 +27,4 @@ public class UserController {
     public ResponseEntity<PasswordDTO> changePass(@RequestBody PasswordDTO passwordDTO){
         return ResponseEntity.ok(userService.changePass(passwordDTO));
     }
-
-
 }
