@@ -19,7 +19,6 @@ register[1].addEventListener('click', function(){
 var loginButton = document.querySelector("#login__button");
 
 loginButton.addEventListener('click', function(){
-    console.log("Day la nut an dang nhap");
     var email = document.querySelector('.login__box__email').value;
     var password = document.querySelector('.login__box__password').value;
 
@@ -59,7 +58,7 @@ loginButton.addEventListener('click', function(){
             var tmpname = '';
             var accessToken = localStorage.getItem('accessToken');
             // Lay ten 
-            fetch('http://localhost:8080/info', {
+            fetch('http://localhost:8080/user/info', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,13 +66,13 @@ loginButton.addEventListener('click', function(){
                 }
             })
             .then(response => {
-                response.json();
+                return response.json();
             })
             .then(response => {
                 tmpname = response.name;
-            })
-            tmp = '<p> Xin chào ' + tmpname + '<p>';
-            document.querySelector('.header__top__login-success').innerHTML = tmp;
+                tmp = '<p> Xin chào ' + tmpname + '<p>';
+                document.querySelector('.header__top__login-success').innerHTML = tmp;
+            })    
         }
     })
 })
