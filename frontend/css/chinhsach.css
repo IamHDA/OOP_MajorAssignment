@@ -1,0 +1,199 @@
+.hotrotragop__box, .giauudainhat__box, .baohanhtannha__box, .mienphivanchuyen__box{
+    height: auto;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    top: 80px;
+    font-family: "SF Pro Display", sans-serif; 
+    display: none;
+    padding-bottom: 100px;
+    min-width: 1200px;
+}
+
+.hotrotragop__container, .giauudainhat__container, .baohanhtannha__container{
+    height: 100%;
+    width: 1000px;
+    margin: auto;
+}
+
+.hotrotragop__container h1, .giauudainhat__container h1, .baohanhtannha__container h1{
+    font-size: 30px;
+    font-weight: 550;
+    margin-top: 10px;
+}
+
+.hotrotragop__container p, .giauudainhat__container p, .baohanhtannha__container p{
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 10px;
+    line-height: 2.0;
+}
+
+.hotrotragop__container img{
+    width: 1000px;
+    height: auto;
+}
+
+
+.giauudainhat__container .hightlight{
+    font-weight: 700;    
+}
+
+
+.mienphivanchuyen__container{
+    width: 1200px;
+    margin: auto;
+}
+
+.mienphivanchuyen__container__header{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(237, 245, 253);
+    border-radius: 15px;
+}
+
+.mienphivanchuyen__container__header h1{
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+.mienphivanchuyen__container__header__1, .mienphivanchuyen__container__header__2{
+    height: 145px;
+    width: 1000px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(225,243,255);
+}
+
+.mienphivanchuyen__container__header__2{
+    width: 800px;
+}
+
+.mienphivanchuyen__container__header__1 img, .mienphivanchuyen__container__header__2 img{
+    height: 100%;
+    width: auto;
+}
+
+.mienphivanchuyen__container__header__1{
+    margin-left: 200px;
+    margin-bottom: 30px;
+}
+
+.mienphivanchuyen__container__header__2{
+    margin-left: 400px;
+}
+
+.mienphivanchuyen__container__header__1 .text, .mienphivanchuyen__container__header__2 .text {
+    font-size: 18px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mienphivanchuyen__container__mid{
+    margin-top: 100px;
+    height: 240px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(237, 245, 253);
+    font-size: 24px;
+    font-weight: 400;
+    color: rgb(0, 91, 173);
+    border-radius: 20px;
+}
+
+.mienphivanchuyen__container__mid .hightlight{
+    font-weight: 600;
+}
+
+.mienphivanchuyen__container__mid p{
+    margin-top: 25px;
+}
+
+.mienphivanchuyen__container__footer{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    background-color: rgb(237, 245, 253);
+    border-radius: 20px;
+}
+
+.mienphivanchuyen__container__footer__1{
+    height: 120px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: rgb(0, 91, 173);
+}
+
+.mienphivanchuyen__container__footer img{
+    height: 145px;
+    width: auto;
+}
+
+.mienphivanchuyen__container__footer__2{
+    width: 100%;
+    height: 230px;
+    display: flex;
+}
+
+.mienphivanchuyen__container__footer__2 .mienphivanchuyen__container__footer__2__content{
+    height: 100%;
+    width: 550px;
+    margin-left: 50px;
+    display: flex;
+}
+
+.mienphivanchuyen__container__footer__2 .mienphivanchuyen__container__footer__2__content .text{
+    margin-left: 30px;
+}
+
+.mienphivanchuyen__container__footer__2 .mienphivanchuyen__container__footer__2__content .text h1{
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.mienphivanchuyen__container__footer__2 .mienphivanchuyen__container__footer__2__content .text li{
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.mienphivanchuyen__container .luuy{
+    margin-top: 50px;
+}
+
+.mienphivanchuyen__container .luuy h1{
+    font-size: 32px;
+    font-weight: 600;
+    color: rgb(0, 91, 173);
+}
+
+.mienphivanchuyen__container .luuy h2{
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(250, 82, 82);
+    margin-top: 10px;
+}
+
+.mienphivanchuyen__container .luuy li{
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 10px;
+    margin-left: 25px;
+}
