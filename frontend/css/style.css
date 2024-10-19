@@ -78,20 +78,6 @@ a{
     justify-content: center;
 }
 
-.header__top__login-success{
-    margin-left: auto;
-    /* display: none; */
-}
-
-.header__top__account{
-    display: none;
-}
-
-/* .header__top__login-success{
-    margin-left: auto;
-    cursor: pointer;
-} */
-
 .header__top__account button{
     height: 100%;
     width: auto;
@@ -112,12 +98,21 @@ a{
     font-weight: 9000;
 }
 
+/* login success */
+.header__top__login-success{
+    margin-left: auto;
+    display: none;
+}
+
 .header__top__login-success{
     color: rgb(255, 255, 255);
     font-size: 17px;
     font-weight: 9000;
     cursor: pointer;
 }
+
+
+/* header mid */
 
 .header__mid{
     height: 70px;
