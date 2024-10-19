@@ -1,18 +1,18 @@
 
-const register = document.querySelector("#myHeader__top__account__register");
+const register = document.querySelectorAll("#myHeader__top__account__register");
 const registerBox = document.querySelector(".register__box");
 const registerBoxExit = document.querySelector("#registerBoxExit");
 
-register.addEventListener('click', function(){
+register[0].addEventListener('click', function(){
     registerBox.style.display = "block";
 });
 
 // An nut X trong registerBox
-registerBoxExit .addEventListener('click', function(){
+registerBoxExit.addEventListener('click', function(){
     registerBox.style.display = "none"; // Dong registerBox
     // reset cac gia tri cua input va an cac war
     document.querySelector("#register__name").value = "";
-    document.querySelector("#register__userName").value = "";
+    document.querySelector("#register__userEmail").value = "";
     document.querySelector("#register__userPassword1").value = "";
     document.querySelector("#register__userPassword2").value = "";
     document.querySelector("#register__war1").style.display = "none";
@@ -46,25 +46,25 @@ exitSuccessRegister.addEventListener('mouseout', function(){
 registerSubmit.addEventListener('click', function(e){
     e.preventDefault();
     const inputName = document.querySelector("#register__name");
-    const inputUserName = document.querySelector("#register__userName");
+    const inputUserEmail = document.querySelector("#register__userEmail");
     const inputPassword1 = document.querySelector("#register__userPassword1");
     const inputPassword2 = document.querySelector("#register__userPassword2");
 
     let name = inputName.value;
-    let userName = inputUserName.value;
+    let userEmail = inputUserEmail.value;
     let userPassword1 = inputPassword1.value;
     let userPassword2 = inputPassword2.value;
 
     var warName = document.querySelector("#register__war1");
-    var warUserName1 = document.querySelector("#register__war2");
-    var warUserName2 = document.querySelector("#register__war3");
+    var warUserEmail1 = document.querySelector("#register__war2");
+    var warUserEmail2 = document.querySelector("#register__war3");
     var warPassword = document.querySelector("#register__war4");
     var warlength = document.querySelector("#register__war5");
     ok1 = 1;
     ok2 = 1;
     ok3 = 1;
     ok4 = 1;
-    ok5 = 1
+    ok5 = 1;
 
     // Kiểm tra các điều kiện của tên người dùng, tên đăng nhập và mật khẩu
     if (name == ""){ // Tên người dùng trống
@@ -76,21 +76,21 @@ registerSubmit.addEventListener('click', function(e){
         ok1 = 1;
     }
 
-    if (userName.length < 5){ // Tên đăng nhập dài không quá 5 ký tự
-        warUserName2.style.display = "block";
+    if (userEmail.length < 5){ // Tên đăng nhập dài không quá 5 ký tự
+        warUserEmail2.style.display = "block";
         ok2 = 0;
     }
     else{
-        warUserName2.style.display = "none";
+        warUserEmail2.style.display = "none";
         ok2 = 1;
     }
 
-    if (userName == ""){    // Tên đăng nhập trống
-        warUserName1.style.display = "block";
+    if (userEmail == ""){    // Tên đăng nhập trống
+        warUserEmail1.style.display = "block";
         ok3 = 0;
     }
     else{
-        warUserName1.style.display = "none";
+        warUserEmail1.style.display = "none";
         ok3 = 1;
     }
 
@@ -114,34 +114,37 @@ registerSubmit.addEventListener('click', function(e){
     // thoa man cac dieu kien
     if(ok1 == 1 && ok2 == 1 && ok3 == 1 && ok4 == 1 && ok5 == 1){
         const dataUser = {
-            dataName: name,
-            dataEmail: userName,
-            dataUserPassword: userPassword1,
+            name: name,
+            email: userEmail,
+            pass: userPassword1,
         };
 
         // push data ve backend
-        fetch('http://localhost:8080/register', {
+        fetch('http://localhost:3000/account', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(dataUser) // Chuyển dữ liệu thành JSON
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Phản hồi từ backend:', data);
-        })
-        .catch(error => {
-            console.error('Lỗi:', error);
-        });
 
-        // reset gia tri input
-        inputName.value = "";
-        inputUserName.value = "";
-        inputPassword1.value = "";
-        inputPassword2.value = "";  
-        registerBox.style.display = "none";
-        document.querySelector(".success__register").style.display = "block";
+        })
+            .then(response =>{
+                response.json();
+            })
+            .then(function(){
+                // reset gia tri input
+                inputName.value = "";
+                inputUserEmail.value = "";
+                inputPassword1.value = "";
+                inputPassword2.value = "";  
+                registerBox.style.display = "none";
+                // Thong bao thanh cong
+                document.querySelector(".success__register").style.display = "block";
+            })
+            .catch(error => {
+                console.error('Có lỗi ở register!', error);
+                alert("lỗi rồi");
+            })
     }
 });
 
