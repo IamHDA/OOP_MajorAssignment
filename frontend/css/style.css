@@ -78,6 +78,19 @@ a{
     justify-content: center;
 }
 
+.header__top__login-success{
+    margin-left: auto;
+    /* display: none; */
+}
+
+.header__top__account{
+    display: none;
+}
+
+/* .header__top__login-success{
+    margin-left: auto;
+    cursor: pointer;
+} */
 
 .header__top__account button{
     height: 100%;
@@ -97,6 +110,13 @@ a{
     color: rgb(255, 255, 255);
     font-size: 17px;
     font-weight: 9000;
+}
+
+.header__top__login-success{
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    font-weight: 9000;
+    cursor: pointer;
 }
 
 .header__mid{
@@ -157,7 +177,7 @@ a{
 }
 
 .header__mid__selection{
-    height: 50px;
+    height: 100%;
     width: 770px;
     background-color: rgb(0,91,173);
     display: flex;
@@ -703,9 +723,10 @@ a{
     height:auto;
     width: 110px;
     margin-top: 10px;
-    margin-left: 300px;
+    margin-left: 270px;
     border: none;
     background-color: white;
+    cursor: pointer;
 }
 
 .login__box__content #login__button{

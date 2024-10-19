@@ -3,9 +3,10 @@
 <head>
     <title>Web Laptop</title>
     <meta charset = "UTF-8">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/header__top.css">
-    <link rel="stylesheet" href="/css/chinhsach.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header__top.css">
+    <link rel="stylesheet" href="css/chinhsach.css">
+    <link rel="stylesheet" href="css/account__detail.css">
     <link rel="stylesheet" href="font awersome/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="font/sf-pro-display-cufonfonts/SFPRODISPLAYBOLD.OTF">
 </head>
@@ -44,8 +45,10 @@
                     <p>Đăng nhập</p>
                 </button>
             </div>
+            <div class="header__top__login-success">
+                <p>Xin chao Biendaden</p>
+            </div>
         </div>
-
     </div>
 
     <!--header__mid-->
@@ -128,7 +131,7 @@
         </div>
     </div>  
     <!--content-->
-    <div class="content">
+    <div class="content" id ="content">
         <div class="content__container">
             <!--catalog-->
             <div class="catalog">
@@ -198,7 +201,7 @@
                 <h1>Tạo tài khoản</h1>
                 <p>Vui lòng cho chúng tôi biết thông tin của bạn</p>
                 <input type="text" id = "register__name" placeholder="Tên bạn">
-                <input type="text" id = "register__userName" placeholder="Tên đăng nhập">
+                <input type="text" id = "register__userEmail" placeholder="Tên đăng nhập">
                 <div class="register__box__password">
                     <input type="password" id = "register__userPassword1" placeholder="Mật khẩu">
                     <input type="password" id = "register__userPassword2" placeholder="Nhập lại mật khẩu">
@@ -236,19 +239,15 @@
             <div class="login__box__content">
                 <h1>Đăng nhập bằng Email</h1>
                 <span>
-                    <button>Đăng ký</button>
+                    <button id = "myHeader__top__account__register" onclick="">Đăng ký</button>
                     <h2>nếu chưa có tài khoản.</h2>
                 </span>
                 <input type="text" placeholder="Email">
                 <input type="text" placeholder="Mật khẩu">
                 <h3 id="invalidEmail">Email khong hop le</h3>
                 <h3 id="incorrectEmain">- Tài khoản hoặc Mật khẩu của bạn không đúng, vui lòng kiểm tra lại</h3>
-                <button id ="losePassword" onclick="">Quên mật khẩu ?</button>
+                <button id ="losePassword" onclick="">Quên mật khẩu?</button>
                 <button id = "login__button">Đăng nhập</button>
-                <p>- Hoặc đăng nhập bằng -</p>
-                <div class="login__box__icon">
-                    day la i con
-                </div>
                 <p>Bằng việc tiếp tục, bạn đã chấp nhận điều khoản sử dụng</p>
             </div>
             <button class="exit" id="loginBoxExit">
@@ -257,47 +256,42 @@
         </div>
     </div>
 
-    <!--He Thong Hover-->
-    <div class="hethongshowroom__hover" id = "hethongshowroom__hover">
-        <div class="hethongshowroom__hover__container">
-            <div class="hethongshowroom__title">
-                Hệ thống showroom
-            </div>
-            <div class="hethongshowroom__content">
-                <div class="showroom__caugiay">
-                    <div class="text">Showroom Cầu Giấy</div>
-                    <p>41 Khúc Thừa Dụ, phường Dịch Vọng, Quận Cầu Giấy, Hà Nội</p>
-                    <p>Hotline mua hàng: 0900100000</p>
-                    <p>Hotline bảo hành: 19000000</p>
-                    <p>Emai: tranhalinh@gmail.com</p>
-                    <p>Thời gian làm việc: 8h-18h30</p>
-                </div>
-                <div class="showroom__dongda">
-                    <div class ="text">Showroom Đống Đa</div>
-                    <p>94F Đường Láng, Phường Ngã Tư Sở, Quận Đống Đa, Hà Nội</p>
-                    <p>Hotline mua hàng: 0900100000</p>
-                    <p>Hotline bảo hành: 19000000</p>
-                    <p>Emai: hoangcuubao@gmail.com</p>
-                    <p>Thời gian làm việc: 8h-18h30</p>
-                </div>
-                <div class="showroom__vinh-ngheanh">
-                    <div class ="text">Showroom Vinh, Nghệ An</div>
-                    <p>72 Lê Lợi, Thành Phố Vinh, Nghệ An</p>
-                    <p>Hotline mua hàng: 0900100000</p>
-                    <p>Hotline bảo hành: 19000000</p>
-                    <p>Emai: chubin@gmail.com</p>
-                    <p>Thời gian làm việc: 8h-18h30</p>
-                </div>
-                <div class="showroom__hochiminh">
-                    <div class ="text">Showroom Hồ Chí Minh</div>
-                    <p>260, Lý Thường Kiệt, phường 16, Quận 10, TP Hồ Chí Minh</p>
-                    <p>Hotline mua hàng: 0900100000</p>
-                    <p>Hotline bảo hành: 19000000</p>
-                    <p>Emai: tranthanh@gmail.com</p>
-                    <p>Thời gian làm việc: 8h-18h30</p>
-                </div>
-            </div>
-        </div>
+
+    <!-- <div class = "hotline__hanoi">
+        <div>Ho tro tai Ha Noi</div>
+        <div>
+            <p>LapTop PTIT Cau Giay</p>
+            <ul>
+                <li>
+                    <img src="/image/Trangchu/Screenshot 2024-10-16 191356.png" alt="">
+                    <h1 class="number">0900999999</h1>
+                    <h1 class="name">Le Van Bao</h1>
+                </li>
+                <li>
+                    <img src="/image/Trangchu/Screenshot 2024-10-16 191356.png" alt="">
+                    <h1 class="number">0900999999</h1>
+                    <h1 class="name">Hoang Cuu Bao</h1>
+                </li>
+                <li>
+                    <img src="/image/Trangchu/Screenshot 2024-10-16 191356.png" alt="">
+                    <h1 class="number">0900999999</h1>
+                    <div class="name">Tran Ha Linh</div>
+                </li>
+            </ul>
+            <p>LapTop PTIT Cau Giay</p>
+            <ul>
+                <li>
+                    <img src="/image/Trangchu/Screenshot 2024-10-16 191356.png" alt="">
+                    <h1 class="number">0900999999</h1>
+                    <h1 class="name"></h1>
+                </li>
+                <li>
+                    <img src="/image/Trangchu/Screenshot 2024-10-16 191356.png" alt="">
+                    <h1 class="number">0900999999</h1>
+                    <h1 class="name">Hoang Cuu Bao</h1>
+                </li>
+            </ul>
+        </div> -->
     </div>
 
     <!--Ho tro tra gop-->
@@ -312,7 +306,7 @@
             <p>Thời gian trả góp 3, 6, 9, 12, 15 và 18 tháng (tuỳ từng ngân hàng).</p>
             <p>Số lần mua trả góp tuỳ thuộc vào hạn mức thẻ tín dụng.</p>
             <p>Giá trị thanh toán phải từ 3.000.000 VNĐ trở lên đối với thẻ tín dụng. Và từ 2.000.000 VNĐ trở lên đối với FE Credit, VIB, Lotte Finance.</p>
-            <img src="/image/Chinhsach/Screenshot 2024-10-07 120008.png" alt="">
+            <img src="image/Chinhsach/Screenshot 2024-10-07 120008.png" alt="">
             <h2>Lưu ý:</h2>
             <p>Không nên giao dịch cận ngày sao kê. Đối với riêng các ngân hàng bao gồm VietcomBank, MB, SHB, OCB, Liên Việt Postbank, HDBank, PVcombank, TPBank, Shinhan Finance (SVFC), Mcredit, Wooribank, Lotte Finance, Ngân Lượng khoá trên hệ thống các ngày gần sao kê tuỳ theo từng Ngân hàng, Loại thẻ. Trong thời gian đó chủ thẻ vui lòng sử dụng thẻ của các Ngân hàng còn lại để thực hiện giao dịch trả góp.</p>
             <p>Chương trình không áp dụng cho thẻ phụ, thẻ Debit và thẻ tín dụng phát hành tại nước ngoài.</p>
@@ -320,7 +314,7 @@
             <p>Chính sách đang được cập nhật.</p>
             <h2>3. Trả góp qua nhà tài chính</h2>
             <p>Khách hàng mang hồ sơ được yêu cầu tới LAPTOP PTIT gần nhất để đăng ký, hoàn tất thủ tục trả góp qua nhà tài chính</p>
-            <img src="/image/Chinhsach/Screenshot 2024-10-07 120039.png" alt="">
+            <img src="image/Chinhsach/Screenshot 2024-10-07 120039.png" alt="">
         </div>
     </div>
 
@@ -381,17 +375,17 @@
             <p>(***) Trừ các sản phẩm có chính sách bảo hành tại nhà, sản phẩm thuộc diện cồng kềnh.</p>
         </div>
     </div>
-
+    <!--Mien phi van chuyen-->
     <div class="mienphivanchuyen__box" id="mienphivanchuyen__box">
         <div class="mienphivanchuyen__container">
             <div class="mienphivanchuyen__container__header">
                 <h1>Quý khách có thể lựa chọn một trong các hình thức vận chuyển khi mua hàng tại LAPTOP PTIT</h1>
                 <div class="mienphivanchuyen__container__header__1">
-                    <img src="/image/Chinhsach/Screenshot 2024-10-07 144722.png" alt="">
+                    <img src="image/Chinhsach/Screenshot 2024-10-07 144722.png" alt="">
                     <div class="text">Chúng tôi sẽ trực tiếp giao hàng tận tay khách hàng</div>
                 </div>
                 <div class="mienphivanchuyen__container__header__2">
-                    <img src="/image/Chinhsach/Screenshot 2024-10-07 144749.png" alt="">
+                    <img src="image/Chinhsach/Screenshot 2024-10-07 144749.png" alt="">
                     <div class="text">Chúng tôi sẽ giao hàng cho khách hàng thông qua các nhà cung cấp dịch vụ</div>
                 </div>
             </div>
@@ -415,7 +409,7 @@
                 <div class="mienphivanchuyen__container__footer__1">Hình thức thu tiền</div>
                 <div class="mienphivanchuyen__container__footer__2">
                     <div class="mienphivanchuyen__container__footer__2__content">
-                        <img src="/image/Chinhsach/static-ship-policy-pic-7.png" alt="">
+                        <img src="image/Chinhsach/static-ship-policy-pic-7.png" alt="">
                         <div class="text">
                             <h1>Giao hàng không thu tiền</h1>
                             <ul>
@@ -425,7 +419,7 @@
                         </div>
                     </div>
                     <div class="mienphivanchuyen__container__footer__2__content">
-                        <img src="/image/Chinhsach/static-ship-policy-pic-8.png" alt="">
+                        <img src="image/Chinhsach/static-ship-policy-pic-8.png" alt="">
                         <div class="text">
                             <h1>Giao hàng có thu tiền</h1>
                             <ul>
@@ -445,7 +439,134 @@
             </div>
         </div>
     </div>
+    <!--Account-->
+    <div class = "account__detail" id = "account__detail">
+        <div class="account__detail__container">
+            <div class="account__detail__selection">
+                <div class = "profile">
+                    <i class="fa-solid fa-user"></i>
+                    <div class="text">  
+                        Tài khoản của,
+                        <p class="user-name">Biendaden</p>
+                    </div>
+                </div>
+                <div class="thong-tin-tai-khoan" id="account__detail__selection__thong-tin-tai-khoan">
+                    <i class="fa-solid fa-user"></i>
+                    <p>Thông tin tài khoản</p>
+                </div>
+                <div class="danh-sach-don-hang" id = "account__detail__selection__danh-sach-don-hang">
+                    <i class="fa-solid fa-list"></i>
+                    <p>Danh sách đơn hàng</p>
+                </div>
+                <div class="thay-doi-mat-khau" id="account__detail__selection__thay-doi-mat-khau">
+                    <i class="fa-solid fa-lock"></i>
+                    <p>Thay đổi mật khẩu</p>
+                </div>
+                <div class="log-out" id="account__detail__selection__log-out">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <p>Log out</p>
+                </div>
+            </div>
 
-    <script src="./main.js"></script>
-    <script src = "./register.js"></script>
+            <div class="account__detail__content">
+                <div class="empty">
+                    <p>Bạn đang ở trang tài khoản. Vui lòng chọn các mục bên trái để xem thông tin.</p>
+                </div>
+                <!--Thong tin tai khoan-->
+                <div class="account__detail__content___thong-tin-tai-khoan">
+                    <h1>Cập nhật thông tin cá nhân</h1>
+                    <div class="account__detail__content___thong-tin-tai-khoan__user-name">
+                        <p>Họ tên</p>
+                        <input type="text" class="account__detail__content___thong-tin-tai-khoan__user-name__input">
+                    </div>
+                    <div class="account__detail__content___thong-tin-tai-khoan__user-email">
+                        <p>Địa chỉ email</p>
+                        <input type="text" class = "account__detail__content___thong-tin-tai-khoan__user-email__input" readonly>
+                    </div>
+                    <div class="account__detail__content___thong-tin-tai-khoan__user-address">
+                        <p>Địa chỉ</p>
+                        <input type="text" class="account__detail__content___thong-tin-tai-khoan__user-address__input">
+                    </div>
+                    <div class="account__detail__content___thong-tin-tai-khoan__user-numberphone">
+                        <p>Điện thoại</p>
+                        <input type="text" class="account__detail__content___thong-tin-tai-khoan__user-numberphone__input">
+                    </div>
+                    <button class="account__detail__content___thong-tin-tai-khoan__submit">
+                        Thay đổi
+                    </button>
+                </div>
+                <!--Danh sach don hang-->
+                <div class="account__detail__content___danh-sach-don-hang">
+                    <p>Khach hang chua mua san pham nao</p>
+                </div>
+                <!--Thay doi mat khau-->
+                <div class="account__detail__content___thay-doi-mat-khau">
+                    <h1>Thay đổi mật khẩu</h1>
+                    <div class="account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai">
+                        <p>Mật khẩu hiện tại</p>
+                        <input type="text">
+                    </div>
+                    <div class="account__detail__content___thay-doi-mat-khau__mat-khau-moi-1">
+                        <p>Mật khẩu mới</p>
+                        <input type="text">
+                    </div>
+                    <div class="account__detail__content___thay-doi-mat-khau__mat-khau-moi-2">
+                        <p>Nhập lại mật khẩu</p>
+                        <input type="text">
+                    </div>
+                    <button>
+                        Thay đổi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--He Thong Hover-->
+    <div class="hethongshowroom__hover" id = "hethongshowroom__hover">
+        <div class="hethongshowroom__hover__container">
+            <div class="hethongshowroom__title">
+                Hệ thống showroom
+            </div>
+            <div class="hethongshowroom__content">
+                <div class="showroom__caugiay">
+                    <div class="text">Showroom Cầu Giấy</div>
+                    <p>41 Khúc Thừa Dụ, phường Dịch Vọng, Quận Cầu Giấy, Hà Nội</p>
+                    <p>Hotline mua hàng: 0900100000</p>
+                    <p>Hotline bảo hành: 19000000</p>
+                    <p>Emai: tranhalinh@gmail.com</p>
+                    <p>Thời gian làm việc: 8h-18h30</p>
+                </div>
+                <div class="showroom__dongda">
+                    <div class ="text">Showroom Đống Đa</div>
+                    <p>94F Đường Láng, Phường Ngã Tư Sở, Quận Đống Đa, Hà Nội</p>
+                    <p>Hotline mua hàng: 0900100000</p>
+                    <p>Hotline bảo hành: 19000000</p>
+                    <p>Emai: hoangcuubao@gmail.com</p>
+                    <p>Thời gian làm việc: 8h-18h30</p>
+                </div>
+                <div class="showroom__vinh-ngheanh">
+                    <div class ="text">Showroom Vinh, Nghệ An</div>
+                    <p>72 Lê Lợi, Thành Phố Vinh, Nghệ An</p>
+                    <p>Hotline mua hàng: 0900100000</p>
+                    <p>Hotline bảo hành: 19000000</p>
+                    <p>Emai: chubin@gmail.com</p>
+                    <p>Thời gian làm việc: 8h-18h30</p>
+                </div>
+                <div class="showroom__hochiminh">
+                    <div class ="text">Showroom Hồ Chí Minh</div>
+                    <p>260, Lý Thường Kiệt, phường 16, Quận 10, TP Hồ Chí Minh</p>
+                    <p>Hotline mua hàng: 0900100000</p>
+                    <p>Hotline bảo hành: 19000000</p>
+                    <p>Emai: tranthanh@gmail.com</p>
+                    <p>Thời gian làm việc: 8h-18h30</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src = "js/register.js"></script>
+    <script src = "js/account__detail.js"></script>
+    <script src = "js/login.js"></script>
 </body>
