@@ -37,39 +37,33 @@ loginButton.addEventListener('click', function(){
         },
         body: JSON.stringify(data) // Chuyển dữ liệu thành JSON
     })
-
-    // lay trang thai tu server tra ve(User not found/ User login successful)
-
-    fetch('http://localhost:3000/status',{
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer token'
-        }
-    })
     .then(response => {
         return response.json();
     })
     .then(response => {
-        if(response[0] == "User not found"){
+        if(response.message == "User not found"){
             var war = document.querySelector('#incorrectEmail');
             war.style.display = "block";
         }
-        else if (response[0] == "User login successful"){
+        else if (response.message == "User login successful"){
             var war = document.querySelector('#incorrectEmail');
             war.style.display = "none";
             loginBox.style.display = 'none';
             document.querySelector('.header__top__account').style.display = 'none';
             document.querySelector('.header__top__login-success').style.display = 'block';
 
+            localStorage.setItem('accessToken', response.accessToken);
+            localStorage.setItem('refreshToken', response.refreshToken);
+
             var tmp = '';
-            var tmpname = ''
+            var tmpname = '';
+            var accessToken = localStorage.getItem('accessToken');
             // Lay ten 
             fetch('http://localhost:3000/account', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer token'
+                    'Authorization': `Bearer ${accessToken}`
                 }
             })
             .then(response => {
