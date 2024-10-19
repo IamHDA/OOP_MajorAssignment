@@ -30,7 +30,7 @@ loginButton.addEventListener('click', function(){
 
     // day tai khoan mat khau len server
 
-    fetch('http://localhost:3000/account1234',{
+    fetch('http://localhost:8080/login',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -40,22 +40,22 @@ loginButton.addEventListener('click', function(){
 
     // lay trang thai tu server tra ve(User not found/ User login successful)
 
-    fetch('http://localhost:3000/status',{
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer token'
-        }
-    })
+    // fetch('http://localhost:3000/status',{
+    //     method: 'GET',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'Authorization': 'Bearer token'
+    //     }
+    // })
     .then(response => {
         return response.json();
     })
     .then(response => {
-        if(response[0] == "User not found"){
+        if(response.message == "User not found"){
             var war = document.querySelector('#incorrectEmail');
             war.style.display = "block";
         }
-        else if (response[0] == "User login successful"){
+        else if (response.message == "User login successful"){
             var war = document.querySelector('#incorrectEmail');
             war.style.display = "none";
             loginBox.style.display = 'none';
@@ -63,9 +63,9 @@ loginButton.addEventListener('click', function(){
             document.querySelector('.header__top__login-success').style.display = 'block';
 
             var tmp = '';
-            var tmpname = ''
+            var tmpname = '';
             // Lay ten 
-            fetch('http://localhost:3000/account', {
+            fetch('http://localhost:8080/info', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

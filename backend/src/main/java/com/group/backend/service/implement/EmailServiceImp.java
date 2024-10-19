@@ -1,37 +1,41 @@
 package com.group.backend.service.implement;
 
 import com.group.backend.service.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 @Service
 public class EmailServiceImp implements EmailService {
 
     private final JavaMailSender mailSender;
+    private final SpringTemplateEngine templateEngine;
 
-    @Value("$(spring.mail.username)")
-    private String from;
-
-    public EmailServiceImp(JavaMailSender mailSender) {
+    public EmailServiceImp(JavaMailSender mailSender, SpringTemplateEngine templateEngine) {
         this.mailSender = mailSender;
+        this.templateEngine = templateEngine;
     }
 
     @Override
-    public String sendEmail(String to, String subject, String body) {
-        try{
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom(from);
-            message.setTo(to);
-            message.setSubject(subject);
-            message.setText(body);
+    public String sendEmail(String to) throws MessagingException {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
-            mailSender.send(message);
-            return "Send mail succesfully";
-        }catch (Exception e){
-            return "Send mail failed";
-        }
+        Context context = new Context();
+        context.setVariable("subject", "Lấy lại mật khẩu tài khoản của bạn");
+        context.setVariable("resetLink", "https://www.youtube.com/watch?v=Sst9O5C6WhQ");
+        String process = templateEngine.process("Email_Content.html", context);
+
+        helper.setTo(to);
+        helper.setSubject("Lấy lại mật khẩu tài khoản của bạn");
+        helper.setFrom("huaduyanhls1@gmail.com");
+        helper.setText(process, true);
+
+        mailSender.send(mimeMessage);
+        return "Send mail successfully";
     }
 }

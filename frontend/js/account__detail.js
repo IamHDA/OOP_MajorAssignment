@@ -196,7 +196,6 @@ xinChao.addEventListener('click', function(){
         })
         .then(function(){
             alert("Thay doi thanh cong");
-            console.log(data);
         })
         .catch(error =>{
             alert("Da xay ra loi, yeu cau thu lai");
