@@ -61,7 +61,7 @@ logo.addEventListener('click', function(){
         document.querySelector(".register__login").style.display = "none";
         document.querySelector(".account").style.display = 'block';
         // Lay ten 
-        fetch('http://localhost:3000/account', {
+        fetch('http://localhost:8080/user/info', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

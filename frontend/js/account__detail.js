@@ -6,7 +6,7 @@ var logOut = document.querySelector(".log-out");
 var account = document.querySelector('click', function(){
     var taikhoancua = document.querySelector("#taikhoancua");
     // Lay ten 
-    fetch('http://localhost:3000/account', {
+    fetch('http://localhost:8080/user/info', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -16,8 +16,7 @@ var account = document.querySelector('click', function(){
     .then(response => {
         return response.json();
     })
-    .them(response => {
-        <p class="user-name">Biendaden</p>
+    .then(response => {
         var tmpname = '<p class="user-name">' + response.name + '</p>';
         var tmptext = '<div class = "text" > Tài khoản của, </div>';
         tmp = tmptext + tmpname;
@@ -230,62 +229,62 @@ thongTinTaiKhoan.addEventListener('click', function(){
 
 // thay doi mat khau
 
-var thayDoiMatKhauButton = document.querySelector('.button_thaydoimatkhau');
+// var thayDoiMatKhauButton = document.querySelector('.button_thaydoimatkhau');
 
-thayDoiMatKhauButton.addEventListener('click', function(){
-    var currentPass = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai__input").value;
-    var newPass1 = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-moi-1__input").value;
-    var newPass2 = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-moi-2__input").value;
+// thayDoiMatKhauButton.addEventListener('click', function(){
+//     var currentPass = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai__input").value;
+//     var newPass1 = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-moi-1__input").value;
+//     var newPass2 = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-moi-2__input").value;
 
-    var war1 = document.querySelector('.war1');
-    var war2 = document.querySelector('.war2');
+//     var war1 = document.querySelector('.war1');
+//     var war2 = document.querySelector('.war2');
 
-    if(newPass1 != newPass2){
-        war1.style.display = 'block';
-    }
+//     if(newPass1 != newPass2){
+//         war1.style.display = 'block';
+//     }
 
-    else{
-        war1.style.display = 'block';
-        var pass;
-        // lay mat khau hien tai
-        var accessToken = localStorage.getItem('accessToken');
-        fetch('http://localhost:3000/account', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
-            }       
-        })
-        .then(response => {
-            return response.json();
-        })
-        .then(response =>{
-            pass = response.pass;
-        })
-        .catch(error =>{
-            console.log(error);
-            console.log("Loi thay doi mat khau");
-            alert("Đã xảy ra lỗi. Thay đổi mật khẩu không thành công!");
-        })
-        if(pass != currentPass){
-            war2.style.display = 'block';
-        }
-        else{
-            war2.style.display = 'none';
-            const pass = {
-                pass: newPass1
-            }
-            fetch('http://localhost:3000/account',{
-                method: 'PUT',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-        }
-    }
+//     else{
+//         war1.style.display = 'block';
+//         var pass;
+//         // lay mat khau hien tai
+//         var accessToken = localStorage.getItem('accessToken');
+//         fetch('http://localhost:3000/account', {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `Bearer ${accessToken}`
+//             }       
+//         })
+//         .then(response => {
+//             return response.json();
+//         })
+//         .then(response =>{
+//             pass = response.pass;
+//         })
+//         .catch(error =>{
+//             console.log(error);
+//             console.log("Loi thay doi mat khau");
+//             alert("Đã xảy ra lỗi. Thay đổi mật khẩu không thành công!");
+//         })
+//         if(pass != currentPass){
+//             war2.style.display = 'block';
+//         }
+//         else{
+//             war2.style.display = 'none';
+//             const pass = {
+//                 pass: newPass1
+//             }
+//             fetch('http://localhost:3000/account',{
+//                 method: 'PUT',
+//                 headers: {
+//                   'Content-Type': 'application/json'
+//                 },
+//                 body: JSON.stringify(data)
+//             })
+//         }
+//     }
 
-})
+// })
 
 // log out
 logOut.addEventListener('click', function(){

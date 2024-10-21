@@ -23,6 +23,8 @@ public class UserController {
         return ResponseEntity.ok(userService.changeInfo(userDTO));
     }
 
+
+
     @PutMapping("/user/changePass")
     public ResponseEntity<PasswordDTO> changePass(@RequestBody PasswordDTO passwordDTO){
         return ResponseEntity.ok(userService.changePass(passwordDTO));
