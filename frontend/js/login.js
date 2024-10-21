@@ -1,22 +1,4 @@
-var loginBox = document.getElementById("myLogin__box");
-var header__top__account__login = document.getElementById("myHeader__top__account__login");
-var exitLoginBox = document.getElementById("loginBoxExit");
-
-header__top__account__login.addEventListener('click', function(){
-    loginBox.style.display = 'block';
-});
-
-
-exitLoginBox.addEventListener('click', function(){
-   loginBox.style.display = 'none';
-});
-
-register[1].addEventListener('click', function(){
-    loginBox.style.display = "none";
-    registerBox.style.display = "block";
-});
-
-var loginButton = document.querySelector("#login__button");
+var loginButton = document.querySelector(".login__button");
 
 loginButton.addEventListener('click', function(){
     var email = document.querySelector('.login__box__email').value;
@@ -28,6 +10,7 @@ loginButton.addEventListener('click', function(){
     }
 
     // day tai khoan mat khau len server
+
 
     fetch('http://localhost:8080/login',{
         method: 'POST',
@@ -41,15 +24,15 @@ loginButton.addEventListener('click', function(){
     })
     .then(response => {
         if(response.message == "User not found"){
-            var war = document.querySelector('#incorrectEmail');
+            var war = document.querySelector('.incorrectEmail');
             war.style.display = "block";
         }
         else if (response.message == "User login successful"){
-            var war = document.querySelector('#incorrectEmail');
+            var war = document.querySelector('.incorrectEmail');
             war.style.display = "none";
             loginBox.style.display = 'none';
-            document.querySelector('.header__top__account').style.display = 'none';
-            document.querySelector('.header__top__login-success').style.display = 'block';
+            document.querySelector('.register__login').style.display = 'none';
+            document.querySelector('.account').style.display = 'block';
 
             localStorage.setItem('accessToken', response.accessToken);
             localStorage.setItem('refreshToken', response.refreshToken);
@@ -63,7 +46,7 @@ loginButton.addEventListener('click', function(){
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${accessToken}`
-                }
+                }    
             })
             .then(response => {
                 return response.json();
@@ -71,8 +54,9 @@ loginButton.addEventListener('click', function(){
             .then(response => {
                 tmpname = response.name;
                 tmp = '<p> Xin chào ' + tmpname + '<p>';
-                document.querySelector('.header__top__login-success').innerHTML = tmp;
-            })    
+                var account = document.querySelector('.account');
+                account.innerHTML = tmp;
+            })         
         }
     })
 })

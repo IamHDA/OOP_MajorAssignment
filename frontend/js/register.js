@@ -1,30 +1,4 @@
-
-const register = document.querySelectorAll("#myHeader__top__account__register");
-const registerBox = document.querySelector(".register__box");
-const registerBoxExit = document.querySelector("#registerBoxExit");
-
-register[0].addEventListener('click', function(){
-    registerBox.style.display = "block";
-});
-
-// An nut X trong registerBox
-registerBoxExit.addEventListener('click', function(){
-    registerBox.style.display = "none"; // Dong registerBox
-    // reset cac gia tri cua input va an cac war
-    document.querySelector("#register__name").value = "";
-    document.querySelector("#register__userEmail").value = "";
-    document.querySelector("#register__userPassword1").value = "";
-    document.querySelector("#register__userPassword2").value = "";
-    document.querySelector("#register__war1").style.display = "none";
-    document.querySelector("#register__war2").style.display = "none";
-    document.querySelector("#register__war3").style.display = "none";
-    document.querySelector("#register__war4").style.display = "none";
-    document.querySelector("#register__war5").style.display = "none";
-})
-
-
-
-const registerSubmit = document.querySelector("#register__submit");
+var registerSubmit = document.querySelector(".register__submit");
 
 const exitSuccessRegister = document.querySelector(".exit__success__register")
 
@@ -45,21 +19,22 @@ exitSuccessRegister.addEventListener('mouseout', function(){
 // khi an vao nut dang ky trong registerBox
 registerSubmit.addEventListener('click', function(e){
     e.preventDefault();
-    const inputName = document.querySelector("#register__name");
-    const inputUserEmail = document.querySelector("#register__userEmail");
-    const inputPassword1 = document.querySelector("#register__userPassword1");
-    const inputPassword2 = document.querySelector("#register__userPassword2");
+    const inputName = document.querySelector(".register__name");
+    const inputUserEmail = document.querySelector(".register__userEmail");
+    const inputPassword1 = document.querySelector(".register__userPassword1");
+    const inputPassword2 = document.querySelector(".register__userPassword2");
 
     let name = inputName.value;
     let userEmail = inputUserEmail.value;
     let userPassword1 = inputPassword1.value;
     let userPassword2 = inputPassword2.value;
 
-    var warName = document.querySelector("#register__war1");
-    var warUserEmail1 = document.querySelector("#register__war2");
-    var warUserEmail2 = document.querySelector("#register__war3");
-    var warPassword = document.querySelector("#register__war4");
-    var warlength = document.querySelector("#register__war5");
+    var warName = document.querySelector(".register__war1");
+    var warUserEmail1 = document.querySelector(".register__war2");
+    var warUserEmail2 = document.querySelector(".register__war3");
+    var warPassword = document.querySelector(".register__war4");
+    var warlength = document.querySelector(".register__war5");
+    var warEmail = document.querySelector(".register__war6");
     ok1 = 1;
     ok2 = 1;
     ok3 = 1;
@@ -131,20 +106,50 @@ registerSubmit.addEventListener('click', function(e){
             .then(response =>{
                 response.json();
             })
-            .then(function(){
-                // reset gia tri input
-                inputName.value = "";
-                inputUserEmail.value = "";
-                inputPassword1.value = "";
-                inputPassword2.value = "";  
-                registerBox.style.display = "none";
-                // Thong bao thanh cong
-                document.querySelector(".success__register").style.display = "block";
+            .then(response =>function(){
+                if(response == "Email is already in use"){
+                    warEmail.style.display = 'block';
+                }
+                else{
+                    // reset gia tri input
+                    inputName.value = "";
+                    inputUserEmail.value = "";
+                    inputPassword1.value = "";
+                    inputPassword2.value = "";  
+                    registerBox.style.display = "none";
+                    // Thong bao thanh cong
+                    document.querySelector(".success__register").style.display = "block";
+                    document.querySelector('.register__login').style.display = 'none';
+                    document.querySelector('.account').style.display = 'block';
+
+                    localStorage.setItem('accessToken', response.accessToken);
+                    localStorage.setItem('refreshToken', response.refreshToken);
+
+                    var tmp = '';
+                    var tmpname = '';
+                    var accessToken = localStorage.getItem('accessToken');
+                    // Lay ten 
+                    fetch('http://localhost:3000/account', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${accessToken}`
+                        }       
+                    })
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(response => {
+                        tmpname = response.name;
+                        tmp = '<p> Xin chào ' + tmpname + '<p>';
+                        var account = document.querySelector('.account');
+                        account.innerHTML = tmp;
+                    })
+                }
             })
             .catch(error => {
                 console.error('Có lỗi ở register!', error);
-                alert("lỗi rồi");
+                alert("Đã xảy ra lỗi, đăng ký thất bại!");
             })
     }
 });
-
