@@ -4,7 +4,7 @@ var thayDoiMatKhau = document.querySelector(".thay-doi-mat-khau");
 var logOut = document.querySelector(".log-out");
 
 var account = document.querySelector('click', function(){
-    var taikhoancua = document.querySelector("#taikhoancua");
+    var text = document.querySelector(".text");
     // Lay ten 
     fetch('http://localhost:8080/user/info', {
         method: 'GET',
@@ -18,9 +18,12 @@ var account = document.querySelector('click', function(){
     })
     .then(response => {
         var tmpname = '<p class="user-name">' + response.name + '</p>';
-        var tmptext = '<div class = "text" > Tài khoản của, </div>';
-        tmp = tmptext + tmpname;
-        taikhoancua.innerHTML = tmp;
+        var tmp = 'Tài khoản của, ' + '\n' + tmpname;
+        text.innerHTML = tmp;
+        tmpname = response.name;
+        tmp = '<p> Xin chào ' + tmpname + '<p>';
+        var account = document.querySelector('.account');
+        account.innerHTML = tmp;
     })
 })
 // hover selection
