@@ -49,8 +49,13 @@ registerF.addEventListener('click', function(){
     loginBox.style.display = 'none';
     registerBox.style.display = 'block';
 })
-document.querySelector(".register__login").style.display = "none";
-document.querySelector(".account").style.display = 'block';
 
 
+if (localStorage.getItem('accessToken') == null) {
+    document.querySelector(".register__login").style.display = "display";
+    document.querySelector(".account").style.display = 'none';
+} else {
+    document.querySelector(".register__login").style.display = "none";
+    document.querySelector(".account").style.display = 'block';
+}
 

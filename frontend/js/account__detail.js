@@ -173,9 +173,6 @@ thongTinTaiKhoan.addEventListener('click', function(){
         address = response.address;
         phone = response.phone;
     })
-    .catch({
-        alert()
-    })
 
     var button = document.querySelector(".account__detail__content___thong-tin-tai-khoan__submit");
 
@@ -211,8 +208,13 @@ thongTinTaiKhoan.addEventListener('click', function(){
 
 // thay doi mat khau
 
-thayDoiMatKhau.addEventListener('click', function(){
-    var currentPass = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai");
-    // var newPass1 = 
+// thayDoiMatKhau.addEventListener('click', function(){
+//     var currentPass = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai");
+//     // var newPass1 = 
+// })
+
+// log out
+logOut.addEventListener('click', function(){
+    localStorage.setItem('accessToken', null);
 })
 
