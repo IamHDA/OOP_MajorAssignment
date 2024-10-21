@@ -127,6 +127,14 @@
     margin: 20px 0 0 20px;
 }
 
+.war1, .war2{
+    font-size: 18px;
+    margin-left: 20px;
+    margin-top: 10px;
+    color: red;
+    display: none;
+}
+
 /* Thay doi mat khau */
     
 .account__detail__content___thay-doi-mat-khau{
