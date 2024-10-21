@@ -2,9 +2,7 @@
     height: auto;
     width: 100%;
     min-width: 1200px;
-    display: none;
     position: absolute;
-    display: none;
     justify-content: center;
     top: 200px;
 
@@ -77,14 +75,12 @@
 
 .account__detail__content .empty{
     margin: 20px 0 0 20px;
-    /* display: none; */
 }
 
 /* thong tin tai khoan */
 .account__detail__content___thong-tin-tai-khoan{
     height: auto;
     width: 960px;
-    display: none;
 }
 
 .account__detail__content___thong-tin-tai-khoan h1{
@@ -129,7 +125,6 @@
 
 .account__detail__content___danh-sach-don-hang{
     margin: 20px 0 0 20px;
-    display: none;
 }
 
 /* Thay doi mat khau */
@@ -137,7 +132,6 @@
 .account__detail__content___thay-doi-mat-khau{
     height: auto;
     width: 960px;
-    display: none;
 }
 
 .account__detail__content___thay-doi-mat-khau h1{
