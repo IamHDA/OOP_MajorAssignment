@@ -15,19 +15,4 @@ public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
-
-    @GetMapping("/category/{status}")
-    public ResponseEntity<List<CategoryDTO>> getLaptopByStatus(@PathVariable String status) {
-        return ResponseEntity.ok(categoryService.getLaptopByStatus(status));
-    }
-
-    @GetMapping("/category/brand/{brand}")
-    public ResponseEntity<List<CategoryDTO>> getLaptopByBrand(@PathVariable String brand) {
-        return ResponseEntity.ok(categoryService.getLaptopByBrand(brand));
-    }
-
-    @GetMapping("/category/subcategory/{categoryName}")
-    public ResponseEntity<List<CategoryDTO>> getSubcategoryByCategory(@PathVariable String categoryName) {
-        return ResponseEntity.ok(categoryService.getLaptopByCategory(categoryName));
-    }
 }

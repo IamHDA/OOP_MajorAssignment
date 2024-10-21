@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Filter {
+    String categoryName;
     String brand;
     String status;
     String cpu;

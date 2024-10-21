@@ -89,13 +89,13 @@ registerSubmit.addEventListener('click', function(e){
     // thoa man cac dieu kien
     if(ok1 == 1 && ok2 == 1 && ok3 == 1 && ok4 == 1 && ok5 == 1){
         const dataUser = {
-            name: name,
-            email: userEmail,
-            pass: userPassword1,
+            dataName: name,
+            dataEmail: userEmail,
+            dataUserPassword: userPassword1,
         };
 
         // push data ve backend
-        fetch('http://localhost:3000/account', {
+        fetch('http://localhost:8080/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -129,7 +129,7 @@ registerSubmit.addEventListener('click', function(e){
                     var tmpname = '';
                     var accessToken = localStorage.getItem('accessToken');
                     // Lay ten 
-                    fetch('http://localhost:3000/account', {
+                    fetch('http://localhost:8080/user/info', {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',

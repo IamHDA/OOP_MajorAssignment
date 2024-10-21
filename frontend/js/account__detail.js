@@ -1,6 +1,3 @@
-document.querySelector(".register__login").style.display = "none";
-document.querySelector(".account").style.display = 'block';
-
 var thongTinTaiKhoan = document.querySelector(".thong-tin-tai-khoan");
 var danhSachDonHang = document.querySelector(".danh-sach-don-hang");
 var thayDoiMatKhau = document.querySelector(".thay-doi-mat-khau");
@@ -157,7 +154,7 @@ thongTinTaiKhoan.addEventListener('click', function(){
     //     console.error('Có lỗi xảy ra:', error);
     // });
 
-    fetch('http://localhost:3000/account', {
+    fetch('http://localhost:8080/user/info', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -183,7 +180,7 @@ thongTinTaiKhoan.addEventListener('click', function(){
     }
 
     button.addEventListener('click', function(){
-        fetch('http://localhost:3000/account',{
+        fetch('http://localhost:8080/user/changeInfo',{
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'

@@ -51,7 +51,7 @@ registerF.addEventListener('click', function(){
 })
 
 
-if (localStorage.getItem('accessToken') == null) {
+if (localStorage.getItem('accessToken') === null) {
     document.querySelector(".register__login").style.display = "display";
     document.querySelector(".account").style.display = 'none';
 } else {

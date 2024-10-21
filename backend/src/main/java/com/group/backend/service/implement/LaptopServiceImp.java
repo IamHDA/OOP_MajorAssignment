@@ -1,8 +1,10 @@
 package com.group.backend.service.implement;
 
+import com.group.backend.dto.Filter;
 import com.group.backend.dto.LaptopDTO;
 import com.group.backend.entity.Laptop;
 import com.group.backend.repository.LaptopRepository;
+import com.group.backend.repository.LaptopSearchRepository;
 import com.group.backend.service.LaptopService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class LaptopServiceImp implements LaptopService {
     private ModelMapper modelMapper;
     @Autowired
     private LaptopRepository laptopRepo;
+    @Autowired
+    private LaptopSearchRepository laptopSearchRepo;
 
     @Override
     public LaptopDTO getLaptopById(long id) {
@@ -26,24 +30,19 @@ public class LaptopServiceImp implements LaptopService {
     }
 
     @Override
-    public List<LaptopDTO> getLaptopByCategory(String categoryName) {
-        List<Laptop> laptops = laptopRepo.findLaptopByCategory(categoryName);
-        return laptops.stream()
-                .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<LaptopDTO> getLaptopByBrand(String brand) {
-        List<Laptop> laptops = laptopRepo.findByBrand(brand);
-        return laptops.stream()
-                .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<LaptopDTO> getLaptopByStatus(String status) {
-        List<Laptop> laptops = laptopRepo.findByStatus(status);
+    public List<LaptopDTO> getLaptopByCriteria(Filter filter) {
+        List<Laptop> laptops = laptopSearchRepo.findByCriteria(filter.getCategoryName(),
+                filter.getBrand(),
+                filter.getStatus(),
+                filter.getVga(),
+                filter.getCpu(),
+                filter.getRam(),
+                filter.getSsd(),
+                filter.getScreenSize(),
+                filter.getSortBy(),
+                filter.getSortOrder(),
+                filter.getMinPrice(),
+                filter.getMaxPrice());
         return laptops.stream()
                 .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
                 .collect(Collectors.toList());
