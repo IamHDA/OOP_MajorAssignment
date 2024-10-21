@@ -26,8 +26,6 @@ public class EmailServiceImp implements EmailService {
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
         Context context = new Context();
-        context.setVariable("subject", "Lấy lại mật khẩu tài khoản của bạn");
-        context.setVariable("resetLink", "https://www.youtube.com/watch?v=Sst9O5C6WhQ");
         String process = templateEngine.process("Email_Content.html", context);
 
         helper.setTo(to);

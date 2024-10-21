@@ -21,9 +21,7 @@ public class Order_Detail {
     private int quantity;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "laptop_id")
-    @ToString.Exclude
     private Laptop laptop;
 
     @ManyToOne

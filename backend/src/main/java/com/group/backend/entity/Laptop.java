@@ -30,25 +30,17 @@ public class Laptop {
     private Specification specification;
 
     @OneToMany(mappedBy = "laptop")
-    @JsonManagedReference
     private List<Cart_Detail> cartDetails;
 
     @OneToMany(mappedBy = "laptop")
-    @JsonManagedReference
-
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "laptop")
-    @JsonManagedReference
-
     private List<Image> images;
 
     @OneToMany(mappedBy = "laptop")
-    @JsonManagedReference
-
     private List<Order_Detail> orderDetails;
 
     @OneToMany(mappedBy = "laptop")
-    @JsonManagedReference
     private List<Laptop_Category> laptopCategories;
 }
