@@ -1,21 +1,20 @@
 CREATE TABLE `User` (
-  `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
-  `Name` NVARCHAR(100),
-  `Email` VARCHAR(50),
-  `Phone` VARCHAR(12),
-  `Username` VARCHAR(50) UNIQUE,
-  `Pass` VARCHAR(50),
-  `RoleID` BIT,
-  `UserAddress` NVARCHAR(100)
+  `ID` BIGINT PRIMARY KEY,
+  `Name` NVARCHAR(255),
+  `Email` VARCHAR(255) UNIQUE,
+  `Phone` VARCHAR(11),
+  `Pass` VARCHAR(255),
+  `Role` VARCHAR(255),
+  `UserAdress` NVARCHAR(255)
 );
 
 CREATE TABLE `Laptop` (
-  `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
+  `ID` BIGINT PRIMARY KEY,
   `SpecID` BIGINT,
-  `Name` VARCHAR(100),
-  `Brand` VARCHAR(50),
+  `Name` VARCHAR(255),
+  `Brand` VARCHAR(255),
   `Price` INT,
-  `Status` VARCHAR(10),
+  `Status` VARCHAR(255),
   `Sale` SMALLINT,
   `Available` BOOLEAN
 );
@@ -27,44 +26,42 @@ CREATE TABLE `LaptopCategory` (
 );
 
 CREATE TABLE `Category` (
-  `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
-  `Name` NVARCHAR(100)
+  `ID` BIGINT PRIMARY KEY,
+  `Name` NVARCHAR(255)
 );
 
 CREATE TABLE `Status` (
-  `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
-  `Name` NVARCHAR(50),
-  `Description` NVARCHAR(100)
+  `ID` BIGINT PRIMARY KEY,
+  `OrderID` BIGINT,
+  `Name` NVARCHAR(255),
+  `Description` NVARCHAR(255)
 );
 
-CREATE TABLE `Comment` (
-  `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE `Laptop_Comment` (
+  `ID` BIGINT PRIMARY KEY,
   `UserID` BIGINT,
   `LaptopID` BIGINT,
-  `Content` NVARCHAR(255),
-  `RatingValue` SMALLINT,
+  `Comment` NVARCHAR(255),
   `Post_At` TIMESTAMP,
   `Update_At` TIMESTAMP
 );
 
 CREATE TABLE `Shipping_Method` (
-  `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
-  `Name` NVARCHAR(50),
+  `ID` BIGINT PRIMARY KEY,
+  `OrderID` BIGINT,
+  `Name` NVARCHAR(255),
   `Price` INT
 );
 
-CREATE TABLE `Order` (
-  `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE `Customer_Order` (
+  `ID` BIGINT PRIMARY KEY,
   `UserID` BIGINT,
-  `Shipping_Address` NVARCHAR(100),
-  `Phone` VARCHAR(12),
-  `Status` BIGINT,
-  `Shipping_Method` BIGINT,
+  `Shipping_Address` NVARCHAR(255),
   `Total_Price` INT
 );
 
 CREATE TABLE `Order_Detail` (
-  `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
+  `ID` BIGINT PRIMARY KEY,
   `OrderID` BIGINT,
   `LaptopID` BIGINT,
   `Unit_Price` INT,
@@ -72,69 +69,55 @@ CREATE TABLE `Order_Detail` (
 );
 
 CREATE TABLE `Image` (
-  `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
-  `LaptopID` BIGINT,
-  `Name` VARCHAR(100),
-  `File_Path` VARCHAR(100)
+  `ID` BIGINT PRIMARY KEY,
+  `LaptopID` bigint,
+  `File_Path` VARCHAR(255)
 );
 
 CREATE TABLE `Cart_Detail` (
-  `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
+  `ID` BIGINT PRIMARY KEY,
   `UserID` BIGINT,
   `LaptopID` BIGINT,
   `Quantity` INT
 );
 
 CREATE TABLE `Specification` (
-  `ID` BIGINT AUTO_INCREMENT PRIMARY KEY,
-  `CPU` VARCHAR(500),
-  `RAM` VARCHAR(100),
-  `ROM` VARCHAR(100),
-  `Screen` VARCHAR(500),
-  `GPU` VARCHAR(150),
-  `Battery` VARCHAR(100),
-  `Weight` VARCHAR(10),
-  `Webcam` VARCHAR(100),
-  `Operating_System` VARCHAR(20),
-  `Connection_Port` NVARCHAR(500),
+  `ID` BIGINT PRIMARY KEY,
+  `CPU` VARCHAR(255),
+  `RAM` VARCHAR(255),
+  `ROM` VARCHAR(255),
+  `Sreen` VARCHAR(255),
+  `Graphic_Card` VARCHAR(255),
+  `Battery` VARCHAR(255),
+  `Weight` FLOAT,
+  `Webcam` VARCHAR(255),
+  `Operating_System` VARCHAR(255),
+  `Connection_Port` VARCHAR(500),
   `Mux_Switch` BOOLEAN
 );
 
-ALTER TABLE `Comment`
-ADD CONSTRAINT FK_CommentUser FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
+ALTER TABLE `Laptop_Comment` ADD FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
 
-ALTER TABLE `Comment`
-ADD CONSTRAINT FK_CommentProduct FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
+ALTER TABLE `Cart_Detail` ADD FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
 
-ALTER TABLE `Cart_Detail`
-ADD CONSTRAINT FK_CartUser FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
+ALTER TABLE `Customer_Order` ADD FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
 
-ALTER TABLE `Cart_Detail`
-ADD CONSTRAINT FK_CartLaptop FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
+ALTER TABLE `Cart_Detail` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
 
-ALTER TABLE `Order`
-ADD CONSTRAINT FK_OrderUser FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
+ALTER TABLE `Order_Detail` ADD FOREIGN KEY (`OrderID`) REFERENCES `Customer_Order` (`ID`);
 
-ALTER TABLE `Order`
-ADD CONSTRAINT FK_OrderStatus FOREIGN KEY (`Status`) REFERENCES `Status` (`ID`);
+ALTER TABLE `Status` ADD FOREIGN KEY (`OrderID`) REFERENCES `Customer_Order` (`ID`);
 
-ALTER TABLE `Order`
-ADD CONSTRAINT FK_OrderShippingMethod FOREIGN KEY (`Shipping_Method`) REFERENCES `Shipping_Method` (`ID`);
+ALTER TABLE `Shipping_Method` ADD FOREIGN KEY (`OrderID`) REFERENCES `Customer_Order` (`ID`);
 
-ALTER TABLE `Order_Detail`
-ADD CONSTRAINT FK_OrderDetailOrder FOREIGN KEY (`OrderID`) REFERENCES `Order` (`ID`);
+ALTER TABLE `Laptop_Comment` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
 
-ALTER TABLE `Order_Detail`
-ADD CONSTRAINT FK_OrderDetailLaptop FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
+ALTER TABLE `Order_Detail` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
 
-ALTER TABLE `Laptop`
-ADD CONSTRAINT FK_SpecLaptop FOREIGN KEY (`SpecID`) REFERENCES `Specification` (`ID`);
+ALTER TABLE `Specification` ADD FOREIGN KEY (`ID`) REFERENCES `Laptop` (`SpecID`);
 
-ALTER TABLE `Image`
-ADD CONSTRAINT FK_ImageLaptop FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
+ALTER TABLE `Image` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
 
-ALTER TABLE `LaptopCategory`
-ADD CONSTRAINT FK_LaptopCategoryLaptop FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
+ALTER TABLE `LaptopCategory` ADD FOREIGN KEY (`CateID`) REFERENCES `Category` (`ID`);
 
-ALTER TABLE `LaptopCategory`
-ADD CONSTRAINT FK_LaptopCategoryCategory FOREIGN KEY (`CateID`) REFERENCES `Category` (`ID`);
+ALTER TABLE `LaptopCategory` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);

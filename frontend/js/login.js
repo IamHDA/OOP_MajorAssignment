@@ -11,7 +11,8 @@ loginButton.addEventListener('click', function(){
 
     // day tai khoan mat khau len server
 
-    fetch('http://localhost:3000/account',{
+
+    fetch('http://localhost:8080/login',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -40,7 +41,7 @@ loginButton.addEventListener('click', function(){
             var tmpname = '';
             var accessToken = localStorage.getItem('accessToken');
             // Lay ten 
-            fetch('http://localhost:3000/account', {
+            fetch('http://localhost:8080/user/info', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,7 +56,7 @@ loginButton.addEventListener('click', function(){
                 tmp = '<p> Xin chào ' + tmpname + '<p>';
                 var account = document.querySelector('.account');
                 account.innerHTML = tmp;
-            })
+            })         
         }
     })
 })
