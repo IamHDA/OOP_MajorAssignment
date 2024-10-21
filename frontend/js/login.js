@@ -40,6 +40,7 @@ loginButton.addEventListener('click', function(){
             var tmp = '';
             var tmpname = '';
             var accessToken = localStorage.getItem('accessToken');
+            console.log(accessToken);
             // Lay ten 
             fetch('http://localhost:8080/user/info', {
                 method: 'GET',

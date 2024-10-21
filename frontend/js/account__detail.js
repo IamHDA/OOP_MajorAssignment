@@ -200,17 +200,18 @@ thongTinTaiKhoan.addEventListener('click', function(){
 
     var button = document.querySelector(".account__detail__content___thong-tin-tai-khoan__submit");
 
-    const data = {
-        name: name,
-        address: address,
-        phone: phone,
-    }
-
     button.addEventListener('click', function(){
+        const data = {
+            name: name.value,
+            address: address.value,
+            phone: phone.value
+        }
+        
         fetch('http://localhost:8080/user/changeInfo',{
             method: 'PUT',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify(data)
         })
