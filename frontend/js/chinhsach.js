@@ -44,3 +44,33 @@ baohanhtannha.addEventListener('mousemove', function(){
 baohanhtannha.addEventListener('mouseout', function(){
     baohanhtannha.style.fontSize = "17px";
 });
+
+
+var logo = document.querySelector('.logo');
+
+logo.addEventListener('click', function(){
+    if (localStorage.getItem('accessToken') === null) {
+        document.querySelector(".register__login").style.display = "display";
+        document.querySelector(".account").style.display = 'none';
+    } else {
+        document.querySelector(".register__login").style.display = "none";
+        document.querySelector(".account").style.display = 'block';
+        // Lay ten 
+        fetch('http://localhost:8080/user/info', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }       
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(response => {
+            tmpname = response.name;
+            tmp = '<p> Xin chào ' + tmpname + '<p>';
+            var account = document.querySelector('.account');
+            account.innerHTML = tmp;
+        })
+    }
+})
