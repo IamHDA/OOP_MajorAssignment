@@ -29,4 +29,9 @@ public class Comment {
     @JsonIgnore
     private Laptop laptop;
 
+    @JsonProperty("userName")
+    private String getUserName(){
+        return user.getName();
+    }
+
 }
