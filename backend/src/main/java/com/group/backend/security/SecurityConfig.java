@@ -48,7 +48,7 @@ public class SecurityConfig {
         http.cors(config -> config.configurationSource(customCorsConfiguration()))
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/login", "/register", "/refresh_token", "/sendMail")
+                        .requestMatchers("/login", "/register", "/refresh_token", "/sendMail", "/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())

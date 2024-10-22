@@ -21,10 +21,18 @@ public class CategoryServiceImp implements CategoryService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<CategoryDTO> getLaptopByCriteria(Filter filter) {
-        List<LaptopDTO> laptops = laptopService.getLaptopByCriteria(filter);
+    public List<CategoryDTO> getLaptopByCategoryAndCriteria(String categoryName, Filter filter) {
+        List<LaptopDTO> laptops = laptopService.getLaptopByCategoryAndCriteria(categoryName, filter);
         return laptops.stream()
-                .map(laptop -> modelMapper.map(laptop, CategoryDTO.class))
+                .map(l -> modelMapper.map(l, CategoryDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CategoryDTO> getLaptopByBrandAndCriteria(String brandName, Filter filter) {
+        List<LaptopDTO> laptops = laptopService.getLaptopByBrandAndCriteria(brandName, filter);
+        return laptops.stream()
+                .map(l -> modelMapper.map(l, CategoryDTO.class))
                 .collect(Collectors.toList());
     }
 }

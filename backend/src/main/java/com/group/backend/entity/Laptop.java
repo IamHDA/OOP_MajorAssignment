@@ -21,7 +21,6 @@ public class Laptop {
     private String name;
     private String brand;
     private int price;
-    private String status;
     private short sale;
     private boolean available;
 

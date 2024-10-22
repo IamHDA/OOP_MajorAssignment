@@ -2,7 +2,6 @@ package com.group.backend.controller;
 
 import com.group.backend.entity.Token;
 import com.group.backend.repository.TokenRepository;
-import jakarta.validation.constraints.Future;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -3,8 +3,8 @@ package com.group.backend.service.implement;
 import com.group.backend.dto.Filter;
 import com.group.backend.dto.LaptopDTO;
 import com.group.backend.entity.Laptop;
+import com.group.backend.repository.LaptopFilterRepository;
 import com.group.backend.repository.LaptopRepository;
-import com.group.backend.repository.LaptopSearchRepository;
 import com.group.backend.service.LaptopService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class LaptopServiceImp implements LaptopService {
     @Autowired
     private LaptopRepository laptopRepo;
     @Autowired
-    private LaptopSearchRepository laptopSearchRepo;
+    private LaptopFilterRepository laptopFilterRepo;
 
     @Override
     public LaptopDTO getLaptopById(long id) {
@@ -30,21 +30,19 @@ public class LaptopServiceImp implements LaptopService {
     }
 
     @Override
-    public List<LaptopDTO> getLaptopByCriteria(Filter filter) {
-        List<Laptop> laptops = laptopSearchRepo.findByCriteria(filter.getCategoryName(),
-                filter.getBrand(),
-                filter.getStatus(),
-                filter.getVga(),
-                filter.getCpu(),
-                filter.getRam(),
-                filter.getSsd(),
-                filter.getScreenSize(),
-                filter.getSortBy(),
-                filter.getSortOrder(),
-                filter.getMinPrice(),
-                filter.getMaxPrice());
+    public List<LaptopDTO> getLaptopByCategoryAndCriteria(String categoryName, Filter filter) {
+        List<Laptop> laptops = laptopFilterRepo.findLaptopByCategoryOrBrandAndCriteria(categoryName, "", filter);
         return laptops.stream()
                 .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<LaptopDTO> getLaptopByBrandAndCriteria(String brandName, Filter filter) {
+        List<Laptop> laptops = laptopFilterRepo.findLaptopByCategoryOrBrandAndCriteria("", brandName, filter);
+        return laptops.stream()
+                .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }

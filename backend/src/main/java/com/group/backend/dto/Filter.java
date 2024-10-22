@@ -1,12 +1,12 @@
 package com.group.backend.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class Filter {
-    String categoryName;
     String brand;
-    String status;
     String cpu;
     String vga;
     String ram;

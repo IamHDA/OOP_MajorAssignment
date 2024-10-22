@@ -11,8 +11,6 @@ import java.util.List;
 public interface LaptopRepository extends JpaRepository<Laptop, Long> {
     List<Laptop> findAll();
     Laptop findById(long id);
-    List<Laptop> findByBrand(String brand);
-    List<Laptop> findByStatus(String status);
     @Query("""
         select l from Laptop l
         join l.laptopCategories lc
