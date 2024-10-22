@@ -1,3 +1,5 @@
+document.querySelector(".register__login").style.display = "display";
+document.querySelector(".account").style.display = 'none';
 
 // mở / đóng register box
 var register = document.querySelector(".register");
@@ -50,11 +52,11 @@ registerF.addEventListener('click', function(){
     registerBox.style.display = 'block';
 })
 
-
+// home
 var logo = document.querySelector('.logo');
 
 logo.addEventListener('click', function(){
-    if (localStorage.getItem('accessToken') == null) {
+    if (localStorage.getItem('accessToken') === null) {
         document.querySelector(".register__login").style.display = "display";
         document.querySelector(".account").style.display = 'none';
     } else {
@@ -79,3 +81,26 @@ logo.addEventListener('click', function(){
         })
     }
 })
+
+// hover vao product
+
+var product = document.querySelectorAll('.product__container')
+
+
+product.forEach(function(element){
+    element.children[0].style.transition = "0.3s";
+    element.children[0].addEventListener('mouseover', function(){
+        element.children[0].style.transform = "translateY(-10px)";
+    })
+    element.children[0].addEventListener('mouseout', function(){
+        element.children[0].style.transform = "translateY(0)";
+    })
+    element.children[1].addEventListener('mouseover', function(){
+        element.children[0].style.transform = "translateY(-10px)";
+    })
+    element.children[1].addEventListener('mouseout', function(){
+        element.children[0].style.transform = "translateY(0)";
+    })
+})
+
+
