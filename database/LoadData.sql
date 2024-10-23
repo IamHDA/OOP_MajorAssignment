@@ -1,6 +1,3 @@
-ALTER TABLE specification
-MODIFY connection_port VARCHAR(500);
-customer_order
 INSERT INTO specification (cpu, ram, rom, screen, graphics_card, battery, weight, webcam, operating_system, connection_port, mux_switch)
 VALUES ('Intel core i5-1340P (12 cores, 16 Threads, up to 4.6GHz, 12MB cache)', '16GB LPDDR5 4800MHz', 'SSD 512GB M.2 PCIe NVMe', '16'''' FHD+ (1920 x 1200; 16:10) Anti-Glare Non-Touch 250nits WVA Display with ComfortView Support', 'Intel Iris Xe Graphics', '4-Cell, 54Wh', '1.85 kg', 'HD camera', 'Window 11 Home', '2x USB 3.2 Gen 1 Type A
 		1x USB Type-C Thunderbolt 4.0 port with DisplayPort and Power Delivery
@@ -67,19 +64,19 @@ VALUES ('Intel core i5-1340P (12 cores, 16 Threads, up to 4.6GHz, 12MB cache)', 
         FALSE);
 -- pause here
 
-INSERT INTO laptop (specification_id, name, brand, price, status, sale, available)
-VALUES (1, 'Dell Inspiron 16 5630', 'Dell', 23990000, 'new', 33, TRUE),
-        (2, 'Dell Inspiron 16 5630', 'Dell', 26990000, 'new', 20, TRUE),
-        (3, 'Dell Inspiron 16 5620', 'Dell', 19990000, 'new', 16, TRUE),
-        (4, 'Dell Inspiron 7445 2-in-1 2024', 'Dell', 19990000, 'new', 16, TRUE),
-        (5, 'Acer Aspire 5 A515-58GM-53PZ', 'Acer', 19990000, 'new', 15, TRUE),
-        (6, 'Acer Swift Go 14 AI SFG14-73-53X7', 'Acer', 23990000, 'new', 8, TRUE),
-        (7, 'Acer Nitro 5 AN515-58-56CH', 'Acer', 24990000, 'new', 20, TRUE),
-        (8, 'ASUS TUF Gaming A16 Advantage Edition 2023 FA617NT', 'Asus', 27990000, 'new', 20, TRUE),
-        (9, 'Asus Zenbook 14 OLED Q425MA 2024', 'Asus', 27990000, 'new', 20, TRUE),
-        (10, 'Lenovo Thinkbook 14 G6+ 2024', 'Lenovo', 25990000, 'new', 24, TRUE),
-        (11, 'Lenovo LOQ 2024 15ARP9', 'Lenovo', 25990000, 'new', 12, TRUE),
-        ( 12, 'Lenovo ThinkPad E14 Gen 5', 'Lenovo', 23990000, 'New', 9, True);
+INSERT INTO laptop (specification_id, name, brand, price, sale, available)
+VALUES (1, 'Dell Inspiron 16 5630', 'Dell', 23990000, 33, TRUE),
+        (2, 'Dell Inspiron 16 5630', 'Dell', 26990000, 20, TRUE),
+        (3, 'Dell Inspiron 16 5620', 'Dell', 19990000, 16, TRUE),
+        (4, 'Dell Inspiron 7445 2-in-1 2024', 'Dell', 19990000, 16, TRUE),
+        (5, 'Acer Aspire 5 A515-58GM-53PZ', 'Acer', 19990000, 15, TRUE),
+        (6, 'Acer Swift Go 14 AI SFG14-73-53X7', 'Acer', 23990000, 8, TRUE),
+        (7, 'Acer Nitro 5 AN515-58-56CH', 'Acer', 24990000, 20, TRUE),
+        (8, 'ASUS TUF Gaming A16 Advantage Edition 2023 FA617NT', 'Asus', 27990000, 20, TRUE),
+        (9, 'Asus Zenbook 14 OLED Q425MA 2024', 'Asus', 27990000, 20, TRUE),
+        (10, 'Lenovo Thinkbook 14 G6+ 2024', 'Lenovo', 25990000, 24, TRUE),
+        (11, 'Lenovo LOQ 2024 15ARP9', 'Lenovo', 25990000, 12, TRUE),
+        ( 12, 'Lenovo ThinkPad E14 Gen 5', 'Lenovo', 23990000, 9, TRUE);
 -- pause here
 
 INSERT INTO category (name)

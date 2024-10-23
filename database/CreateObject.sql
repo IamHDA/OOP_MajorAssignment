@@ -14,7 +14,6 @@ CREATE TABLE `Laptop` (
   `Name` VARCHAR(255),
   `Brand` VARCHAR(255),
   `Price` INT,
-  `Status` VARCHAR(255),
   `Sale` SMALLINT,
   `Available` BOOLEAN
 );

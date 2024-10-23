@@ -16,7 +16,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/laptops-category/{category}")
-    public ResponseEntity<List<CategoryDTO>> getLaptopCategory(@PathVariable("category") String category, @ModelAttribute Filter filter) {
+    public ResponseEntity<List<CategoryDTO>> getLaptopByCategory(@PathVariable("category") String category, @ModelAttribute Filter filter) {
         return ResponseEntity.ok(categoryService.getLaptopByCategoryAndCriteria(category, filter));
     }
 
