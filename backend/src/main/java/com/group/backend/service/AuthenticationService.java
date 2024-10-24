@@ -95,7 +95,11 @@ public class AuthenticationService {
         String token = authHeader.substring(7);
         String username = jwtTokenProvider.extractEmail(token);
 
-        User user = userRepo.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        User user = userRepo.findByEmail(username).orElse(null);
+        if(user == null){
+            return new ResponseEntity(new AuthenticationResponse(null, null, "User not found"), HttpStatus.UNAUTHORIZED);
+        }
+
         if (jwtTokenProvider.isValidRefreshToken(token, user)) {
             String accessToken = jwtTokenProvider.generateAccessToken(user);
             String refreshToken = jwtTokenProvider.generateRefreshToken(user);
