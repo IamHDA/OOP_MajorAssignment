@@ -1,5 +1,5 @@
 .hoctapvanphongcoban{
-    height: 500px;
+    height: 510px;
     width: 100%;
     display: flex;
     min-width: 1200px;
@@ -12,6 +12,7 @@
     width: 1200px;
     background-color: white;
     border-radius: 20px;
+    
 }
 
 .title{
@@ -42,12 +43,13 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 45px;
+    margin-top: 30px;
 }
 
 .product__slide{
     height: 100%;
     width: 1080px;
+    padding-top: 10px;
     display: flex;
     justify-content: center;
     overflow-x: auto;  

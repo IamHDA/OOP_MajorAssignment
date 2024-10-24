@@ -305,7 +305,8 @@ thayDoiMatKhauButton.addEventListener('click', function(){
 
 // log out
 logOut.addEventListener('click', function(){
-    localStorage.setItem('accessToken', null);
+    console.log("event called");
+    localStorage.clear();
     document.querySelector(".register__login").style.display = "display";
     document.querySelector(".account").style.display = 'none';
 })

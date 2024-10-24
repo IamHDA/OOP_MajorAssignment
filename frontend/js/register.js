@@ -103,55 +103,56 @@ registerSubmit.addEventListener('click', function(e){
             body: JSON.stringify(dataUser) // Chuyển dữ liệu thành JSON
 
         })
-            .then(response =>{
-                response.json();
-            })
-            .then(response =>function(){
-                if(response.message == "Email is already in use"){
-                    warEmail.style.display = 'block';
-                }
-                else if(response.message == "User registration successful"){
-                    // reset gia tri input
-                    inputName.value = "";
-                    inputUserEmail.value = "";
-                    inputPassword1.value = "";
-                    inputPassword2.value = "";  
-                    registerBox.style.display = "none";
-                    // Thong bao thanh cong
-                    document.querySelector(".success__register").style.display = 'block';
+        .then(response =>{
+            return response.json();
+        })
+        .then(response =>{
+            if(response.message == "Email is already in use"){
+                warEmail.style.display = 'block';
+            }
+            if(response.message == "User registration successful"){
+                console.log("success");
+                // reset gia tri input
+                inputName.value = "";
+                inputUserEmail.value = "";
+                inputPassword1.value = "";
+                inputPassword2.value = "";  
+                registerBox.style.display = "none";
+                // Thong bao thanh cong
+                document.querySelector(".success__register").style.display = 'block';
 
-                    document.querySelector('.register__login').style.display = 'none';
-                    document.querySelector('.account').style.display = 'block';
-
-                    localStorage.setItem('accessToken', response.accessToken);
-                    localStorage.setItem('refreshToken', response.refreshToken);
-
-                    var tmp = '';
-                    var tmpname = '';
-                    var accessToken = localStorage.getItem('accessToken');
-                    // Lay ten 
-                    fetch('http://localhost:8080/user/info', {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${accessToken}`
-                        }       
-                    })
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(response => {
-                        tmpname = response.name;
-                        tmp = '<p> Xin chào ' + tmpname + '<p>';
-                        var account = document.querySelector('.account');
-                        account.innerHTML = tmp;
-                    })
-                }
-            })
-            .catch(error => {
-                console.error('Có lỗi ở register!', error);
-                alert("Đã xảy ra lỗi, đăng ký thất bại!");
-            })
+                document.querySelector('.register__login').style.display = 'none';
+                document.querySelector('.account').style.display = 'block';
+                
+                localStorage.setItem('accessToken', response.accessToken);
+                localStorage.setItem('refreshToken', response.refreshToken);
+                
+                var tmp = '';
+                var tmpname = '';
+                var accessToken = localStorage.getItem('accessToken');
+                // Lay ten 
+                fetch('http://localhost:8080/user/info', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
+                    }       
+                })
+                .then(response => {
+                    return response.json();
+                })
+                .then(response => {
+                    tmpname = response.name;
+                    tmp = '<p> Xin chào ' + tmpname + '<p>';
+                    var account = document.querySelector('.account');
+                    account.innerHTML = tmp;
+                })
+            }
+        })
+        .catch(error => {
+            console.error('Có lỗi ở register!', error);
+            alert("Đã xảy ra lỗi, đăng ký thất bại!");
+        })
     }
 });
 

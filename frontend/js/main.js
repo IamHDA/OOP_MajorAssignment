@@ -1,7 +1,8 @@
-document.querySelector(".register__login").style.display = "display";
-document.querySelector(".account").style.display = 'none';
+// document.querySelector(".register__login").style.display = "display";
+// document.querySelector(".account").style.display = 'none';
 
 // mở / đóng register box
+
 var register = document.querySelector(".register");
 var registerBox = document.querySelector(".register__box");
 var exitRegisterBox = document.querySelector(".exitRegisterBox");
@@ -71,8 +72,5 @@ product.forEach(function(element){
     })
     element.children[2].addEventListener('mouseout', function(){
         element.children[1].style.transform = "translateY(0)";
-    })
-    
+    })  
 })
-
-
