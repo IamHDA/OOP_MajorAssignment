@@ -50,11 +50,16 @@
     width: 1080px;
     display: flex;
     justify-content: center;
+    overflow-x: auto;  
+    overflow-y:unset;
+    /* overflow: hidden; */
+    scrollbar-width: thin;
 }
 
 .product__container{
     height: auto;
     width: 200px;
+    min-width: 200px;
     display: flex;
     flex-direction: column;
     margin-right: 20px;
@@ -69,6 +74,9 @@
     height: auto;
     width: 100%;
     display: cover;
+}
+.id__product{
+    display: none;
 }
 
 .product__name{
