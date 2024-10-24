@@ -107,10 +107,10 @@ registerSubmit.addEventListener('click', function(e){
                 response.json();
             })
             .then(response =>function(){
-                if(response == "Email is already in use"){
+                if(response.message == "Email is already in use"){
                     warEmail.style.display = 'block';
                 }
-                else{
+                else if(response.message == "User registration successful"){
                     // reset gia tri input
                     inputName.value = "";
                     inputUserEmail.value = "";
@@ -118,7 +118,8 @@ registerSubmit.addEventListener('click', function(e){
                     inputPassword2.value = "";  
                     registerBox.style.display = "none";
                     // Thong bao thanh cong
-                    document.querySelector(".success__register").style.display = "block";
+                    document.querySelector(".success__register").style.display = 'block';
+
                     document.querySelector('.register__login').style.display = 'none';
                     document.querySelector('.account').style.display = 'block';
 
@@ -153,3 +154,4 @@ registerSubmit.addEventListener('click', function(e){
             })
     }
 });
+

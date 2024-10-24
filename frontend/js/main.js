@@ -1,3 +1,5 @@
+document.querySelector(".register__login").style.display = "display";
+document.querySelector(".account").style.display = 'none';
 
 // mở / đóng register box
 var register = document.querySelector(".register");
@@ -50,32 +52,27 @@ registerF.addEventListener('click', function(){
     registerBox.style.display = 'block';
 })
 
+// hover vao product
 
-var logo = document.querySelector('.logo');
+var product = document.querySelectorAll('.product__container')
 
-logo.addEventListener('click', function(){
-    if (localStorage.getItem('accessToken') == null) {
-        document.querySelector(".register__login").style.display = "display";
-        document.querySelector(".account").style.display = 'none';
-    } else {
-        document.querySelector(".register__login").style.display = "none";
-        document.querySelector(".account").style.display = 'block';
-        // Lay ten 
-        fetch('http://localhost:8080/user/info', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
-            }       
-        })
-        .then(response => {
-            return response.json();
-        })
-        .then(response => {
-            tmpname = response.name;
-            tmp = '<p> Xin chào ' + tmpname + '<p>';
-            var account = document.querySelector('.account');
-            account.innerHTML = tmp;
-        })
-    }
+
+product.forEach(function(element){
+    element.children[1].style.transition = "0.3s";
+    element.children[1].addEventListener('mouseover', function(){
+        element.children[1].style.transform = "translateY(-10px)";
+    })
+    element.children[1].addEventListener('mouseout', function(){
+        element.children[1].style.transform = "translateY(0)";
+    })
+    
+    element.children[2].addEventListener('mouseover', function(){
+        element.children[1].style.transform = "translateY(-10px)";
+    })
+    element.children[2].addEventListener('mouseout', function(){
+        element.children[1].style.transform = "translateY(0)";
+    })
+    
 })
+
+
