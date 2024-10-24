@@ -1,5 +1,6 @@
 package com.group.backend.service;
 
+import ch.qos.logback.core.encoder.EchoEncoder;
 import com.group.backend.dto.AuthenticationResponse;
 import com.group.backend.dto.payload.LoginRequest;
 import com.group.backend.dto.payload.RegisterRequest;
@@ -65,7 +66,10 @@ public class AuthenticationService {
     public AuthenticationResponse login(@RequestBody LoginRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getDataEmail(), request.getDataUserPassword()));
 
-        User user = userRepo.findByEmail(request.getDataEmail()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        User user = userRepo.findByEmail(request.getDataEmail()).orElse(null);
+        if(user == null){
+            return new AuthenticationResponse(null, null, "User not found");
+        }
 
         String accessToken = jwtTokenProvider.generateAccessToken(user);
         String refreshToken = jwtTokenProvider.generateRefreshToken(user);
