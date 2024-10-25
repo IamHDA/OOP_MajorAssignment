@@ -1,14 +1,10 @@
 package com.group.backend.service.implement;
 
-import com.group.backend.config.Encoder;
-import com.group.backend.dto.OrderDTO;
 import com.group.backend.dto.PasswordDTO;
 import com.group.backend.dto.UserDTO;
 import com.group.backend.entity.User;
-import com.group.backend.repository.OrderRepository;
 import com.group.backend.repository.UserRepository;
 import com.group.backend.security.CurrentUser;
-import com.group.backend.service.OrderService;
 import com.group.backend.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,11 +48,13 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public PasswordDTO changePass(PasswordDTO passwordDTO) {
+    public String changePass(PasswordDTO passwordDTO) {
         User thisUser = currentUser.getCurrentUser();
+        if(encoder.matches(passwordDTO.getPassword(), thisUser.getPass())){
+            return "Can not use old password";
+        }
         thisUser.setPass(encoder.encode(passwordDTO.getPassword()));
         userRepo.save(thisUser);
-        passwordDTO.setPassword(null);
-        return passwordDTO;
+        return "Change password successful";
     }
 }

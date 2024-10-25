@@ -23,7 +23,7 @@ loginButton.addEventListener('click', function(){
         return response.json();
     })
     .then(response => {
-        if(response.message == "User not found"){
+        if(response.message == "User not found" || response.message == "Password is incorrect"){
             var war = document.querySelector('.incorrectEmail');
             war.style.display = "block";
         }
@@ -40,7 +40,7 @@ loginButton.addEventListener('click', function(){
             var tmp = '';
             var tmpname = '';
             var accessToken = localStorage.getItem('accessToken');
-            console.log(accessToken);
+           
             // Lay ten 
             fetch('http://localhost:8080/user/info', {
                 method: 'GET',
@@ -53,6 +53,7 @@ loginButton.addEventListener('click', function(){
                 return response.json();
             })
             .then(response => {
+                localStorage.setItem("name", response.name);
                 tmpname = response.name;
                 tmp = '<p> Xin chào ' + tmpname + '<p>';
                 var account = document.querySelector('.account');

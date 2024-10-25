@@ -8,5 +8,5 @@ public interface UserService {
 
     UserDTO changeInfo(UserDTO userDTO);
 
-    PasswordDTO changePass(PasswordDTO passwordDTO);
+    String changePass(PasswordDTO passwordDTO);
 }

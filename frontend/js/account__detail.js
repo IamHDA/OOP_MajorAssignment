@@ -253,7 +253,7 @@ thayDoiMatKhauButton.addEventListener('click', function(){
         war1.style.display = 'block';
         // lay mat khau hien tai
         var accessToken = localStorage.getItem('accessToken');
-        fetch('http://localhost:3000/account', {
+        fetch('http://localhost:8080/account', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -273,7 +273,7 @@ thayDoiMatKhauButton.addEventListener('click', function(){
                 const data = {
                     pass: newPass1
                 }
-                fetch('http://localhost:3000/account',{
+                fetch('http://localhost:8080/account',{
                     method: 'PUT',
                     headers: {
                       'Content-Type': 'application/json'
