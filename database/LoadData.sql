@@ -120,8 +120,7 @@ VALUES	(1, 1, 1), (2, 1, 1), (4, 1, 1), (5, 1, 1),
 -- pause here
 
 INSERT INTO shipping_method(name, price)
-VALUES ('Nhận ở cửa hàng', 0),
-       ('Giao hàng nhanh', 30000),
+VALUES ('Giao hàng nhanh', 30000),
        ('Giao hàng hỏa tốc', 70000);
 -- pause here
 
