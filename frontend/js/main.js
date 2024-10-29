@@ -1,7 +1,8 @@
 // hover vao product
 
-var product = document.querySelectorAll('.product__container')
+var product = document.querySelectorAll('.product__container');
 
+localStorage.setItem("id__product", 1);
 
 product.forEach(function(element){
     element.children[1].style.transition = "0.3s";
