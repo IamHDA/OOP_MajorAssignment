@@ -1,3 +1,26 @@
+// mở / đóng register box
+
+var register = document.querySelector(".register");
+var registerBox = document.querySelector(".register__box");
+var exitRegisterBox = document.querySelector(".exitRegisterBox");
+
+register.addEventListener('click', function(){
+    registerBox.style.display = 'block';
+})
+
+exitRegisterBox.addEventListener('click', function(){
+    registerBox.style.display = 'none';
+    // reset
+    document.querySelector(".register__name").value = "";
+    document.querySelector(".register__userEmail").value = "";
+    document.querySelector(".register__userPassword1").value = "";
+    document.querySelector(".register__userPassword2").value = "";
+    document.querySelector(".register__war1").style.display = "none";
+    document.querySelector(".register__war2").style.display = "none";
+    document.querySelector(".register__war3").style.display = "none";
+    document.querySelector(".register__war4").style.display = "none";
+    document.querySelector(".register__war5").style.display = "none";
+})
 var registerSubmit = document.querySelector(".register__submit");
 
 const exitSuccessRegister = document.querySelector(".exit__success__register")
