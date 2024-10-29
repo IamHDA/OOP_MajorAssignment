@@ -1,6 +1,3 @@
-ALTER TABLE specification
-MODIFY connection_port VARCHAR(500);
-customer_order
 INSERT INTO specification (cpu, ram, rom, screen, graphics_card, battery, weight, webcam, operating_system, connection_port, mux_switch)
 VALUES ('Intel core i5-1340P (12 cores, 16 Threads, up to 4.6GHz, 12MB cache)', '16GB LPDDR5 4800MHz', 'SSD 512GB M.2 PCIe NVMe', '16'''' FHD+ (1920 x 1200; 16:10) Anti-Glare Non-Touch 250nits WVA Display with ComfortView Support', 'Intel Iris Xe Graphics', '4-Cell, 54Wh', '1.85 kg', 'HD camera', 'Window 11 Home', '2x USB 3.2 Gen 1 Type A
 		1x USB Type-C Thunderbolt 4.0 port with DisplayPort and Power Delivery
@@ -67,34 +64,41 @@ VALUES ('Intel core i5-1340P (12 cores, 16 Threads, up to 4.6GHz, 12MB cache)', 
         FALSE);
 -- pause here
 
-INSERT INTO laptop (specification_id, name, brand, price, status, sale, available)
-VALUES (1, 'Dell Inspiron 16 5630', 'Dell', 23990000, 'new', 33, TRUE),
-        (2, 'Dell Inspiron 16 5630', 'Dell', 26990000, 'new', 20, TRUE),
-        (3, 'Dell Inspiron 16 5620', 'Dell', 19990000, 'new', 16, TRUE),
-        (4, 'Dell Inspiron 7445 2-in-1 2024', 'Dell', 19990000, 'new', 16, TRUE),
-        (5, 'Acer Aspire 5 A515-58GM-53PZ', 'Acer', 19990000, 'new', 15, TRUE),
-        (6, 'Acer Swift Go 14 AI SFG14-73-53X7', 'Acer', 23990000, 'new', 8, TRUE),
-        (7, 'Acer Nitro 5 AN515-58-56CH', 'Acer', 24990000, 'new', 20, TRUE),
-        (8, 'ASUS TUF Gaming A16 Advantage Edition 2023 FA617NT', 'Asus', 27990000, 'new', 20, TRUE),
-        (9, 'Asus Zenbook 14 OLED Q425MA 2024', 'Asus', 27990000, 'new', 20, TRUE),
-        (10, 'Lenovo Thinkbook 14 G6+ 2024', 'Lenovo', 25990000, 'new', 24, TRUE),
-        (11, 'Lenovo LOQ 2024 15ARP9', 'Lenovo', 25990000, 'new', 12, TRUE),
-        ( 12, 'Lenovo ThinkPad E14 Gen 5', 'Lenovo', 23990000, 'New', 9, True);
+INSERT INTO laptop (specification_id, name, brand, price, sale, available)
+VALUES (1, 'Dell Inspiron 16 5630', 'Dell', 23990000, 33, TRUE),
+        (2, 'Dell Inspiron 16 5630', 'Dell', 26990000, 20, TRUE),
+        (3, 'Dell Inspiron 16 5620', 'Dell', 19990000, 16, TRUE),
+        (4, 'Dell Inspiron 7445 2-in-1 2024', 'Dell', 19990000, 16, TRUE),
+        (5, 'Acer Aspire 5 A515-58GM-53PZ', 'Acer', 19990000, 15, TRUE),
+        (6, 'Acer Swift Go 14 AI SFG14-73-53X7', 'Acer', 23990000, 8, TRUE),
+        (7, 'Acer Nitro 5 AN515-58-56CH', 'Acer', 24990000, 20, TRUE),
+        (8, 'ASUS TUF Gaming A16 Advantage Edition 2023 FA617NT', 'Asus', 27990000, 20, TRUE),
+        (9, 'Asus Zenbook 14 OLED Q425MA 2024', 'Asus', 27990000, 20, TRUE),
+        (10, 'Lenovo Thinkbook 14 G6+ 2024', 'Lenovo', 25990000, 24, TRUE),
+        (11, 'Lenovo LOQ 2024 15ARP9', 'Lenovo', 25990000, 12, TRUE),
+        ( 12, 'Lenovo ThinkPad E14 Gen 5', 'Lenovo', 23990000, 9, TRUE);
 -- pause here
 
 INSERT INTO category (name)
-VALUES ( 'Học tập - văn phòng cơ bản'),
-       ('Laptop Gaming'),
-       ('Laptop Đồ họa - hiệu năng cao'),
-       ('Laptop mỏng nhẹ cao cấp'),
-       ('Laptop Like new');
+VALUES 	
+		( 'Học-tập-văn-phòng-cơ-bản'), ('Laptop-Gaming'), ('Laptop-Đồ-họa-hiệu-năng-cao'),
+		('Laptop-mỏng-nhẹ-cao-cấp'), ('Laptop-Like-New'),
+        ('Asus-TUF'), ('Asus-Zenbook'), ('Asus-VivoBook'), ('Asus-Rog'),
+		('Dell-Alienware'), ('Dell-Precision'), ('Dell-XPS'), ('Dell-Vostro'), ('Dell-Inspiron'),
+        ('Acer-Aspire'), ('Acer-Nitro'), ('Acer-Predator'), ('Acer-Swift'),
+        ('Lenovo-Ideapad'), ('Lenovo-ThinkBook'), ('Lenovo-Legion'), ('Lenovo-Thinkpad'), ('Lenovo-LOQ'),
+        ('HP-pavilion'), ('HP-Omen'), ('HP-Envy'),
+        ('MSI-Modern'), ('MSI-Bravo'), ('MSI-Sword'), ('MSI-Katana');
 -- pause here
 
 INSERT INTO laptop_category(category_id, laptop_id)
 VALUES (4, 1), (4, 2), (1, 3),
        (1, 4), (1, 5), (4, 6),
        (2, 7), (2, 8), (4, 9),
-       (4, 10), (2, 11), (4, 12);
+       (4, 10), (2, 11), (4, 12),
+       (14, 1), (14, 2), (14, 3), (14, 4),
+       (15, 4), (18, 6), (16, 7), (6, 8),
+       (7, 9), (20, 10), (23, 11), (22, 12);
 -- pause here
 
 -- INSERT INTO user(email, name, pass, role)
@@ -116,8 +120,7 @@ VALUES	(1, 1, 1), (2, 1, 1), (4, 1, 1), (5, 1, 1),
 -- pause here
 
 INSERT INTO shipping_method(name, price)
-VALUES ('Nhận ở cửa hàng', 0),
-       ('Giao hàng nhanh', 30000),
+VALUES ('Giao hàng nhanh', 30000),
        ('Giao hàng hỏa tốc', 70000);
 -- pause here
 
@@ -140,6 +143,22 @@ VALUES	('Laptop dùng sướng mỗi tội hơi nóng', '2024-10-15 17:48:23', n
 		('Không có gì để chê', '2024-10-10 15:48:23', null, 11, 1),
         ('Sản phẩm này đẹp ghê', '2024-10-15 17:48:23', null, 9, 2);
 -- pause here
+
+INSERT INTO image (file_path, laptop_id)
+VALUES	('image/laptop/DellInspiron165630_1', 1), ('image/laptop/DellInspiron165630_2', 1), ('image/laptop/DellInspiron165630_3', 1), ('image/laptop/DellInspiron165630_4', 1), ('image/laptop/DellInspiron165630_5', 1), ('image/laptop/DellInspiron165630_6', 1), ('image/laptop/DellInspiron165630_7', 1), ('image/laptop/DellInspiron165630_8', 1),
+		('image/laptop/DellInspiron165630_1', 2), ('image/laptop/DellInspiron165630_2', 2), ('image/laptop/DellInspiron165630_3', 2), ('image/laptop/DellInspiron165630_4', 2), ('image/laptop/DellInspiron165630_5', 2), ('image/laptop/DellInspiron165630_6', 2), ('image/laptop/DellInspiron165630_7', 2), ('image/laptop/DellInspiron165630_7', 1),
+        ('image/laptop/DellInspiron165620_1', 3), ('image/laptop/DellInspiron165620_2', 3), ('image/laptop/DellInspiron165620_3', 3), ('image/laptop/DellInspiron165620_4', 3), ('image/laptop/DellInspiron165620_5', 3), ('image/laptop/DellInspiron165620_6', 3), ('image/laptop/DellInspiron165620_7', 3),
+        ('image/laptop/DellInspiron74452-in-1_1', 4), ('image/laptop/DellInspiron74452-in-1_2', 4), ('image/laptop/DellInspiron74452-in-1_3', 4), ('image/laptop/DellInspiron74452-in-1_4', 4), ('image/laptop/DellInspiron74452-in-1_5', 4), ('image/laptop/DellInspiron74452-in-1_6', 4), ('image/laptop/DellInspiron74452-in-1_7', 4), ('image/laptop/DellInspiron74452-in-1_8', 4),
+        ('image/laptop/AcerAspire5A515-58GM-53PZ_1', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_2', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_3', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_4', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_5', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_6', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_7', 5),
+        ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_1', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_2', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_3', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_4', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_5', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_6', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_7', 6),
+        ('image/laptop/AcerNitro5AN515-5856CH_1', 7), ('image/laptop/AcerNitro5AN515-5856CH_2', 7), ('image/laptop/AcerNitro5AN515-5856CH_3', 7), ('image/laptop/AcerNitro5AN515-5856CH_4', 7), ('image/laptop/AcerNitro5AN515-5856CH_5', 7), ('image/laptop/AcerNitro5AN515-5856CH_6', 7),
+        ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_1', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_2', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_3', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_4', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_5', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_6', 8),
+        ('image/laptop/AsusZenbook14OLEDQ425MA2024_1', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_2', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_3', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_4', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_5', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_6', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_7', 9),
+		('image/laptop/LenovoThinkbook14G6+2024_1', 10), ('image/laptop/LenovoThinkbook14G6+2024_2', 10), ('image/laptop/LenovoThinkbook14G6+2024_3', 10), ('image/laptop/LenovoThinkbook14G6+2024_4', 10), ('image/laptop/LenovoThinkbook14G6+2024_5', 10), ('image/laptop/LenovoThinkbook14G6+2024_6', 10),
+        ('image/laptop/LenovoLOQ202415ARP9_1', 11), ('image/laptop/LenovoLOQ202415ARP9_2', 11), ('image/laptop/LenovoLOQ202415ARP9_3', 11), ('image/laptop/LenovoLOQ202415ARP9_4', 11), ('image/laptop/LenovoLOQ202415ARP9_5', 11), ('image/laptop/LenovoLOQ202415ARP9_6', 11),
+        ('image/laptop/LenovoThinkPadE14Gen5_1', 12), ('image/laptop/LenovoThinkPadE14Gen5_2', 12), ('image/laptop/LenovoThinkPadE14Gen5_3', 12), ('image/laptop/LenovoThinkPadE14Gen5_4', 12), ('image/laptop/LenovoThinkPadE14Gen5_5', 12), ('image/laptop/LenovoThinkPadE14Gen5_6', 12), ('image/laptop/LenovoThinkPadE14Gen5_7', 12), ('image/laptop/LenovoThinkPadE14Gen5_8', 12);
+
+
 
         
         

@@ -1,20 +1,19 @@
 CREATE TABLE `User` (
   `ID` BIGINT PRIMARY KEY,
-  `Name` NVARCHAR(100),
-  `Email` VARCHAR(50) UNIQUE,
+  `Name` NVARCHAR(255),
+  `Email` VARCHAR(255) UNIQUE,
   `Phone` VARCHAR(11),
-  `Pass` VARCHAR(50),
-  `Role` VARCHAR(10),
-  `UserAdress` NVARCHAR(100)
+  `Pass` VARCHAR(255),
+  `Role` VARCHAR(255),
+  `UserAdress` NVARCHAR(255)
 );
 
 CREATE TABLE `Laptop` (
   `ID` BIGINT PRIMARY KEY,
   `SpecID` BIGINT,
-  `Name` VARCHAR(100),
-  `Brand` VARCHAR(50),
+  `Name` VARCHAR(255),
+  `Brand` VARCHAR(255),
   `Price` INT,
-  `Status` VARCHAR(30),
   `Sale` SMALLINT,
   `Available` BOOLEAN
 );
@@ -27,14 +26,14 @@ CREATE TABLE `LaptopCategory` (
 
 CREATE TABLE `Category` (
   `ID` BIGINT PRIMARY KEY,
-  `Name` NVARCHAR(100)
+  `Name` NVARCHAR(255)
 );
 
 CREATE TABLE `Status` (
   `ID` BIGINT PRIMARY KEY,
   `OrderID` BIGINT,
-  `Name` NVARCHAR(50),
-  `Description` NVARCHAR(100)
+  `Name` NVARCHAR(255),
+  `Description` NVARCHAR(255)
 );
 
 CREATE TABLE `Laptop_Comment` (
@@ -49,14 +48,14 @@ CREATE TABLE `Laptop_Comment` (
 CREATE TABLE `Shipping_Method` (
   `ID` BIGINT PRIMARY KEY,
   `OrderID` BIGINT,
-  `Name` NVARCHAR(50),
+  `Name` NVARCHAR(255),
   `Price` INT
 );
 
 CREATE TABLE `Customer_Order` (
   `ID` BIGINT PRIMARY KEY,
   `UserID` BIGINT,
-  `Shipping_Address` NVARCHAR(100),
+  `Shipping_Address` NVARCHAR(255),
   `Total_Price` INT
 );
 
@@ -71,8 +70,7 @@ CREATE TABLE `Order_Detail` (
 CREATE TABLE `Image` (
   `ID` BIGINT PRIMARY KEY,
   `LaptopID` bigint,
-  `Name` VARCHAR(100),
-  `File_Path` VARCHAR(50)
+  `File_Path` VARCHAR(255)
 );
 
 CREATE TABLE `Cart_Detail` (
@@ -84,16 +82,16 @@ CREATE TABLE `Cart_Detail` (
 
 CREATE TABLE `Specification` (
   `ID` BIGINT PRIMARY KEY,
-  `CPU` VARCHAR(30),
-  `RAM` VARCHAR(30),
-  `ROM` VARCHAR(30),
-  `Sreen` VARCHAR(30),
-  `Graphic_Card` VARCHAR(30),
-  `Battery` VARCHAR(20),
+  `CPU` VARCHAR(255),
+  `RAM` VARCHAR(255),
+  `ROM` VARCHAR(255),
+  `Sreen` VARCHAR(255),
+  `Graphic_Card` VARCHAR(255),
+  `Battery` VARCHAR(255),
   `Weight` FLOAT,
-  `Webcam` VARCHAR(30),
-  `Operating_System` VARCHAR(20),
-  `Connection_Port` VARCHAR(255),
+  `Webcam` VARCHAR(255),
+  `Operating_System` VARCHAR(255),
+  `Connection_Port` VARCHAR(500),
   `Mux_Switch` BOOLEAN
 );
 

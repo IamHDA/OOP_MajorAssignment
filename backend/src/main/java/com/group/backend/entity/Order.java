@@ -18,6 +18,7 @@ public class Order {
     private long id;
     private String shippingAddress;
     private long totalPrice;
+    private String note;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

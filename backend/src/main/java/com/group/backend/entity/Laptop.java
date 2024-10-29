@@ -1,6 +1,7 @@
 package com.group.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -21,7 +22,6 @@ public class Laptop {
     private String name;
     private String brand;
     private int price;
-    private String status;
     private short sale;
     private boolean available;
 
@@ -30,25 +30,18 @@ public class Laptop {
     private Specification specification;
 
     @OneToMany(mappedBy = "laptop")
-    @JsonManagedReference
     private List<Cart_Detail> cartDetails;
 
     @OneToMany(mappedBy = "laptop")
-    @JsonManagedReference
-
+    @JsonIgnoreProperties
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "laptop")
-    @JsonManagedReference
-
     private List<Image> images;
 
     @OneToMany(mappedBy = "laptop")
-    @JsonManagedReference
-
     private List<Order_Detail> orderDetails;
 
     @OneToMany(mappedBy = "laptop")
-    @JsonManagedReference
     private List<Laptop_Category> laptopCategories;
 }
