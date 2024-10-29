@@ -51,10 +51,7 @@
     width: 1080px;
     padding-top: 10px;
     display: flex;
-    justify-content: center;
-    overflow-x: auto;  
-    overflow-y:unset;
-    /* overflow: hidden; */
+    overflow: hidden;
     scrollbar-width: thin;
 }
 

@@ -1,11 +1,8 @@
 const listImg = document.querySelectorAll('.product__img--list img');
 const mainImg = document.querySelectorAll('.product__img--main img');
-console.log(listImg.length);
-console.log(mainImg.length)
 let indexImg = 0;
 let positionXImg = 0
 listImg[0].style.borderWidth = "3.5px";
-
 mainImg.forEach(function(element){
     element.style.transition = "0.8s";
 })
@@ -35,3 +32,47 @@ for(let i = 0; i < listImg.length; i++){
         }
     })
 }
+let api = 'http://localhost:8080/laptop/' + `${localStorage.getItem('id__product')}`; 
+
+fetch(api, {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+    }           
+})
+.then(response => {
+    return response.json();
+})
+.then(response => {
+    let productName = document.querySelector('.product__name');
+    let productImg =   document.querySelector('.product__img');
+    let productImgMain = document.querySelector('.product__img--main');
+    let productImgList = document.querySelector('.product__img--list');
+    let productSpecification = document.querySelector('.product__specifications');
+    let ulProductSpecification = productSpecification.getElementsByTagName('ul');
+    let productPrice = document.querySelector('.product__price');
+    let productBasePrice = document.querySelector('.product__base__price');
+    let productSale = document.querySelector('.product__sale');
+
+    productName.innerHTML += response.name;
+
+
+    for(let i = 0; i < response.images.length; i++){
+        productImgMain.innerHTML += '<img src= "' + response.images[i] +'"alt=""></img>';
+        productImgList.innerHTML += '<img src= "' + response.images[i] +'"alt=""></img>';
+    }
+
+    productImg.innerHTML += productImgMain + productImgList;
+    
+
+    ulProductSpecification.innerHTML += '<li>CPU :'  + response.specification.cpu + '</li>';
+    ulProductSpecification.innerHTML += '<li>RAM :'  + response.specification.ram + '</li>';
+    ulProductSpecification.innerHTML += '<li>VGA :'  + response.specification.vga + '</li>';
+
+    productBasePrice.innerHTML += response.price + ' đ';
+    productSale.innerHTML += 'Tiết kiệm ' + response.sale + '%';
+    let tmp = response.price * (100 - response.sale) / 100;
+    productPrice.innerHTML += tmp + ' đ';   
+})
+
+
