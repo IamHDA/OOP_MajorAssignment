@@ -5,6 +5,7 @@ console.log(mainImg.length)
 let indexImg = 0;
 let positionXImg = 0
 listImg[0].style.borderWidth = "3.5px";
+
 mainImg.forEach(function(element){
     element.style.transition = "0.8s";
 })
