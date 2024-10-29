@@ -1,3 +1,29 @@
+// mở / đóng login box
+var login = document.querySelector(".login");
+var loginBox = document.querySelector('.login__box');
+var exitLoginBox = document.querySelector('.exitLoginBox');
+
+login.addEventListener('click', function(){
+    loginBox.style.display = 'block';
+})
+
+
+exitLoginBox.addEventListener('click', function(){
+    loginBox.style.display = 'none';
+    // reset
+    document.querySelector(".login__box__email").value = "";
+    document.querySelector(".login__box__password").value = "";
+    document.querySelector(".incorrectEmail").style.display = "none";
+
+})
+
+// An vao dang ky trong o dang nhap
+var registerF = document.querySelector(".registerF");
+
+registerF.addEventListener('click', function(){
+    loginBox.style.display = 'none';
+    registerBox.style.display = 'block';
+})
 var loginButton = document.querySelector(".login__button");
 
 loginButton.addEventListener('click', function(){

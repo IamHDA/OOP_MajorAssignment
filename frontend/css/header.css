@@ -70,23 +70,12 @@ a{
     font-size: 16px;
     font-weight: 600;
     color: rgb(255, 255, 255);
-}
-
-.register{
     cursor: pointer;
-}
-
-.login, .account{
-    margin-right: 20px;
-    cursor: pointer;
+    margin: auto;
 }
 
 .header__top h6{
     margin: 0 10px;
-}
-
-.account{
-    margin: 0 60px 0 auto;
 }
 
 /* header mid */
