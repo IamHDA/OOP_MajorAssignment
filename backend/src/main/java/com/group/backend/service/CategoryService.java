@@ -8,4 +8,5 @@ import java.util.List;
 public interface CategoryService {
     List<CategoryDTO> getLaptopByCategoryAndCriteria(String categoryName, Filter filter);
     List<CategoryDTO> getLaptopByBrandAndCriteria(String brandName, Filter filter);
+    List<CategoryDTO> getLaptopByStateAndCriteria(String state, Filter filter);
 }

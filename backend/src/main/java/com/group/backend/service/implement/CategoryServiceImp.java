@@ -35,4 +35,12 @@ public class CategoryServiceImp implements CategoryService {
                 .map(l -> modelMapper.map(l, CategoryDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<CategoryDTO> getLaptopByStateAndCriteria(String state, Filter filter) {
+        List<LaptopDTO> laptops = laptopService.getLaptopByStateAndCriteria(state, filter);
+        return laptops.stream()
+                .map(l -> modelMapper.map(l, CategoryDTO.class))
+                .collect(Collectors.toList());
+    }
 }

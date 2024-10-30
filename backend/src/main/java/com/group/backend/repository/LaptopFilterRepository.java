@@ -21,7 +21,7 @@ public class LaptopFilterRepository {
         this.em = em;
     }
 
-    public List<Laptop> findLaptopByCategoryOrBrandAndCriteria(String categoryName, String brandName, Filter filter){
+    public List<Laptop> findLaptopByCategoryOrBrandOrStateAndCriteria(String categoryName, String brandName, String state, Filter filter){
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Laptop> cq = cb.createQuery(Laptop.class);
         List<Predicate> predicates = new ArrayList<>();
@@ -31,9 +31,12 @@ public class LaptopFilterRepository {
         Join<Laptop, Laptop_Category> laptopCategory = laptop.join("laptopCategories", JoinType.INNER);
         Join<Laptop_Category, Category> category = laptopCategory.join("category", JoinType.INNER);
 
-        if(!categoryName.isEmpty()){
+        if(!categoryName.isEmpty()) {
             Predicate newPredicate = cb.equal(category.get("name"), categoryName);
             predicates.add(newPredicate);
+        }
+        if(categoryName.isEmpty() && !filter.getCategory().isEmpty()) {
+            predicates.add(cb.equal(laptop.get("name"), filter.getCategory()));
         }
         if(!brandName.isEmpty()){
             Predicate newPredicate = cb.equal(laptop.get("brand"), brandName);
@@ -41,6 +44,14 @@ public class LaptopFilterRepository {
         }
         if(brandName.isEmpty() && !filter.getBrand().isEmpty()){
             Predicate newPredicate = cb.equal(laptop.get("brand"), filter.getBrand());
+            predicates.add(newPredicate);
+        }
+        if(!state.isEmpty()){
+            Predicate newPredicate = cb.equal(laptop.get("state"), state);
+            predicates.add(newPredicate);
+        }
+        if(state.isEmpty() && !filter.getState().isEmpty()){
+            Predicate newPredicate = cb.equal(laptop.get("state"), filter.getState());
             predicates.add(newPredicate);
         }
         if(!filter.getRam().isEmpty()){

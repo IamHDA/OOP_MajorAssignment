@@ -24,4 +24,9 @@ public class CategoryController {
     public ResponseEntity<List<CategoryDTO>> getLaptopByBrand(@PathVariable("brand") String brand, @ModelAttribute Filter filter) {
         return ResponseEntity.ok(categoryService.getLaptopByBrandAndCriteria(brand, filter));
     }
+
+    @GetMapping("/laptop-state/{state}")
+    public ResponseEntity<List<CategoryDTO>> getLaptopByState(@PathVariable("state") String state, @ModelAttribute Filter filter) {
+        return ResponseEntity.ok(categoryService.getLaptopByStateAndCriteria(state, filter));
+    }
 }
