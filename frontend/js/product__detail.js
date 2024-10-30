@@ -33,6 +33,7 @@ for(let i = 0; i < listImg.length; i++){
     })
 }
 let api = 'http://localhost:8080/laptop/' + `${localStorage.getItem('id__product')}`; 
+console.log(api);
 
 fetch(api, {
     method: 'GET',
@@ -61,8 +62,6 @@ fetch(api, {
         productImgMain.innerHTML += '<img src= "' + response.images[i] +'"alt=""></img>';
         productImgList.innerHTML += '<img src= "' + response.images[i] +'"alt=""></img>';
     }
-
-    productImg.innerHTML += productImgMain + productImgList;
     
 
     ulProductSpecification.innerHTML += '<li>CPU :'  + response.specification.cpu + '</li>';
