@@ -18,4 +18,16 @@ public interface LaptopRepository extends JpaRepository<Laptop, Long> {
         where c.name = :categoryName
     """)
     List<Laptop> findLaptopByCategory(String categoryName);
+
+    @Query("""
+        select l from Laptop l
+        join l.specification s
+        where lower(l.name) like lower(concat('%', :keyword, '%'))
+        or lower(l.brand) like lower(concat('%', :keyword, '%'))
+        or lower(s.rom) like lower(concat('%', :keyword, '%'))
+        or lower(s.ram) like lower(concat('%', :keyword, '%'))
+        or lower(s.cpu) like lower(concat('%', :keyword, '%'))
+        or lower(s.graphicsCard) like lower(concat('%', :keyword, '%'))
+    """)
+    List<Laptop> searchLaptop(String keyword);
 }

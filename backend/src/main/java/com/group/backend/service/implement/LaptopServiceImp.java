@@ -45,4 +45,12 @@ public class LaptopServiceImp implements LaptopService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<LaptopDTO> searchLaptop(String keyword) {
+        List<Laptop> laptops = laptopRepo.searchLaptop(keyword);
+        return laptops.stream()
+                .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }
