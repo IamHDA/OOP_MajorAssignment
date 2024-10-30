@@ -1,5 +1,6 @@
 package com.group.backend.service;
 
+import ch.qos.logback.core.encoder.EchoEncoder;
 import com.group.backend.dto.AuthenticationResponse;
 import com.group.backend.dto.payload.LoginRequest;
 import com.group.backend.dto.payload.RegisterRequest;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -63,9 +65,17 @@ public class AuthenticationService {
 
 
     public AuthenticationResponse login(@RequestBody LoginRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getDataEmail(), request.getDataUserPassword()));
 
-        User user = userRepo.findByEmail(request.getDataEmail()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        User user = userRepo.findByEmail(request.getDataEmail()).orElse(null);
+        if(user == null){
+            return new AuthenticationResponse(null, null, "User not found");
+        }
+
+        try{
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getDataEmail(), request.getDataUserPassword()));
+        }catch (BadCredentialsException e) {
+            return new AuthenticationResponse(null, null, "Password is incorrect");
+        }
 
         String accessToken = jwtTokenProvider.generateAccessToken(user);
         String refreshToken = jwtTokenProvider.generateRefreshToken(user);
@@ -91,7 +101,11 @@ public class AuthenticationService {
         String token = authHeader.substring(7);
         String username = jwtTokenProvider.extractEmail(token);
 
-        User user = userRepo.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        User user = userRepo.findByEmail(username).orElse(null);
+        if(user == null){
+            return new ResponseEntity(new AuthenticationResponse(null, null, "User not found"), HttpStatus.UNAUTHORIZED);
+        }
+
         if (jwtTokenProvider.isValidRefreshToken(token, user)) {
             String accessToken = jwtTokenProvider.generateAccessToken(user);
             String refreshToken = jwtTokenProvider.generateRefreshToken(user);

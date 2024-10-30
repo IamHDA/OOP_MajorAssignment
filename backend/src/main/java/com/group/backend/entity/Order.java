@@ -16,8 +16,11 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false)
     private String shippingAddress;
+    @Column(nullable = false)
     private long totalPrice;
+    private String note;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -29,12 +32,12 @@ public class Order {
     private Status status;
 
     @ManyToOne
-    @JoinColumn(name = "shippingMethod_id")
+    @JoinColumn(name = "paymentMethod_id")
     @JsonBackReference
     @ToString.Exclude
-    private Shipping_Method shippingMethod;
+    private Payment_Method paymentMethod;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     @ToString.Exclude
     private List<Order_Detail> orderDetails;

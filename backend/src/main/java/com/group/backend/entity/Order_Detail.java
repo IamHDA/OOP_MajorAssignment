@@ -17,13 +17,13 @@ public class Order_Detail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false)
     private int unitPrice;
+    @Column(nullable = false)
     private int quantity;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "laptop_id")
-    @ToString.Exclude
     private Laptop laptop;
 
     @ManyToOne

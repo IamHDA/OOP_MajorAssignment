@@ -2,28 +2,25 @@ package com.group.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.ToString;
-import org.aspectj.weaver.ast.Or;
 
 import java.util.List;
 
 @Entity
 @Data
-@Table(name = "shippingMethod")
+@Table(name = "paymentMethod")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Shipping_Method {
+public class Payment_Method {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false)
     private String name;
-    private int price;
 
-    @OneToMany(mappedBy = "shippingMethod")
+    @OneToMany(mappedBy = "paymentMethod")
     @JsonIgnore
     private List<Order> orders;
 }
