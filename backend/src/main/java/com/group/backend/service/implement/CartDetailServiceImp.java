@@ -16,35 +16,35 @@ import java.util.stream.Collectors;
 @Service
 public class CartDetailServiceImp implements CartDetailService {
     @Autowired
-    private CurrentUser currentUser;
+    private CartDetailRepository cartDetailRepo;
+
     @Autowired
-    private CartDetailRepository cartDetailRepository;
+    private CurrentUser currentUser;
+
     @Autowired
     private ModelMapper modelMapper;
 
-    @Override
-    public List<CartDetailDTO> getCartDetailByUserId() {
-        User user = currentUser.getCurrentUser();
-        List<Cart_Detail> cartDetails = cartDetailRepository.findByUserId(user.getId());
-        return cartDetails.stream()
+    public List<CartDetailDTO> getCartDetail() {
+        List<Cart_Detail> cartDetail = cartDetailRepo.findAll();
+        return cartDetail.stream()
                 .map(tmp -> modelMapper.map(tmp, CartDetailDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Cart_Detail addLaptopIntoCart(CartDetailDTO cartDetailDTO) {
+    public List<CartDetailDTO> getUserCartDetail() {
         User user = currentUser.getCurrentUser();
-        Cart_Detail cartDetail = cartDetailRepository.findByUserIdAndLaptopId(user.getId(), cartDetailDTO.getLaptop().getId());
-
-        if(cartDetail == null) {
-            cartDetail = modelMapper.map(cartDetailDTO, Cart_Detail.class);
-            cartDetail.setUser(user);
-        }else{
-            cartDetail.setQuantity(cartDetail.getQuantity() + cartDetailDTO.getQuantity());
-        }
-//        cartDetail.setUser(user);
-        cartDetailRepository.save(cartDetail);
-        return cartDetail;
+        List<Cart_Detail> userCartDetail = cartDetailRepo.findByUserId(user.getId());
+        return userCartDetail.stream()
+                .map(tmp -> modelMapper.map(tmp, CartDetailDTO.class))
+                .collect(Collectors.toList());
     }
 
+    @Override
+    public Cart_Detail updateOrInsert(CartDetailDTO cartDetailDTO) {
+        Cart_Detail cartDetail = modelMapper.map(cartDetailDTO, Cart_Detail.class);
+        User user = currentUser.getCurrentUser();
+        cartDetail.setUser(user);
+        return cartDetailRepo.save(cartDetail);
+    }
 }
