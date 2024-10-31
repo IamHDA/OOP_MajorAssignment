@@ -30,4 +30,21 @@ public class CartDetailServiceImp implements CartDetailService {
                 .map(tmp -> modelMapper.map(tmp, CartDetailDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<CartDetailDTO> getUserCartDetail() {
+        User user = currentUser.getCurrentUser();
+        List<Cart_Detail> userCartDetail = cartDetailRepo.findByUserId(user.getId());
+        return userCartDetail.stream()
+                .map(tmp -> modelMapper.map(tmp, CartDetailDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Cart_Detail updateOrInsert(CartDetailDTO cartDetailDTO) {
+        Cart_Detail cartDetail = modelMapper.map(cartDetailDTO, Cart_Detail.class);
+        User user = currentUser.getCurrentUser();
+        cartDetail.setUser(user);
+        return cartDetailRepo.save(cartDetail);
+    }
 }
