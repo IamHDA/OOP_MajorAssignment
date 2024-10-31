@@ -9,5 +9,5 @@ public class OrderDTO {
     private long id;
     private long totalPrice;
     private Status status;
-    private Payment_Method shippingMethod;
+    private Payment_Method paymentMethod;
 }

@@ -6,9 +6,10 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class CategoryDTO {
+public class LaptopSummaryDTO {
     private int id;
     private String name;
     private int price;
+    private int sale;
     private List<Image> images;
 }
