@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class LaptopDTO {
 
-    private int id;
+    private long id;
     private String name;
     private int price;
     private int sale;
