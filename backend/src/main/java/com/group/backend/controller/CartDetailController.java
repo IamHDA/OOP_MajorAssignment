@@ -45,4 +45,16 @@ public class CartDetailController {
     public ResponseEntity<Cart_Detail> updateCart(@RequestBody CartDetailDTO cartDetailDTO){
         return ResponseEntity.ok(cartDetailService.updateOrInsert(cartDetailDTO));
     }
+
+    @DeleteMapping("/cart-detail/delete/{id}")
+    public ResponseEntity<Void> deleteFromCart(@PathVariable  long id){
+        cartDetailService.deleteFromCart(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/cart-detail/deleteUserCart")
+    public ResponseEntity<Void> deleteAllFromCart(){
+        cartDetailService.deleteAllFromCart();
+        return ResponseEntity.noContent().build();
+    }
 }
