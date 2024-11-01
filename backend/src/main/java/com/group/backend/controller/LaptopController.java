@@ -1,6 +1,7 @@
 package com.group.backend.controller;
 
 import com.group.backend.dto.LaptopDTO;
+import com.group.backend.dto.LaptopSummaryDTO;
 import com.group.backend.service.LaptopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class LaptopController {
     }
     
     @GetMapping("/search")
-    public ResponseEntity<List<LaptopDTO>> searchLaptop(@RequestParam String keyword) {
+    public ResponseEntity<List<LaptopSummaryDTO>> searchLaptop(@RequestParam String keyword) {
         return ResponseEntity.ok(laptopService.searchLaptop(keyword));
     }
 }

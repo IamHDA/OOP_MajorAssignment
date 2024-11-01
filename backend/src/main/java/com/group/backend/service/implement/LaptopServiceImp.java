@@ -2,6 +2,7 @@ package com.group.backend.service.implement;
 
 import com.group.backend.dto.Filter;
 import com.group.backend.dto.LaptopDTO;
+import com.group.backend.dto.LaptopSummaryDTO;
 import com.group.backend.entity.Laptop;
 import com.group.backend.repository.LaptopFilterRepository;
 import com.group.backend.repository.LaptopRepository;
@@ -54,10 +55,10 @@ public class LaptopServiceImp implements LaptopService {
     }
 
     @Override
-    public List<LaptopDTO> searchLaptop(String keyword) {
+    public List<LaptopSummaryDTO> searchLaptop(String keyword) {
         List<Laptop> laptops = laptopRepo.searchLaptop(keyword);
         return laptops.stream()
-                .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
+                .map(laptop -> modelMapper.map(laptop, LaptopSummaryDTO.class))
                 .collect(Collectors.toList());
     }
 
