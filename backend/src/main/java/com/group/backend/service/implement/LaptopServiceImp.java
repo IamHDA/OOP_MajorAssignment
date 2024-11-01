@@ -31,7 +31,7 @@ public class LaptopServiceImp implements LaptopService {
 
     @Override
     public List<LaptopDTO> getLaptopByCategoryAndCriteria(String categoryName, Filter filter) {
-        List<Laptop> laptops = laptopFilterRepo.findLaptopByCategoryOrBrandAndCriteria(categoryName, "", filter);
+        List<Laptop> laptops = laptopFilterRepo.findLaptopByCategoryOrBrandOrStateAndCriteria(categoryName, "", "", filter);
         return laptops.stream()
                 .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
                 .collect(Collectors.toList());
@@ -39,7 +39,23 @@ public class LaptopServiceImp implements LaptopService {
 
     @Override
     public List<LaptopDTO> getLaptopByBrandAndCriteria(String brandName, Filter filter) {
-        List<Laptop> laptops = laptopFilterRepo.findLaptopByCategoryOrBrandAndCriteria("", brandName, filter);
+        List<Laptop> laptops = laptopFilterRepo.findLaptopByCategoryOrBrandOrStateAndCriteria("", brandName, "", filter);
+        return laptops.stream()
+                .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<LaptopDTO> getLaptopByStateAndCriteria(String state, Filter filter) {
+        List<Laptop> laptops = laptopFilterRepo.findLaptopByCategoryOrBrandOrStateAndCriteria("", "", state, filter);
+        return laptops.stream()
+                .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<LaptopDTO> searchLaptop(String keyword) {
+        List<Laptop> laptops = laptopRepo.searchLaptop(keyword);
         return laptops.stream()
                 .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
                 .collect(Collectors.toList());

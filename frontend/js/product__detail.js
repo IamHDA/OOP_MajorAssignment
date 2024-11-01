@@ -41,7 +41,6 @@ fetch(`http://localhost:8080/laptop/${id}`, {
 
     productName.innerHTML += response.name;
 
-
     for(let i = 0; i < response.images.length; i++){
         productImgMain.innerHTML += '<img src= "' + response.images[i].filePath + ".jpg" + '"alt=""></img>';
         productImgList.innerHTML += '<img src= "' + response.images[i].filePath + ".jpg" + '"alt=""></img>';

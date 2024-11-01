@@ -10,4 +10,6 @@ public interface LaptopService {
 
     List<LaptopDTO> getLaptopByCategoryAndCriteria(String categoryName, Filter filter);
     List<LaptopDTO> getLaptopByBrandAndCriteria(String brandName, Filter filter);
+    List<LaptopDTO> getLaptopByStateAndCriteria(String state, Filter filter);
+    List<LaptopDTO> searchLaptop(String keyword);
 }

@@ -53,8 +53,7 @@ public class SecurityConfig {
                                 "/refresh_token",
                                 "/sendMail",
                                 "/laptop",
-                                "/category",
-                                "/brand",
+                                "/collections",
                                 "/**")
                         .permitAll()
                         .anyRequest()
