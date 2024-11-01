@@ -16,5 +16,4 @@ public class Filter {
     String sortOrder;
     int minPrice;
     int maxPrice;
-
 }
