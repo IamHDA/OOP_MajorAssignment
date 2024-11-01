@@ -1,4 +1,24 @@
-let id = 1; 
+function lamtron(num) {
+    return Math.round(num / 100000) * 100000;
+}
+
+function daucham(num){
+    let tmp = "";
+    let mark = 0;
+    for(let i = num.length - 1; i >= 0; i--){
+        mark += 1;
+        tmp = num[i] + tmp;
+        if(mark == 3 && i != 0){
+            tmp = "." + tmp;
+            mark = 0
+        }
+    }
+    return tmp;
+}
+
+
+
+let id = localStorage.getItem('id__product'); 
 
 fetch(`http://localhost:8080/laptop/${id}`, {
     method: 'GET',
@@ -11,7 +31,6 @@ fetch(`http://localhost:8080/laptop/${id}`, {
 })
 .then(response => {
     let productName = document.querySelector('.product__name');
-    let productImg =   document.querySelector('.product__img');
     let productImgMain = document.querySelector('.product__img--main');
     let productImgList = document.querySelector('.product__img--list');
     let productSpecification = document.querySelector('.product__specifications');
@@ -31,12 +50,16 @@ fetch(`http://localhost:8080/laptop/${id}`, {
     ulProductSpecification.innerHTML += '<li>RAM :'  + response.specification.ram + '</li>';
     ulProductSpecification.innerHTML += '<li>VGA :'  + response.specification.graphicsCard + '</li>';
 
-    console.log(ulProductSpecification)
+    let basePrice = response.price.toString();
+    basePrice = daucham(basePrice);
 
-    productBasePrice.innerHTML += response.price + ' đ';
     productSale.innerHTML += 'Tiết kiệm ' + response.sale + '%';
-    let tmp = response.price * (100 - response.sale) / 100;
-    productPrice.innerHTML += tmp + ' đ';   
+    productBasePrice.innerHTML += basePrice + ' đ';
+    let price = response.price * (100 - response.sale) / 100;
+    price = lamtron(price);
+    price = price.toString();
+    price = daucham(price);
+    productPrice.innerHTML += price + ' đ';   
 
     const listImg = document.querySelectorAll('.product__img--list img');
     const mainImg = document.querySelectorAll('.product__img--main img');

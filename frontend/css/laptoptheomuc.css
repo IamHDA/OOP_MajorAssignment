@@ -45,6 +45,7 @@ main{
 .option{
     height: 50px;
     position: relative;
+    cursor: pointer;
 }
 
 .option p{
