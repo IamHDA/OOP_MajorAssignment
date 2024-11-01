@@ -41,7 +41,7 @@ public class LaptopFilterRepository {
         if(!brandName.isEmpty()){
             Predicate newPredicate = cb.equal(laptop.get("brand"), brandName);
             predicates.add(newPredicate);
-        }
+        }   
         if(brandName.isEmpty() && !filter.getBrand().isEmpty()){
             Predicate newPredicate = cb.equal(laptop.get("brand"), filter.getBrand());
             predicates.add(newPredicate);

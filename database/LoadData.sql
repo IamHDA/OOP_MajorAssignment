@@ -31,7 +31,7 @@ VALUES ('Intel core i5-1340P (12 cores, 16 Threads, up to 4.6GHz, 12MB cache)', 
 		1 x micro SD card slot
 		Audio combo
 		1 x HDM', FALSE),
-       ('Core i5-12500H 12 cores/ 16 threads ( 3,3 Ghz-4,5 Ghz)', '16GB DDR5 4800MHz', 'SSD 512GB NVMe', '15"  FHD (1920 x 1080) IPS 144Hz slim bezel LCD', 'NVIDIA® GeForce® RTX 4050 6GB GDDR6', '4 cell 57Wh', '2.4kg', 'HD webcam', 'Window 11 Home', '1 x USB 3.2 Gen 2 port featuring power-off USB charging
+       ('Core i5-12500H 12 cores/ 16 threads ( 3,3 Ghz-4,5 Ghz)', '16GB DDR5 4800MHz', 'SSD 512GB NVMe', '15" FHD (1920 x 1080) IPS 144Hz slim bezel LCD', 'NVIDIA® GeForce® RTX 4050 6GB GDDR6', '4 cell 57Wh', '2.4kg', 'HD webcam', 'Window 11 Home', '1 x USB 3.2 Gen 2 port featuring power-off USB charging
 		2 x USB 3.2 Gen 1 ports
 		1 x USB Type-C port: USB 3.2 Gen 2 (up to 10 Gbps)
 		1 x HDMI® port with HDCP suppor', FALSE),
@@ -103,7 +103,7 @@ VALUES  (1, 'Dell Inspiron 16 5630', 'Dell', 23990000, 33, TRUE, "New"),
 
 INSERT INTO category (name)
 VALUES 	
-		( 'Học-tập-văn-phòng-cơ-bản'), ('Laptop-Gaming'), ('Laptop-Đồ-họa-hiệu-năng-cao'), ('Laptop-mỏng-nhẹ-cao-cấp'),
+		( 'Học-tập-văn-phòng'), ('Laptop-Gaming'), ('Laptop-Đồ-họa-hiệu-năng-cao'), ('Laptop-mỏng-nhẹ-cao-cấp'),
         ('Asus-TUF'), ('Asus-Zenbook'), ('Asus-VivoBook'), ('Asus-ROG'),
 		('Dell-Alienware'), ('Dell-Precision'), ('Dell-XPS'), ('Dell-Vostro'), ('Dell-Inspiron'),
         ('Acer-Aspire'), ('Acer-Nitro'), ('Acer-Predator'), ('Acer-Swift'),
@@ -113,15 +113,14 @@ VALUES
 -- pause here
 
 INSERT INTO laptop_category(category_id, laptop_id)
-VALUES (4, 1), (4, 2), (1, 3),
-	   (3, 13), (10, 13), (4, 14),
-       (21, 14), (1, 15), (7, 15),
-       (1, 4), (1, 5), (4, 6),
-       (2, 7), (2, 8), (4, 9),
-       (4, 10), (2, 11), (4, 12),
-       (14, 1), (14, 2), (14, 3), (14, 4),
-       (15, 4), (18, 6), (16, 7), (6, 8),
-       (7, 9), (20, 10), (23, 11), (22, 12);
+VALUES 	(1, 15), (1, 5), (1, 4), (1, 3), (1, 1), (1, 6), (1, 9), (1, 12),
+		(2, 7), (2, 8), (2, 11),
+        (3, 14), (3, 13),
+        (4, 10), (4, 9), (4, 2), (4, 12), (4, 6),
+        (5, 8), (6, 9), (7, 15),
+        (10, 13), (13, 1), (13, 2), (13, 3),
+        (14, 5), (15, 7), (17, 6),
+        (19, 10), (21, 14), (21, 12), (22, 11);
 -- pause here
 
 -- INSERT INTO user(email, name, pass, role)
@@ -185,6 +184,6 @@ VALUES	('image/laptop/DellInspiron165630_1', 1), ('image/laptop/DellInspiron1656
         ('image/laptop/LenovoThinkpadP51_1', 14), ('image/laptop/LenovoThinkpadP51_2', 14), ('image/laptop/LenovoThinkpadP51_3', 14), ('image/laptop/LenovoThinkpadP51_4', 14), ('image/laptop/LenovoThinkpadP51_5', 14), ('image/laptop/LenovoThinkpadP51_6', 14), ('image/laptop/LenovoThinkpadP51_7', 14),
         ('image/laptop/AsusVivobook15R565EA-UH51T_1', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_2', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_3', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_4', 15);
 
-        
+delete from laptop_category;
         
 

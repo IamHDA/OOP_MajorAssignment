@@ -33,27 +33,10 @@ label{
 .content-container{
     display: flex;
     flex-direction: column;
-    width: 1140px;
+    width: 1160px;
     margin: 0 auto;
     gap: 15px;
     margin-top: -40px;
-}
-
-.navigate{
-    font-size: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 225px;
-}
-
-.home-link-1, .home-link-2{
-    color: rgb(36, 124, 255);
-    font-weight: 500;
-}
-
-.current-site, .path{
-    color: rgb(150, 150, 150);
 }
 
 .my-cart{
