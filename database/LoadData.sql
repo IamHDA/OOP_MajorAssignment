@@ -102,8 +102,7 @@ VALUES  (1, 'Dell Inspiron 16 5630', 'Dell', 23990000, 33, TRUE, "New"),
 -- pause here
 
 INSERT INTO category (name)
-VALUES 	
-		( 'Học-tập-văn-phòng'), ('Laptop-Gaming'), ('Laptop-Đồ-họa-hiệu-năng-cao'), ('Laptop-mỏng-nhẹ-cao-cấp'),
+VALUES 	('Học-tập-văn-phòng'), ('Laptop-Gaming'), ('Laptop-Đồ-họa-hiệu-năng-cao'), ('Laptop-mỏng-nhẹ-cao-cấp'),
         ('Asus-TUF'), ('Asus-Zenbook'), ('Asus-VivoBook'), ('Asus-ROG'),
 		('Dell-Alienware'), ('Dell-Precision'), ('Dell-XPS'), ('Dell-Vostro'), ('Dell-Inspiron'),
         ('Acer-Aspire'), ('Acer-Nitro'), ('Acer-Predator'), ('Acer-Swift'),
@@ -135,10 +134,10 @@ VALUES ('Đang giao', 'Chú ý điện thoại để nhận hàng nhé'),
        ('Đã hủy', 'Mọi thông tin chi tiết hơn xin liên hệ shop');
 -- pause here
 
-INSERT INTO cart_detail(laptop_id, user_id, quantity)
-VALUES	(1, 1, 1), (2, 1, 1), (4, 1, 1), (5, 1, 1),
-		(3, 2, 1), (6, 2, 1), (7, 2, 1), (8, 2, 1),
-        (9, 3, 1), (10, 3, 1), (11, 3, 1), (12, 3, 1);
+INSERT INTO cart_detail(laptop_id, user_id, quantity, price)
+VALUES	(1, 1, 1, 0), (2, 1, 1, 0), (4, 1, 1, 0), (5, 1, 1, 0),
+		(3, 2, 1, 0), (6, 2, 1, 0), (7, 2, 1, 0), (8, 2, 1, 0),
+        (9, 3, 1, 0), (10, 3, 1, 0), (11, 3, 1, 0), (12, 3, 1, 0);
 -- pause here
 
 INSERT INTO payment_method(name)
@@ -183,7 +182,5 @@ VALUES	('image/laptop/DellInspiron165630_1', 1), ('image/laptop/DellInspiron1656
         ('image/laptop/DellPrecision7530_1', 13), ('image/laptop/DellPrecision7530_2', 13), ('image/laptop/DellPrecision7530_3', 13), ('image/laptop/DellPrecision7530_4', 13), ('image/laptop/DellPrecision7530_5', 13), ('image/laptop/DellPrecision7530_6', 13),
         ('image/laptop/LenovoThinkpadP51_1', 14), ('image/laptop/LenovoThinkpadP51_2', 14), ('image/laptop/LenovoThinkpadP51_3', 14), ('image/laptop/LenovoThinkpadP51_4', 14), ('image/laptop/LenovoThinkpadP51_5', 14), ('image/laptop/LenovoThinkpadP51_6', 14), ('image/laptop/LenovoThinkpadP51_7', 14),
         ('image/laptop/AsusVivobook15R565EA-UH51T_1', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_2', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_3', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_4', 15);
-
-delete from laptop_category;
         
 

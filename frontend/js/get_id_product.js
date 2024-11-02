@@ -1,6 +1,8 @@
-var productContainer = document.querySelectorAll('.product__container');
+var allLaptop = document.querySelectorAll('.all');
 
-productContainer.forEach(function(element){
+var childrenAllLapTop = allLaptop.children;
+
+childrenAllLapTop.forEach(function(element){
     var productImg = element.querySelector('.product__img');
     var productName = element.querySelector('.product__name');
     var productId = element.querySelector(".id__product")
