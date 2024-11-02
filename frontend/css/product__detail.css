@@ -12,6 +12,7 @@
     background-color: white;
     margin-top: 50px;
     padding-bottom: 100px;
+    border-radius: 20px;
 }
 
 .product__name{
@@ -92,6 +93,14 @@
     font-weight: 400;
     margin-left: 20px;
     margin-top: 10px;
+}
+
+.product__specifications__see_all h1, .product__specifications__see_all h2{
+    font-size: 12px;
+    font-weight: 500;
+    color: red;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .price{
@@ -391,3 +400,92 @@
 .lienhekinhdoanh .content span .phone{
     color: red;
 }
+
+.product__comment{
+    height: auto;
+    width: 1200px;
+    margin: auto;
+    background-color: white;
+    margin-top: 50px;
+    border-radius: 10px;
+}
+
+.comment__title{
+    font-size: 25px;
+    font-weight: 700;
+    padding: 20px 0 20px 30px;
+    color: rgb(25, 136, 236);
+}
+
+.comment__container{
+    width: 100%;
+    height: auto;
+    margin: 10px 0 20px 30px;
+}
+
+.comment__infor_and_time{
+    height: auto;
+    width: 100%;
+    display: flex;
+}
+
+.comment__user__name{
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.infor_and_time__partition{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.comment__time{
+    font-size: 20px;
+    font-weight: 400;
+    margin-left: 5px;
+}
+
+.comment__content{
+    font-size: 22px;
+    margin: 10px 0 0 30px;
+    font-weight: 500;
+}
+
+.comment__input{
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment__input textarea{
+    height: 300px;
+    width: 90%;
+    margin: auto;
+    font-size: 25px;
+    padding: 10px 0 270px 10px;
+    outline: none;
+    overflow: hidden;
+    font-family: "SF Pro Display", sans-serif;
+    border-radius: 10px;
+    resize: none;
+}
+
+.button__submit_comment{
+    height: 50px;
+    width: 150px;
+    background-color: rgb(25, 136, 236);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 5px;
+    margin: 50px 80px 100px auto;
+}
+
+
+
