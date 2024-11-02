@@ -7,6 +7,7 @@ import com.group.backend.entity.Laptop;
 import com.group.backend.repository.LaptopFilterRepository;
 import com.group.backend.repository.LaptopRepository;
 import com.group.backend.service.LaptopService;
+import com.group.backend.service.NormalizationService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,8 @@ public class LaptopServiceImp implements LaptopService {
     private LaptopRepository laptopRepo;
     @Autowired
     private LaptopFilterRepository laptopFilterRepo;
+    @Autowired
+    private NormalizationService normalizationService;
 
     @Override
     public LaptopDTO getLaptopById(long id) {
@@ -31,35 +34,44 @@ public class LaptopServiceImp implements LaptopService {
     }
 
     @Override
-    public List<LaptopDTO> getLaptopByCategoryAndCriteria(String categoryName, Filter filter) {
-        List<Laptop> laptops = laptopFilterRepo.findLaptopByCategoryOrBrandOrStateAndCriteria(categoryName, "", "", filter);
+    public List<LaptopDTO> getLaptopByCategory(String category) {
+        List<Laptop> laptops =laptopRepo.findByCategory(category);
         return laptops.stream()
-                .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
+                .map(l -> modelMapper.map(l, LaptopDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<LaptopDTO> getLaptopByBrandAndCriteria(String brandName, Filter filter) {
-        List<Laptop> laptops = laptopFilterRepo.findLaptopByCategoryOrBrandOrStateAndCriteria("", brandName, "", filter);
+    public List<LaptopDTO> getLaptopByBrand(String brand) {
+        List<Laptop> laptops = laptopRepo.findByBrand(brand);
         return laptops.stream()
-                .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
+                .map(l -> modelMapper.map(l, LaptopDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<LaptopDTO> getLaptopByStateAndCriteria(String state, Filter filter) {
-        List<Laptop> laptops = laptopFilterRepo.findLaptopByCategoryOrBrandOrStateAndCriteria("", "", state, filter);
+    public List<LaptopDTO> getLaptopByState(String state) {
+        List<Laptop> laptops = laptopRepo.findByState(state);
         return laptops.stream()
-                .map(laptop -> modelMapper.map(laptop, LaptopDTO.class))
+                .map(l -> modelMapper.map(l, LaptopDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<LaptopDTO> getLaptopByCriteria(Filter filter) {
+        List<Laptop> laptops = laptopFilterRepo.findLaptopByCriteria(filter);
+        return laptops.stream()
+                .map(l -> modelMapper.map(l, LaptopDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<LaptopSummaryDTO> searchLaptop(String keyword) {
         List<Laptop> laptops = laptopRepo.searchLaptop(keyword);
-        return laptops.stream()
-                .map(laptop -> modelMapper.map(laptop, LaptopSummaryDTO.class))
+        List<LaptopDTO> laptopDTO = laptops.stream()
+                .map(l -> modelMapper.map(l, LaptopDTO.class))
                 .collect(Collectors.toList());
+        return normalizationService.listOfNormalizedLaptopSummary(laptopDTO);
     }
 
 }

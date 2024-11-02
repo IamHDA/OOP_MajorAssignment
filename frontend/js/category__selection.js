@@ -9,7 +9,7 @@ function selectionCategory() {
         let nameBranch = element.querySelector('.id').textContent;
         element.addEventListener('click', function() {
             localStorage.setItem('branch', nameBranch);
-            localStorage.setItem('state', 'new');
+            localStorage.setItem('state', 'New');
             localStorage.setItem('action', 'selectionCategory');
         });
     });
@@ -22,7 +22,7 @@ function selectionCategory() {
             let nameBranch = element.querySelector('.id').textContent;
             element.addEventListener('click', function() {
                 localStorage.setItem('branch', nameBranch);
-                localStorage.setItem('state', 'likenew');
+                localStorage.setItem('state', 'Like-New');
                 localStorage.setItem('action', 'selectionCategory');
             });
         });
