@@ -87,7 +87,7 @@ categoryDetail.addEventListener('mouseout', function(){
     categoryDetailLapTopLikeNew.style.display = 'none';
 })
 
-// Like new
+//Like new
 categoryLikeNew.addEventListener('mouseover', function(){
     categoryDetail.style.display = 'flex';
     categoryDetailLapTopLikeNew.style.display = 'flex';
