@@ -26,10 +26,10 @@ public class CartDetailController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @GetMapping("/cart-detail")
-    public ResponseEntity<List<CartDetailDTO>> getUserCartDetail(){
-        return ResponseEntity.ok(cartDetailService.getUserCartDetail());
-    }
+//    @GetMapping("/cart-detail")
+//    public ResponseEntity<List<CartDetailDTO>> getUserCartDetail(){
+//        return ResponseEntity.ok(cartDetailService.getUserCartDetail());
+//    }
 
     @PostMapping("/cart-detail/add")
     public ResponseEntity<Cart_Detail> addToCart(@RequestBody CartDetailDTO cartDetailDTO){
