@@ -63,7 +63,7 @@ public class LaptopServiceImp implements LaptopService {
         List<LaptopDTO> laptopDTO = laptops.stream()
                 .map(l -> modelMapper.map(l, LaptopDTO.class))
                 .collect(Collectors.toList());
-        return normalizationService.listOfLaptopSummary(laptopDTO);
+        return normalizationService.listOfNormalizedLaptopSummary(laptopDTO);
     }
 
 }

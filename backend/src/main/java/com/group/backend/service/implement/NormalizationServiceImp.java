@@ -65,9 +65,8 @@ public class NormalizationServiceImp implements NormalizationService {
         return tmp[1];
     }
 
-
     @Override
-    public List<LaptopSummaryDTO> listOfLaptopSummary(List<LaptopDTO> laptops) {
+    public List<LaptopSummaryDTO> listOfNormalizedLaptopSummary(List<LaptopDTO> laptops) {
         return laptops.stream()
                 .map(l -> {
                     LaptopSummaryDTO laptopSummary = modelMapper.map(l, LaptopSummaryDTO.class);

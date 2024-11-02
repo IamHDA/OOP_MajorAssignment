@@ -22,18 +22,18 @@ public class CategoryServiceImp implements CategoryService {
     @Override
     public List<LaptopSummaryDTO> getLaptopByCategoryAndCriteria(String categoryName, Filter filter) {
         List<LaptopDTO> laptops = laptopService.getLaptopByCategoryAndCriteria(categoryName, filter);
-        return normalizationService.listOfLaptopSummary(laptops);
+        return normalizationService.listOfNormalizedLaptopSummary(laptops);
     }
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByBrandAndCriteria(String brandName, Filter filter) {
         List<LaptopDTO> laptops = laptopService.getLaptopByBrandAndCriteria(brandName, filter);
-        return normalizationService.listOfLaptopSummary(laptops);
+        return normalizationService.listOfNormalizedLaptopSummary(laptops);
     }
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByStateAndCriteria(String state, Filter filter) {
         List<LaptopDTO> laptops = laptopService.getLaptopByStateAndCriteria(state, filter);
-        return normalizationService.listOfLaptopSummary(laptops);
+        return normalizationService.listOfNormalizedLaptopSummary(laptops);
     }
 }

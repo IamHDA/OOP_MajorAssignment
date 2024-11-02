@@ -11,5 +11,5 @@ public interface NormalizationService {
     String vgaNormalize(String text);
     String ramNormalize(String text);
     String romNormalize(String text);
-    List<LaptopSummaryDTO> listOfLaptopSummary(List<LaptopDTO> laptops);
+    List<LaptopSummaryDTO> listOfNormalizedLaptopSummary(List<LaptopDTO> laptops);
 }
