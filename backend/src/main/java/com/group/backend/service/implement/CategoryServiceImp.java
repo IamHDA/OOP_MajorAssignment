@@ -20,20 +20,26 @@ public class CategoryServiceImp implements CategoryService {
     private NormalizationService normalizationService;
 
     @Override
-    public List<LaptopSummaryDTO> getLaptopByCategoryAndCriteria(String categoryName, Filter filter) {
-        List<LaptopDTO> laptops = laptopService.getLaptopByCategoryAndCriteria(categoryName, filter);
+    public List<LaptopSummaryDTO> getLaptopByCategory(String category) {
+        List<LaptopDTO> laptops = laptopService.getLaptopByCategory(category);
         return normalizationService.listOfNormalizedLaptopSummary(laptops);
     }
 
     @Override
-    public List<LaptopSummaryDTO> getLaptopByBrandAndCriteria(String brandName, Filter filter) {
-        List<LaptopDTO> laptops = laptopService.getLaptopByBrandAndCriteria(brandName, filter);
+    public List<LaptopSummaryDTO> getLaptopByBrand(String brand) {
+        List<LaptopDTO> laptops = laptopService.getLaptopByBrand(brand);
         return normalizationService.listOfNormalizedLaptopSummary(laptops);
     }
 
     @Override
-    public List<LaptopSummaryDTO> getLaptopByStateAndCriteria(String state, Filter filter) {
-        List<LaptopDTO> laptops = laptopService.getLaptopByStateAndCriteria(state, filter);
+    public List<LaptopSummaryDTO> getLaptopByState(String state) {
+        List<LaptopDTO> laptops = laptopService.getLaptopByState(state);
+        return normalizationService.listOfNormalizedLaptopSummary(laptops);
+    }
+
+    @Override
+    public List<LaptopSummaryDTO> getLaptopByCriteria(Filter filter) {
+        List<LaptopDTO> laptops = laptopService.getLaptopByCriteria(filter);
         return normalizationService.listOfNormalizedLaptopSummary(laptops);
     }
 }
