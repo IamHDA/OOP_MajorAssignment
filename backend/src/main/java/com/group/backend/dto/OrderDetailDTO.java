@@ -9,5 +9,5 @@ public class OrderDetailDTO {
     private long id;
     private int unitPrice;
     private int quantity;
-    private List<LaptopSummaryDTO> laptop;
+    
 }

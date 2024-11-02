@@ -45,7 +45,6 @@ public class OrderServiceImp implements OrderService {
         User thisUser = currentUser.getCurrentUser();
         Order order = modelMapper.map(orderDTO, Order.class);
         order.setUser(thisUser);
-//        System.out.println(order);
         return orderRepo.save(order);
     }
 
