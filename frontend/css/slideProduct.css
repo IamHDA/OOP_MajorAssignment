@@ -38,17 +38,12 @@
     cursor: pointer;
 }
 
-.product{
+.product__slide__hoctapvanphong{
     height: 400px;
-    width: 100%;
+    width: 90%;
     display: flex;
-    justify-content: center;
+    margin: 0 auto;
     margin-top: 30px;
-}
-
-.product__slide{
-    height: 100%;
-    width: 1080px;
     padding-top: 10px;
     display: flex;
     overflow: hidden;
@@ -56,6 +51,7 @@
 }
 
 .product__container{
+    padding: 0px 5px 7px 5px;
     height: auto;
     width: 200px;
     min-width: 200px;
@@ -63,7 +59,9 @@
     flex-direction: column;
     margin-right: 20px;
 }
+
 .product__img{
+    justify-content: center;
     transform: translateY(0); 
     border: 2px solid rgb(25, 136, 236);
     cursor: pointer;
@@ -84,11 +82,12 @@
     display: flex;
     text-align: center;
     font-size: 16px;
-    font-weight: 400;
-    margin-top: 10px;
+    font-weight: 500;
+    margin-top: 15px;
     color: rgb(33, 42, 54);
     cursor: pointer;
 }
+
 
 .product__price{
     height: auto;
@@ -134,7 +133,6 @@
     cursor: pointer;
     margin: 10px 10px 0 auto;
 }
-
 
 
 

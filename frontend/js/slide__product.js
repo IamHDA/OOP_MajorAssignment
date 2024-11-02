@@ -9,6 +9,8 @@ function luotSlide(){
             isDragging = true;
             lastX = event.clientX;
             element.style.cursor = 'grab';
+            event.stopPropagation();
+            event.preventDefault();
             return
         })
         element.addEventListener('mouseup', function(event){

@@ -12,6 +12,7 @@
     background-color: white;
     margin-top: 50px;
     padding-bottom: 100px;
+    border-radius: 20px;
 }
 
 .product__name{
@@ -45,7 +46,7 @@
     height: 370px;
     width: 370px;
     border: 4px solid rgb(25, 136, 236);
-    background-color: rgb(14, 35, 231);
+    background-color: white;
     display: flex;
     overflow: hidden;
     margin: 10px 0 0 15px;
@@ -92,6 +93,15 @@
     font-weight: 400;
     margin-left: 20px;
     margin-top: 10px;
+}
+
+.product__specifications__see_all h1, .product__specifications__see_all h2{
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 10px;
+    color: red;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .price{
@@ -261,7 +271,7 @@
 }
 
 .sanphamcontai{
-    height: 300px;
+    height: auto;
     width: 270px;
     border: 1px solid rgb(25, 136, 236);
     border-radius: 10px;
@@ -282,17 +292,21 @@
     margin-left: 10px;
 }
 
-.sanphamcontai .mienbac, .sanphamcontai .mientrung, .sanphamcontai .miennam{
-    width: 90%;
+.sanphamcontai .diachi{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 250px;
     font-size: 12px;
     font-weight: 700;
     margin-left: 16px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-top: -10px;
+    padding-right: 3px;
 }
 
-.sanphamcontai .mienbac .text, .sanphamcontai .mientrung .text, .sanphamcontai .miennam .text{
+.sanphamcontai .diachi .text{
     color: red;
-    margin-top: 5px;
 }
 
 .sanphamcontai .note{
@@ -387,3 +401,92 @@
 .lienhekinhdoanh .content span .phone{
     color: red;
 }
+
+.product__comment{
+    height: auto;
+    width: 1200px;
+    margin: auto;
+    background-color: white;
+    margin-top: 50px;
+    border-radius: 10px;
+}
+
+.comment__title{
+    font-size: 25px;
+    font-weight: 700;
+    padding: 20px 0 20px 30px;
+    color: rgb(25, 136, 236);
+}
+
+.comment__container{
+    width: 100%;
+    height: auto;
+    margin: 10px 0 20px 30px;
+}
+
+.comment__infor_and_time{
+    height: auto;
+    width: 100%;
+    display: flex;
+}
+
+.comment__user__name{
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.infor_and_time__partition{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.comment__time{
+    font-size: 20px;
+    font-weight: 400;
+    margin-left: 5px;
+}
+
+.comment__content{
+    font-size: 22px;
+    margin: 10px 0 0 30px;
+    font-weight: 500;
+}
+
+.comment__input{
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment__input textarea{
+    height: 150px;
+    width: 80%;
+    margin: auto;
+    font-size: 25px;
+    padding: 20px 0 270px 20px;
+    outline: none;
+    overflow: hidden;
+    font-family: "SF Pro Display", sans-serif;
+    border-radius: 10px;
+    resize: none;
+}
+
+.button__submit_comment{
+    height: 50px;
+    width: 150px;
+    background-color: rgb(25, 136, 236);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 5px;
+    margin: 50px 80px 100px auto;
+}
+
+
+

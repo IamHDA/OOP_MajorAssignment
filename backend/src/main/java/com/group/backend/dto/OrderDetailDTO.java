@@ -2,9 +2,12 @@ package com.group.backend.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class OrderDetailDTO {
-    private int id;
+    private long id;
     private int unitPrice;
     private int quantity;
+    private List<LaptopSummaryDTO> laptop;
 }

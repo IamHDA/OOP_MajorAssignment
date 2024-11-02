@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Web Laptop</title>
+        <title>Product</title>
         <meta charset = "UTF-8">
         <link rel="stylesheet" href="font awersome/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.css">
         <link rel="stylesheet" href="font/sf-pro-display-cufonfonts/SFPRODISPLAYBOLD.OTF">
@@ -83,9 +83,9 @@
                 </a>
     
                 <!--Cart-->
-                <div class="cart">
+                <a class="cart" href="cart_detail.html">
                     <i class="fa-solid fa-cart-shopping"></i>
-                </div>
+                </a>
             </div>
         </div>
     
@@ -97,8 +97,10 @@
                     <p>Danh mục sản phầm</p>
                 </div>
                 <div class="search">
-                    <input type="text" placeholder="Nhập sản phẩm bạn quan tâm">
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input class="input__search" type="text" placeholder="Nhập sản phẩm bạn quan tâm">
+                    <div class="button__search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,7 +109,7 @@
         <div class="register__box">
             <div class="register__box__container">
                 <div class="register__box__img">    
-                    <img src="/frontend/image/Trangchu/Screenshot 2024-10-02 180154.png" alt="">
+                    <img src="image/Trangchu/Screenshot 2024-10-02 180154.png" alt="">
                     <h1>Mua sắm tại LapTop PTIT</h1>
                     <p>Siêu ưu đãi mỗi ngày</p>
                 </div>
@@ -149,7 +151,7 @@
         <div class="login__box">
             <div class="login__box__container">
                 <div class="login__box__img">
-                    <img src="/frontend/image/Trangchu/Screenshot 2024-10-02 180154.png" alt="">
+                    <img src="image/Trangchu/Screenshot 2024-10-02 180154.png" alt="">
                     <h1>Mua sắm tại LapTop PTIT</h1>
                     <p>Siêu ưu đãi mỗi ngày</p>
                 </div>
@@ -202,8 +204,18 @@
                         <ul>
                             <!-- <li>CPU : INTEL CORE i9 13900K up 5.8GHz | 24 CORE | 32 THREAD</li>
                             <li>RAM : DDR4 32GB (2x16G) 3200 MHz</li>
-                            <li>VGA : NVIDIA RTX 3060 12GB GDDR6</li> -->
+                            <li>ROM : SSD 512GB M.2 PCIe Gen4</li>
+                            <li>VGA : NVIDIA RTX 3060 12GB GDDR6</li>
+                            <li>Màn hình : 16\" FHD+ (1920 x 1200) 165Hz, 7ms, 250 nits, Chống chói, FreeSync Premium, 100% sRGB</li>
+                            <li>Pin : 90WHrs 4S1P, 4-cell Li-ion</li>
+                            <li>Trọng lượng : 2.2kg</li>
+                            <li>Webcam : HD webcam</li>
+                            <li>Hệ điều hành: Window 11 Home</li>    -->
                         </ul>
+                        <div class="product__specifications__see_all">
+                            <h1>Xem thêm> </h1>
+                            <h2>Thu gọn&lt; </h2>
+                        </div>
                         <div class="price">
                             <div class="price__detail">
                                 <div class="product__price">
@@ -237,10 +249,10 @@
                             <h2></h2>
                         </div>
                         <div class="action">
-                            <div class="mua__ngay">
+                            <a href="cart_detail.html" class="mua__ngay">
                                 <h1>MUA NGAY</h1>
                                 <h2>Giao hàng tận nơi nhanh chóng</h2>
-                            </div>
+                            </a>
                         </div>
                         <div class="action2">
                             <div class="giohang">
@@ -253,6 +265,16 @@
                     </div>
 
                     <div class="add">
+                        <div class="sanphamcontai">
+                            <div class="title">
+                                <div class="text">Sản phẩm còn hàng tại</div>
+                            </div>
+                            <div class="diachi">
+                                <a href="https://maps.app.goo.gl/aCd4m2wvjUkWX4Pi9" class="text">-96A Đường Trần Phú, P. Mộ Lao, Hà Đông, Hà Nội</a>
+                                <a href="https://maps.app.goo.gl/zwaTP5q4dQG5hmgk6" class="text">-Số 310/3, Ngọc Đại, Xã Đại Mỗ, Huyện Từ Liêm, Đai Mễ, Nam Từ Liêm, Hà Nội</a>
+                                <div href="https://maps.app.goo.gl/sazpzCpZHcKV8Gqx5" class="text">-122 Hoàng Quốc Việt, Cổ Nhuế, Cầu Giấy, Hà Nội</div>
+                            </div>
+                        </div>
                         <div class="yentammuasam">
                             <div class="title">
                                 Yên Tâm Mua Sắm Tại LAPTOP PTIT
@@ -296,12 +318,34 @@
                 </div>
             </div>
         </div>
+
+        <div class="product__comment">
+            <div class="comment__title">
+                Đánh giá nhận xét
+            </div>
+            <div class="comment__container">
+                <!-- <div class="comment__infor_and_time">
+                    <div class="comment__user__name">Đức Nhân</div>
+                    <div class="infor_and_time__partition"> | </div>
+                    <div class="comment__time">Ngày 16-10-2023, 15:44 pm</div>
+                </div>
+                <div class="comment__content">
+                    Chờ đợi mãi cũng sắp ra rồi. Đã tích đủ tiền đề mua. Laptop PTIT Là lựa chọn số 1 về giá.
+                </div> -->
+            </div>
+            <div class="comment__input">
+                <textarea rows="4" cols="50" placeholder="Mời bạn để lại bình luận ở đây ..."></textarea>
+                <div class="button__submit_comment">
+                    Gửi bình luận
+                </div>
+            </div>
+        </div>
     
         <script src="js/register__login__or__account.js"></script>
         <script src="js/register.js"></script>
         <script src="js/login.js"></script>
         <script src="js/chinhsach.js"></script>
         <script src="js/product__detail.js"></script>
-    
+        <script src="js/search__value.js"></script>
     </body>
 </html>

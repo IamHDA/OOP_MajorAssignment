@@ -20,4 +20,5 @@ public class OrderDetailController {
     public ResponseEntity<List<OrderDetailDTO>> getOrderDetailByOrderId(@PathVariable long id) {
         return ResponseEntity.ok(orderDetailService.getOrderDetailsByOrderId(id));
     }
+
 }

@@ -1,8 +1,6 @@
 package com.group.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -15,7 +13,9 @@ public class Cart_Detail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false)
     private int quantity;
+    private int price;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
