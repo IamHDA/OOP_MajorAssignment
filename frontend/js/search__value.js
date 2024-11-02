@@ -8,5 +8,6 @@ buttonSearch.addEventListener('click', function(){
     console.log(valueSearch);
     console.log("ok");
     localStorage.setItem('valueSearch', valueSearch);
+    localStorage.setItem('action', "search");
     window.location.href = 'laptoptheomuc.html';
 });
