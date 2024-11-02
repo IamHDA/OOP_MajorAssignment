@@ -41,33 +41,13 @@ function searchProduct(){
             allLaptop.innerHTML += laptopContainer;
         }
     })
-    // .then(data => {
-    //     var allLaptop = document.querySelector('.all-laptop');
-    //     var childrenAllLapTop = Array.from(allLaptop.children);
-        
-    //     childrenAllLapTop.forEach(function(element) {
-    //         var productImg = element.getElementsByTagName('img');
-    //         var productName = element.querySelector('.product__name');
-    //         var productId = element.querySelector(".id__product");
-
-    //         productImg.addEventListener('click', function() {
-    //             localStorage.setItem('id__product', productId.textContent);
-    //         });
-    //         productName.addEventListener('click', function() {
-    //             localStorage.setItem('id__product', productId.textContent);
-    //         });
-
-    //         console.log(productId.textContent);
-    //     });
-    // })
     .catch(error => console.log(error));
 }
 
 function selectCategoryProduct(){
     let branch = localStorage.getItem('branch');
     let state = localStorage.getItem('state');
-    let api = 'http://localhost:8080/collections/filter?category=' + branch + '&brand=&cpu&vga&ram&ssd&screenSize&state=' + state + '&sortBy&sortOrder&minPrice=0&maxPrice=0';
-    console.log(api);
+    let api = 'http://localhost:8080/collections/filter?category=' + branch + '&brand=&cpu&vga&ram&ssd&screenSize&state=' + state + '&sortBy&sortOrder&minPrice=0&maxPrice=0';    
     function lamtron(num) {
         return Math.round(num / 100000) * 100000;
     }
