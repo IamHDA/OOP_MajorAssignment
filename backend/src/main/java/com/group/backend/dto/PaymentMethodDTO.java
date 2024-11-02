@@ -9,5 +9,4 @@ import java.util.List;
 public class PaymentMethodDTO {
     private long id;
     private String name;
-    private List<Order> orders;
 }

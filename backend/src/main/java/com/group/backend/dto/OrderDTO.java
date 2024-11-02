@@ -11,6 +11,6 @@ public class OrderDTO {
     private long totalPrice;
     private User user;
     private String shippingAddress;
-    private Status status;
-    private Payment_Method paymentMethod;
+    private StatusDTO status;
+    private PaymentMethodDTO paymentMethod;
 }

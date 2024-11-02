@@ -9,6 +9,7 @@ import com.group.backend.repository.OrderRepository;
 import com.group.backend.repository.UserRepository;
 import com.group.backend.security.CurrentUser;
 import com.group.backend.service.OrderService;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,9 +26,6 @@ public class OrderServiceImp implements OrderService {
     private OrderRepository orderRepo;
 
     @Autowired
-    private CartDetailRepository cartDetailRepo;
-
-    @Autowired
     private ModelMapper modelMapper;
 
     @Override
@@ -42,16 +40,16 @@ public class OrderServiceImp implements OrderService {
 
     @Override
     public Order createOrderFromCart(OrderDTO orderDTO) {
-        User thisUser = currentUser.getCurrentUser();
+        User user = currentUser.getCurrentUser();
         Order order = modelMapper.map(orderDTO, Order.class);
-        order.setUser(thisUser);
+        order.setUser(user);
         return orderRepo.save(order);
     }
 
     @Override
     public void deleteOrderUser() {
         User user = currentUser.getCurrentUser();
-        cartDetailRepo.deleteByUser(user);
+        orderRepo.deleteByUserId(user.getId());
     }
 
 }
