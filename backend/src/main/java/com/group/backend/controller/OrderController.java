@@ -1,11 +1,11 @@
 package com.group.backend.controller;
 
 import com.group.backend.dto.OrderDTO;
+import com.group.backend.entity.Order;
 import com.group.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,8 +14,20 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
     @GetMapping("/orders")
     public ResponseEntity<List<OrderDTO>> getCurrentOrder(){
         return ResponseEntity.ok(orderService.getOrderByUser());
+    }
+
+    @PostMapping("/order/createOrderFromCart")
+    public ResponseEntity<Order> createOrderFromCart(@RequestBody OrderDTO orderDTO){
+
+        return ResponseEntity.ok(orderService.createOrderFromCart(orderDTO));
+    }
+    @DeleteMapping("/order/deleteUserOrder")
+    public ResponseEntity<Void> deleteOrderUser(){
+        orderService.deleteOrderUser();
+        return ResponseEntity.noContent().build();
     }
 }

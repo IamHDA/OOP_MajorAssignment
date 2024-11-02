@@ -26,12 +26,12 @@ public class CartDetailServiceImp implements CartDetailService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public List<CartDetailDTO> getCartDetail() {
-        List<Cart_Detail> cartDetail = cartDetailRepo.findAll();
-        return cartDetail.stream()
-                .map(tmp -> modelMapper.map(tmp, CartDetailDTO.class))
-                .collect(Collectors.toList());
-    }
+//    public List<CartDetailDTO> getCartDetail() {
+//        List<Cart_Detail> cartDetail = cartDetailRepo.findAll();
+//        return cartDetail.stream()
+//                .map(tmp -> modelMapper.map(tmp, CartDetailDTO.class))
+//                .collect(Collectors.toList());
+//    }
 
     @Override
     public List<CartDetailDTO> getUserCartDetail() {
