@@ -26,7 +26,7 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getLaptopByBrandAndCriteria(brand, filter));
     }
 
-    @GetMapping("/laptop-state/{state}")
+    @GetMapping("/laptops-state/{state}")
     public ResponseEntity<List<LaptopSummaryDTO>> getLaptopByState(@PathVariable("state") String state, @ModelAttribute Filter filter) {
         return ResponseEntity.ok(categoryService.getLaptopByStateAndCriteria(state, filter));
     }

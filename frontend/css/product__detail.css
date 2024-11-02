@@ -261,7 +261,7 @@
 }
 
 .sanphamcontai{
-    height: 300px;
+    height: auto;
     width: 270px;
     border: 1px solid rgb(25, 136, 236);
     border-radius: 10px;
@@ -282,17 +282,21 @@
     margin-left: 10px;
 }
 
-.sanphamcontai .mienbac, .sanphamcontai .mientrung, .sanphamcontai .miennam{
-    width: 90%;
+.sanphamcontai .diachi{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 250px;
     font-size: 12px;
     font-weight: 700;
     margin-left: 16px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-top: -10px;
+    padding-right: 3px;
 }
 
-.sanphamcontai .mienbac .text, .sanphamcontai .mientrung .text, .sanphamcontai .miennam .text{
+.sanphamcontai .diachi .text{
     color: red;
-    margin-top: 5px;
 }
 
 .sanphamcontai .note{
