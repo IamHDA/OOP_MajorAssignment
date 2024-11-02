@@ -27,7 +27,7 @@ function searchProduct(){
         for(let i = 0; i < data.length; i++){
             var idProduct = '<div class="id__product">' + data[i].id + '</div>';
             var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
-            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + ' ' + data[i].specification.cpu + ' ' + data[i].specification.ram + ' ' + data[i].specification.graphicsCard + '</a>';
+            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + '( ' + data[i].specification.cpu + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom +', '+ data[i].specification.screen + ' )' + '</a>';
             let basePrice = data[i].price.toString();
             basePrice = daucham(basePrice);
             let price = data[i].price * (100 - data[i].sale) / 100;
@@ -66,7 +66,7 @@ function searchProduct(){
 function selectCategoryProduct(){
     let branch = localStorage.getItem('branch');
     let state = localStorage.getItem('state');
-    let api = 'http://localhost:8080/collections/filter?category=' + branch + '&brand=&cpu&vga&ram&ssd&screenSize&state={' + state + '}&sortBy&sortOrder&minPrice=0&maxPrice=0';
+    let api = 'http://localhost:8080/collections/filter?category=' + branch + '&brand=&cpu&vga&ram&ssd&screenSize&state=' + state + '&sortBy&sortOrder&minPrice=0&maxPrice=0';
     console.log(api);
     function lamtron(num) {
         return Math.round(num / 100000) * 100000;

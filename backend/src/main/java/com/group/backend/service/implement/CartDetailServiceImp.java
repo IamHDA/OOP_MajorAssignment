@@ -37,17 +37,23 @@ public class CartDetailServiceImp implements CartDetailService {
 //                .collect(Collectors.toList());
 //    }
 
-//    @Override
-//    public List<CartDetailDTO> getUserCartDetail() {
-//        User user = currentUser.getCurrentUser();
-//        List<Cart_Detail> userCartDetail = cartDetailRepo.findByUserId(user.getId())
-//                .stream()
-//                .map(tmp -> {
-//                });
-//        return userCartDetail.stream()
-//                .map(tmp -> modelMapper.map(tmp, CartDetailDTO.class))
-//                .collect(Collectors.toList());
-//    }
+    @Override
+    public List<CartDetailDTO> getUserCartDetail() {
+        User user = currentUser.getCurrentUser();
+        List<Cart_Detail> userCartDetail = cartDetailRepo.findByUserId(user.getId())
+                .stream()
+                .map(tmp -> {
+                    tmp.getLaptop().getSpecification().setCpu(normalizationService.cpuNormalize(tmp.getLaptop().getSpecification().getCpu()));
+                    tmp.getLaptop().getSpecification().setRom(normalizationService.romNormalize(tmp.getLaptop().getSpecification().getRom()));
+                    tmp.getLaptop().getSpecification().setRam(normalizationService.ramNormalize(tmp.getLaptop().getSpecification().getRam()));
+                    tmp.getLaptop().getSpecification().setScreen(normalizationService.screenNormalize(tmp.getLaptop().getSpecification().getScreen()));
+                    tmp.getLaptop().getSpecification().setGraphicsCard(normalizationService.vgaNormalize(tmp.getLaptop().getSpecification().getGraphicsCard()));
+                    return tmp;
+                }).collect(Collectors.toList());
+        return userCartDetail.stream()
+                .map(tmp -> modelMapper.map(tmp, CartDetailDTO.class))
+                .collect(Collectors.toList());
+    }
 
     @Override
     public Cart_Detail updateOrInsert(CartDetailDTO cartDetailDTO) {
