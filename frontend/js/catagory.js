@@ -23,7 +23,9 @@ function fetchCatalog() {
                 'Content-Type': 'application/json',
             }
         })
-        .then(response => response.json())
+        .then(response => {
+            return response.json()
+        })
         .then(data => {
             let productSlide = document.querySelector('.product__slide');
             for (let i = 0; i < data.length; i++) {
