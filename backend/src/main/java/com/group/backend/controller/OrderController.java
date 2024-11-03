@@ -22,7 +22,6 @@ public class OrderController {
 
     @PostMapping("/orders/createOrderFromCart")
     public ResponseEntity<Order> createOrderFromCart(@RequestBody OrderDTO orderDTO){
-
         return ResponseEntity.ok(orderService.createOrderFromCart(orderDTO));
     }
     @DeleteMapping("/orders/deleteUserOrder")

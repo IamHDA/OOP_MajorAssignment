@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class OrderDetailServiceImp implements OrderDetailService {
-    @Autowired
-    private CurrentUser currentUser;
 
     @Autowired
     private OrderDetailRepository orderDetailRepo;
@@ -36,11 +34,9 @@ public class OrderDetailServiceImp implements OrderDetailService {
         return thisOrderDetail;
     }
 
-//    @Override
-//    public OrderDetailDTO addOrderDetail(OrderDetailDTO orderDetailDTO) {
-//        Order order = Order
-//        Order_Detail orderDetail =  modelMapper.map(orderDetailDTO, Order_Detail.class);
-//
-//    }
-
+    @Override
+    public Order_Detail addOrderDetail(OrderDetailDTO orderDetailDTO) {
+        Order_Detail orderDetail =  modelMapper.map(orderDetailDTO, Order_Detail.class);
+        return orderDetailRepo.save(orderDetail);
+    }
 }
