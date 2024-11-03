@@ -46,10 +46,10 @@ public class OrderServiceImp implements OrderService {
         return orderRepo.save(order);
     }
 
+    @Transactional
     @Override
     public void deleteOrderUser() {
         User user = currentUser.getCurrentUser();
-        orderRepo.deleteByUserId(user.getId());
+        orderRepo.deleteByUser(user);
     }
-
 }

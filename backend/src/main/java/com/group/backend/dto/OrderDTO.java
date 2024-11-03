@@ -9,7 +9,6 @@ import lombok.Data;
 public class OrderDTO {
     private long id;
     private long totalPrice;
-    private User user;
     private String shippingAddress;
     private StatusDTO status;
     private PaymentMethodDTO paymentMethod;

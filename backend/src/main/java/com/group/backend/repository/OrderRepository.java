@@ -20,5 +20,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 //        delete from Order o
 //        where o.user = :user
 //    """)
-    void deleteByUserId(long userId);
+    @Transactional
+    void deleteByUser(User user);
 }
