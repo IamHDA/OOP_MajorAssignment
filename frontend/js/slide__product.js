@@ -339,7 +339,26 @@ async function fetchCatalog(url) {
         });
         const data = await response.json();
 
-        let productSlide = document.querySelector('.product__slide__hoctapvanphong');
+        var slide;
+
+        if(url === "'http://localhost:8080/collections/laptops-category/Hoc-tap-van-phong'"){
+            slide = document.querySelector('.hoctapvanphongcoban');
+        }
+
+        if(url === "'http://localhost:8080/collections/laptops-category/Laptop-Gaming'"){
+            slide = document.querySelector('.laptopgaming');
+        }
+
+        if(url ==="'http://localhost:8080/collections/laptops-category/Do-hoa-hieu-nang-cao'"){
+            slide = document.querySelector('.laptopdohoa');
+        }
+
+        if(url === "'http://localhost:8080/collections/laptops-category/Mong-nhe-cao-cap'"){
+            slide = document.querySelector('.laptopmongnhe');
+        }
+
+
+        let productSlide = silde.querySelector('.product__slide__hoctapvanphong');
         data.forEach(item => {
             const idProduct = '<div class="id__product">' + item.id + '</div>';
             const imgProduct = '<a href="product.html" class="product__img">' + '<img src="' + item.images[0].filePath + '.jpg' + '" alt="">' + '</a>';
