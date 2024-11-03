@@ -10,6 +10,7 @@ public class OrderDTO {
     private long id;
     private long totalPrice;
     private User user;
-    private Status status;
-    private Payment_Method paymentMethod;
+    private String shippingAddress;
+    private StatusDTO status;
+    private PaymentMethodDTO paymentMethod;
 }

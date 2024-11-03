@@ -20,12 +20,12 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrderByUser());
     }
 
-    @PostMapping("/order/createOrderFromCart")
+    @PostMapping("/orders/createOrderFromCart")
     public ResponseEntity<Order> createOrderFromCart(@RequestBody OrderDTO orderDTO){
 
         return ResponseEntity.ok(orderService.createOrderFromCart(orderDTO));
     }
-    @DeleteMapping("/order/deleteUserOrder")
+    @DeleteMapping("/orders/deleteUserOrder")
     public ResponseEntity<Void> deleteOrderUser(){
         orderService.deleteOrderUser();
         return ResponseEntity.noContent().build();

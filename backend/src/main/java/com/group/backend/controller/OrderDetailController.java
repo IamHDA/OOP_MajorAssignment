@@ -4,9 +4,7 @@ import com.group.backend.dto.OrderDetailDTO;
 import com.group.backend.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,9 +14,12 @@ public class OrderDetailController {
     @Autowired
     private OrderDetailService orderDetailService;
 
-    @GetMapping("/orders/detail={id}")
+    @GetMapping("/orders/detail/{id}")
     public ResponseEntity<List<OrderDetailDTO>> getOrderDetailByOrderId(@PathVariable long id) {
         return ResponseEntity.ok(orderDetailService.getOrderDetailsByOrderId(id));
     }
-
+//    @PostMapping("/orders/addOrderDetail")
+//    public ResponseEntity<OrderDetailDTO> addOrderDetail(@RequestBody OrderDetailDTO orderDetailDTO) {
+//        return ResponseEntity.ok(orderDetailService.addOrderDetail(orderDetailDTO));
+//    }
 }
