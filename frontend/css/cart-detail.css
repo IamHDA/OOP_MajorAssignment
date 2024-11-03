@@ -98,6 +98,7 @@ label{
     width: 80px;
     height: 80px;
     object-fit: contain;
+    object-position: center;
     border:solid, rgba(43, 128, 255), 2px;
 }
 
