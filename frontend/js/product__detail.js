@@ -17,7 +17,6 @@ function getDaTa(){
         return tmp;
     }
 
-
     let id = localStorage.getItem('id__product'); 
 
     fetch(`http://localhost:8080/laptop/${id}`, {
@@ -118,6 +117,34 @@ function getDaTa(){
             commentContainer.innerHTML += inforAndTime + content;
         })
     })
+    .then(data =>{
+        let productSpecification = document.querySelector('.product__specifications');
+        let ulProductSpecification = productSpecification.getElementsByTagName('ul')[0];
+        for(let i = 3; i < ulProductSpecification.children.length; i++){
+            ulProductSpecification.children[i].style.display = 'none';
+        }
+        var button = document.querySelector('.product__specifications__see_all');
+        var seeAll = button.getElementsByTagName('h1')[0];
+        var summary = button.getElementsByTagName('h2')[0];
+
+        seeAll.style.display = 'block';
+        summary.style.display = 'none';
+
+        seeAll.addEventListener('click', function(){
+            for(let i = 3; i < ulProductSpecification.children.length; i++){
+                ulProductSpecification.children[i].style.display = 'block';
+                summary.style.display = 'block';
+                seeAll.style.display = 'none';
+            }
+        });
+        summary.addEventListener('click', function(){
+            for(let i = 3; i < ulProductSpecification.children.length; i++){
+                ulProductSpecification.children[i].style.display = 'none';
+                summary.style.display = 'none';
+                seeAll.style.display = 'block';
+            }
+        });
+    })
     // .then(data =>{
     //     function seeAllSpecification(){
     //         let productSpecification = document.querySelector('.product__specifications');
@@ -148,32 +175,7 @@ function getDaTa(){
     // })
 }
 function seeAllSpecification(){
-    let productSpecification = document.querySelector('.product__specifications');
-    let ulProductSpecification = productSpecification.getElementsByTagName('ul')[0];
-    for(let i = 3; i < ulProductSpecification.children.length; i++){
-        ulProductSpecification.children[i].style.display = 'none';
-    }
-    var button = document.querySelector('.product__specifications__see_all');
-    var seeAll = button.getElementsByTagName('h1')[0];
-    var summary = button.getElementsByTagName('h2')[0];
-
-    seeAll.style.display = 'block';
-    summary.style.display = 'none';
-
-    seeAll.addEventListener('click', function(){
-        for(let i = 3; i < ulProductSpecification.children.length; i++){
-            ulProductSpecification.children[i].style.display = 'block';
-            summary.style.display = 'block';
-            seeAll.style.display = 'none';
-        }
-    });
-    summary.addEventListener('click', function(){
-        for(let i = 3; i < ulProductSpecification.children.length; i++){
-            ulProductSpecification.children[i].style.display = 'none';
-            summary.style.display = 'none';
-            seeAll.style.display = 'block';
-        }
-    });
+    
 }
 seeAllSpecification();
 getDaTa();

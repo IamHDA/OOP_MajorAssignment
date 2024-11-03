@@ -5,6 +5,7 @@
     min-width: 1200px;
     justify-content: center;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .hoctapvanphongcoban__container{
@@ -70,7 +71,8 @@
 .product__img img{
     height: auto;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
 }
 .id__product{
     display: none;
