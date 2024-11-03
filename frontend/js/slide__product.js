@@ -43,7 +43,7 @@ function fetchCatalog() {
     function lamtron(num) {
         return Math.round(num / 100000) * 100000;
     }
-    
+
     function daucham(num) {
         let tmp = "";
         let mark = 0;
@@ -68,7 +68,7 @@ function fetchCatalog() {
         return response.json()
     })
     .then(data => {
-        let productSlide = document.querySelector('.product__slide');
+        let productSlide = document.querySelector('.product__slide__hoctapvanphong');
         for (let i = 0; i < data.length; i++) {
             var idProduct = '<div class="id__product">' + data[i].id + '</div>';
             var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
