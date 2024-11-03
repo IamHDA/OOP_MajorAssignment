@@ -43,16 +43,16 @@ function fetchCatalog() {
     function lamtron(num) {
         return Math.round(num / 100000) * 100000;
     }
-
+    
     function daucham(num) {
         let tmp = "";
         let mark = 0;
-        for (let i = num.length; i >= 0; i--) {
+        for(let i = num.length - 1; i >= 0; i--){
             mark += 1;
-            tmp += num[i] + tmp;
-            if (num == 3 && i > 0) {
-                tmp += "." + tmp;
-                mark = 0;
+            tmp = num[i] + tmp;
+            if(mark == 3 && i != 0){
+                tmp = "." + tmp;
+                mark = 0
             }
         }
         return tmp;
@@ -71,7 +71,7 @@ function fetchCatalog() {
         let productSlide = document.querySelector('.product__slide__hoctapvanphong');
         for (let i = 0; i < data.length; i++) {
             var idProduct = '<div class="id__product">' + data[i].id + '</div>';
-            var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
+            var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
             var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + ' ' + data[i].specification.cpu + ' ' + data[i].specification.ram + ' ' + data[i].specification.graphicsCard + '</a>';
             let basePrice = data[i].price.toString();
             basePrice = daucham(basePrice);
@@ -86,11 +86,31 @@ function fetchCatalog() {
             productSlide.innerHTML += laptopContainer;
         }
     })
+    .then(data => {
+        var allLaptop = document.querySelector('.all-laptop');
+        var childrenAllLapTop = Array.from(allLaptop.children);
+        
+        childrenAllLapTop.forEach(function(element){
+            var productImg = element.getElementsByTagName('img')[0];
+            var productName = element.querySelector('.product__name');
+            var productId = element.querySelector(".id__product");
+
+            productImg.addEventListener('click', function(){
+                localStorage.setItem('id__product', productId.textContent);
+            });
+            productName.addEventListener('click', function(){
+                localStorage.setItem('id__product', productId.textContent);
+            });
+        })
+    })
     .catch(error => console.log(error));
+}
+
+
+function selectProduct(){
+    
 }
 
 fetchCatalog();
 
-
 luotSlide();
-

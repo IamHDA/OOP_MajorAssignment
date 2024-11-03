@@ -1,9 +1,6 @@
 package com.group.backend.entity;
 
-import com.fasterxml.jackson.annotation.JacksonInject;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
@@ -27,8 +24,7 @@ public class Order_Detail {
     private Laptop laptop;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "customerOrder_id")
-    @ToString.Exclude
+    @JsonIgnore
     private Order order;
 }

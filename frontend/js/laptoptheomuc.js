@@ -27,7 +27,7 @@ function searchProduct(){
         for(let i = 0; i < data.length; i++){
             var idProduct = '<div class="id__product">' + data[i].id + '</div>';
             var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
-            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + ' ' + data[i].specification.cpu + ' ' + data[i].specification.ram + ' ' + data[i].specification.graphicsCard + '</a>';
+            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + '( ' + data[i].specification.cpu + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom +', '+ data[i].specification.screen + ' )' + '</a>';
             let basePrice = data[i].price.toString();
             basePrice = daucham(basePrice);
             let price = data[i].price * (100 - data[i].sale) / 100;
@@ -40,6 +40,23 @@ function searchProduct(){
             var laptopContainer = '<div class="product__container">' + idProduct + imgProduct + nameProduct + productPrice +productBasePrice + cart + '</div>';
             allLaptop.innerHTML += laptopContainer;
         }
+    })
+    .then(data =>{
+        var allLaptop = document.querySelector('.all-laptop');
+        var childrenAllLapTop = Array.from(allLaptop.children);
+        
+        childrenAllLapTop.forEach(function(element){
+            var productImg = element.getElementsByTagName('img')[0];
+            var productName = element.querySelector('.product__name');
+            var productId = element.querySelector(".id__product");
+
+            productImg.addEventListener('click', function(){
+                localStorage.setItem('id__product', productId.textContent);
+            });
+            productName.addEventListener('click', function(){
+                localStorage.setItem('id__product', productId.textContent);
+            });
+        })
     })
     .catch(error => console.log(error));
 }
@@ -89,25 +106,41 @@ function selectCategoryProduct(){
             allLaptop.innerHTML += laptopContainer;
         }
     })
-}
+    .then(data =>{ 
+        var allLaptop = document.querySelector('.all-laptop');
+        var childrenAllLapTop = Array.from(allLaptop.children);
+        childrenAllLapTop.forEach(function(element){
+            var productImg = element.getElementsByTagName('img')[0];
+            var productName = element.querySelector('.product__name');
+            var productId = element.querySelector(".id__product");
 
-function selectProduct(){
-    var allLaptop = document.querySelector('.all-laptop');
-    var childrenAllLapTop = Array.from(allLaptop.children);
-    
-    childrenAllLapTop.forEach(function(element){
-        var productImg = element.getElementsByTagName('img');
-        var productName = element.querySelector('.product__name');
-        var productId = element.querySelector(".id__product");
-
-        productImg.addEventListener('click', function(){
-            localStorage.setItem('id__product', productId.textContent);
-        });
-        productName.addEventListener('click', function(){
-            localStorage.setItem('id__product', productId.textContent);
-        });
+            productImg.addEventListener('click', function(){
+                localStorage.setItem('id__product', productId.textContent);
+            });
+            productName.addEventListener('click', function(){
+                localStorage.setItem('id__product', productId.textContent);
+            });
+        })
     })
 }
+
+// function selectProduct(){
+//     var allLaptop = document.querySelector('.all-laptop');
+//     var childrenAllLapTop = Array.from(allLaptop.children);
+    
+//     childrenAllLapTop.forEach(function(element){
+//         var productImg = element.getElementsByTagName('img');
+//         var productName = element.querySelector('.product__name');
+//         var productId = element.querySelector(".id__product");
+
+//         productImg.addEventListener('click', function(){
+//             localStorage.setItem('id__product', productId.textContent);
+//         });
+//         productName.addEventListener('click', function(){
+//             localStorage.setItem('id__product', productId.textContent);
+//         });
+//     })
+// }
 
 
 
@@ -119,6 +152,4 @@ if(localStorage.getItem('action') === "selectionCategory"){
     selectCategoryProduct();
 }
 
-
-
-selectProduct();
+// selectProduct();

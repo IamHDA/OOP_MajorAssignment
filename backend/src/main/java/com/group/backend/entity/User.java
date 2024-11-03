@@ -23,8 +23,10 @@ public class User {
     @Column(length = 11)
     private String phone;
     @Column(nullable = false)
+    @JsonIgnore
     private String pass;
     @Column(nullable = false)
+    @JsonIgnore
     private String role;
     private String address;
 
