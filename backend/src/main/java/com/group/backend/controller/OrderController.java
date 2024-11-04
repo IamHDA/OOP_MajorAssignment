@@ -22,12 +22,11 @@ public class OrderController {
 
     @PostMapping("/orders/createOrderFromCart")
     public ResponseEntity<Order> createOrderFromCart(@RequestBody OrderDTO orderDTO){
-
         return ResponseEntity.ok(orderService.createOrderFromCart(orderDTO));
     }
     @DeleteMapping("/orders/deleteUserOrder")
     public ResponseEntity<Void> deleteOrderUser(){
         orderService.deleteOrderUser();
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 }

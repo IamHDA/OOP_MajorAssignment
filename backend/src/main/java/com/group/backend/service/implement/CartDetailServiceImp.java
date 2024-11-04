@@ -1,10 +1,7 @@
 package com.group.backend.service.implement;
 
 import com.group.backend.dto.CartDetailDTO;
-import com.group.backend.dto.LaptopDTO;
-import com.group.backend.dto.LaptopSummaryDTO;
 import com.group.backend.entity.Cart_Detail;
-import com.group.backend.entity.Laptop;
 import com.group.backend.entity.User;
 import com.group.backend.repository.CartDetailRepository;
 import com.group.backend.security.CurrentUser;

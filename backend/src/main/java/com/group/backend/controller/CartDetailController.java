@@ -32,13 +32,13 @@ public class CartDetailController {
     }
 
     @PostMapping("/cart-detail/add")
-    public ResponseEntity<Cart_Detail> addToCart(@RequestBody CartDetailDTO cartDetailDTO){
+    public ResponseEntity<Void> addToCart(@RequestBody CartDetailDTO cartDetailDTO){
         User user = currentUser.getCurrentUser();
         Laptop laptop = modelMapper.map(cartDetailDTO.getLaptop(), Laptop.class);
         if(cartDetailRepo.findByLaptopAndUser(laptop, user).isPresent()){
             return ResponseEntity.badRequest().body(null);
         }
-        return ResponseEntity.ok(cartDetailService.updateOrInsert(cartDetailDTO));
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/cart-detail/update")
@@ -47,14 +47,14 @@ public class CartDetailController {
     }
 
     @DeleteMapping("/cart-detail/delete/{id}")
-    public ResponseEntity<Void> deleteFromCart(@PathVariable  long id){
+    public ResponseEntity<Void> deleteFromCart(@PathVariable long id){
         cartDetailService.deleteFromCart(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/cart-detail/deleteUserCart")
     public ResponseEntity<Void> deleteAllFromCart(){
         cartDetailService.deleteAllFromCart();
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 }
