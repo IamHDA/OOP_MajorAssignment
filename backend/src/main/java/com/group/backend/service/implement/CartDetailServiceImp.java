@@ -15,7 +15,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.beans.Transient;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,13 +28,6 @@ public class CartDetailServiceImp implements CartDetailService {
     private ModelMapper modelMapper;
     @Autowired
     private NormalizationService normalizationService;
-
-//    public List<CartDetailDTO> getCartDetail() {
-//        List<Cart_Detail> cartDetail = cartDetailRepo.findAll();
-//        return cartDetail.stream()
-//                .map(tmp -> modelMapper.map(tmp, CartDetailDTO.class))
-//                .collect(Collectors.toList());
-//    }
 
     @Override
     public List<CartDetailDTO> getUserCartDetail() {

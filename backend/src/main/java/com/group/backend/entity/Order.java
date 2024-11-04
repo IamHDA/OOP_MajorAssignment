@@ -33,12 +33,9 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "paymentMethod_id")
-    @JsonBackReference
-    @ToString.Exclude
     private Payment_Method paymentMethod;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    @ToString.Exclude
+    @JsonIgnore
     private List<Order_Detail> orderDetails;
 }

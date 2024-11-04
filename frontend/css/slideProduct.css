@@ -1,13 +1,14 @@
-.hoctapvanphongcoban{
+.hoctapvanphongcoban, .laptopdohoa, .laptopmongnhe, .laptopgaming{
     height: 510px;
     width: 100%;
     display: flex;
     min-width: 1200px;
     justify-content: center;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-.hoctapvanphongcoban__container{
+.hoctapvanphongcoban__container, .lapgaming__container, .dohoa__container, .mongnhe__container{
     height: 100%;
     width: 1200px;
     background-color: white;
@@ -38,7 +39,7 @@
     cursor: pointer;
 }
 
-.product__slide__hoctapvanphong{
+.all-laptop{
     height: 400px;
     width: 90%;
     display: flex;
@@ -70,14 +71,15 @@
 .product__img img{
     height: auto;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
 }
 .id__product{
     display: none;
 }
 
 .product__name{
-    height: auto;
+    height: 75px;
     width: 100%;
     display: flex;
     text-align: center;
@@ -86,6 +88,7 @@
     margin-top: 15px;
     color: rgb(33, 42, 54);
     cursor: pointer;
+    overflow: hidden;
 }
 
 
