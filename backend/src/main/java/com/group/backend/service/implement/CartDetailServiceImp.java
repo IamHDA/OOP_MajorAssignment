@@ -1,9 +1,13 @@
 package com.group.backend.service.implement;
 
 import com.group.backend.dto.CartDetailDTO;
+import com.group.backend.dto.LaptopDTO;
+import com.group.backend.dto.LaptopSummaryDTO;
 import com.group.backend.entity.Cart_Detail;
+import com.group.backend.entity.Laptop;
 import com.group.backend.entity.User;
 import com.group.backend.repository.CartDetailRepository;
+import com.group.backend.repository.LaptopRepository;
 import com.group.backend.security.CurrentUser;
 import com.group.backend.service.CartDetailService;
 import com.group.backend.service.NormalizationService;
@@ -18,6 +22,8 @@ import java.util.stream.Collectors;
 @Service
 public class CartDetailServiceImp implements CartDetailService {
     @Autowired
+    private LaptopRepository laptopRepo;
+    @Autowired
     private CartDetailRepository cartDetailRepo;
     @Autowired
     private CurrentUser currentUser;
@@ -25,6 +31,8 @@ public class CartDetailServiceImp implements CartDetailService {
     private ModelMapper modelMapper;
     @Autowired
     private NormalizationService normalizationService;
+    @Autowired
+    private LaptopRepository laptopRepository;
 
     @Override
     public List<CartDetailDTO> getUserCartDetail() {
@@ -45,11 +53,14 @@ public class CartDetailServiceImp implements CartDetailService {
     }
 
     @Override
-    public Cart_Detail updateOrInsert(CartDetailDTO cartDetailDTO) {
-        Cart_Detail cartDetail = modelMapper.map(cartDetailDTO, Cart_Detail.class);
+    public void updateOrInsert(CartDetailDTO cartDetailDTO) {
+        Laptop laptop = laptopRepo.findById(cartDetailDTO.getLaptop().getId());
+        LaptopSummaryDTO laptopSummaryDTO = modelMapper.map(laptop, LaptopSummaryDTO.class);
         User user = currentUser.getCurrentUser();
+        cartDetailDTO.setLaptop(laptopSummaryDTO);
+        Cart_Detail cartDetail = modelMapper.map(cartDetailDTO, Cart_Detail.class);
         cartDetail.setUser(user);
-        return cartDetailRepo.save(cartDetail);
+        cartDetailRepo.save(cartDetail);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.group.backend.dto;
 
+import com.group.backend.entity.Laptop;
 import lombok.Data;
 
 @Data

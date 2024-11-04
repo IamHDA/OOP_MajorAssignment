@@ -1,7 +1,10 @@
 async function fetchAddProductToCart(idProduct){
     try {
         const data = {
-            laptop_id: idProduct
+           "quantity" : 1,
+           "laptop":{
+                "id": idProduct
+           }
         }
         const response = await fetch('http://localhost:8080/cart-detail/add', {
             method: 'POST',
@@ -9,7 +12,7 @@ async function fetchAddProductToCart(idProduct){
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${accessToken}`
             },
-            body: JSON.stringify(data)    
+            body: data 
         });
 
         response = await response.json();
@@ -20,16 +23,31 @@ async function fetchAddProductToCart(idProduct){
 }
 
 
-function addProductToCart(){
-    let productCotainer = document.querySelectorAll('.product__container');
-    productCotainer.forEach(function(element){
-        let butonAddToCart = element.querySelector('.product__cart');
-        let idProduct = element.querySelector('.id__product');
-        butonAddToCart.addEventListener('click', function(){
-            fetchAddProductToCart(idProduct);
-        })
-    })
+async function addProductToCart(){
+    let productContainer = document.querySelectorAll('.product__container');
+    console.log("DSFDSFDSFDSFSDFDSFDSFSF");
+
+    productContainer.forEach(function(element){
+        console.log(element);
+        let buttonAddToCart = element.querySelector('.product__cart');
+        let idProduct = element.querySelector('.id__product').textContent;
+
+        buttonAddToCart.addEventListener('click', async function(){
+            try {
+                const response = await fetchAddProductToCart(idProduct);
+                if (response.status === 200) {
+                    alert("Thêm thành công");
+                } else {
+                    alert("Thất bại");
+                }
+            } catch (error) {
+                console.error("Lỗi khi thêm sản phẩm vào giỏ hàng:", error);
+                alert("Có lỗi xảy ra");
+            }
+        });
+    });
 }
 
 
+addProductToCart();
 
