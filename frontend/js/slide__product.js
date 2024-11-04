@@ -97,6 +97,7 @@ async function fetchAllCatalogs() {
         await fetchCatalog(url);
     }
     selectProduct();
+    addProductToCart();
 }
 
 fetchAllCatalogs();
