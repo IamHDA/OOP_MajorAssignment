@@ -103,6 +103,8 @@
                 </div>
             </div>
         </header>
+
+        <!--Cart-->
         <main>
             <div class="content-container">
                 <div class="navigate">
@@ -112,13 +114,13 @@
                 </div>
                 <div class="my-cart">
                     <p class="main-text">Giỏ hàng của tôi</p>
-                    <p class="cart-counter">&#40;1 sản phẩm&#41;</p>
+                    <p class="cart-counter"></p>
                 </div>
                 <div class="my-cart-underline"></div>
                 <div class="my-cart-detail">
                     <div class="left-side">
                         <table class="cart-table">
-                            <tr>
+                            <tr class="table-row">
                                 <td class="laptop-side">
                                     <img src="image/laptop/AcerAspire5A515-58GM-53PZ_1.jpg" class = "laptop-img">
                                     <p class = "laptop-name">Acer Aspire 5A515-58GM-53PZ &#40;Core i5-13420H, 8GB, 512GB, GTX 2050 4GB, 15.6&#34;&#41;</p> 
@@ -130,13 +132,15 @@
                                             <div class="laptop-counter">1</div>
                                             <button class="right-button">+</button>
                                         </div>
-                                        <button class="trash-button"><img src="image/cart/trash-icon.png" class="trash-image"></button>
+                                        <button class="trash-button">
+                                            <img src="image/cart/trash-icon.png" class="trash-image">
+                                        </button>
                                     </div>
                                     <p class="unit-price">31.450.000 VNĐ</p>
                                     <p class="total-unit-price">31.450.000 VNĐ</p>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="table-row">
                                 <td>
                                     <img src="image/laptop/AcerAspire5A515-58GM-53PZ_1.jpg" class = "laptop-img">
                                     <div class = "laptop-name">Acer Aspire 5A515-58GM-53PZ &#40;Core i5-13420H, 8GB, 512GB, GTX 2050 4GB, 15.6&#34;&#41;</div> 
@@ -145,20 +149,20 @@
                                     <div class="adjust-delete-button">
                                         <div class="adjust">
                                             <button class="left-button">-</button>
-                                            <div class="laptop-counter">1</div>
+                                            <div class="laptop-counter">2</div>
                                             <button class="right-button">+</button>
                                         </div>
                                         <button class="trash-button"><img src="image/cart/trash-icon.png" class="trash-image"></button>
                                     </div>
                                     <p class="unit-price">31.450.000 VNĐ</p>
-                                    <p class="total-unit-price">31.450.000 VNĐ</p>
+                                    <p class="total-unit-price">62.900.000 VNĐ</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="total-price-text">
                                     Tổng giá trị đơn hàng
                                 </td>
-                                <td class="total-price">31.450.000 VND</td>
+                                <td class="total-price">94.350.000 VND</td>
                             </tr>
                         </table>
                         <div class="make-empty">
@@ -188,11 +192,6 @@
                 </div>
             </div>
             <div class="empty-cart">
-                <div class="navigate">
-                    <a class="home-link-1" href = "index.html">Trang chủ</a>
-                    <div class="path">&gt;</div>
-                    <div class="current-site">Thông tin giỏ hàng</div>
-                </div>
                 <p class="empty-notice">Không có sản phẩm nào trong giỏ hàng, vui lòng quay lại</p>
                 <a class="home-link-2" href="index.html">
                     <span class="back-arrow">&larr;</span>
@@ -200,6 +199,8 @@
                 </a>
             </div>
         </main>
+
+        <!--footer-->
         <footer>
             <div class="footer-container">
                 <div class="web-name">
@@ -249,6 +250,7 @@
 
         <script src="js/chinhsach.js"></script>
         <script src="js/register__login__or__account.js"></script>
+        <script src="js/adjust__cart_detail.js"></script>
         <script src="js/clear__local__storage.js"></script>
     </body>
 </html>
