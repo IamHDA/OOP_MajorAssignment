@@ -20,7 +20,7 @@ public class OrderDetailController {
         return ResponseEntity.ok(orderDetailService.getOrderDetailsByOrderId(id));
     }
     @PostMapping("/orders/addOrderDetail")
-    public ResponseEntity<Order_Detail> addOrderDetail(@RequestBody OrderDetailDTO orderDetailDTO) {
-        return ResponseEntity.ok(orderDetailService.addOrderDetail(orderDetailDTO));
+    public ResponseEntity<List<Order_Detail>> addOrderDetail(@RequestBody List<OrderDetailDTO> orderDetailDTO) {
+        return ResponseEntity.ok(orderDetailService.addOrderDetailList(orderDetailDTO));
     }
 }
