@@ -64,13 +64,13 @@ label{
     background: linear-gradient(to right, rgb(151, 213, 255), rgb(0, 72, 255));
 }
 
-.empty-cart{
-    display: none;
-}
-
 .back-arrow{
     font-size: 25px;
     font-weight: bold;
+}
+
+.empty-cart{
+    margin-bottom: 173px;
 }
 
 .empty-notice{
@@ -98,6 +98,7 @@ label{
     width: 80px;
     height: 80px;
     object-fit: contain;
+    object-position: center;
     border:solid, rgba(43, 128, 255), 2px;
 }
 

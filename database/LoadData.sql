@@ -107,7 +107,7 @@ VALUES 	('Hoc-tap-van-phong'), ('Laptop-Gaming'), ('Do-hoa-hieu-nang-cao'), ('Mo
 		('Dell-Alienware'), ('Dell-Precision'), ('Dell-XPS'), ('Dell-Vostro'), ('Dell-Inspiron'),
         ('Acer-Aspire'), ('Acer-Nitro'), ('Acer-Predator'), ('Acer-Swift'),
         ('Lenovo-Ideapad'), ('Lenovo-ThinkBook'), ('Lenovo-Legion'), ('Lenovo-Thinkpad'), ('Lenovo-LOQ'),
-        ('HP-pavilion'), ('HP-Omen'), ('HP-Envy'),
+        ('HP-Pavilion'), ('HP-Omen'), ('HP-Envy'),
         ('MSI-Modern'), ('MSI-Bravo'), ('MSI-Sword'), ('MSI-Katana');
 -- pause here
 
@@ -155,9 +155,9 @@ VALUES	('Số 1, Đường Láng, Quận Đống Đa, Hà Nội', 78997000, 3, 2
 -- pause here
 
 INSERT INTO order_detail(quantity, unit_price, laptop_id, customer_order_id)
-VALUES	(1, 26990000, 2, 1), (1, 25990000, 10, 1), (1, 25990000, 11, 1), (1, 23990000, 5, 2),
-		(1, 19990000, 3, 2), (1, 19990000, 4, 2), (1, 27990000, 9, 2),
-        (2, 27990000, 8, 3);
+VALUES	(1, 26990000, 2, 1), (1, 25990000, 10, 1), (1, 25990000, 11, 2), (1, 23990000, 5, 3),
+		(1, 19990000, 3, 3), (1, 19990000, 4, 4), (1, 27990000, 9, 5),
+        (2, 27990000, 8, 5);
 -- pause here
 
 INSERT INTO laptop_comment(comment, post_at, update_at, laptop_id, user_id)

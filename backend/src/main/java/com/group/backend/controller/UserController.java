@@ -1,14 +1,11 @@
 package com.group.backend.controller;
 
-import com.group.backend.dto.CartDetailDTO;
 import com.group.backend.dto.UserDTO;
 import com.group.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.group.backend.dto.PasswordDTO;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("user")

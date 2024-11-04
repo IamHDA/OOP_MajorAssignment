@@ -6,7 +6,7 @@
         </title>
         <meta charset = "UTF-8">
         <link rel="stylesheet" href="css/header.css">
-        <link rel="stylesheet" href="css/cart-detail.css">
+        <link rel="stylesheet" href="css/order-detail.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="stylesheet" href="css/path.css">
         <link rel="stylesheet" href="font awersome/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.css">
@@ -103,104 +103,47 @@
                 </div>
             </div>
         </header>
-
-        <!--Cart-->
         <main>
             <div class="content-container">
                 <div class="navigate">
                     <a class="home-link-1" href = "index.html">Trang chủ</a>
                     <p class="path">&gt;</p>
-                    <p class="current-site">Thông tin giỏ hàng</p>
+                    <p class="current-site">Đơn hàng</p>
+                    <p class="path">&gt;</p>
+                    <p class="current-site">Chi tiết đơn hàng</p>
                 </div>
                 <div class="my-cart">
-                    <p class="main-text">Giỏ hàng của tôi</p>
-                    <p class="cart-counter"></p>
+                    <p class="main-text">Chi tiết đơn hàng</p>
                 </div>
                 <div class="my-cart-underline"></div>
                 <div class="my-cart-detail">
-                    <div class="left-side">
-                        <table class="cart-table">
-                            <tr class="table-row">
-                                <td class="laptop-side">
-                                    <img src="image/laptop/AcerAspire5A515-58GM-53PZ_1.jpg" class = "laptop-img">
-                                    <p class = "laptop-name">Acer Aspire 5A515-58GM-53PZ &#40;Core i5-13420H, 8GB, 512GB, GTX 2050 4GB, 15.6&#34;&#41;</p> 
-                                </td>
-                                <td>
-                                    <div class="adjust-delete-button">
-                                        <div class="adjust">
-                                            <button class="left-button">-</button>
-                                            <div class="laptop-counter">1</div>
-                                            <button class="right-button">+</button>
-                                        </div>
-                                        <button class="trash-button">
-                                            <img src="image/cart/trash-icon.png" class="trash-image">
-                                        </button>
-                                    </div>
-                                    <p class="unit-price">31.450.000 VNĐ</p>
-                                    <p class="total-unit-price">31.450.000 VNĐ</p>
-                                </td>
-                            </tr>
-                            <tr class="table-row">
-                                <td>
-                                    <img src="image/laptop/AcerAspire5A515-58GM-53PZ_1.jpg" class = "laptop-img">
-                                    <div class = "laptop-name">Acer Aspire 5A515-58GM-53PZ &#40;Core i5-13420H, 8GB, 512GB, GTX 2050 4GB, 15.6&#34;&#41;</div> 
-                                </td>
-                                <td>
-                                    <div class="adjust-delete-button">
-                                        <div class="adjust">
-                                            <button class="left-button">-</button>
-                                            <div class="laptop-counter">2</div>
-                                            <button class="right-button">+</button>
-                                        </div>
-                                        <button class="trash-button"><img src="image/cart/trash-icon.png" class="trash-image"></button>
-                                    </div>
-                                    <p class="unit-price">31.450.000 VNĐ</p>
-                                    <p class="total-unit-price">62.900.000 VNĐ</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="total-price-text">
-                                    Tổng giá trị đơn hàng
-                                </td>
-                                <td class="total-price">94.350.000 VND</td>
-                            </tr>
-                        </table>
-                        <div class="make-empty">
-                            <button class="make-empty-button">Làm trống giỏ hàng</button>
-                        </div> 
-                    </div>
-                    <div class="right-side">
-                        <div class="make-order">
-                            <p class="make-order-title">Thông tin thanh toán</p>
-                            <div class="customer-etc">
-                                <input class="customer-name" type="text" placeholder="Họ tên người nhận">
-                                <input class="customer-contact" type="text" placeholder="Số điện thoại người nhận">
-                                <input class="customer-email" type="text" placeholder="Email">
-                                <input class="customer-contact" type="text" placeholder="Địa chỉ nhận hàng">
-                                <!-- <input class="customer-note" type="text" placeholder="Ghi chú"> -->
-                                <textarea class="customer-note" placeholder="Ghi chú"></textarea>
-                                <form class="all-option">      
-                                    <input type="radio" id="option1" name="payment" value="1" class="chose-method">
-                                    <label for="option1">Thanh toán tại cửa hàng</label><br>
-                                    <input type="radio" id="option2" name="payment" value="2" class="chose-method">
-                                    <label for="option2">Thanh toán khi nhận hàng &#40;COD&#41;</label><br>
-                                </form> 
-                            </div>
-                        </div>   
-                        <button class="make-order-button">Đặt hàng</button> 
-                    </div> 
+                    <table class="cart-table">
+                        <tr>
+                            <td class="laptop-side">
+                                <img src="image/laptop/AcerAspire5A515-58GM-53PZ_1.jpg" class = "laptop-img">
+                                <p class = "laptop-name">Acer Aspire 5A515-58GM-53PZ &#40;Core i5-13420H, 8GB, 512GB, GTX 2050 4GB, 15.6&#34;&#41;</p> 
+                            </td>
+                            <td>
+                                <p class="laptop-counter">Số lượng: 1</p>
+                                <p class="unit-price">31.450.000 VNĐ</p>
+                                <p class="total-unit-price">31.450.000 VNĐ</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="image/laptop/AcerAspire5A515-58GM-53PZ_1.jpg" class = "laptop-img">
+                                <div class = "laptop-name">Acer Aspire 5A515-58GM-53PZ &#40;Core i5-13420H, 8GB, 512GB, GTX 2050 4GB, 15.6&#34;&#41;</div> 
+                            </td>
+                            <td>
+                                <p class="laptop-counter">Số lượng: 1</p>
+                                <p class="unit-price">31.450.000 VNĐ</p>
+                                <p class="total-unit-price">31.450.000 VNĐ</p>
+                            </td>
+                        </tr>
+                    </table>      
                 </div>
             </div>
-            <div class="empty-cart">
-                <p class="empty-notice">Không có sản phẩm nào trong giỏ hàng, vui lòng quay lại</p>
-                <a class="home-link-2" href="index.html">
-                    <span class="back-arrow">&larr;</span>
-                    Quay lại trang chủ
-                </a>
-            </div>
         </main>
-
-        <!--footer-->
         <footer>
             <div class="footer-container">
                 <div class="web-name">
@@ -250,7 +193,6 @@
 
         <script src="js/chinhsach.js"></script>
         <script src="js/register__login__or__account.js"></script>
-        <script src="js/adjust__cart_detail.js"></script>
         <script src="js/clear__local__storage.js"></script>
     </body>
 </html>

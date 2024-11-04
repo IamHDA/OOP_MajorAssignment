@@ -1,6 +1,5 @@
 package com.group.backend.security;
 
-import com.group.backend.config.Encoder;
 import com.group.backend.config.handler.CustomLogoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

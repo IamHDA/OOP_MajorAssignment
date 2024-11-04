@@ -2,7 +2,6 @@ package com.group.backend.controller;
 
 import com.group.backend.dto.LaptopSummaryDTO;
 import com.group.backend.dto.Filter;
-import com.group.backend.entity.Laptop;
 import com.group.backend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
