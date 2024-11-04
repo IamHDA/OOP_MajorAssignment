@@ -341,28 +341,28 @@ async function fetchCatalog(url) {
 
         var slide;
 
-        if(url === "'http://localhost:8080/collections/laptops-category/Hoc-tap-van-phong'"){
+        if(url === 'http://localhost:8080/collections/laptops-category/Hoc-tap-van-phong'){
             slide = document.querySelector('.hoctapvanphongcoban');
+            console.log("1");
         }
 
-        if(url === "'http://localhost:8080/collections/laptops-category/Laptop-Gaming'"){
+        if(url === 'http://localhost:8080/collections/laptops-category/Laptop-Gaming'){
             slide = document.querySelector('.laptopgaming');
         }
 
-        if(url ==="'http://localhost:8080/collections/laptops-category/Do-hoa-hieu-nang-cao'"){
+        if(url ==='http://localhost:8080/collections/laptops-category/Do-hoa-hieu-nang-cao'){
             slide = document.querySelector('.laptopdohoa');
         }
 
-        if(url === "'http://localhost:8080/collections/laptops-category/Mong-nhe-cao-cap'"){
+        if(url === 'http://localhost:8080/collections/laptops-category/Mong-nhe-cao-cap'){
             slide = document.querySelector('.laptopmongnhe');
         }
 
-
-        let productSlide = silde.querySelector('.product__slide__hoctapvanphong');
+        let productSlide = slide.querySelector('.all-laptop');
         data.forEach(item => {
             const idProduct = '<div class="id__product">' + item.id + '</div>';
             const imgProduct = '<a href="product.html" class="product__img">' + '<img src="' + item.images[0].filePath + '.jpg' + '" alt="">' + '</a>';
-            const nameProduct = '<a href="product.html" class="product__name">' + item.name + ' ' + item.specification.cpu + ' ' + item.specification.ram + ' ' + item.specification.graphicsCard + '</a>';
+            const nameProduct = '<a href="product.html" class="product__name">' + item.name + ' ' + '(' + item.specification.cpu + ' ' + item.specification.ram + ' ' + item.specification.rom + ' ' + item.specification.graphicsCard + ' ' + item.specification.screen + ')' +'</a>';
             let basePrice = daucham(item.price.toString());
             let price = lamtron(item.price * (100 - item.sale) / 100).toString();
             price = daucham(price);
@@ -379,20 +379,22 @@ async function fetchCatalog(url) {
 }
 
 function selectProduct(){
-    var allLaptop = document.querySelector('.all-laptop');
-    var childrenAllLapTop = Array.from(allLaptop.children);
-    
-    childrenAllLapTop.forEach(function(element){
-        var productImg = element.getElementsByTagName('img')[0];
-        var productName = element.querySelector('.product__name');
-        var productId = element.querySelector(".id__product");
+    var AllLaptop = document.querySelectorAll('.all-laptop');
+    AllLaptop.forEach(function(allLaptop){
+        var childrenAllLapTop = Array.from(allLaptop.children);
+        
+        childrenAllLapTop.forEach(function(element){
+            var productImg = element.getElementsByTagName('img')[0];
+            var productName = element.querySelector('.product__name');
+            var productId = element.querySelector(".id__product");
 
-        productImg.addEventListener('click', function(){
-            localStorage.setItem('id__product', productId.textContent);
-        });
-        productName.addEventListener('click', function(){
-            localStorage.setItem('id__product', productId.textContent);
-        });
+            productImg.addEventListener('click', function(){
+                localStorage.setItem('id__product', productId.textContent);
+            });
+            productName.addEventListener('click', function(){
+                localStorage.setItem('id__product', productId.textContent);
+            });
+        })
     })
 }
 
@@ -406,8 +408,8 @@ async function fetchAllCatalogs() {
 
     for (const url of urls) {
         await fetchCatalog(url);
-        selectProduct();
     }
+    selectProduct();
 }
 
 fetchAllCatalogs();

@@ -75,6 +75,10 @@ a{
     margin: auto;
 }
 
+.account{
+    margin-right: 0px;
+}
+
 .header__top h6{
     margin: 0 10px;
 }
