@@ -79,7 +79,7 @@
 }
 
 .product__name{
-    height: auto;
+    height: 75px;
     width: 100%;
     display: flex;
     text-align: center;
@@ -88,6 +88,7 @@
     margin-top: 15px;
     color: rgb(33, 42, 54);
     cursor: pointer;
+    overflow: hidden;
 }
 
 
