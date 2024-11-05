@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.group.backend.dto.PasswordDTO;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired

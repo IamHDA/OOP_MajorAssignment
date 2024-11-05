@@ -19,13 +19,9 @@ import java.util.stream.Collectors;
 @Service
 public class OrderDetailServiceImp implements OrderDetailService {
     @Autowired
-    private CurrentUser currentUser;
-    @Autowired
     private OrderDetailRepository orderDetailRepo;
     @Autowired
     private ModelMapper modelMapper;
-    @Autowired
-    private CartDetailRepository cartDetailRepo;
     @Autowired
     private OrderService orderService;
 

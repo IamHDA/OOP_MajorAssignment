@@ -1,6 +1,7 @@
 package com.group.backend.controller;
 
 import com.group.backend.dto.OrderDTO;
+import com.group.backend.entity.Order;
 import com.group.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("order")
+@RequestMapping("/order")
 public class OrderController {
 
     @Autowired
@@ -21,7 +22,7 @@ public class OrderController {
     }
 
     @PostMapping("/createOrderFromCart")
-    public ResponseEntity<com.group.backend.entity.Order> createOrderFromCart(@RequestBody OrderDTO orderDTO){
+    public ResponseEntity<Order> createOrderFromCart(@RequestBody OrderDTO orderDTO){
         return ResponseEntity.ok(orderService.createOrderFromCart(orderDTO));
     }
     @DeleteMapping("/deleteUserOrder")

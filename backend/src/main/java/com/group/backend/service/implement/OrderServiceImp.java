@@ -28,7 +28,7 @@ public class OrderServiceImp implements OrderService {
     @Override
     public List<OrderDTO> getOrdersByUser() {
         User thisUser = currentUser.getCurrentUser();
-        List<com.group.backend.entity.Order> orders = orderRepo.findByUserId(thisUser.getId());
+        List<Order> orders = orderRepo.findByUserId(thisUser.getId());
         List<OrderDTO> thisUserOrderDTO = orders.stream()
                 .map(order -> modelMapper.map(order, OrderDTO.class))
                 .collect(Collectors.toList());
@@ -38,7 +38,7 @@ public class OrderServiceImp implements OrderService {
     @Override
     public Order getLastOrderByUser() {
         User user = currentUser.getCurrentUser();
-        List<com.group.backend.entity.Order> orders = orderRepo.getLastOrderByUser(user);
+        List<Order> orders = orderRepo.getLastOrderByUser(user);
         for(Order order : orders){
             return order;
         }
@@ -46,9 +46,9 @@ public class OrderServiceImp implements OrderService {
     }
 
     @Override
-    public com.group.backend.entity.Order createOrderFromCart(OrderDTO orderDTO) {
+    public Order createOrderFromCart(OrderDTO orderDTO) {
         User user = currentUser.getCurrentUser();
-        com.group.backend.entity.Order order = modelMapper.map(orderDTO, com.group.backend.entity.Order.class);
+        Order order = modelMapper.map(orderDTO, Order.class);
         order.setUser(user);
         return orderRepo.save(order);
     }
