@@ -48,12 +48,11 @@ public class SecurityConfig {
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(
-                                "/login", "/register",
-                                "/refresh_token",
+                                "/login",
+                                "/register",
                                 "/sendMail",
                                 "/laptop",
-                                "/collections",
-                                "/**")
+                                "/collections")
                         .permitAll()
                         .anyRequest()
                         .authenticated())

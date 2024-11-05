@@ -12,6 +12,7 @@ import com.group.backend.service.OrderService;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +37,16 @@ public class OrderServiceImp implements OrderService {
                 .map(order -> modelMapper.map(order, OrderDTO.class))
                 .collect(Collectors.toList());
         return thisUserOrder;
+    }
+
+    @Override
+    public Order getLastOrderByUser() {
+        User user = currentUser.getCurrentUser();
+        List<Order> orders = orderRepo.getLastOrderByUser(user);
+        for(Order order : orders){
+            return order;
+        }
+        return null;
     }
 
     @Override
