@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CartDetailService {
     List<CartDetailDTO> getUserCartDetail();
-    Cart_Detail updateOrInsert (CartDetailDTO cartDetailDTO);
+    void updateOrInsert (CartDetailDTO cartDetailDTO);
     void deleteFromCart(long id);
 
     void deleteAllFromCart();

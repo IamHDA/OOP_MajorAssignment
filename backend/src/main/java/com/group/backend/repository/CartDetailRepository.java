@@ -17,11 +17,7 @@ public interface CartDetailRepository extends JpaRepository<Cart_Detail, Long> {
     List<Cart_Detail> findAll();
     List<Cart_Detail> findByUserId(long id);
     Optional<Cart_Detail> findByLaptopAndUser(Laptop laptop, User user);
-    @Modifying
+
     @Transactional
-    @Query("""
-        delete from Cart_Detail cd
-        where cd.user = :user
-    """)
     void deleteByUser(User user);
 }

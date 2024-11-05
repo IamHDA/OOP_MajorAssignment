@@ -70,7 +70,6 @@ public class AuthenticationService {
         if(user == null){
             return new AuthenticationResponse(null, null, "User not found");
         }
-
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getDataEmail(), request.getDataUserPassword()));
         }catch (BadCredentialsException e) {
@@ -83,7 +82,6 @@ public class AuthenticationService {
         List<Token> validTokenByUser = tokenRepository.findAllAccessTokenByUser(user.getId());
         if (!validTokenByUser.isEmpty()) {
             validTokenByUser.forEach(t -> {
-
                 t.setLoggedOut(true);
             });
         }

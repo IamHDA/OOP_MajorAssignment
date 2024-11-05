@@ -32,29 +32,31 @@ public class CartDetailController {
     }
 
     @PostMapping("/cart-detail/add")
-    public ResponseEntity<Cart_Detail> addToCart(@RequestBody CartDetailDTO cartDetailDTO){
+    public ResponseEntity<String> addToCart(@RequestBody CartDetailDTO cartDetailDTO){
         User user = currentUser.getCurrentUser();
         Laptop laptop = modelMapper.map(cartDetailDTO.getLaptop(), Laptop.class);
         if(cartDetailRepo.findByLaptopAndUser(laptop, user).isPresent()){
-            return ResponseEntity.badRequest().body(null);
+            return ResponseEntity.badRequest().body("Laptop is already in cart");
         }
-        return ResponseEntity.ok(cartDetailService.updateOrInsert(cartDetailDTO));
+        cartDetailService.updateOrInsert(cartDetailDTO);
+        return ResponseEntity.ok().body("Laptop successfully added");
     }
 
     @PutMapping("/cart-detail/update")
-    public ResponseEntity<Cart_Detail> updateCart(@RequestBody CartDetailDTO cartDetailDTO){
-        return ResponseEntity.ok(cartDetailService.updateOrInsert(cartDetailDTO));
+    public ResponseEntity<Void> updateCart(@RequestBody CartDetailDTO cartDetailDTO){
+        cartDetailService.updateOrInsert(cartDetailDTO);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/cart-detail/delete/{id}")
-    public ResponseEntity<Void> deleteFromCart(@PathVariable  long id){
+    public ResponseEntity<Void> deleteFromCart(@PathVariable long id){
         cartDetailService.deleteFromCart(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/cart-detail/deleteUserCart")
     public ResponseEntity<Void> deleteAllFromCart(){
         cartDetailService.deleteAllFromCart();
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 }
