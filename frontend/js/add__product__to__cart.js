@@ -1,7 +1,10 @@
 async function fetchAddProductToCart(idProduct){
     try {
         const data = {
-            laptop_id: idProduct
+           "quantity" : 1,
+           "laptop":{
+                "id": idProduct
+           }
         }
         const response = await fetch('http://localhost:8080/cart-detail/add', {
             method: 'POST',
@@ -9,7 +12,7 @@ async function fetchAddProductToCart(idProduct){
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${accessToken}`
             },
-            body: JSON.stringify(data)    
+            body: data 
         });
 
         response = await response.json();
@@ -24,12 +27,20 @@ function addProductToCart(){
     let productCotainer = document.querySelectorAll('.product__container');
     productCotainer.forEach(function(element){
         let butonAddToCart = element.querySelector('.product__cart');
-        let idProduct = element.querySelector('.id__product');
+        let idProduct = element.querySelector('.id__product').textContent;
         butonAddToCart.addEventListener('click', function(){
             fetchAddProductToCart(idProduct);
+            if (fetchAddProductToCart(idProduct) == 200){
+                alert("Them thanh cong");
+            }
+            else{
+                alert("That bai");
+            }
         })
     })
 }
+
+addProductToCart();
 
 
 
