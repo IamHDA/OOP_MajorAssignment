@@ -51,7 +51,19 @@ async function buildCartDeTail(){
 } 
 async function Main(){
     await buildCartDeTail();
-    adjustNumberProduct();
+    let cartDetail = document.querySelector('.my-cart-detail');
+    let emptyCart = document.querySelector('.empty-cart');
+    let tableRow = document.querySelectorAll('.table-row');
+    if (tableRow.length != 0){
+        cartDetail.style.display = 'flex';
+        emptyCart.style.display = 'none';
+        adjustNumberProduct();
+    }
+    if (tableRow.length == 0){
+        cartDetail.style.display = 'none';
+        emptyCart.style.display = 'block';
+    }
+    
     deleteProduct();
     deleteAllProduct();
 }
