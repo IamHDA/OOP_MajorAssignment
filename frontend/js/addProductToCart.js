@@ -34,7 +34,7 @@ async function addProductToCart(){
             try {
                 const response = await fetchAddProductToCart(idProduct);
                 const message = await response.text();
-                
+                console.log(message);
                 if (response.status === 200) {
                     alert("Thêm thành công");
                 } else if(response.status === 400 && message === "Laptop is already in cart"){
