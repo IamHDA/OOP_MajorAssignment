@@ -215,7 +215,7 @@ thongTinTaiKhoan.addEventListener('click', function(){
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${accessToken}`
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data)  
         })
         .then(function(){
             localStorage.setItem('name', name);
