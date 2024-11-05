@@ -12,7 +12,7 @@ async function fetchAddProductToCart(idProduct){
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${accessToken}`
-            },
+            },  
             body: JSON.stringify(data)
         });
 
