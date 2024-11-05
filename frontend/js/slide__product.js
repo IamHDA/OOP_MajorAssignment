@@ -126,18 +126,17 @@ async function fetchAllCatalogs() {
         let productContainer = document.querySelectorAll('.product__container');
     
         productContainer.forEach(function(element){
-            console.log(element);
             let buttonAddToCart = element.querySelector('.product__cart');
             let idProduct = element.querySelector('.id__product').textContent;
     
             buttonAddToCart.addEventListener('click', async function(){
                 try {
                     const response = await fetchAddProductToCart(idProduct);
-                    const responseData = await response.json();
-                    console.log(responseData);
+                    const message = await response.text();
+                    
                     if (response.status === 200) {
                         alert("Thêm thành công");
-                    } else if(response.status === 400 && responseData.message === "Laptop is already in cart"){
+                    } else if(response.status === 400 && message === "Laptop is already in cart"){
                         alert("Sản phẩm đã tồn tại trong giỏ hàng");
                     }else{
                         alert("Thất bại");
