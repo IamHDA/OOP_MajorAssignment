@@ -30,7 +30,7 @@ public class OrderServiceImp implements OrderService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<OrderDTO> getOrderByUser() {
+    public List<OrderDTO> getOrdersByUser() {
         User thisUser = currentUser.getCurrentUser();
         List<Order> orders = orderRepo.findByUserId(thisUser.getId());
         List<OrderDTO> thisUserOrder = orders.stream()
@@ -40,11 +40,11 @@ public class OrderServiceImp implements OrderService {
     }
 
     @Override
-    public Order getLastOrderByUser() {
+    public OrderDTO getLastOrderByUser() {
         User user = currentUser.getCurrentUser();
         List<Order> orders = orderRepo.getLastOrderByUser(user);
         for(Order order : orders){
-            return order;
+            return modelMapper.map(order, OrderDTO.class);
         }
         return null;
     }

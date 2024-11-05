@@ -51,8 +51,8 @@ public class SecurityConfig {
                                 "/login",
                                 "/register",
                                 "/sendMail",
-                                "/laptop",
-                                "/collections")
+                                "/laptop/**",
+                                "/collections/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
