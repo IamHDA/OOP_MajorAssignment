@@ -172,7 +172,6 @@ function deleteAllProduct(){
     })
 }
 
-
 adjustNumberProduct();
 deleteProduct();
 deleteAllProduct();
