@@ -121,6 +121,7 @@ function selectCategoryProduct(){
                 localStorage.setItem('id__product', productId.textContent);
             });
         })
+        addProductToCart();
     })
 }
 

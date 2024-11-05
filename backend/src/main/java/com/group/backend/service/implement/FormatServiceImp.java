@@ -2,7 +2,7 @@ package com.group.backend.service.implement;
 
 import com.group.backend.dto.LaptopDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
-import com.group.backend.service.NormalizationService;
+import com.group.backend.service.FormatService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,13 +11,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class NormalizationServiceImp implements NormalizationService {
+public class FormatServiceImp implements FormatService {
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Override
-    public String cpuNormalize(String text) {
+    public long priceFormat(long price) {
+        if((int)price % 10000 != 0){
+            price /= 10000;
+            price = Math.round(price) * 10000;
+            return price;
+        }else if((int)price % 100000 != 0){
+            price /= 100000;
+            price = Math.round(price) * 100000;
+            return price;
+        }
+        return price;
+    }
+
+    @Override
+    public String cpuFormat(String text) {
         String res = "";
         for(char c : text.toCharArray()) {
             if(c == '(') break;
@@ -27,7 +41,7 @@ public class NormalizationServiceImp implements NormalizationService {
     }
 
     @Override
-    public String screenNormalize(String text) {
+    public String screenFormat(String text) {
         String res = "";
         for(char c : text.toCharArray()) {
             if(c == '(') break;
@@ -37,7 +51,7 @@ public class NormalizationServiceImp implements NormalizationService {
     }
 
     @Override
-    public String vgaNormalize(String text) {
+    public String vgaFormat(String text) {
         String res = "";
         String tmp[] = text.split(" ");
         if(tmp.length <= 4) {
@@ -54,27 +68,29 @@ public class NormalizationServiceImp implements NormalizationService {
     }
 
     @Override
-    public String ramNormalize(String text) {
+    public String ramFormat(String text) {
         String tmp[] = text.split(" ");
         return tmp[0];
     }
 
     @Override
-    public String romNormalize(String text) {
+    public String romFormat(String text) {
         String tmp[] = text.split(" ");
         return tmp[1];
     }
 
+
+
     @Override
-    public List<LaptopSummaryDTO> listOfNormalizedLaptopSummary(List<LaptopDTO> laptops) {
+    public List<LaptopSummaryDTO> listOfFormattedLaptopSummary(List<LaptopDTO> laptops) {
         return laptops.stream()
                 .map(l -> {
                     LaptopSummaryDTO laptopSummary = modelMapper.map(l, LaptopSummaryDTO.class);
-                    laptopSummary.getSpecification().setCpu(cpuNormalize(laptopSummary.getSpecification().getCpu()));
-                    laptopSummary.getSpecification().setRom(romNormalize(laptopSummary.getSpecification().getRom()));
-                    laptopSummary.getSpecification().setRam(ramNormalize(laptopSummary.getSpecification().getRam()));
-                    laptopSummary.getSpecification().setScreen(screenNormalize(laptopSummary.getSpecification().getScreen()));
-                    laptopSummary.getSpecification().setGraphicsCard(vgaNormalize(laptopSummary.getSpecification().getGraphicsCard()));
+                    laptopSummary.getSpecification().setCpu(cpuFormat(laptopSummary.getSpecification().getCpu()));
+                    laptopSummary.getSpecification().setRom(romFormat(laptopSummary.getSpecification().getRom()));
+                    laptopSummary.getSpecification().setRam(ramFormat(laptopSummary.getSpecification().getRam()));
+                    laptopSummary.getSpecification().setScreen(screenFormat(laptopSummary.getSpecification().getScreen()));
+                    laptopSummary.getSpecification().setGraphicsCard(vgaFormat(laptopSummary.getSpecification().getGraphicsCard()));
                     return laptopSummary;
                 })
                 .collect(Collectors.toList());

@@ -1,6 +1,7 @@
 package com.group.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -37,7 +38,7 @@ public class Laptop {
     private List<Cart_Detail> cartDetails;
 
     @OneToMany(mappedBy = "laptop", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties
+    @JsonIgnore
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "laptop", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -48,4 +49,9 @@ public class Laptop {
 
     @OneToMany(mappedBy = "laptop", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Laptop_Category> laptopCategories;
+
+    public long getDiscountedPrice(){
+        double discount = 1 - sale/100.0;
+        return (long)(price * discount);
+    }
 }

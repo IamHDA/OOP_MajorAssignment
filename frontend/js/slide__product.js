@@ -30,7 +30,6 @@ async function fetchCatalog(url) {
 
         if(url === 'http://localhost:8080/collections/laptops-category/Hoc-tap-van-phong'){
             slide = document.querySelector('.hoctapvanphongcoban');
-            console.log("1");
         }
 
         if(url === 'http://localhost:8080/collections/laptops-category/Laptop-Gaming'){
@@ -65,26 +64,6 @@ async function fetchCatalog(url) {
     }
 }
 
-function selectProduct(){
-    var AllLaptop = document.querySelectorAll('.all-laptop');
-    AllLaptop.forEach(function(allLaptop){
-        var childrenAllLapTop = Array.from(allLaptop.children);
-        
-        childrenAllLapTop.forEach(function(element){
-            var productImg = element.getElementsByTagName('img')[0];
-            var productName = element.querySelector('.product__name');
-            var productId = element.querySelector(".id__product");
-
-            productImg.addEventListener('click', function(){
-                localStorage.setItem('id__product', productId.textContent);
-            });
-            productName.addEventListener('click', function(){
-                localStorage.setItem('id__product', productId.textContent);
-            });
-        })
-    })
-}
-
 async function fetchAllCatalogs() {
     const urls = [
         'http://localhost:8080/collections/laptops-category/Hoc-tap-van-phong',
@@ -97,69 +76,8 @@ async function fetchAllCatalogs() {
         await fetchCatalog(url);
     }
     selectProduct();
+    addProductToCart();
 }
 
 fetchAllCatalogs();
 
-// function luotSlide(){  
-//     var productSilde = document.querySelectorAll('.product__slide');
-//     let isDragging = false;
-//     let lastX = 0;
-
-
-//     productSilde.forEach(function(element){
-//         element.addEventListener('mousedown', function(event){
-//             isDragging = true;
-//             lastX = event.clientX;
-//             element.style.cursor = 'grab';
-//             event.stopPropagation();
-//             event.preventDefault();
-//             return
-//         })
-//         element.addEventListener('mouseup', function(event){
-//             isDragging = false;
-//             element.style.cursor = 'default';
-//             event.stopPropagation();
-//         })
-//         element.addEventListener('mouseleave', function(){
-//             isDragging = false;
-//             element.style.cursor = 'default';
-//         })
-//         element.addEventListener('mousemove', function(event){
-//             if (isDragging) {
-//                 const deltaX = Math.ceil((event.clientX - lastX)/5) * 220 ;
-//                 lastX = event.clientX;  
-//                 let productContainers = element.querySelectorAll('.product__container');
-//                 productContainers.forEach(function(productContainer){
-//                     productContainer.style.transition = "1s";
-//                     productContainer.style.transform = `translateX(${deltaX}px)`;
-//                     })
-//             }
-//             else{
-//                 return 0
-//             }
-//         })
-//     })
-// }
-
-function selectProduct(){
-    var AllLaptop = document.querySelectorAll('.all-laptop');
-    AllLaptop.forEach(function(allLaptop){
-        var childrenAllLapTop = Array.from(allLaptop.children);
-        
-        childrenAllLapTop.forEach(function(element){
-            var productImg = element.getElementsByTagName('img')[0];
-            var productName = element.querySelector('.product__name');
-            var productId = element.querySelector(".id__product");
-
-            productImg.addEventListener('click', function(){
-                localStorage.setItem('id__product', productId.textContent);
-            });
-            productName.addEventListener('click', function(){
-                localStorage.setItem('id__product', productId.textContent);
-            });
-        })
-    })
-}
-
-luotSlide();

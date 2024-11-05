@@ -134,23 +134,22 @@ VALUES ('Đang giao', 'Chú ý điện thoại để nhận hàng nhé'),
        ('Đã hủy', 'Mọi thông tin chi tiết hơn xin liên hệ shop');
 -- pause here
 
-INSERT INTO cart_detail(laptop_id, user_id, quantity, price)
-VALUES	(1, 1, 1, 0), (2, 1, 1, 0), (4, 1, 1, 0), (5, 1, 1, 0),
-		(3, 2, 1, 0), (6, 2, 1, 0), (7, 2, 1, 0), (8, 2, 1, 0),
-        (9, 3, 1, 0), (10, 3, 1, 0), (11, 3, 1, 0), (12, 3, 1, 0);
--- pause here
+-- INSERT INTO cart_detail(laptop_id, user_id, quantity)
+-- VALUES	(1, 1, 1), (2, 1, 1), (4, 1, 1), (5, 1, 1),
+-- 		(3, 2, 1), (6, 2, 1), (7, 2, 1), (8, 2, 1),
+--         (9, 3, 1), (10, 3, 1), (11, 3, 1), (12, 3, 1);
+-- -- pause here
 
 INSERT INTO payment_method(name)
 VALUES ('Thanh toán tại cửa hàng'),
-       ('Thanh toán khi nhận hàng'),
-       ('Thanh toán bằng chuyển khoản ngân hàng');
+       ('Thanh toán khi nhận hàng');
 -- pause here
 
 INSERT INTO customer_order(shipping_address, total_price, payment_method_id, status_id, user_id)
-VALUES	('Số 1, Đường Láng, Quận Đống Đa, Hà Nội', 78997000, 3, 2, 1),
+VALUES	('Số 1, Đường Láng, Quận Đống Đa, Hà Nội', 78997000, 1, 2, 1),
 		('Số 10, Phố Huế, Quận Hai Bà Trưng, Hà Nội', 19990000, 2, 1, 1),
         ('Số 50, Đường Kim Mã, Quận Ba Đình, Hà Nội', 39980000, 1, 2, 2),
-        ('Số 25, Phố Trần Duy Hưng, Quận Cầu Giấy, Hà Nội', 27990000, 3, 1, 2),
+        ('Số 25, Phố Trần Duy Hưng, Quận Cầu Giấy, Hà Nội', 27990000, 1, 1, 2),
         ('Số 123, Phố Tràng Thi, Quận Hoàn Kiếm, Hà Nội', 55980000, 1, 1, 3);
 -- pause here
 

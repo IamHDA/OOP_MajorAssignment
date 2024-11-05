@@ -17,6 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,19 +30,20 @@ import java.util.List;
 @Service
 public class AuthenticationService {
 
-    @Autowired
     private final BCryptPasswordEncoder encoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepo;
     private final TokenRepository tokenRepository;
+    private final UserDetailsService userDetailsService;
 
-    public AuthenticationService(BCryptPasswordEncoder encoder, UserRepository userRepo, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, TokenRepository tokenRepository) {
+    public AuthenticationService(BCryptPasswordEncoder encoder, UserRepository userRepo, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, TokenRepository tokenRepository, UserDetailsService userDetailsService) {
         this.encoder = encoder;
         this.userRepo = userRepo;
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
         this.tokenRepository = tokenRepository;
+        this.userDetailsService = userDetailsService;
     }
 
 
@@ -70,7 +74,6 @@ public class AuthenticationService {
         if(user == null){
             return new AuthenticationResponse(null, null, "User not found");
         }
-
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getDataEmail(), request.getDataUserPassword()));
         }catch (BadCredentialsException e) {
@@ -83,7 +86,6 @@ public class AuthenticationService {
         List<Token> validTokenByUser = tokenRepository.findAllAccessTokenByUser(user.getId());
         if (!validTokenByUser.isEmpty()) {
             validTokenByUser.forEach(t -> {
-
                 t.setLoggedOut(true);
             });
         }
