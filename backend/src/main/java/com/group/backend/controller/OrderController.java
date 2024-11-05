@@ -1,7 +1,6 @@
 package com.group.backend.controller;
 
 import com.group.backend.dto.OrderDTO;
-import com.group.backend.entity.Order;
 import com.group.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +20,8 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrdersByUser());
     }
 
-    @GetMapping("/getlastOrder")
-    public ResponseEntity<OrderDTO> getLastOrder(){
-        return ResponseEntity.ok(orderService.getLastOrderByUser());
-    }
-
     @PostMapping("/createOrderFromCart")
-    public ResponseEntity<Order> createOrderFromCart(@RequestBody OrderDTO orderDTO){
+    public ResponseEntity<com.group.backend.entity.Order> createOrderFromCart(@RequestBody OrderDTO orderDTO){
         return ResponseEntity.ok(orderService.createOrderFromCart(orderDTO));
     }
     @DeleteMapping("/deleteUserOrder")

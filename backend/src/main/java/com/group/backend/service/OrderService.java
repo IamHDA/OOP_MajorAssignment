@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrderService {
     List<OrderDTO> getOrdersByUser();
-    OrderDTO getLastOrderByUser();
-    Order createOrderFromCart(OrderDTO orderDTO);
+    Order getLastOrderByUser();
+    com.group.backend.entity.Order createOrderFromCart(OrderDTO orderDTO);
     void deleteOrderUser();
 }

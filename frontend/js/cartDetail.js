@@ -17,6 +17,8 @@ function daucham(num){
 }
 
 async function getDataCartDetail() {
+    var accessToken = localStorage.getItem('accessToken');
+    console.log(accessToken);
     const response = await fetch('http://localhost:8080/cart-detail', {
         method: 'GET',
         headers: {
@@ -24,15 +26,16 @@ async function getDataCartDetail() {
             'Authorization': `Bearer ${accessToken}`
         }
     });
-    return response.json();
+    return await response.json();
 }
 
 async function buildCartDeTail(){
     const responseData = await getDataCartDetail();
     let cartTable = document.querySelector('.cart-table');
+    console.log(responseData);
     responseData.forEach(function(element){
-        const imgProduct = '<img src= "' + element.images[0].filePath + ".jpg" + '"alt=""></img>';
-        const nameProduct = '<a href="product.html" class="product__name">' + element.name + ' ' + '(' + element.specification.cpu + ' ' + element.specification.ram + ' ' + element.specification.rom + ' ' + element.specification.graphicsCard + ' ' + element.specification.screen + ')' +'</a>';
+        const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath + ".jpg" + '"alt=""></img>';
+        const nameProduct = '<a href="product.html" class="product__name">' + element.laptop.name + ' ' + '(' + element.laptop.specification.cpu + ' ' + element.laptop.specification.ram + ' ' + element.laptop.specification.rom + ' ' + element.laptop.specification.graphicsCard + ' ' + element.laptop.specification.screen + ')' +'</a>';
         const td1 = '<td>' + imgProduct + nameProduct + '</td>';
         const subButton = '<button class="left-button">-</button>';
         const counter = '<div class="laptop-counter">' + element.quantity + '</div>';
@@ -40,11 +43,11 @@ async function buildCartDeTail(){
         const adjust = '<div class="adjust">' + subButton + counter + addButton + '</div>';
         const trash = '<button class="trash-button"><img src="image/cart/trash-icon.png" class="trash-image"></button>';
         const adjustAndDelete = '<div class="adjust-delete-button">' + adjust + trash + '</div>';
-        let tmp = lamtron(element.price * (100 - element.sale) / 100).toString();
-        tmp = daucham(price);
+        let tmp = lamtron(element.laptop.price * (100 - element.laptop.sale) / 100).toString();
+        tmp = daucham(tmp);
         const unitPrice = '<p class="unit-price">' + tmp + '</p>';
         const totalUnitPrice = '<p class="total-unit-price"></p>';
-        const td2 = '<td>' + unitPrice + totalUnitPrice + '</td>';
+        const td2 = '<td>' + adjustAndDelete + unitPrice + totalUnitPrice + '</td>';
         const tableRow = '<tr class="table-row">' + td1 + td2 + '</tr>';
         cartTable.innerHTML += tableRow;
     });

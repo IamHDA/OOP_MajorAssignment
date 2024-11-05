@@ -1,18 +1,14 @@
 package com.group.backend.service.implement;
 
 import com.group.backend.dto.OrderDTO;
-import com.group.backend.entity.Cart_Detail;
 import com.group.backend.entity.Order;
 import com.group.backend.entity.User;
-import com.group.backend.repository.CartDetailRepository;
 import com.group.backend.repository.OrderRepository;
-import com.group.backend.repository.UserRepository;
 import com.group.backend.security.CurrentUser;
 import com.group.backend.service.OrderService;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,27 +28,27 @@ public class OrderServiceImp implements OrderService {
     @Override
     public List<OrderDTO> getOrdersByUser() {
         User thisUser = currentUser.getCurrentUser();
-        List<Order> orders = orderRepo.findByUserId(thisUser.getId());
-        List<OrderDTO> thisUserOrder = orders.stream()
+        List<com.group.backend.entity.Order> orders = orderRepo.findByUserId(thisUser.getId());
+        List<OrderDTO> thisUserOrderDTO = orders.stream()
                 .map(order -> modelMapper.map(order, OrderDTO.class))
                 .collect(Collectors.toList());
-        return thisUserOrder;
+        return thisUserOrderDTO;
     }
 
     @Override
-    public OrderDTO getLastOrderByUser() {
+    public Order getLastOrderByUser() {
         User user = currentUser.getCurrentUser();
-        List<Order> orders = orderRepo.getLastOrderByUser(user);
+        List<com.group.backend.entity.Order> orders = orderRepo.getLastOrderByUser(user);
         for(Order order : orders){
-            return modelMapper.map(order, OrderDTO.class);
+            return order;
         }
         return null;
     }
 
     @Override
-    public Order createOrderFromCart(OrderDTO orderDTO) {
+    public com.group.backend.entity.Order createOrderFromCart(OrderDTO orderDTO) {
         User user = currentUser.getCurrentUser();
-        Order order = modelMapper.map(orderDTO, Order.class);
+        com.group.backend.entity.Order order = modelMapper.map(orderDTO, com.group.backend.entity.Order.class);
         order.setUser(user);
         return orderRepo.save(order);
     }

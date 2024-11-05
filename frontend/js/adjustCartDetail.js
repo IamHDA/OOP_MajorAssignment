@@ -29,6 +29,7 @@ function daucham(num) {
 
 function adjustNumberProduct(){
     let totalPrice = document.querySelector('.total-price');
+    let tableRow = document.querySelectorAll('.table-row');
     tableRow.forEach(function(element){
         let buttonRight = element.querySelector('.right-button');
         let numberProduct = element.querySelector('.laptop-counter');
@@ -61,7 +62,7 @@ function adjustNumberProduct(){
                 totalUnitPrice.innerHTML = totalUnitPriceNumber;
 
                 // Chỉnh màu cho nút giảm khi sản phẩm bằng 1
-                if(numberProduct.textContent == "1"){
+                if(numberProduct.textContent === "1"){
                     buttonLeft.style.color = '#D4D1D1';
                 }
 

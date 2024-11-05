@@ -9,17 +9,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/order-detail")
 public class OrderDetailController {
 
     @Autowired
     private OrderDetailService orderDetailService;
 
-    @GetMapping("/orders/detail/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<List<OrderDetailDTO>> getOrderDetailByOrderId(@PathVariable long id) {
         return ResponseEntity.ok(orderDetailService.getOrderDetailsByOrderId(id));
     }
-//    @PostMapping("/orders/addOrderDetail")
-//    public ResponseEntity<OrderDetailDTO> addOrderDetail(@RequestBody OrderDetailDTO orderDetailDTO) {
-//        return ResponseEntity.ok(orderDetailService.addOrderDetail(orderDetailDTO));
-//    }
+    @PostMapping("/add")
+    public ResponseEntity<Void> addOrderDetail(@RequestBody List<OrderDetailDTO> orderDetailsDTO) {
+        orderDetailService.addOrderDetail(orderDetailsDTO);
+        return ResponseEntity.ok().build();
+    }
 }
