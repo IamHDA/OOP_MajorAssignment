@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface OrderService {
     List<OrderDTO> getOrderByUser();
-    Order getLastOrderByUser(User user);
+    Order getLastOrderByUser();
     Order createOrderFromCart(OrderDTO orderDTO);
     void deleteOrderUser();
+
 }

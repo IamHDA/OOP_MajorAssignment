@@ -16,7 +16,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query("""
         select o from Order o
         where o.user = :user
-        orderDTO by o.id desc
+        order by o.id desc
     """)
     List<Order> getLastOrderByUser(User user);
     List<Order> findByUserId(long customerId);
