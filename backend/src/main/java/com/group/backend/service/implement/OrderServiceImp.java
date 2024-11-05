@@ -39,6 +39,11 @@ public class OrderServiceImp implements OrderService {
     }
 
     @Override
+    public Order getLastOrderByUser(User user) {
+        return null;
+    }
+
+    @Override
     public Order createOrderFromCart(OrderDTO orderDTO) {
         User user = currentUser.getCurrentUser();
         Order order = modelMapper.map(orderDTO, Order.class);
