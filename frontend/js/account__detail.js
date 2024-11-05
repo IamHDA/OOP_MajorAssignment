@@ -4,10 +4,10 @@ var thayDoiMatKhau = document.querySelector(".thay-doi-mat-khau");
 var logOut = document.querySelector(".log-out");
 
 var account = document.querySelector(".account");
-
-account.addEventListener('click', function(){
+account.addEventListener('click', async function(){
     var text = document.querySelector(".text");
     // Lay ten 
+    await checkAccessTokenIsvalid();
     fetch('http://localhost:8080/user/info', {
         method: 'GET',
         headers: {
@@ -163,26 +163,8 @@ thongTinTaiKhoan.addEventListener('click', function(){
     var address = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-address__input");
     var phone = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-numberphone__input");
 
+
     var accessToken = localStorage.getItem('accessToken');
-
-    // kiem tra xem accessToken con hoat dong hay khong???
-    // fetch('https://api.example.com/protected-resource', {
-    // method: 'GET',
-    // headers: {
-    //     'Authorization': `Bearer ${accessToken}`
-    // }
-    // })
-    // .then(response => {
-    //     if (response.ok) {
-    //     console.log('Token còn hợp lệ.');
-    //     } else {
-    //     console.log('Token đã hết hạn hoặc không hợp lệ.');
-    //     }
-    // })
-    // .catch(error => {
-    //     console.error('Có lỗi xảy ra:', error);
-    // });
-
     fetch('http://localhost:8080/user/info', {
         method: 'GET',
         headers: {
