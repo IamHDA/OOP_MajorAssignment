@@ -14,8 +14,9 @@ public class PasswordResetController {
     @Autowired
     private PasswordResetService passwordResetService;
 
-    @PostMapping("/sendMail")
-    public ResponseEntity<String> sendResetMail(String email) throws MessagingException {
+    @GetMapping("/sendMail")
+    public ResponseEntity<String> sendResetMail(@RequestBody String email) throws MessagingException {
+        System.out.println(email);
         return ResponseEntity.ok(passwordResetService.sendResetMail(email));
     }
 

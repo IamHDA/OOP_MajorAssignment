@@ -199,10 +199,8 @@ async function changeUserInfor() {
                 'Authorization': `Bearer ${accessToken}`
                 },
                 body: JSON.stringify(data)  
-            })
-                localStorage.setItem('name', name);
-                localStorage.setItem('address', address);
-                localStorage.setItem('phone', phone);
+            });
+                localStorage.setItem('name', name.value);
                 alert("Cập nhật thông tin thành công");
         })
     })
@@ -230,7 +228,7 @@ async function changePassword(){
             war1.style.display = 'block';
             // lay mat khau hien tai
             var accessToken = localStorage.getItem('accessToken');
-            let response = await fetch('http://localhost:8080/account', {
+            let response = await fetch('http://localhost:8080/info', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -247,7 +245,7 @@ async function changePassword(){
                 const data = {
                     pass: newPass1
                 }
-                await fetch('http://localhost:8080/account',{
+                await fetch('http://localhost:8080/changePass',{
                     method: 'PUT',
                     headers: {
                     'Content-Type': 'application/json'
