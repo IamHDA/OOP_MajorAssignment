@@ -42,7 +42,7 @@ public class CartDetailServiceImp implements CartDetailService {
     }
 
     @Override
-    public void updateOrInsert(CartDetailDTO cartDetailDTO) {
+    public void addToCart(CartDetailDTO cartDetailDTO) {
         Laptop laptop = laptopRepo.findById(cartDetailDTO.getLaptop().getId());
         LaptopSummaryDTO laptopSummaryDTO = formatService.formattedLaptopSummary(modelMapper.map(laptop, LaptopSummaryDTO.class));
         User user = currentUser.getCurrentUser();
@@ -50,6 +50,13 @@ public class CartDetailServiceImp implements CartDetailService {
         cartDetailDTO.setUnitPrice(formatService.priceFormat(laptop.getDiscountedPrice()));
         Cart_Detail cartDetail = modelMapper.map(cartDetailDTO, Cart_Detail.class);
         cartDetail.setUser(user);
+        cartDetailRepo.save(cartDetail);
+    }
+
+    @Override
+    public void adjustQuantity(CartDetailDTO cartDetailDTO) {
+        Cart_Detail cartDetail = cartDetailRepo.findById(cartDetailDTO.getId()).orElse(null);
+        cartDetail.setQuantity(cartDetailDTO.getQuantity());
         cartDetailRepo.save(cartDetail);
     }
 

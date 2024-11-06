@@ -47,6 +47,7 @@ async function getDataCartDetail() {
 // buildCartDetail
 async function buildCartDeTail(){
     const responseData = await getDataCartDetail();
+    let sum = 0;
     let cartTable = document.querySelector('.cart-table');
     console.log(responseData);
     responseData.forEach(function(element){
@@ -60,6 +61,7 @@ async function buildCartDeTail(){
         const trash = '<button class="trash-button"><img src="image/cart/trash-icon.png" class="trash-image"></button>';
         const adjustAndDelete = '<div class="adjust-delete-button">' + adjust + trash + '</div>';
         let tmp = element.unitPrice.toString();
+        sum += element.unitPrice;
         tmp = daucham(tmp) + " VNĐ";
         const unitPrice = '<p class="unit-price">' + tmp + '</p>';
         let tmp2 = element.unitPrice * parseInt(element.quantity);
@@ -70,7 +72,7 @@ async function buildCartDeTail(){
         cartTable.innerHTML += tableRow;
     });
     const totalPriceText = '<td class="total-price-text">Tổng giá trị đơn hàng</td>';
-    const totalPrice = '<td class="total-price">' + sum + '</td>';
+    const totalPrice = '<td class="total-price">' + daucham(sum.toString()) + " VNĐ" + '</td>';
     cartTable.innerHTML += '<tr>' + totalPriceText + totalPrice + '</td>';
 } 
 

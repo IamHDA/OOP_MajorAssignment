@@ -20,7 +20,7 @@ public class FormatServiceImp implements FormatService {
     @Override
     public long priceFormat(long price) {
         price /= 100000;
-        price = Math.round(price) * 10000;
+        price = Math.round(price) * 100000;
         return price;
     }
 
