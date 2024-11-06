@@ -54,6 +54,7 @@ function getDaTa(){
         ulProductSpecification.innerHTML += '<li>Trọng lượng : ' + response.specification.weight + '</li>';
         ulProductSpecification.innerHTML += '<li>Webcam : ' +  response.specification.webcam + '</li>';
         ulProductSpecification.innerHTML += '<li>Hệ điều hành: ' +  response.specification.operatingSystem + '</li>';
+        specification.connectionPort.replace(/\n/g, "<br>");
         ulProductSpecification.innerHTML += '<li>Cổng kết nối: ' + response.specification.connectionPort + '</li>';
 
         let basePrice = response.price.toString();

@@ -46,11 +46,13 @@ async function buildCartDeTail(){
         const trash = '<button class="trash-button"><img src="image/cart/trash-icon.png" class="trash-image"></button>';
         const adjustAndDelete = '<div class="adjust-delete-button">' + adjust + trash + '</div>';
         let tmp = lamtron(element.price * (100 - element.sale) / 100).toString();
-        tmp = daucham(price);
+        tmp = daucham(price) + " VNĐ";
         const unitPrice = '<p class="unit-price">' + tmp + '</p>';
-        const totalUnitPrice = '<p class="total-unit-price"></p>';
+        let tmp2 = lamtron(element.price * (100 - element.sale) / 100) * parseInt(element.quantity);
+        tmp2 = tmp2.toString() + " VNĐ";
+        const totalUnitPrice = '<p class="total-unit-price">' + tmp2 + '</p>';
         const td2 = '<td>' + unitPrice + totalUnitPrice + '</td>';
-        const tableRow = '<tr class="table-row">' + td1 + td2 + '</tr>';
+        const tableRow = '<tr class="table-row">' + td1 + td2 + adjustAndDelete + '</tr>';
         cartTable.innerHTML += tableRow;
     });
 } 
@@ -193,7 +195,7 @@ function deleteAllProduct(){
 }
 
 // main
-async function Main(){
+async function mainCartDetail(){
     await buildCartDeTail();
     let cartDetail = document.querySelector('.my-cart-detail');
     let emptyCart = document.querySelector('.empty-cart');
@@ -212,4 +214,4 @@ async function Main(){
     deleteAllProduct();
 }
 
-Main();
+mainCartDetail();

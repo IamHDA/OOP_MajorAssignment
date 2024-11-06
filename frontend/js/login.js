@@ -41,11 +41,11 @@ async function saveUserName(){
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
         }    
-    })
+    });
 
     response = await response.json();
     localStorage.setItem("name", response.name);
-    tmp = '<p> Xin chào ' + response.tmpname + '<p>';
+    tmp = '<p> Xin chào ' + response.name + '<p>';
     var account = document.querySelector('.account');
     account.innerHTML = tmp;     
 }
