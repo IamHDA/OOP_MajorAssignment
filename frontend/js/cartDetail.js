@@ -47,9 +47,11 @@ async function getDataCartDetail() {
 // buildCartDetail
 async function buildCartDeTail(){
     const responseData = await getDataCartDetail();
+    let sum = 0;
     let cartTable = document.querySelector('.cart-table');
     console.log(responseData);
     responseData.forEach(function(element){
+        const idTableRow = '<div class = "id__table__row">' + element.id + '</div>'; 
         const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath + ".jpg" + '"alt=""></img>';
         const nameProduct = '<a href="product.html" class="laptop-name">' + element.laptop.name + ' ' + '(' + element.laptop.specification.cpu + ', ' + element.laptop.specification.ram + ', ' + element.laptop.specification.rom + ', ' + element.laptop.specification.graphicsCard + ', ' + element.laptop.specification.screen + ')' +'</a>';
         const td1 = '<td>' + imgProduct + nameProduct + '</td>';
@@ -60,17 +62,18 @@ async function buildCartDeTail(){
         const trash = '<button class="trash-button"><img src="image/cart/trash-icon.png" class="trash-image"></button>';
         const adjustAndDelete = '<div class="adjust-delete-button">' + adjust + trash + '</div>';
         let tmp = element.unitPrice.toString();
+        sum += element.unitPrice * element.quantity;
         tmp = daucham(tmp) + " VNĐ";
         const unitPrice = '<p class="unit-price">' + tmp + '</p>';
         let tmp2 = element.unitPrice * parseInt(element.quantity);
         tmp2 = daucham(tmp2.toString()) + " VNĐ";
         const totalUnitPrice = '<p class="total-unit-price">' + tmp2 + '</p>';
         const td2 = '<td>' + adjustAndDelete + unitPrice + totalUnitPrice + '</td>';
-        const tableRow = '<tr class="table-row">' + td1 + td2 + '</tr>';
+        const tableRow = '<tr class="table-row">' + idTableRow + td1 + td2 + '</tr>';
         cartTable.innerHTML += tableRow;
     });
     const totalPriceText = '<td class="total-price-text">Tổng giá trị đơn hàng</td>';
-    const totalPrice = '<td class="total-price">' + sum + '</td>';
+    const totalPrice = '<td class="total-price">' + daucham(sum.toString()) + " VNĐ" + '</td>';
     cartTable.innerHTML += '<tr>' + totalPriceText + totalPrice + '</td>';
 } 
 
@@ -168,7 +171,7 @@ function deleteProduct(){
     cartCounter.innerHTML = "(" + countTableRow + " sản phẩm" + ")";
     for(let i = 0; i < tableRow.length; i++){
         let deleteButton = tableRow[i].querySelector('.trash-button');
-        deleteButton.addEventListener('click', function(){
+        deleteButton.addEventListener('click', async function(){
             // thay doi tong gia cart
             let totalUnitPrice = tableRow[i].querySelector('.total-unit-price');
             let totalUnitPriceNumber = totalUnitPrice.textContent;
@@ -190,6 +193,11 @@ function deleteProduct(){
             countTableRow -= 1;
             cartCounter.innerHTML = "(" + countTableRow + " sản phẩm" + ")";
             console.log(tableRow.length);
+
+            let id = document.querySelector('.id__table__row');
+
+            await fetch(`http://localhost:8080/delete/${id}`);
+
             if (countTableRow == 0){
                 cartDetail.style.display = 'none';
                 emptyCart.style.display = 'block';
@@ -203,13 +211,15 @@ function deleteProduct(){
 function deleteAllProduct(){
     let buttonClear = document.querySelector('.make-empty-button');
     let cartCounter = document.querySelector('.cart-counter');
-    buttonClear.addEventListener('click', function(){
+    buttonClear.addEventListener('click', async function(){
         for(let i = 0; i < tableRow.length; i++){
             tableRow[i].remove();
         }
         cartCounter.innerHTML = "(0 sản phẩm)";
         cartDetail.style.display = 'none';
         emptyCart.style.display = 'block';
+
+        await fetch(`http://localhost:8080/deleteUserCart`);
     })
 }
 
