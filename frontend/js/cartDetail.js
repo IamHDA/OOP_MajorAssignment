@@ -195,10 +195,11 @@ function deleteProduct(){
             console.log(tableRow.length);
 
             let id = document.querySelector('.id__table__row').textContent;
+            id = parseInt(id, 10);
             let accessToken = localStorage.getItem('accessToken');
 
-            await fetch(`http://localhost:8080/delete/${id}`,{
-                method: 'GET',
+            await fetch(`http://localhost:8080/cart-detail/delete/${id}`,{
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${accessToken}`
@@ -216,8 +217,11 @@ function deleteProduct(){
 
 // deletaAllProduct
 function deleteAllProduct(){
+    let tableRow = document.querySelectorAll('.table-row');
     let buttonClear = document.querySelector('.make-empty-button');
     let cartCounter = document.querySelector('.cart-counter');
+    let cartDetail = document.querySelector('.my-cart-detail');
+    let emptyCart = document.querySelector('.empty-cart');
     buttonClear.addEventListener('click', async function(){
         for(let i = 0; i < tableRow.length; i++){
             tableRow[i].remove();
@@ -227,8 +231,8 @@ function deleteAllProduct(){
         emptyCart.style.display = 'block';
 
         let accessToken = localStorage.getItem('accessToken');
-        await fetch(`http://localhost:8080/deleteUserCart`, {
-            method: 'GET',
+        await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
+            method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${accessToken}`
