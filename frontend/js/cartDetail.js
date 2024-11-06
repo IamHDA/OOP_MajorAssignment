@@ -226,7 +226,14 @@ function deleteAllProduct(){
         cartDetail.style.display = 'none';
         emptyCart.style.display = 'block';
 
-        await fetch(`http://localhost:8080/deleteUserCart`);
+        let accessToken = localStorage.getItem('accessToken');
+        await fetch(`http://localhost:8080/deleteUserCart`, {
+            method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+        });
     })
 }
 
