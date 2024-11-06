@@ -41,8 +41,8 @@ async function saveUserName(){
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
         }    
-    })
-    
+    });
+
     response = await response.json();
     localStorage.setItem("name", response.name);
     tmp = '<p> Xin chào ' + response.name + '<p>';
