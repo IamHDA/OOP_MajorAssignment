@@ -69,6 +69,9 @@ async function buildCartDeTail(){
         const tableRow = '<tr class="table-row">' + td1 + td2 + '</tr>';
         cartTable.innerHTML += tableRow;
     });
+    const totalPriceText = '<td class="total-price-text">Tổng giá trị đơn hàng</td>';
+    const totalPrice = '<td class="total-price">' + sum + '</td>';
+    cartTable.innerHTML += '<tr>' + totalPriceText + totalPrice + '</td>';
 } 
 
 // adjustNumberProduct
