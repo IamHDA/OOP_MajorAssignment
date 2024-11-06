@@ -19,7 +19,7 @@ function daucham(num){
 
 function boDauCham(num){
     res = ""
-    for(let i = 0; i < num.length(); i++){
+    for(let i = 0; i < num.length; i++){
         if(num[i] != "."){
             res += num[i];
         }
@@ -46,13 +46,12 @@ async function getDataCartDetail() {
 
 // buildCartDetail
 async function buildCartDeTail(){
-    let sum = 0;
     const responseData = await getDataCartDetail();
     let cartTable = document.querySelector('.cart-table');
     console.log(responseData);
     responseData.forEach(function(element){
         const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath + ".jpg" + '"alt=""></img>';
-        const nameProduct = '<a href="product.html" class="product__name">' + element.laptop.name + ' ' + '(' + element.laptop.specification.cpu + ' ' + element.laptop.specification.ram + ' ' + element.laptop.specification.rom + ' ' + element.laptop.specification.graphicsCard + ' ' + element.laptop.specification.screen + ')' +'</a>';
+        const nameProduct = '<a href="product.html" class="laptop-name">' + element.laptop.name + ' ' + '(' + element.laptop.specification.cpu + ', ' + element.laptop.specification.ram + ', ' + element.laptop.specification.rom + ', ' + element.laptop.specification.graphicsCard + ', ' + element.laptop.specification.screen + ')' +'</a>';
         const td1 = '<td>' + imgProduct + nameProduct + '</td>';
         const subButton = '<button class="left-button">-</button>';
         const counter = '<div class="laptop-counter">' + element.quantity + '</div>';
@@ -60,22 +59,16 @@ async function buildCartDeTail(){
         const adjust = '<div class="adjust">' + subButton + counter + addButton + '</div>';
         const trash = '<button class="trash-button"><img src="image/cart/trash-icon.png" class="trash-image"></button>';
         const adjustAndDelete = '<div class="adjust-delete-button">' + adjust + trash + '</div>';
-        sum += element.unitPrice * element.quantity;
         let tmp = element.unitPrice.toString();
         tmp = daucham(tmp) + " VNĐ";
         const unitPrice = '<p class="unit-price">' + tmp + '</p>';
         let tmp2 = element.unitPrice * parseInt(element.quantity);
         tmp2 = daucham(tmp2.toString()) + " VNĐ";
         const totalUnitPrice = '<p class="total-unit-price">' + tmp2 + '</p>';
-        const td2 = '<td>' + unitPrice + totalUnitPrice + '</td>';
-
-        const tableRow = '<tr class="table-row">' + td1 + td2 + adjustAndDelete + '</tr>';
+        const td2 = '<td>' + adjustAndDelete + unitPrice + totalUnitPrice + '</td>';
+        const tableRow = '<tr class="table-row">' + td1 + td2 + '</tr>';
         cartTable.innerHTML += tableRow;
     });
-
-    const totalPriceText = '<td class="total-price-text">Tổng giá trị đơn hàng</td>';
-    const totalPrice = '<td class="total-price">' + sum + '</td>';
-    cartTable += '<tr>' + totalPriceText + totalPrice + '</td>';
 } 
 
 // adjustNumberProduct
