@@ -33,26 +33,30 @@ function secondaryRegister(){
 }
 
 //saveUserName
-async function saveUserName(){
-    var accessToken = localStorage.getItem('accessToken');
-    let response = await fetch('http://localhost:8080/user/info', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        }    
-    });
 
-    response = await response.json();
-    localStorage.setItem("name", response.name);
-    tmp = '<p> Xin chào ' + response.name + '<p>';
-    var account = document.querySelector('.account');
-    account.innerHTML = tmp;     
-}
 
 // login
 async function login(){
     var loginButton = document.querySelector(".login__button");
+
+    async function saveUserName(){
+        console.log("SDFDSFDSFDSFDSF")
+        var accessToken = localStorage.getItem('accessToken');
+        let response = await fetch('http://localhost:8080/user/info', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+    
+        response = await response.json();
+        
+        localStorage.setItem('name', response.name);
+        var tmp = '<p> Xin chào ' + response.name + '<p>';
+        var account = document.querySelector('.account');
+        account.innerHTML = tmp;     
+    }
 
     loginButton.addEventListener('click', async function(){
         var email = document.querySelector('.login__box__email').value;
@@ -70,7 +74,7 @@ async function login(){
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data) // Chuyển dữ liệu thành JSON
-        })
+        });
         
         response = await response.json();
 
@@ -90,6 +94,8 @@ async function login(){
 
             localStorage.setItem('accessToken', response.accessToken);
             localStorage.setItem('refreshToken', response.refreshToken);
+            console.log("SDFDSFDSFD");
+
             await saveUserName();
         }    
     })

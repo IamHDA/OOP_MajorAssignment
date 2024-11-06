@@ -73,6 +73,7 @@ a{
     color: rgb(255, 255, 255);
     cursor: pointer;
     margin-right: 0px;
+    margin-left: auto;
 }
 
 .header__top h6{

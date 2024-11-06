@@ -18,8 +18,8 @@ public class FormatServiceImp implements FormatService {
 
     @Override
     public long priceFormat(long price) {
-        if((int)price % 10000 != 0){
-            price /= 10000;
+        if((int)price % 100000 == 0){
+            price /= 100000;
             price = Math.round(price) * 10000;
             return price;
         }

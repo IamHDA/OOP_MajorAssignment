@@ -83,18 +83,18 @@ async function selectCategoryProduct(){
                 'Content-Type': 'application/json',
             }       
         })
+
+        data = await response.json();
+        await buildSelectCategoryProduct(data);
     }
     catch (error) {
         console.error('Error fetching data:', error);
     }
-
-    data = await response.json();
-    await buildSelectCategoryProduct(data);
 }
 
 // main
 async function mainLapTopTheoMuc(){
-    await getUserName();
+    
     if(localStorage.getItem('action') === "search"){
         await searchProduct();
     }
