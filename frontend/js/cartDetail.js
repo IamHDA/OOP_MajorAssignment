@@ -20,7 +20,7 @@ function daucham(num){
 // getDataCartDetail
 async function getDataCartDetail() {
     let accessToken = localStorage.getItem('accessToken');
-    await checkAccessTokenIsvalid(); // check accessToken   
+    // await checkAccessTokenIsvalid(); // check accessToken   
     const response = await fetch('http://localhost:8080/cart-detail', {
         method: 'GET',
         headers: {
@@ -37,8 +37,8 @@ async function buildCartDeTail(){
     let cartTable = document.querySelector('.cart-table');
     console.log(responseData);
     responseData.forEach(function(element){
-        const imgProduct = '<img class = "laptop-img" src= "' + element.images[0].filePath + ".jpg" + '"alt=""></img>';
-        const nameProduct = '<a href="product.html" class="product__name">' + element.name + ' ' + '(' + element.specification.cpu + ' ' + element.specification.ram + ' ' + element.specification.rom + ' ' + element.specification.graphicsCard + ' ' + element.specification.screen + ')' +'</a>';
+        const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath + ".jpg" + '"alt=""></img>';
+        const nameProduct = '<a href="product.html" class="product__name">' + element.laptop.name + ' ' + '(' + element.laptop.specification.cpu + ' ' + element.laptop.specification.ram + ' ' + element.laptop.specification.rom + ' ' + element.laptop.specification.graphicsCard + ' ' + element.laptop.specification.screen + ')' +'</a>';
         const td1 = '<td>' + imgProduct + nameProduct + '</td>';
         const subButton = '<button class="left-button">-</button>';
         const counter = '<div class="laptop-counter">' + element.quantity + '</div>';
@@ -46,15 +46,14 @@ async function buildCartDeTail(){
         const adjust = '<div class="adjust">' + subButton + counter + addButton + '</div>';
         const trash = '<button class="trash-button"><img src="image/cart/trash-icon.png" class="trash-image"></button>';
         const adjustAndDelete = '<div class="adjust-delete-button">' + adjust + trash + '</div>';
-        let tmp = lamtron(element.price * (100 - element.sale) / 100).toString();
-        tmp = daucham(price) + " VNĐ";
+        let tmp = element.unitPrice.toString();
+        tmp = daucham(tmp) + " VNĐ";
         const unitPrice = '<p class="unit-price">' + tmp + '</p>';
-        let tmp2 = lamtron(element.price * (100 - element.sale) / 100) * parseInt(element.quantity);
-        tmp2 = tmp2.toString() + " VNĐ";
+        let tmp2 = element.unitPrice * parseInt(element.quantity);
+        tmp2 = daucham(tmp2.toString()) + " VNĐ";
         const totalUnitPrice = '<p class="total-unit-price">' + tmp2 + '</p>';
         const td2 = '<td>' + unitPrice + totalUnitPrice + '</td>';
         const tableRow = '<tr class="table-row">' + td1 + td2 + adjustAndDelete + '</tr>';
-
         cartTable.innerHTML += tableRow;
     });
 } 

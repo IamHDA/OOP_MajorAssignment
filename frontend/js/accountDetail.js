@@ -266,7 +266,7 @@ async function changePassword(){
     })
 }
 // log out
-function logOut(){
+function logOutFunc(){
     logOut.addEventListener('click', function(){
         console.log("event called");
         localStorage.clear();
@@ -275,13 +275,13 @@ function logOut(){
     })
 }
 
-async function mainAccountDetail(params) {
+async function mainAccountDetail() {
     await getDataUserName();
     hoverSelection();
     clickSelection();
     await changeUserInfor();
     await changePassword();
-    logOut();
+    logOutFunc();
 }
 
 mainAccountDetail();

@@ -43,7 +43,7 @@ function cssRegister(){
 }
 
 async function saveUserName(){
-    // await checkAccessTokenIsvalid();
+    var accessToken = localStorage.getItem('accessToken');
     let response = await fetch('http://localhost:8080/user/info', {
         method: 'GET',
         headers: {
@@ -187,6 +187,14 @@ async function register(){
         }
     })
 }
+
+async function mainRegister(){
+    openRegisterBox();
+    closeRegisterBox();
+    await register();
+}
+
+mainRegister();
 
 async function mainRegister(){
     openRegisterBox();

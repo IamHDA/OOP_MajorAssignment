@@ -1,6 +1,8 @@
 package com.group.backend.controller;
 
 import com.group.backend.dto.UserDTO;
+import com.group.backend.entity.User;
+import com.group.backend.security.CurrentUser;
 import com.group.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private CurrentUser currentUser;
 
     @GetMapping("/info")
     public ResponseEntity<UserDTO> showInformation(){
@@ -26,6 +30,7 @@ public class UserController {
 
     @PutMapping("/changePass")
     public ResponseEntity<String> changePass(@RequestBody PasswordDTO passwordDTO){
-        return ResponseEntity.ok(userService.changePass(passwordDTO));
+        User thisUser = currentUser.getCurrentUser();
+        return ResponseEntity.ok(userService.changePass(thisUser, passwordDTO));
     }
 }

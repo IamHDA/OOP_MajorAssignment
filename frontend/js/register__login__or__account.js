@@ -14,3 +14,5 @@ function user_status() {
         account.textContent = `Xin chào ${tmpname}`;
     }
 }
+
+user_status();
