@@ -17,6 +17,19 @@ function daucham(num){
     return tmp;
 }
 
+function boDauCham(num){
+    res = ""
+    for(let i = 0; i < num.length; i++){
+        if(num[i] != "."){
+            res += num[i];
+        }
+        if(num[i] == " " ){
+            break;
+        }
+    }
+    return res;
+}
+
 // getDataCartDetail
 async function getDataCartDetail() {
     let accessToken = localStorage.getItem('accessToken');
@@ -38,7 +51,7 @@ async function buildCartDeTail(){
     console.log(responseData);
     responseData.forEach(function(element){
         const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath + ".jpg" + '"alt=""></img>';
-        const nameProduct = '<a href="product.html" class="product__name">' + element.laptop.name + ' ' + '(' + element.laptop.specification.cpu + ' ' + element.laptop.specification.ram + ' ' + element.laptop.specification.rom + ' ' + element.laptop.specification.graphicsCard + ' ' + element.laptop.specification.screen + ')' +'</a>';
+        const nameProduct = '<a href="product.html" class="laptop-name">' + element.laptop.name + ' ' + '(' + element.laptop.specification.cpu + ', ' + element.laptop.specification.ram + ', ' + element.laptop.specification.rom + ', ' + element.laptop.specification.graphicsCard + ', ' + element.laptop.specification.screen + ')' +'</a>';
         const td1 = '<td>' + imgProduct + nameProduct + '</td>';
         const subButton = '<button class="left-button">-</button>';
         const counter = '<div class="laptop-counter">' + element.quantity + '</div>';
@@ -52,8 +65,8 @@ async function buildCartDeTail(){
         let tmp2 = element.unitPrice * parseInt(element.quantity);
         tmp2 = daucham(tmp2.toString()) + " VNĐ";
         const totalUnitPrice = '<p class="total-unit-price">' + tmp2 + '</p>';
-        const td2 = '<td>' + unitPrice + totalUnitPrice + '</td>';
-        const tableRow = '<tr class="table-row">' + td1 + td2 + adjustAndDelete + '</tr>';
+        const td2 = '<td>' + adjustAndDelete + unitPrice + totalUnitPrice + '</td>';
+        const tableRow = '<tr class="table-row">' + td1 + td2 + '</tr>';
         cartTable.innerHTML += tableRow;
     });
 } 
@@ -61,6 +74,7 @@ async function buildCartDeTail(){
 // adjustNumberProduct
 function adjustNumberProduct(){
     let totalPrice = document.querySelector('.total-price');
+    let tableRow = document.querySelectorAll('.table-row');
     tableRow.forEach(function(element){
         let buttonRight = element.querySelector('.right-button');
         let numberProduct = element.querySelector('.laptop-counter');
@@ -145,6 +159,7 @@ function adjustNumberProduct(){
 
 // deleteProduct
 function deleteProduct(){
+    let tableRow = document.querySelectorAll('.table-row');
     let countTableRow = tableRow.length;
     let cartCounter = document.querySelector('.cart-counter');
     cartCounter.innerHTML = "(" + countTableRow + " sản phẩm" + ")";

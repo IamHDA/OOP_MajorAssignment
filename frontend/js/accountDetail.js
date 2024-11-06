@@ -11,27 +11,28 @@ var thayDoiMatKhauBox = document.querySelector('.account__detail__content___thay
 var empty = document.querySelector('.empty');
 
 async function getDataUserName() {
-    account.addEventListener('click', async function(){
-        var text = document.querySelector("#taikhoancua");
-        let accessToken = localStorage.getItem("accessToken");
-        // Lay ten 
-        await checkAccessTokenIsvalid();
-        let response = await fetch('http://localhost:8080/user/info', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
-            }       
-        });
-        response = await response.json();
-        var tmpname = '<p class="user-name">' + response.name + '</p>';
-        var tmp = 'Tài khoản của, ' + '\n' + tmpname;
-        text.innerHTML = tmp;
-        tmpname = response.name;
-        tmp = '<p> Xin chào ' + tmpname + '<p>';
-        var account = document.querySelector('.account');
-        account.innerHTML = tmp;
-    })
+    
+    var text = document.querySelector("#taikhoancua");
+    let accessToken = localStorage.getItem("accessToken");
+    // Lay ten 
+    // await checkAccessTokenIsvalid();
+    let response = await fetch('http://localhost:8080/user/info', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        }       
+    });
+    response = await response.json();
+    var tmpname = '<p class="user-name">' + response.name + '</p>';
+    var tmp = 'Tài khoản của, ' + '\n' + tmpname;
+    text.innerHTML = tmp;
+    console.log(tmpname);
+    text.style.fontFamily = "Arial, sans-serif";
+    tmpname = response.name;
+    tmp = '<p> Xin chào ' + tmpname + '<p>';
+    var account = document.querySelector('.account');
+    account.innerHTML = tmp;
 }
 // hover selection
 function hoverSelection(){
@@ -229,7 +230,7 @@ async function changePassword(){
             // lay mat khau hien tai
             var accessToken = localStorage.getItem('accessToken');
             const data = {
-                pass: newPass1
+                password: newPass1
             }
             let response = await fetch('http://localhost:8080/user/changePass',{
                 method: 'PUT',
@@ -248,9 +249,7 @@ async function changePassword(){
                 currentPass = "";
                 newPass1 = "";
                 newPass2 = "";
-            }
-            
-            else{
+            }else{
                 alert("Mật khẩu mới không được trùng với mật khẩu trước đó!");
             }
         }

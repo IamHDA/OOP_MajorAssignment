@@ -40,7 +40,6 @@ async function login(){
     var loginButton = document.querySelector(".login__button");
 
     async function saveUserName(){
-        console.log("SDFDSFDSFDSFDSF")
         var accessToken = localStorage.getItem('accessToken');
         let response = await fetch('http://localhost:8080/user/info', {
             method: 'GET',
