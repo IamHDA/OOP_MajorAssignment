@@ -3,8 +3,6 @@ package com.group.backend.repository;
 import com.group.backend.entity.Order;
 import com.group.backend.entity.User;
 import jakarta.transaction.Transactional;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
