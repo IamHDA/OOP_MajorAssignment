@@ -225,40 +225,33 @@ async function changePassword(){
         }
 
         else{
-            war1.style.display = 'block';
+            war1.style.display = 'none';
             // lay mat khau hien tai
             var accessToken = localStorage.getItem('accessToken');
-            let response = await fetch('http://localhost:8080/info', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`
-                }       
-            });
-            response = await response.json();
-            var pass = response.pass;
-            if(pass != currentPass){
-                war2.style.display = 'block';
+            const data = {
+                pass: newPass1
             }
-            else{
-                war2.style.display = 'none';
-                const data = {
-                    pass: newPass1
-                }
-                await fetch('http://localhost:8080/changePass',{
-                    method: 'PUT',
-                    headers: {
-                    'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-                
+            let response = await fetch('http://localhost:8080/user/changePass',{
+                method: 'PUT',
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+                },
+                body: JSON.stringify(data)
+            });
+            
+            response = await response.text();
+            
+            if(response === "Change password successful"){
                 alert("Thay đổi mật khẩu thành công!");
-    
-                // reset
+                 // reset
                 currentPass = "";
                 newPass1 = "";
                 newPass2 = "";
+            }
+            
+            else{
+                alert("Mật khẩu mới không được trùng với mật khẩu trước đó!");
             }
         }
     })
