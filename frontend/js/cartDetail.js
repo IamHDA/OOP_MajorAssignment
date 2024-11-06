@@ -194,9 +194,16 @@ function deleteProduct(){
             cartCounter.innerHTML = "(" + countTableRow + " sản phẩm" + ")";
             console.log(tableRow.length);
 
-            let id = document.querySelector('.id__table__row');
+            let id = document.querySelector('.id__table__row').textContent;
+            let accessToken = localStorage.getItem('accessToken');
 
-            await fetch(`http://localhost:8080/delete/${id}`);
+            await fetch(`http://localhost:8080/delete/${id}`,{
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            });
 
             if (countTableRow == 0){
                 cartDetail.style.display = 'none';
