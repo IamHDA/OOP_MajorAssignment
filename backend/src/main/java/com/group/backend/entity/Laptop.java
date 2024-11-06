@@ -49,4 +49,9 @@ public class Laptop {
 
     @OneToMany(mappedBy = "laptop", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Laptop_Category> laptopCategories;
+
+    public long getDiscountedPrice(){
+        double discount = 1 - sale/100.0;
+        return (long)(price * discount);
+    }
 }

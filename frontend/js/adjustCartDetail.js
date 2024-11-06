@@ -1,67 +1,35 @@
-function lamtron(num) {
-    return Math.round(num / 100000) * 100000;
+function boDauCham(number){
+    let res = "";
+    for(let i = 0; i < number.length; i++){
+        if(number[i] != "."){
+            res += number[i];
+        }
+        if(number[i] == " "){
+            break;
+        }
+    }
+    return res;
 }
 
-
-function daucham(num){
+function daucham(num) {
     let tmp = "";
     let mark = 0;
-    for(let i = num.length - 1; i >= 0; i--){
+    for (let i = num.length - 1; i >= 0; i--) {
         mark += 1;
         tmp = num[i] + tmp;
-        if(mark == 3 && i != 0){
+        if (mark == 3 && i != 0) {
             tmp = "." + tmp;
-            mark = 0
+            mark = 0;
         }
     }
     return tmp;
 }
 
-// getDataCartDetail
-async function getDataCartDetail() {
-    let accessToken = localStorage.getItem('accessToken');
-    await checkAccessTokenIsvalid(); // check accessToken   
-    const response = await fetch('http://localhost:8080/cart-detail', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        }
-    });
-    return await response.json();
-}
+// -------------------------------------------
 
-// buildCartDetail
-async function buildCartDeTail(){
-    const responseData = await getDataCartDetail();
-    let cartTable = document.querySelector('.cart-table');
-    console.log(responseData);
-    responseData.forEach(function(element){
-        const imgProduct = '<img class = "laptop-img" src= "' + element.images[0].filePath + ".jpg" + '"alt=""></img>';
-        const nameProduct = '<a href="product.html" class="product__name">' + element.name + ' ' + '(' + element.specification.cpu + ' ' + element.specification.ram + ' ' + element.specification.rom + ' ' + element.specification.graphicsCard + ' ' + element.specification.screen + ')' +'</a>';
-        const td1 = '<td>' + imgProduct + nameProduct + '</td>';
-        const subButton = '<button class="left-button">-</button>';
-        const counter = '<div class="laptop-counter">' + element.quantity + '</div>';
-        const addButton = '<button class="right-button">+</button>';
-        const adjust = '<div class="adjust">' + subButton + counter + addButton + '</div>';
-        const trash = '<button class="trash-button"><img src="image/cart/trash-icon.png" class="trash-image"></button>';
-        const adjustAndDelete = '<div class="adjust-delete-button">' + adjust + trash + '</div>';
-        let tmp = lamtron(element.price * (100 - element.sale) / 100).toString();
-        tmp = daucham(price) + " VNĐ";
-        const unitPrice = '<p class="unit-price">' + tmp + '</p>';
-        let tmp2 = lamtron(element.price * (100 - element.sale) / 100) * parseInt(element.quantity);
-        tmp2 = tmp2.toString() + " VNĐ";
-        const totalUnitPrice = '<p class="total-unit-price">' + tmp2 + '</p>';
-        const td2 = '<td>' + unitPrice + totalUnitPrice + '</td>';
-        const tableRow = '<tr class="table-row">' + td1 + td2 + adjustAndDelete + '</tr>';
-
-        cartTable.innerHTML += tableRow;
-    });
-} 
-
-// adjustNumberProduct
 function adjustNumberProduct(){
     let totalPrice = document.querySelector('.total-price');
+    let tableRow = document.querySelectorAll('.table-row');
     tableRow.forEach(function(element){
         let buttonRight = element.querySelector('.right-button');
         let numberProduct = element.querySelector('.laptop-counter');
@@ -94,7 +62,7 @@ function adjustNumberProduct(){
                 totalUnitPrice.innerHTML = totalUnitPriceNumber;
 
                 // Chỉnh màu cho nút giảm khi sản phẩm bằng 1
-                if(numberProduct.textContent == "1"){
+                if(numberProduct.textContent === "1"){
                     buttonLeft.style.color = '#D4D1D1';
                 }
 
@@ -144,7 +112,6 @@ function adjustNumberProduct(){
     })
 }
 
-// deleteProduct
 function deleteProduct(){
     let countTableRow = tableRow.length;
     let cartCounter = document.querySelector('.cart-counter');
@@ -182,7 +149,6 @@ function deleteProduct(){
     }
 }
 
-// deletaAllProduct
 function deleteAllProduct(){
     let buttonClear = document.querySelector('.make-empty-button');
     let cartCounter = document.querySelector('.cart-counter');
@@ -196,24 +162,3 @@ function deleteAllProduct(){
     })
 }
 
-// main
-async function mainCartDetail(){
-    await buildCartDeTail();
-    let cartDetail = document.querySelector('.my-cart-detail');
-    let emptyCart = document.querySelector('.empty-cart');
-    let tableRow = document.querySelectorAll('.table-row');
-    if (tableRow.length != 0){
-        cartDetail.style.display = 'flex';
-        emptyCart.style.display = 'none';
-    }
-    if (tableRow.length == 0){
-        cartDetail.style.display = 'none';
-        emptyCart.style.display = 'block';
-    }
-    
-    adjustNumberProduct();
-    deleteProduct();
-    deleteAllProduct();
-}
-
-mainCartDetail();

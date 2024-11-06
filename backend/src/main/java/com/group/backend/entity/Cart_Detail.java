@@ -14,6 +14,8 @@ public class Cart_Detail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false)
+    private int unitPrice;
+    @Column(nullable = false)
     private int quantity;
 
     @ManyToOne

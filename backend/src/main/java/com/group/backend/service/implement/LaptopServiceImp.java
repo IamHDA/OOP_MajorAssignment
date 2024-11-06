@@ -7,7 +7,7 @@ import com.group.backend.entity.Laptop;
 import com.group.backend.repository.LaptopFilterRepository;
 import com.group.backend.repository.LaptopRepository;
 import com.group.backend.service.LaptopService;
-import com.group.backend.service.NormalizationService;
+import com.group.backend.service.FormatService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class LaptopServiceImp implements LaptopService {
     @Autowired
     private LaptopFilterRepository laptopFilterRepo;
     @Autowired
-    private NormalizationService normalizationService;
+    private FormatService formatService;
 
     @Override
     public LaptopDTO getLaptopById(long id) {
@@ -71,7 +71,7 @@ public class LaptopServiceImp implements LaptopService {
         List<LaptopDTO> laptopDTO = laptops.stream()
                 .map(l -> modelMapper.map(l, LaptopDTO.class))
                 .collect(Collectors.toList());
-        return normalizationService.listOfNormalizedLaptopSummary(laptopDTO);
+        return formatService.listOfFormattedLaptopSummary(laptopDTO);
     }
 
 }

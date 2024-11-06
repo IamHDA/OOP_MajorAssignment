@@ -134,11 +134,11 @@ VALUES ('Đang giao', 'Chú ý điện thoại để nhận hàng nhé'),
        ('Đã hủy', 'Mọi thông tin chi tiết hơn xin liên hệ shop');
 -- pause here
 
-INSERT INTO cart_detail(laptop_id, user_id, quantity)
-VALUES	(1, 1, 1), (2, 1, 1), (4, 1, 1), (5, 1, 1),
-		(3, 2, 1), (6, 2, 1), (7, 2, 1), (8, 2, 1),
-        (9, 3, 1), (10, 3, 1), (11, 3, 1), (12, 3, 1);
--- pause here
+-- INSERT INTO cart_detail(laptop_id, user_id, quantity)
+-- VALUES	(1, 1, 1), (2, 1, 1), (4, 1, 1), (5, 1, 1),
+-- 		(3, 2, 1), (6, 2, 1), (7, 2, 1), (8, 2, 1),
+--         (9, 3, 1), (10, 3, 1), (11, 3, 1), (12, 3, 1);
+-- -- pause here
 
 INSERT INTO payment_method(name)
 VALUES ('Thanh toán tại cửa hàng'),

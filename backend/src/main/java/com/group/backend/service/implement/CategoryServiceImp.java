@@ -5,7 +5,7 @@ import com.group.backend.dto.Filter;
 import com.group.backend.dto.LaptopDTO;
 import com.group.backend.service.CategoryService;
 import com.group.backend.service.LaptopService;
-import com.group.backend.service.NormalizationService;
+import com.group.backend.service.FormatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,29 +17,29 @@ public class CategoryServiceImp implements CategoryService {
     @Autowired
     private LaptopService laptopService;
     @Autowired
-    private NormalizationService normalizationService;
+    private FormatService formatService;
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByCategory(String category) {
         List<LaptopDTO> laptops = laptopService.getLaptopByCategory(category);
-        return normalizationService.listOfNormalizedLaptopSummary(laptops);
+        return formatService.listOfFormattedLaptopSummary(laptops);
     }
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByBrand(String brand) {
         List<LaptopDTO> laptops = laptopService.getLaptopByBrand(brand);
-        return normalizationService.listOfNormalizedLaptopSummary(laptops);
+        return formatService.listOfFormattedLaptopSummary(laptops);
     }
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByState(String state) {
         List<LaptopDTO> laptops = laptopService.getLaptopByState(state);
-        return normalizationService.listOfNormalizedLaptopSummary(laptops);
+        return formatService.listOfFormattedLaptopSummary(laptops);
     }
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByCriteria(Filter filter) {
         List<LaptopDTO> laptops = laptopService.getLaptopByCriteria(filter);
-        return normalizationService.listOfNormalizedLaptopSummary(laptops);
+        return formatService.listOfFormattedLaptopSummary(laptops);
     }
 }
