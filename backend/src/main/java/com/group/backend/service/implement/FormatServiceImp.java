@@ -22,10 +22,6 @@ public class FormatServiceImp implements FormatService {
             price /= 10000;
             price = Math.round(price) * 10000;
             return price;
-        }else if((int)price % 100000 != 0){
-            price /= 100000;
-            price = Math.round(price) * 100000;
-            return price;
         }
         return price;
     }

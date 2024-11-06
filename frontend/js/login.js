@@ -34,7 +34,7 @@ function secondaryRegister(){
 
 //saveUserName
 async function saveUserName(){
-    await checkAccessTokenIsvalid();
+    var accessToken = localStorage.getItem('accessToken');
     let response = await fetch('http://localhost:8080/user/info', {
         method: 'GET',
         headers: {
@@ -42,10 +42,10 @@ async function saveUserName(){
             'Authorization': `Bearer ${accessToken}`
         }    
     })
-
+    
     response = await response.json();
     localStorage.setItem("name", response.name);
-    tmp = '<p> Xin chào ' + response.tmpname + '<p>';
+    tmp = '<p> Xin chào ' + response.name + '<p>';
     var account = document.querySelector('.account');
     account.innerHTML = tmp;     
 }

@@ -43,7 +43,7 @@ function cssRegister(){
 }
 
 async function saveUserName(){
-    await checkAccessTokenIsvalid();
+    var accessToken = localStorage.getItem('accessToken');
     let response = await fetch('http://localhost:8080/user/info', {
         method: 'GET',
         headers: {
@@ -156,6 +156,7 @@ async function register(){
             }
             if(response.message == "User registration successful"){
                 console.log("success");
+                var registerBox = document.querySelector(".register__box");
                 // reset gia tri input
                 inputName.value = "";
                 inputUserEmail.value = "";
@@ -175,6 +176,8 @@ async function register(){
                 // Lay ten 
                 try{
                    await saveUserName();
+                   user_status();
+                   cssRegister();
                 }
                 catch(error) {
                     console.error('Có lỗi ở register!', error);
@@ -184,3 +187,11 @@ async function register(){
         }
     })
 }
+
+async function mainRegister(){
+    openRegisterBox();
+    closeRegisterBox();
+    await register();
+}
+
+mainRegister();

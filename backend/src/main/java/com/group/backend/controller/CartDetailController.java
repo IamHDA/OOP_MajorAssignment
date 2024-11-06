@@ -40,7 +40,7 @@ public class CartDetailController {
             return ResponseEntity.badRequest().body("Laptop is already in cart");
         }
         cartDetailService.updateOrInsert(cartDetailDTO);
-        return ResponseEntity.ok().body("Laptop successfully added");
+        return ResponseEntity.ok().body("Laptop added successfully");
     }
 
     @PutMapping("/update")
