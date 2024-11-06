@@ -94,7 +94,6 @@ async function login(){
 
             localStorage.setItem('accessToken', response.accessToken);
             localStorage.setItem('refreshToken', response.refreshToken);
-            console.log("SDFDSFDSFD");
 
             await saveUserName();
         }    
