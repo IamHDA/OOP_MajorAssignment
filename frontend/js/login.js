@@ -1,54 +1,82 @@
 // mở / đóng login box
-var login = document.querySelector(".login");
-var loginBox = document.querySelector('.login__box');
-var exitLoginBox = document.querySelector('.exitLoginBox');
+function openLoginBox(){
+    var login = document.querySelector(".login");
+    var loginBox = document.querySelector('.login__box');
 
-login.addEventListener('click', function(){
-    loginBox.style.display = 'block';
-})
+    login.addEventListener('click', function(){
+        loginBox.style.display = 'block';
+    })
+}
 
-
-exitLoginBox.addEventListener('click', function(){
-    loginBox.style.display = 'none';
-    // reset
-    document.querySelector(".login__box__email").value = "";
-    document.querySelector(".login__box__password").value = "";
-    document.querySelector(".incorrectEmail").style.display = "none";
-
-})
+function closeLoginBox(){
+    var exitLoginBox = document.querySelector('.exitLoginBox');
+    var loginBox = document.querySelector('.login__box');
+    exitLoginBox.addEventListener('click', function(){
+        loginBox.style.display = 'none';
+        // reset
+        document.querySelector(".login__box__email").value = "";
+        document.querySelector(".login__box__password").value = "";
+        document.querySelector(".incorrectEmail").style.display = "none";
+    })
+}
 
 // An vao dang ky trong o dang nhap
-var registerF = document.querySelector(".registerF");
+function secondaryRegister(){
+    var registerF = document.querySelector(".registerF");
+    var loginBox = document.querySelector('.login__box');
+    var registerBox = document.querySelector(".register__box");
 
-registerF.addEventListener('click', function(){
-    loginBox.style.display = 'none';
-    registerBox.style.display = 'block';
-})
-var loginButton = document.querySelector(".login__button");
+    registerF.addEventListener('click', function(){
+        loginBox.style.display = 'none';
+        registerBox.style.display = 'block';
+    })
+}
 
-loginButton.addEventListener('click', function(){
-    var email = document.querySelector('.login__box__email').value;
-    var password = document.querySelector('.login__box__password').value;
+//saveUserName
 
-    const data = {
-        dataEmail: email,
-        dataUserPassword: password
+
+// login
+async function login(){
+    var loginButton = document.querySelector(".login__button");
+
+    async function saveUserName(){
+        var accessToken = localStorage.getItem('accessToken');
+        let response = await fetch('http://localhost:8080/user/info', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+    
+        response = await response.json();
+        
+        localStorage.setItem('name', response.name);
+        var tmp = '<p> Xin chào ' + response.name + '<p>';
+        var account = document.querySelector('.account');
+        account.innerHTML = tmp;     
     }
 
-    // day tai khoan mat khau len server
+    loginButton.addEventListener('click', async function(){
+        var email = document.querySelector('.login__box__email').value;
+        var password = document.querySelector('.login__box__password').value;
 
+        const data = {
+            dataEmail: email,
+            dataUserPassword: password
+        }
 
-    fetch('http://localhost:8080/login',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data) // Chuyển dữ liệu thành JSON
-    })
-    .then(response => {
-        return response.json();
-    })
-    .then(response => {
+        // day tai khoan mat khau len server
+        let response = await fetch('http://localhost:8080/login',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data) // Chuyển dữ liệu thành JSON
+        });
+        
+        response = await response.json();
+
         if(response.message == "User not found" || response.message == "Password is incorrect"){
             var war = document.querySelector('.incorrectEmail');
             war.style.display = "block";
@@ -56,6 +84,9 @@ loginButton.addEventListener('click', function(){
         else if (response.message == "User login successful"){
             var war = document.querySelector('.incorrectEmail');
             war.style.display = "none";
+
+            var loginBox = document.querySelector('.login__box');
+
             loginBox.style.display = 'none';
             document.querySelector('.register__login').style.display = 'none';
             document.querySelector('.account').style.display = 'block';
@@ -63,28 +94,16 @@ loginButton.addEventListener('click', function(){
             localStorage.setItem('accessToken', response.accessToken);
             localStorage.setItem('refreshToken', response.refreshToken);
 
-            var tmp = '';
-            var tmpname = '';
-            var accessToken = localStorage.getItem('accessToken');
-           
-            // Lay ten 
-            fetch('http://localhost:8080/user/info', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`
-                }    
-            })
-            .then(response => {
-                return response.json();
-            })
-            .then(response => {
-                localStorage.setItem("name", response.name);
-                tmpname = response.name;
-                tmp = '<p> Xin chào ' + tmpname + '<p>';
-                var account = document.querySelector('.account');
-                account.innerHTML = tmp;
-            })         
-        }
+            await saveUserName();
+        }    
     })
-})
+}
+
+async function mainLogin(){
+    await login();
+    openLoginBox();
+    closeLoginBox();
+    secondaryRegister();
+}
+
+mainLogin();

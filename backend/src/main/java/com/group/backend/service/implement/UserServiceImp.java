@@ -48,13 +48,12 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public String changePass(PasswordDTO passwordDTO) {
-        User thisUser = currentUser.getCurrentUser();
-        if(encoder.matches(passwordDTO.getPassword(), thisUser.getPass())){
+    public String changePass(User user, PasswordDTO passwordDTO) {
+        if(encoder.matches(passwordDTO.getPassword(), user.getPass())){
             return "Can not use old password";
         }
-        thisUser.setPass(encoder.encode(passwordDTO.getPassword()));
-        userRepo.save(thisUser);
+        user.setPass(encoder.encode(passwordDTO.getPassword()));
+        userRepo.save(user);
         return "Change password successful";
     }
 }

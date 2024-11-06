@@ -72,11 +72,8 @@ a{
     font-weight: 600;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    margin: auto;
-}
-
-.account{
     margin-right: 0px;
+    margin-left: auto;
 }
 
 .header__top h6{

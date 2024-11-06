@@ -2,6 +2,7 @@ package com.group.backend.service.implement;
 
 import com.group.backend.dto.LaptopDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
+import com.group.backend.entity.Laptop;
 import com.group.backend.service.FormatService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +19,8 @@ public class FormatServiceImp implements FormatService {
 
     @Override
     public long priceFormat(long price) {
-        if((int)price % 10000 != 0){
-            price /= 10000;
-            price = Math.round(price) * 10000;
-            return price;
-        }else if((int)price % 100000 != 0){
-            price /= 100000;
-            price = Math.round(price) * 100000;
-            return price;
-        }
+        price /= 100000;
+        price = Math.round(price) * 10000;
         return price;
     }
 
@@ -79,6 +73,15 @@ public class FormatServiceImp implements FormatService {
         return tmp[1];
     }
 
+    @Override
+    public LaptopSummaryDTO formattedLaptopSummary(LaptopSummaryDTO laptopSummaryDTO) {
+        laptopSummaryDTO.getSpecification().setRam(ramFormat(laptopSummaryDTO.getSpecification().getRam()));
+        laptopSummaryDTO.getSpecification().setCpu(cpuFormat(laptopSummaryDTO.getSpecification().getCpu()));
+        laptopSummaryDTO.getSpecification().setRom(romFormat(laptopSummaryDTO.getSpecification().getRom()));
+        laptopSummaryDTO.getSpecification().setGraphicsCard(vgaFormat(laptopSummaryDTO.getSpecification().getGraphicsCard()));
+        laptopSummaryDTO.getSpecification().setScreen(screenFormat(laptopSummaryDTO.getSpecification().getScreen()));
+        return laptopSummaryDTO;
+    }
 
 
     @Override
