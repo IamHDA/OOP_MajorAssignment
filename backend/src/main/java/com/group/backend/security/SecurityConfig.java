@@ -50,9 +50,9 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/login",
                                 "/register",
-                                "/sendMail",
                                 "/laptop/**",
-                                "/collections/**")
+                                "/collections/**",
+                                "/resetPassword/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
