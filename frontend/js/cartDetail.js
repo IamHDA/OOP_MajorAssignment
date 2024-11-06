@@ -194,7 +194,7 @@ function deleteProduct(){
             cartCounter.innerHTML = "(" + countTableRow + " sản phẩm" + ")";
             console.log(tableRow.length);
 
-            let id = document.querySelector('.id__table__row');
+            let id = document.querySelector('.id__table__row').textContent;
 
             await fetch(`http://localhost:8080/delete/${id}`);
 
