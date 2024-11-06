@@ -195,8 +195,15 @@ function deleteProduct(){
             console.log(tableRow.length);
 
             let id = document.querySelector('.id__table__row').textContent;
+            let accessToken = localStorage.getItem('accessToken');
 
-            await fetch(`http://localhost:8080/delete/${id}`);
+            await fetch(`http://localhost:8080/delete/${id}`,{
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            });
 
             if (countTableRow == 0){
                 cartDetail.style.display = 'none';
@@ -219,7 +226,14 @@ function deleteAllProduct(){
         cartDetail.style.display = 'none';
         emptyCart.style.display = 'block';
 
-        await fetch(`http://localhost:8080/deleteUserCart`);
+        let accessToken = localStorage.getItem('accessToken');
+        await fetch(`http://localhost:8080/deleteUserCart`, {
+            method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+        });
     })
 }
 
