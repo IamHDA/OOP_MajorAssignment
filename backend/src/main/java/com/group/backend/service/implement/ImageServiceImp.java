@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class ImageServiceImp implements ImageService {
 
-    private final String FolderPath = "D:\\OOP_MajorAssignment\\frontend\\image\\laptop\\";
+    private String FolderPath = "D:\\OOP_MajorAssignment\\frontend\\image\\laptop\\";
     @Autowired
     private ImageRepository imageRepo;
     @Autowired
@@ -32,12 +32,13 @@ public class ImageServiceImp implements ImageService {
             Image newImage = new Image();
             String imageType = formatService.imgTypeFormat(images.get(i).getContentType());
             System.out.println(images.get(i).getContentType());
-            String filePath = FolderPath + formatService.laptopNameFormat(laptop.getName()) + "_" + (i + 1) + imageType;
+            String filePath = "image/laptop/" + formatService.laptopNameFormat(laptop.getName()) + "_" + (i + 1) + imageType;
+            FolderPath += formatService.laptopNameFormat(laptop.getName()) + "_" + (i + 1) + imageType;
             System.out.println(filePath);
             newImage.setLaptop(laptop);
             newImage.setFilePath(filePath);
             imageRepo.save(newImage);
-            images.get(i).transferTo(new File(filePath));
+            images.get(i).transferTo(new File(FolderPath));
         }
         return "File uploaded successfully";
     }

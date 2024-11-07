@@ -8,6 +8,7 @@ public class OrderDTO {
     private String receiverName;
     private String receiverPhone;
     private String shippingAddress;
+    private String note;
     private long totalPrice;
     private StatusDTO status;
     private PaymentMethodDTO paymentMethod;
