@@ -1,3 +1,5 @@
+import { checkAccessTokenIsvalid } from 'accessToken.js';
+
 var thongTinTaiKhoan = document.querySelector(".thong-tin-tai-khoan");
 var danhSachDonHang = document.querySelector(".danh-sach-don-hang");
 var thayDoiMatKhau = document.querySelector(".thay-doi-mat-khau");
@@ -29,7 +31,7 @@ async function getDataUserName() {
     var text = document.querySelector("#taikhoancua");
     let accessToken = localStorage.getItem("accessToken");
     // Lay ten 
-    // await checkAccessTokenIsvalid();
+    checkAccessTokenIsvalid();
     let response = await fetch('http://localhost:8080/user/info', {
         method: 'GET',
         headers: {
@@ -182,7 +184,7 @@ async function changeUserInfor() {
         var address = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-address__input");
         var phone = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-numberphone__input");
 
-
+        checkAccessTokenIsvalid();
         var accessToken = localStorage.getItem('accessToken');
         let response = await fetch('http://localhost:8080/user/info', {
             method: 'GET',
@@ -225,6 +227,7 @@ async function changeUserInfor() {
 function buildOder(){
     let danhSachDonHang = document.querySelector('.danh-sach-don-hang');
     danhSachDonHang.addEventListener('click', async function(){
+        checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
         let response = await fetch('http://localhost:8080/order/getCurrentUserOrder', {
             method: 'GET',
@@ -241,7 +244,7 @@ function buildOder(){
             index += 1;
             let id = '<td class="id">' + '#' + '100' + element.id.toString() + '</td>';
             let price = '<td class="totalPrice">' + daucham(element.totalPrice.toString()) + ' VNĐ' + '</td>';
-            let status = '<td class="status">'  + element.status + '</td>';
+            let status = '<td class="status">'  + element.status.name + '</td>';
             let nextRow =  '<tr class="nextRow">' + stt + id + price + status + '</tr>'
             tableDanhSachDonHang.innerHTML += nextRow;
         });

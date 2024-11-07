@@ -309,7 +309,7 @@ function creatOrder(){
         let address = document.querySelector('.customer-address').value;
         let noteContent = document.querySelector('.customer-note').value;
         let price = document.querySelector('.total-price').textContent;
-        price = parseInt(price, 10);
+        price = parseInt(boDauCham(price), 10);
         let paymentMethod1 = document.getElementById('option1');
         let paymentMethod2 = document.getElementById('option2');
         let idPaymentMethod = 0;
