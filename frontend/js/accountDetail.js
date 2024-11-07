@@ -1,4 +1,4 @@
-import { checkAccessTokenIsvalid } from 'accessToken.js';
+import { checkAccessTokenIsvalid } from './accessToken.js';
 
 var thongTinTaiKhoan = document.querySelector(".thong-tin-tai-khoan");
 var danhSachDonHang = document.querySelector(".danh-sach-don-hang");
@@ -163,7 +163,7 @@ function clickSelection(){
         danhSachDonHang.style.backgroundColor = 'rgb(235, 235, 235)';
         danhSachDonHang.style.color = 'rgb(102, 102, 102)';
         // Mo thayDoiMatKhauBox
-        empty.style,display = 'none'
+        empty.style.display = 'none'
         thongTinTaiKhoanBox.style.display = 'none';
         danhSachDonHangBox.style.display = 'none';
         thayDoiMatKhauBox.style.display = 'block';
@@ -208,6 +208,7 @@ async function changeUserInfor() {
                 phone: phone.value
             }
             
+            checkAccessTokenIsvalid();
             await fetch('http://localhost:8080/user/changeInfo',{
                 method: 'PUT',
                 headers: {

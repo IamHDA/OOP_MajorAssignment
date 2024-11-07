@@ -1,4 +1,4 @@
-async function checkAccessTokenIsvalid() {
+export async function checkAccessTokenIsvalid() {
     try {
         let accessToken = localStorage.getItem('accessToken');
         if (!accessToken) {
@@ -25,7 +25,7 @@ async function checkAccessTokenIsvalid() {
             }
 
             const refreshResponse = await fetch('http://localhost:8080/refresh-token', {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${refreshToken}`
