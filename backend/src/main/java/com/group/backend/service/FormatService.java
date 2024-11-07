@@ -2,7 +2,6 @@ package com.group.backend.service;
 
 import com.group.backend.dto.LaptopDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
-import com.group.backend.entity.Laptop;
 
 import java.util.List;
 
@@ -13,6 +12,8 @@ public interface FormatService {
     String vgaFormat(String text);
     String ramFormat(String text);
     String romFormat(String text);
+    String laptopNameFormat(String text);
+    String imgTypeFormat(String text);
     LaptopSummaryDTO formattedLaptopSummary(LaptopSummaryDTO LaptopSummaryDTO);
     List<LaptopSummaryDTO> listOfFormattedLaptopSummary(List<LaptopDTO> laptops);
 }

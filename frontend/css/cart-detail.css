@@ -30,10 +30,6 @@ label{
     color: rgb(120, 120, 120);
 }
 
-input{
-    outline: none;
-}
-
 .content-container{
     display: flex;
     flex-direction: column;
@@ -281,6 +277,7 @@ input{
     font-size: 17px;
     height: 40px;
     padding-left: 10px;
+    outline: none;
 }
 
 .customer-note{

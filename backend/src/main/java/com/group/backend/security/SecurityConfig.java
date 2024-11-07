@@ -52,7 +52,8 @@ public class SecurityConfig {
                                 "/register",
                                 "/laptop/**",
                                 "/collections/**",
-                                "/resetPassword/**")
+                                "/resetPassword/**",
+                                "/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())

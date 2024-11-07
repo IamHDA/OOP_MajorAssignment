@@ -17,6 +17,10 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false)
+    private String receiverName;
+    @Column(nullable = false)
+    private String receiverPhone;
+    @Column(nullable = false)
     private String shippingAddress;
     @Column(nullable = false)
     private long totalPrice;

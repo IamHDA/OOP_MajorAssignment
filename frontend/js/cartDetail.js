@@ -130,7 +130,10 @@ async function buildCartDeTail(){
                 // thay doi database
                 let id_cart = document.querySelector('.id__table__row').textContent;
                 id_cart = parseInt(id_cart, 10);
+<<<<<<< HEAD
                 newNumber = parseInt(newNumber, 10);
+=======
+>>>>>>> c5131abfd1e22c06d32faa5be2434a65de1bb366
                 const data = {
                     id: id_cart,
                     quantity: newNumber
@@ -179,7 +182,10 @@ async function buildCartDeTail(){
             // thay doi database
             let id_cart = document.querySelector('.id__table__row').textContent;
             id_cart = parseInt(id_cart, 10);
+<<<<<<< HEAD
             newNumber = parseInt(newNumber, 10);
+=======
+>>>>>>> c5131abfd1e22c06d32faa5be2434a65de1bb366
             const data = {
                 id: id_cart,
                 quantity: newNumber
