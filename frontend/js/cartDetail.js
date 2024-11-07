@@ -339,9 +339,6 @@ function creatOrder(){
                 }
             }
             let responseData = await getDataCartDetail();
-            const dataCart = {
-                responseData
-            }
             let accessToken = localStorage.getItem('accessToken');
             await fetch(`http://localhost:8080/order/createOrderFromCart`, {
                 method: 'POST',
@@ -357,9 +354,9 @@ function creatOrder(){
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${accessToken}`
                     },
-                    body: JSON.stringify(dataCart) 
+                    body: JSON.stringify(responseData)
             });
-
+            console.log(JSON.stringify(responseData));
             deleteAllProduct();
 
             alert("Đặt hàng thành công");
