@@ -43,7 +43,7 @@ public class OrderServiceImp implements OrderService {
     @Override
     public Order getLastOrderByUser() {
         User user = currentUser.getCurrentUser();
-        List<Order> orders = orderRepo.getLastOrderByUser(user);
+        List<Order> orders = orderRepo.reverseSortedOrderByUser(user);
         for(Order order : orders){
             return order;
         }

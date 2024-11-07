@@ -19,7 +19,7 @@ function getDaTa(){
 
     let id = localStorage.getItem('id__product'); 
 
-    fetch(`http://localhost:8080/laptop/${id}`, {
+    fetch(`http://localhost:8080/laptop/api/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

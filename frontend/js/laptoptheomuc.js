@@ -40,7 +40,7 @@ async function buildSearchProduct(dataResponse){
 async function searchProduct(){
     try{
         let keyword = localStorage.getItem('valueSearch');
-        const response = await fetch(`http://localhost:8080/laptop/search?keyword=${keyword}`)
+        const response = await fetch(`http://localhost:8080/laptop/api/search?keyword=${keyword}`)
         const dataResponse =  await response.json();
 
         await buildSearchProduct(dataResponse);

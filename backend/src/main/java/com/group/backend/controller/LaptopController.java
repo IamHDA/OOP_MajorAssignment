@@ -16,13 +16,18 @@ public class LaptopController {
     @Autowired
     private LaptopService laptopService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/{id}")
     public ResponseEntity<LaptopDTO> getLaptopById(@PathVariable long id) {
         return ResponseEntity.ok(laptopService.getLaptopById(id));
     }
     
-    @GetMapping("/search")
+    @GetMapping("/api/search")
     public ResponseEntity<List<LaptopSummaryDTO>> searchLaptop(@RequestParam String keyword) {
         return ResponseEntity.ok(laptopService.searchLaptop(keyword));
+    }
+
+    @PostMapping("/admin/add")
+    public ResponseEntity<String> addLaptop(@RequestBody LaptopDTO laptopDTO) {
+        return ResponseEntity.ok(laptopService.addLaptop(laptopDTO));
     }
 }

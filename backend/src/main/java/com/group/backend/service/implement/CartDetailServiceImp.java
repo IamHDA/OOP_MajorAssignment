@@ -37,19 +37,22 @@ public class CartDetailServiceImp implements CartDetailService {
         User user = currentUser.getCurrentUser();
         List<Cart_Detail> userCartDetail = cartDetailRepo.findByUser(user);
         return userCartDetail.stream()
-                .map(tmp -> modelMapper.map(tmp, CartDetailDTO.class))
+                .map(tmp -> {
+                    CartDetailDTO cartDetailDTO = modelMapper.map(tmp, CartDetailDTO.class);
+                    cartDetailDTO.setLaptop(formatService.formattedLaptopSummary(modelMapper.map(tmp.getLaptop(), LaptopSummaryDTO.class)));
+                    return cartDetailDTO;
+                })
                 .collect(Collectors.toList());
     }
 
     @Override
     public void addToCart(CartDetailDTO cartDetailDTO) {
         Laptop laptop = laptopRepo.findById(cartDetailDTO.getLaptop().getId());
-        LaptopSummaryDTO laptopSummaryDTO = formatService.formattedLaptopSummary(modelMapper.map(laptop, LaptopSummaryDTO.class));
         User user = currentUser.getCurrentUser();
-        cartDetailDTO.setLaptop(laptopSummaryDTO);
         cartDetailDTO.setUnitPrice(formatService.priceFormat(laptop.getDiscountedPrice()));
         Cart_Detail cartDetail = modelMapper.map(cartDetailDTO, Cart_Detail.class);
         cartDetail.setUser(user);
+        cartDetail.setLaptop(laptop);
         cartDetailRepo.save(cartDetail);
     }
 
