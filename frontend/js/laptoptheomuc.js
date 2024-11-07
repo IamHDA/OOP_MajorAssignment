@@ -55,7 +55,7 @@ async function buildSelectCategoryProduct(data) {
     let allLaptop = document.querySelector('.all-laptop');
     for(let i = 0; i < data.length; i++){
         var idProduct = '<div class="id__product">' + data[i].id + '</div>';
-        var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
+        var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath +  '" alt="">'+ '</a>';
         var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + ' ' + data[i].specification.cpu + ' ' + data[i].specification.ram + ' ' + data[i].specification.graphicsCard + '</a>';
         let basePrice = data[i].price.toString();
         basePrice = daucham(basePrice);

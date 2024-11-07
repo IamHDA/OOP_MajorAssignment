@@ -53,7 +53,7 @@ async function buildCartDeTail(){
     responseData.forEach(function(element){
         const idTableRow = '<div class = "id__table__row">' + element.id + '</div>'; 
         const idLapTop = '<div class = "id__product">' + element.laptop.id + '</div>';
-        const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath  + '"alt=""></img>';
+        const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath + '"alt=""></img>';
         const nameProduct = '<a href="product.html" class="laptop-name">' + element.laptop.name + ' ' + '(' + element.laptop.specification.cpu + ', ' + element.laptop.specification.ram + ', ' + element.laptop.specification.rom + ', ' + element.laptop.specification.graphicsCard + ', ' + element.laptop.specification.screen + ')' +'</a>';
         const td1 = '<td>' + imgProduct + nameProduct + '</td>';
         const subButton = '<button class="left-button">-</button>';
@@ -274,13 +274,13 @@ function deleteAllProduct(){
     })
 }
 
-function selecProduct(){
-    let tableRow = document.querySelectorAll('.table-row');
-    tableRow.forEach(function(element){
-        let idProduct = element.querySelector('.id_product').textContent;
-        localStorage.setItem('id__product', idProduct);
-    });
-}
+// function selecProduct(){
+//     let tableRow = document.querySelectorAll('.table-row');
+//     tableRow.forEach(function(element){
+//         let idProduct = element.querySelector('.id_product').textContent;
+//         localStorage.setItem('id__product', idProduct);
+//     });
+// }
 
 function creatOrder(){
     let buttonCreatOrder = document.querySelector('.make-order-button');
@@ -291,8 +291,8 @@ function creatOrder(){
         let noteContent = document.querySelector('.customer-note').value;
         let price = document.querySelector('.total-price').textContent;
         price = parseInt(price, 10);
-        let paymentMethod1 = document.getElementById('#option1');
-        let paymentMethod2 = document.getElementById('#option2');
+        let paymentMethod1 = document.getElementById('option1');
+        let paymentMethod2 = document.getElementById('option2');
         let idPaymentMethod = 0;
 
         if(paymentMethod1.checked){
@@ -318,12 +318,14 @@ function creatOrder(){
                     id: idPaymentMethod
                 }
             }
-            const responseData = await getDataCartDetail();
+            let responseData = await getDataCartDetail();
+            // responseData = await responseData.json();
+            console.log(responseData);
             const dataCart = {
                 responseData
             }
             let accessToken = localStorage.getItem('accessToken');
-            await fetch(`http://localhost:8080//order/createOrderFromCart`, {
+            await fetch(`http://localhost:8080/order/createOrderFromCart`, {
                 method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -331,15 +333,18 @@ function creatOrder(){
                     },
                     body: JSON.stringify(data) 
             });
-
-            await fetch(`http://localhost:8080//order/order-detail/add`, {
+            await fetch(`http://localhost:8080/order-detail/add`, {
                 method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${accessToken}`
                     },
-                    body: JSON.stringify(dataCart) 
+                    body: dataCart
             });
+
+            deleteAllProduct();
+
+            alert("Đặt hàng thành công");
         }
     });
 }
@@ -362,7 +367,7 @@ async function mainCartDetail(){
     adjustNumberProduct();
     deleteProduct();
     deleteAllProduct();
-    selecProduct();
+    // selecProduct();
     creatOrder();
 }
 

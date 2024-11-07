@@ -181,5 +181,4 @@ VALUES	('image/laptop/DellInspiron165630_1.jpg', 1), ('image/laptop/DellInspiron
         ('image/laptop/DellPrecision7530_1.jpg', 13), ('image/laptop/DellPrecision7530_2.jpg', 13), ('image/laptop/DellPrecision7530_3.jpg', 13), ('image/laptop/DellPrecision7530_4.jpg', 13), ('image/laptop/DellPrecision7530_5.jpg', 13), ('image/laptop/DellPrecision7530_6.jpg', 13),
         ('image/laptop/LenovoThinkpadP51_1.jpg', 14), ('image/laptop/LenovoThinkpadP51_2.jpg', 14), ('image/laptop/LenovoThinkpadP51_3.jpg', 14), ('image/laptop/LenovoThinkpadP51_4.jpg', 14), ('image/laptop/LenovoThinkpadP51_5.jpg', 14), ('image/laptop/LenovoThinkpadP51_6.jpg', 14), ('image/laptop/LenovoThinkpadP51_7.jpg', 14),
         ('image/laptop/AsusVivobook15R565EA-UH51T_1.jpg', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_2.jpg', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_3.jpg', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_4.jpg', 15);
-        
 
