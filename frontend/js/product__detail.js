@@ -146,38 +146,35 @@ function getDaTa(){
             }
         });
     })
-    // .then(data =>{
-    //     function seeAllSpecification(){
-    //         let productSpecification = document.querySelector('.product__specifications');
-    //         let ulProductSpecification = productSpecification.getElementsByTagName('ul')[0];
-    //         for(let i = 3; i < ulProductSpecification.children.length; i++){
-    //             ulProductSpecification.children[i].style.display = 'none';
-    //         }
-    //         var button = document.querySelector('.product__specifications__see_all');
-    //         var seeAll = button.getElementsByTagName('h1')[0];
-    //         var summary = button.getElementsByTagName('h2')[0];
+    .then(data =>{
+        function seeAllSpecification(){
+            let productSpecification = document.querySelector('.product__specifications');
+            let ulProductSpecification = productSpecification.getElementsByTagName('ul')[0];
+            for(let i = 3; i < ulProductSpecification.children.length; i++){
+                ulProductSpecification.children[i].style.display = 'none';
+            }
+            var button = document.querySelector('.product__specifications__see_all');
+            var seeAll = button.getElementsByTagName('h1')[0];
+            var summary = button.getElementsByTagName('h2')[0];
         
-    //         seeAll.addEventListener('click', function(){
-    //             for(let i = 3; i < ulProductSpecification.children.length; i++){
-    //                 ulProductSpecification.children[i].style.display = 'block';
-    //                 summary.style.display = 'block';
-    //                 seeAll.style.display = 'none';
-    //             }
-    //         });
-    //         summary.addEventListener('click', function(){
-    //             for(let i = 3; i < ulProductSpecification.children.length; i++){
-    //                 ulProductSpecification.children[i].style.display = 'none';
-    //                 summary.style.display = 'none';
-    //                 seeAll.style.display = 'block';
-    //             }
-    //         });
-    //     }
-    //     seeAllSpecification();
-    // })
+            seeAll.addEventListener('click', function(){
+                for(let i = 3; i < ulProductSpecification.children.length; i++){
+                    ulProductSpecification.children[i].style.display = 'block';
+                    summary.style.display = 'block';
+                    seeAll.style.display = 'none';
+                }
+            });
+            summary.addEventListener('click', function(){
+                for(let i = 3; i < ulProductSpecification.children.length; i++){
+                    ulProductSpecification.children[i].style.display = 'none';
+                    summary.style.display = 'none';
+                    seeAll.style.display = 'block';
+                }
+            });
+        }
+        seeAllSpecification();
+    })
 }
-function seeAllSpecification(){
-    
-}
-seeAllSpecification();
+
 getDaTa();
 

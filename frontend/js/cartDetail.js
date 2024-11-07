@@ -256,7 +256,26 @@ function deleteAllProduct(){
     let cartCounter = document.querySelector('.cart-counter');
     let cartDetail = document.querySelector('.my-cart-detail');
     let emptyCart = document.querySelector('.empty-cart');
+    let buttonCreatOrder = document.querySelector('.make-order-button');
+
     buttonClear.addEventListener('click', async function(){
+        for(let i = 0; i < tableRow.length; i++){
+            tableRow[i].remove();
+        }
+        cartCounter.innerHTML = "(0 sản phẩm)";
+        cartDetail.style.display = 'none';
+        emptyCart.style.display = 'block';
+        let accessToken = localStorage.getItem('accessToken');
+        await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
+            method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+        });
+    })
+
+    buttonCreatOrder.addEventListener('click', async function(){
         for(let i = 0; i < tableRow.length; i++){
             tableRow[i].remove();
         }
@@ -304,10 +323,11 @@ function creatOrder(){
         }
 
 
-        if(!nameCustomer || !numberPhone || !address || idPaymentMethod == 0){
+        if(nameCustomer === "" || numberPhone === "" || address === "" || idPaymentMethod == 0){
             document.querySelector('.war').style.display = "block";
         }
         else{
+            document.querySelector('.war').style.display = "none";
             const data = {
                 receiverName: nameCustomer,
                 receiverPhone: numberPhone,
@@ -319,8 +339,6 @@ function creatOrder(){
                 }
             }
             let responseData = await getDataCartDetail();
-            // responseData = await responseData.json();
-            console.log(responseData);
             const dataCart = {
                 responseData
             }
@@ -339,7 +357,7 @@ function creatOrder(){
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${accessToken}`
                     },
-                    body: dataCart
+                    body: JSON.stringify(dataCart) 
             });
 
             deleteAllProduct();
