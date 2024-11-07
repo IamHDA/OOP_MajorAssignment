@@ -21,7 +21,7 @@ async function buildSearchProduct(dataResponse){
     let allLaptop = document.querySelector('.all-laptop');
     for(let i = 0; i < dataResponse.length; i++){
         var idProduct = '<div class="id__product">' + dataResponse[i].id + '</div>';
-        var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + dataResponse[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
+        var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + dataResponse[i].images[0].filePath  + '" alt="">'+ '</a>';
         var nameProduct = '<a href="product.html" class="product__name">' + dataResponse[i].name + '( ' + dataResponse[i].specification.cpu + ', ' + dataResponse[i].specification.graphicsCard + ', ' + dataResponse[i].specification.ram + ', ' + dataResponse[i].specification.rom +', '+ dataResponse[i].specification.screen + ' )' + '</a>';
         let basePrice = dataResponse[i].price.toString();
         basePrice = daucham(basePrice);
@@ -40,7 +40,7 @@ async function buildSearchProduct(dataResponse){
 async function searchProduct(){
     try{
         let keyword = localStorage.getItem('valueSearch');
-        const response = await fetch(`http://localhost:8080/laptop/search?keyword=${keyword}`)
+        const response = await fetch(`http://localhost:8080/laptop/api/search?keyword=${keyword}`)
         const dataResponse =  await response.json();
 
         await buildSearchProduct(dataResponse);
@@ -55,7 +55,7 @@ async function buildSelectCategoryProduct(data) {
     let allLaptop = document.querySelector('.all-laptop');
     for(let i = 0; i < data.length; i++){
         var idProduct = '<div class="id__product">' + data[i].id + '</div>';
-        var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
+        var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath +  '" alt="">'+ '</a>';
         var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + ' ' + data[i].specification.cpu + ' ' + data[i].specification.ram + ' ' + data[i].specification.graphicsCard + '</a>';
         let basePrice = data[i].price.toString();
         basePrice = daucham(basePrice);

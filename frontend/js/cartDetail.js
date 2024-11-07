@@ -18,7 +18,7 @@ function daucham(num){
 }
 
 function boDauCham(num){
-    res = ""
+    res = "";
     for(let i = 0; i < num.length; i++){
         if(num[i] != "."){
             res += num[i];
@@ -47,10 +47,13 @@ async function getDataCartDetail() {
 // buildCartDetail
 async function buildCartDeTail(){
     const responseData = await getDataCartDetail();
+    let sum = 0;
     let cartTable = document.querySelector('.cart-table');
     console.log(responseData);
     responseData.forEach(function(element){
-        const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath + ".jpg" + '"alt=""></img>';
+        const idTableRow = '<div class = "id__table__row">' + element.id + '</div>'; 
+        const idLapTop = '<div class = "id__product">' + element.laptop.id + '</div>';
+        const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath + '"alt=""></img>';
         const nameProduct = '<a href="product.html" class="laptop-name">' + element.laptop.name + ' ' + '(' + element.laptop.specification.cpu + ', ' + element.laptop.specification.ram + ', ' + element.laptop.specification.rom + ', ' + element.laptop.specification.graphicsCard + ', ' + element.laptop.specification.screen + ')' +'</a>';
         const td1 = '<td>' + imgProduct + nameProduct + '</td>';
         const subButton = '<button class="left-button">-</button>';
@@ -60,19 +63,23 @@ async function buildCartDeTail(){
         const trash = '<button class="trash-button"><img src="image/cart/trash-icon.png" class="trash-image"></button>';
         const adjustAndDelete = '<div class="adjust-delete-button">' + adjust + trash + '</div>';
         let tmp = element.unitPrice.toString();
+        sum += element.unitPrice * element.quantity;
         tmp = daucham(tmp) + " VNĐ";
         const unitPrice = '<p class="unit-price">' + tmp + '</p>';
         let tmp2 = element.unitPrice * parseInt(element.quantity);
         tmp2 = daucham(tmp2.toString()) + " VNĐ";
         const totalUnitPrice = '<p class="total-unit-price">' + tmp2 + '</p>';
         const td2 = '<td>' + adjustAndDelete + unitPrice + totalUnitPrice + '</td>';
-        const tableRow = '<tr class="table-row">' + td1 + td2 + '</tr>';
+        const tableRow = '<tr class="table-row">' + idTableRow + idLapTop + td1 + td2 + '</tr>';
         cartTable.innerHTML += tableRow;
     });
+    const totalPriceText = '<td class="total-price-text">Tổng giá trị đơn hàng</td>';
+    const totalPrice = '<td class="total-price">' + daucham(sum.toString()) + " VNĐ" + '</td>';
+    cartTable.innerHTML += '<tr>' + totalPriceText + totalPrice + '</td>';
 } 
 
 // adjustNumberProduct
-function adjustNumberProduct(){
+ function adjustNumberProduct(){
     let totalPrice = document.querySelector('.total-price');
     let tableRow = document.querySelectorAll('.table-row');
     tableRow.forEach(function(element){
@@ -91,7 +98,7 @@ function adjustNumberProduct(){
         }
 
         // Bấm nút giảm
-        buttonLeft.addEventListener('click', function(){
+        buttonLeft.addEventListener('click', async function(){
             if(numberProduct.textContent != "1"){
                 let currentNumber = parseInt(numberProduct.textContent, 10);
                 let newNumber = currentNumber - 1;
@@ -119,12 +126,29 @@ function adjustNumberProduct(){
                 totalPriceNumber = totalPriceNumber.toString();
                 totalPriceNumber = daucham(totalPriceNumber) + " VNĐ";
                 totalPrice.innerHTML = totalPriceNumber;
+
+                // thay doi database
+                let id_cart = document.querySelector('.id__table__row').textContent;
+                id_cart = parseInt(id_cart, 10);
+                newNumber = parseInt(newNumber, 10);
+                const data = {
+                    id: id_cart,
+                    quantity: newNumber
+                };
+                let accessToken = localStorage.getItem('accessToken');
+                await fetch(`http://localhost:8080/cart-detail/update`,{
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
+                    },
+                    body: JSON.stringify(data) 
+                });
             }    
         })
 
         // Bấm nút tăng
-
-        buttonRight.addEventListener('click', function(){
+        buttonRight.addEventListener('click', async function(){
             let currentNumber = parseInt(numberProduct.textContent, 10);
             let newNumber = currentNumber + 1;
             newNumber = newNumber.toString();
@@ -151,9 +175,25 @@ function adjustNumberProduct(){
             totalPriceNumber = totalPriceNumber.toString();
             totalPriceNumber = daucham(totalPriceNumber) + " VNĐ";
             totalPrice.innerHTML = totalPriceNumber;
+
+            // thay doi database
+            let id_cart = document.querySelector('.id__table__row').textContent;
+            id_cart = parseInt(id_cart, 10);
+            newNumber = parseInt(newNumber, 10);
+            const data = {
+                id: id_cart,
+                quantity: newNumber
+            };
+            let accessToken = localStorage.getItem('accessToken');
+            await fetch(`http://localhost:8080/cart-detail/update`,{
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                },
+                body: JSON.stringify(data) 
+            });
         })
-
-
     })
 }
 
@@ -165,7 +205,7 @@ function deleteProduct(){
     cartCounter.innerHTML = "(" + countTableRow + " sản phẩm" + ")";
     for(let i = 0; i < tableRow.length; i++){
         let deleteButton = tableRow[i].querySelector('.trash-button');
-        deleteButton.addEventListener('click', function(){
+        deleteButton.addEventListener('click', async function(){
             // thay doi tong gia cart
             let totalUnitPrice = tableRow[i].querySelector('.total-unit-price');
             let totalUnitPriceNumber = totalUnitPrice.textContent;
@@ -187,6 +227,19 @@ function deleteProduct(){
             countTableRow -= 1;
             cartCounter.innerHTML = "(" + countTableRow + " sản phẩm" + ")";
             console.log(tableRow.length);
+
+            let id = document.querySelector('.id__table__row').textContent;
+            id = parseInt(id, 10);
+            let accessToken = localStorage.getItem('accessToken');
+
+            await fetch(`http://localhost:8080/cart-detail/delete/${id}`,{
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            });
+
             if (countTableRow == 0){
                 cartDetail.style.display = 'none';
                 emptyCart.style.display = 'block';
@@ -198,16 +251,115 @@ function deleteProduct(){
 
 // deletaAllProduct
 function deleteAllProduct(){
+    let tableRow = document.querySelectorAll('.table-row');
     let buttonClear = document.querySelector('.make-empty-button');
     let cartCounter = document.querySelector('.cart-counter');
-    buttonClear.addEventListener('click', function(){
+    let cartDetail = document.querySelector('.my-cart-detail');
+    let emptyCart = document.querySelector('.empty-cart');
+    let buttonCreatOrder = document.querySelector('.make-order-button');
+
+    buttonClear.addEventListener('click', async function(){
         for(let i = 0; i < tableRow.length; i++){
             tableRow[i].remove();
         }
         cartCounter.innerHTML = "(0 sản phẩm)";
         cartDetail.style.display = 'none';
         emptyCart.style.display = 'block';
+        let accessToken = localStorage.getItem('accessToken');
+        await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
+            method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+        });
     })
+
+    buttonCreatOrder.addEventListener('click', async function(){
+        for(let i = 0; i < tableRow.length; i++){
+            tableRow[i].remove();
+        }
+        cartCounter.innerHTML = "(0 sản phẩm)";
+        cartDetail.style.display = 'none';
+        emptyCart.style.display = 'block';
+        let accessToken = localStorage.getItem('accessToken');
+        await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
+            method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+        });
+    })
+}
+
+// function selecProduct(){
+//     let tableRow = document.querySelectorAll('.table-row');
+//     tableRow.forEach(function(element){
+//         let idProduct = element.querySelector('.id_product').textContent;
+//         localStorage.setItem('id__product', idProduct);
+//     });
+// }
+
+function creatOrder(){
+    let buttonCreatOrder = document.querySelector('.make-order-button');
+    buttonCreatOrder.addEventListener('click', async function(){
+        let nameCustomer = document.querySelector('.customer-name').value;
+        let numberPhone = document.querySelector('.customer-contact').value;
+        let address = document.querySelector('.customer-address').value;
+        let noteContent = document.querySelector('.customer-note').value;
+        let price = document.querySelector('.total-price').textContent;
+        price = parseInt(price, 10);
+        let paymentMethod1 = document.getElementById('option1');
+        let paymentMethod2 = document.getElementById('option2');
+        let idPaymentMethod = 0;
+
+        if(paymentMethod1.checked){
+            idPaymentMethod = 1;
+        }
+
+        if(paymentMethod2.checked){
+            idPaymentMethod = 2;
+        }
+
+
+        if(nameCustomer === "" || numberPhone === "" || address === "" || idPaymentMethod == 0){
+            document.querySelector('.war').style.display = "block";
+        }
+        else{
+            document.querySelector('.war').style.display = "none";
+            const data = {
+                receiverName: nameCustomer,
+                receiverPhone: numberPhone,
+                shippingAddress: address,
+                note: noteContent,
+                totalPrice: price,
+                paymentMethod: {
+                    id: idPaymentMethod
+                }
+            }
+            let responseData = await getDataCartDetail();
+            let accessToken = localStorage.getItem('accessToken');
+            await fetch(`http://localhost:8080/order/createOrderFromCart`, {
+                method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
+                    },
+                    body: JSON.stringify(data) 
+            });
+            await fetch(`http://localhost:8080/order-detail/add`, {
+                method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
+                    },
+                    body: JSON.stringify(responseData)
+            });
+            alert("Đặt hàng thành công");
+            deleteAllProduct();
+        }
+    });
 }
 
 // main
@@ -228,6 +380,8 @@ async function mainCartDetail(){
     adjustNumberProduct();
     deleteProduct();
     deleteAllProduct();
+    // selecProduct();
+    creatOrder();
 }
 
 mainCartDetail();

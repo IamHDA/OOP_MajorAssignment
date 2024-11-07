@@ -14,6 +14,11 @@ public interface LaptopRepository extends JpaRepository<Laptop, Long> {
     List<Laptop> findByBrand(String brand);
     List<Laptop> findByState(String state);
     @Query("""
+        select l from Laptop l
+        order by l.id desc
+    """)
+    List<Laptop> findLastLaptop();
+    @Query("""
     select l from Laptop l
     join l.laptopCategories lc
     join lc.category c

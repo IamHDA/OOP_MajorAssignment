@@ -10,6 +10,20 @@ var danhSachDonHangBox = document.querySelector('.account__detail__content___dan
 var thayDoiMatKhauBox = document.querySelector('.account__detail__content___thay-doi-mat-khau');
 var empty = document.querySelector('.empty');
 
+function daucham(num){
+    let tmp = "";
+    let mark = 0;
+    for(let i = num.length - 1; i >= 0; i--){
+        mark += 1;
+        tmp = num[i] + tmp;
+        if(mark == 3 && i != 0){
+            tmp = "." + tmp;
+            mark = 0
+        }
+    }
+    return tmp;
+}
+
 async function getDataUserName() {
     
     var text = document.querySelector("#taikhoancua");
@@ -207,12 +221,46 @@ async function changeUserInfor() {
     })
 }
 
+// Don hang
+function buildOder(){
+    let danhSachDonHang = document.querySelector('.danh-sach-don-hang');
+    danhSachDonHang.addEventListener('click', async function(){
+        let accessToken = localStorage.getItem('accessToken');
+        let response = await fetch('http://localhost:8080/order/getCurrentUserOrder', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }    
+        });
+        response = await response.json();
+        let tableDanhSachDonHang = document.querySelector('.tableDanhSachDonHang');
+        let index = 1;
+        await response.forEach(function(element){
+            let stt = '<td class="stt">' + index + '</td>';
+            index += 1;
+            let id = '<td class="id">' + '#' + '100' + element.id.toString() + '</td>';
+            let price = '<td class="totalPrice">' + daucham(element.totalPrice.toString()) + ' VNĐ' + '</td>';
+            let status = '<td class="status">'  + element.status + '</td>';
+            let nextRow =  '<tr class="nextRow">' + stt + id + price + status + '</tr>'
+            tableDanhSachDonHang.innerHTML += nextRow;
+        });
+
+        if(index == 1){
+            document.querySelector('.oderEmpty').style.display = "block";
+            document.querySelector('.tableDanhSachDonHang').style.display = "none";
+        }
+        else{
+            document.querySelector('.oderEmpty').style.display = "none";
+            document.querySelector('.tableDanhSachDonHang').style.display = "block";
+        }
+    })    
+}
+
 // thay doi mat khau
 
-var thayDoiMatKhauButton = document.querySelector('.button_thaydoimatkhau');
-
 async function changePassword(){
-
+    var thayDoiMatKhauButton = document.querySelector('.button_thaydoimatkhau');
     thayDoiMatKhauButton.addEventListener('click', async function(){
         var currentPass = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai__input").value;
         var newPass1 = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-moi-1__input").value;
@@ -272,8 +320,7 @@ async function mainAccountDetail() {
     await changeUserInfor();
     await changePassword();
     logOutFunc();
+    buildOder();
 }
 
 mainAccountDetail();
-
-

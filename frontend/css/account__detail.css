@@ -182,5 +182,215 @@
     background-color: rgb(219, 52, 68);
     cursor: pointer;
     margin: 10px 0 30px 450px;
+}.account__detail{
+    height: auto;
+    width: 100%;
+    min-width: 1200px;
+    position: absolute;
+    justify-content: center;
+    top: 200px;
 }
 
+.account__detail__container{
+    height: auto;
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.account__detail__selection{
+    height: auto;
+    width: 220px;
+}
+
+.profile{
+    height: auto;
+    width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.profile i{
+    padding: 15px;
+    border-radius: 50%;
+    background-color: rgb(0, 91, 173);
+    font-size: 20px;
+    color: white;
+}
+
+.profile .text{
+    margin-left: 10px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.profile .user-name{
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.thong-tin-tai-khoan, .danh-sach-don-hang, .thay-doi-mat-khau, .log-out{
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(235, 235, 235);
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(102, 102, 102);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.thong-tin-tai-khoan i, .danh-sach-don-hang i, .thay-doi-mat-khau i, .log-out i{
+    margin-left: 20px;
+    margin-right: 25px;
+}
+
+.account__detail__content{
+    margin-left: 20px;
+    background-color: white;
+    height: auto;
+    width: 960px;
+    border-radius: 10px;
+}
+
+.account__detail__content .empty{
+    margin: 20px 0 0 20px;
+}
+
+/* thong tin tai khoan */
+.account__detail__content___thong-tin-tai-khoan{
+    height: auto;
+    width: 960px;
+}
+
+.account__detail__content___thong-tin-tai-khoan h1{
+    font-size: 20px;
+    font-weight: 700;
+    margin: 20px 0  30px 20px;
+}
+
+.account__detail__content___thong-tin-tai-khoan__user-name, .account__detail__content___thong-tin-tai-khoan__user-email
+, .account__detail__content___thong-tin-tai-khoan__user-address, .account__detail__content___thong-tin-tai-khoan__user-numberphone{
+    display: flex;
+    margin: 0 0px 30px 20px;
+    justify-content: space-between;
+}
+
+.account__detail__content___thong-tin-tai-khoan__user-name input, .account__detail__content___thong-tin-tai-khoan__user-email input
+, .account__detail__content___thong-tin-tai-khoan__user-address input, .account__detail__content___thong-tin-tai-khoan__user-numberphone input{
+    width: 700px;
+    margin-right: 20px;
+    padding: 8px 10px;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.account__detail__content___thong-tin-tai-khoan__user-name p, .account__detail__content___thong-tin-tai-khoan__user-email p
+, .account__detail__content___thong-tin-tai-khoan__user-address p, .account__detail__content___thong-tin-tai-khoan__user-numberphone p{
+    margin: auto 0;
+}
+.account__detail__content___thong-tin-tai-khoan button{
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(219, 52, 68);
+    cursor: pointer;
+    margin: 10px 0 30px 450px;
+}
+
+/* Danh sach don hang */
+
+.account__detail__content___danh-sach-don-hang{
+    margin: 20px 0 0 20px;
+}
+
+.war1, .war2{
+    font-size: 18px;
+    margin-left: 20px;
+    margin-top: 10px;
+    color: red;
+    display: none;
+}
+
+/* Thay doi mat khau */
+    
+.account__detail__content___thay-doi-mat-khau{
+    height: auto;
+    width: 960px;
+}
+
+.account__detail__content___thay-doi-mat-khau h1{
+    font-size: 20px;
+    font-weight: 700;
+    margin: 20px 0 0 20px;
+    margin-bottom: 30px;
+}
+
+.account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai, .account__detail__content___thay-doi-mat-khau__mat-khau-moi-1,
+.account__detail__content___thay-doi-mat-khau__mat-khau-moi-2{
+    height: auto;
+    width: 100%;
+    display: flex;
+    margin: 0 0 30px 20px;
+    justify-content: space-between;
+}
+
+.account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai input, .account__detail__content___thay-doi-mat-khau__mat-khau-moi-1 input,
+.account__detail__content___thay-doi-mat-khau__mat-khau-moi-2 input{
+    width: 700px;
+    margin-right: 40px;
+    padding: 8px 10px;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai p, .account__detail__content___thay-doi-mat-khau__mat-khau-moi-1 p,
+.account__detail__content___thay-doi-mat-khau__mat-khau-moi-2 p{
+    margin: auto 0;
+}
+
+
+.account__detail__content___thay-doi-mat-khau button{
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(219, 52, 68);
+    cursor: pointer;
+    margin: 10px 0 30px 450px;
+}
+
+.tableDanhSachDonHang{
+    width: 920px;
+    height: auto;
+    border-collapse: collapse;
+}
+.tableDanhSachDonHang .firstRow{
+    width: 100%;
+    height: 40px;
+    background-color: rgb(0, 91, 173);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.tableDanhSachDonHang .nextRow{
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.tableDanhSachDonHang  th, .tableDanhSachDonHang td{
+    border: 1px solid black;
+}

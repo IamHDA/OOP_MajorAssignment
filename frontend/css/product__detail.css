@@ -93,6 +93,7 @@
     font-weight: 400;
     margin-left: 20px;
     margin-top: 10px;
+    list-style-type: circle;
 }
 
 .product__specifications__see_all h1, .product__specifications__see_all h2{

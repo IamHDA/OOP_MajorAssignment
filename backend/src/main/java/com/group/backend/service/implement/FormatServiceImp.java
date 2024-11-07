@@ -2,7 +2,6 @@ package com.group.backend.service.implement;
 
 import com.group.backend.dto.LaptopDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
-import com.group.backend.entity.Laptop;
 import com.group.backend.service.FormatService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,9 @@ public class FormatServiceImp implements FormatService {
     private ModelMapper modelMapper;
 
     @Override
-    public long priceFormat(long price) {
+    public int priceFormat(int price) {
         price /= 100000;
-        price = Math.round(price) * 10000;
+        price = Math.round(price) * 100000;
         return price;
     }
 
@@ -71,6 +70,18 @@ public class FormatServiceImp implements FormatService {
     public String romFormat(String text) {
         String tmp[] = text.split(" ");
         return tmp[1];
+    }
+
+    @Override
+    public String laptopNameFormat(String text) {
+        String tmp = text.replace(" ", "");
+        return tmp;
+    }
+
+    @Override
+    public String imgTypeFormat(String text) {
+        int index = text.lastIndexOf("/");
+        return "." + text.substring(index + 1);
     }
 
     @Override

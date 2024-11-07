@@ -145,41 +145,40 @@ VALUES ('Thanh toán tại cửa hàng'),
        ('Thanh toán khi nhận hàng');
 -- pause here
 
-INSERT INTO customer_order(shipping_address, total_price, payment_method_id, status_id, user_id)
-VALUES	('Số 1, Đường Láng, Quận Đống Đa, Hà Nội', 78997000, 1, 2, 1),
-		('Số 10, Phố Huế, Quận Hai Bà Trưng, Hà Nội', 19990000, 2, 1, 1),
-        ('Số 50, Đường Kim Mã, Quận Ba Đình, Hà Nội', 39980000, 1, 2, 2),
-        ('Số 25, Phố Trần Duy Hưng, Quận Cầu Giấy, Hà Nội', 27990000, 1, 1, 2),
-        ('Số 123, Phố Tràng Thi, Quận Hoàn Kiếm, Hà Nội', 55980000, 1, 1, 3);
--- pause here
+-- INSERT INTO customer_order(shipping_address, total_price, payment_method_id, status_id, user_id)
+-- VALUES	('Số 1, Đường Láng, Quận Đống Đa, Hà Nội', 78997000, 1, 2, 1),
+-- 		('Số 10, Phố Huế, Quận Hai Bà Trưng, Hà Nội', 19990000, 2, 1, 1),
+--         ('Số 50, Đường Kim Mã, Quận Ba Đình, Hà Nội', 39980000, 1, 2, 2),
+--         ('Số 25, Phố Trần Duy Hưng, Quận Cầu Giấy, Hà Nội', 27990000, 1, 1, 2),
+--         ('Số 123, Phố Tràng Thi, Quận Hoàn Kiếm, Hà Nội', 55980000, 1, 1, 3);
+-- -- pause here
 
-INSERT INTO order_detail(quantity, unit_price, laptop_id, customer_order_id)
-VALUES	(1, 26990000, 2, 1), (1, 25990000, 10, 1), (1, 25990000, 11, 2), (1, 23990000, 5, 3),
-		(1, 19990000, 3, 3), (1, 19990000, 4, 4), (1, 27990000, 9, 5),
-        (2, 27990000, 8, 5);
--- pause here
+-- INSERT INTO order_detail(quantity, unit_price, laptop_id, customer_order_id)
+-- VALUES	(1, 26990000, 2, 1), (1, 25990000, 10, 1), (1, 25990000, 11, 2), (1, 23990000, 5, 3),
+-- 		(1, 19990000, 3, 3), (1, 19990000, 4, 4), (1, 27990000, 9, 5),
+--         (2, 27990000, 8, 5);
+-- -- pause here
 
 INSERT INTO laptop_comment(comment, post_at, update_at, laptop_id, user_id)
-VALUES	('Laptop dùng sướng mỗi tội hơi nóng', '2024-10-15 17:48:23', null, 8, 3),
-		('Không có gì để chê', '2024-10-10 15:48:23', null, 11, 1),
-        ('Sản phẩm này đẹp ghê', '2024-10-15 17:48:23', null, 9, 2);
+VALUES	('Laptop dùng sướng mỗi tội hơi nóng', '2024-10-15 17:48:23', null, 8, 2),
+		('Không có gì để chê', '2024-10-10 15:48:23', null, 11, 3),
+        ('Sản phẩm này đẹp ghê', '2024-10-15 17:48:23', null, 9, 4);
 -- pause here
 
 INSERT INTO image (file_path, laptop_id)
-VALUES	('image/laptop/DellInspiron165630_1', 1), ('image/laptop/DellInspiron165630_2', 1), ('image/laptop/DellInspiron165630_3', 1), ('image/laptop/DellInspiron165630_4', 1), ('image/laptop/DellInspiron165630_5', 1), ('image/laptop/DellInspiron165630_6', 1), ('image/laptop/DellInspiron165630_7', 1), ('image/laptop/DellInspiron165630_8', 1),
-		('image/laptop/DellInspiron165630_1', 2), ('image/laptop/DellInspiron165630_2', 2), ('image/laptop/DellInspiron165630_3', 2), ('image/laptop/DellInspiron165630_4', 2), ('image/laptop/DellInspiron165630_5', 2), ('image/laptop/DellInspiron165630_6', 2), ('image/laptop/DellInspiron165630_7', 2), ('image/laptop/DellInspiron165630_7', 1),
-        ('image/laptop/DellInspiron165620_1', 3), ('image/laptop/DellInspiron165620_2', 3), ('image/laptop/DellInspiron165620_3', 3), ('image/laptop/DellInspiron165620_4', 3), ('image/laptop/DellInspiron165620_5', 3), ('image/laptop/DellInspiron165620_6', 3), ('image/laptop/DellInspiron165620_7', 3),
-        ('image/laptop/DellInspiron74452-in-1_1', 4), ('image/laptop/DellInspiron74452-in-1_2', 4), ('image/laptop/DellInspiron74452-in-1_3', 4), ('image/laptop/DellInspiron74452-in-1_4', 4), ('image/laptop/DellInspiron74452-in-1_5', 4), ('image/laptop/DellInspiron74452-in-1_6', 4), ('image/laptop/DellInspiron74452-in-1_7', 4), ('image/laptop/DellInspiron74452-in-1_8', 4),
-        ('image/laptop/AcerAspire5A515-58GM-53PZ_1', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_2', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_3', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_4', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_5', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_6', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_7', 5),
-        ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_1', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_2', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_3', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_4', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_5', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_6', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_7', 6),
-        ('image/laptop/AcerNitro5AN515-5856CH_1', 7), ('image/laptop/AcerNitro5AN515-5856CH_2', 7), ('image/laptop/AcerNitro5AN515-5856CH_3', 7), ('image/laptop/AcerNitro5AN515-5856CH_4', 7), ('image/laptop/AcerNitro5AN515-5856CH_5', 7), ('image/laptop/AcerNitro5AN515-5856CH_6', 7),
-        ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_1', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_2', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_3', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_4', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_5', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_6', 8),
-        ('image/laptop/AsusZenbook14OLEDQ425MA2024_1', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_2', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_3', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_4', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_5', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_6', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_7', 9),
-		('image/laptop/LenovoThinkbook14G6+2024_1', 10), ('image/laptop/LenovoThinkbook14G6+2024_2', 10), ('image/laptop/LenovoThinkbook14G6+2024_3', 10), ('image/laptop/LenovoThinkbook14G6+2024_4', 10), ('image/laptop/LenovoThinkbook14G6+2024_5', 10), ('image/laptop/LenovoThinkbook14G6+2024_6', 10),
-        ('image/laptop/LenovoLOQ202415ARP9_1', 11), ('image/laptop/LenovoLOQ202415ARP9_2', 11), ('image/laptop/LenovoLOQ202415ARP9_3', 11), ('image/laptop/LenovoLOQ202415ARP9_4', 11), ('image/laptop/LenovoLOQ202415ARP9_5', 11), ('image/laptop/LenovoLOQ202415ARP9_6', 11),
-        ('image/laptop/LenovoThinkPadE14Gen5_1', 12), ('image/laptop/LenovoThinkPadE14Gen5_2', 12), ('image/laptop/LenovoThinkPadE14Gen5_3', 12), ('image/laptop/LenovoThinkPadE14Gen5_4', 12), ('image/laptop/LenovoThinkPadE14Gen5_5', 12), ('image/laptop/LenovoThinkPadE14Gen5_6', 12), ('image/laptop/LenovoThinkPadE14Gen5_7', 12), ('image/laptop/LenovoThinkPadE14Gen5_8', 12),
-        ('image/laptop/DellPrecision7530_1', 13), ('image/laptop/DellPrecision7530_2', 13), ('image/laptop/DellPrecision7530_3', 13), ('image/laptop/DellPrecision7530_4', 13), ('image/laptop/DellPrecision7530_5', 13), ('image/laptop/DellPrecision7530_6', 13),
-        ('image/laptop/LenovoThinkpadP51_1', 14), ('image/laptop/LenovoThinkpadP51_2', 14), ('image/laptop/LenovoThinkpadP51_3', 14), ('image/laptop/LenovoThinkpadP51_4', 14), ('image/laptop/LenovoThinkpadP51_5', 14), ('image/laptop/LenovoThinkpadP51_6', 14), ('image/laptop/LenovoThinkpadP51_7', 14),
-        ('image/laptop/AsusVivobook15R565EA-UH51T_1', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_2', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_3', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_4', 15);
-        
+VALUES	('image/laptop/DellInspiron165630_1.jpg', 1), ('image/laptop/DellInspiron165630_2.jpg', 1), ('image/laptop/DellInspiron165630_3.jpg', 1), ('image/laptop/DellInspiron165630_4.jpg', 1), ('image/laptop/DellInspiron165630_5.jpg', 1), ('image/laptop/DellInspiron165630_6.jpg', 1), ('image/laptop/DellInspiron165630_7.jpg', 1), ('image/laptop/DellInspiron165630_8.jpg', 1),
+		('image/laptop/DellInspiron165630_1.jpg', 2), ('image/laptop/DellInspiron165630_2.jpg', 2), ('image/laptop/DellInspiron165630_3.jpg', 2), ('image/laptop/DellInspiron165630_4.jpg', 2), ('image/laptop/DellInspiron165630_5.jpg', 2), ('image/laptop/DellInspiron165630_6.jpg', 2), ('image/laptop/DellInspiron165630_7.jpg', 2), ('image/laptop/DellInspiron165630_7.jpg', 1),
+        ('image/laptop/DellInspiron165620_1.jpg', 3), ('image/laptop/DellInspiron165620_2.jpg', 3), ('image/laptop/DellInspiron165620_3.jpg', 3), ('image/laptop/DellInspiron165620_4.jpg', 3), ('image/laptop/DellInspiron165620_5.jpg', 3), ('image/laptop/DellInspiron165620_6.jpg', 3), ('image/laptop/DellInspiron165620_7.jpg', 3),
+        ('image/laptop/DellInspiron74452-in-1_1.jpg', 4), ('image/laptop/DellInspiron74452-in-1_2.jpg', 4), ('image/laptop/DellInspiron74452-in-1_3.jpg', 4), ('image/laptop/DellInspiron74452-in-1_4.jpg', 4), ('image/laptop/DellInspiron74452-in-1_5.jpg', 4), ('image/laptop/DellInspiron74452-in-1_6.jpg', 4), ('image/laptop/DellInspiron74452-in-1_7.jpg', 4), ('image/laptop/DellInspiron74452-in-1_8.jpg', 4),
+        ('image/laptop/AcerAspire5A515-58GM-53PZ_1.jpg', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_2.jpg', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_3.jpg', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_4.jpg', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_5.jpg', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_6.jpg', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_7.jpg', 5),
+        ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_1.jpg', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_2.jpg', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_3.jpg', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_4.jpg', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_5.jpg', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_6.jpg', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_7.jpg', 6),
+        ('image/laptop/AcerNitro5AN515-5856CH_1.jpg', 7), ('image/laptop/AcerNitro5AN515-5856CH_2.jpg', 7), ('image/laptop/AcerNitro5AN515-5856CH_3.jpg', 7), ('image/laptop/AcerNitro5AN515-5856CH_4.jpg', 7), ('image/laptop/AcerNitro5AN515-5856CH_5.jpg', 7), ('image/laptop/AcerNitro5AN515-5856CH_6.jpg', 7),
+        ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_1.jpg', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_2.jpg', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_3.jpg', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_4.jpg', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_5.jpg', 8), ('image/laptop/ASUSTUFGamingA16AdvantageEdition2023FA617NT_6.jpg', 8),
+        ('image/laptop/AsusZenbook14OLEDQ425MA2024_1.jpg', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_2.jpg', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_3.jpg', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_4.jpg', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_5.jpg', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_6.jpg', 9), ('image/laptop/AsusZenbook14OLEDQ425MA2024_7.jpg', 9),
+		('image/laptop/LenovoThinkbook14G6+2024_1.jpg', 10), ('image/laptop/LenovoThinkbook14G6+2024_2.jpg', 10), ('image/laptop/LenovoThinkbook14G6+2024_3.jpg', 10), ('image/laptop/LenovoThinkbook14G6+2024_4.jpg', 10), ('image/laptop/LenovoThinkbook14G6+2024_5.jpg', 10), ('image/laptop/LenovoThinkbook14G6+2024_6.jpg', 10),
+        ('image/laptop/LenovoLOQ202415ARP9_1.jpg', 11), ('image/laptop/LenovoLOQ202415ARP9_2.jpg', 11), ('image/laptop/LenovoLOQ202415ARP9_3.jpg', 11), ('image/laptop/LenovoLOQ202415ARP9_4.jpg', 11), ('image/laptop/LenovoLOQ202415ARP9_5.jpg', 11), ('image/laptop/LenovoLOQ202415ARP9_6.jpg', 11),
+        ('image/laptop/LenovoThinkPadE14Gen5_1.jpg', 12), ('image/laptop/LenovoThinkPadE14Gen5_2.jpg', 12), ('image/laptop/LenovoThinkPadE14Gen5_3.jpg', 12), ('image/laptop/LenovoThinkPadE14Gen5_4.jpg', 12), ('image/laptop/LenovoThinkPadE14Gen5_5.jpg', 12), ('image/laptop/LenovoThinkPadE14Gen5_6.jpg', 12), ('image/laptop/LenovoThinkPadE14Gen5_7.jpg', 12), ('image/laptop/LenovoThinkPadE14Gen5_8.jpg', 12),
+        ('image/laptop/DellPrecision7530_1.jpg', 13), ('image/laptop/DellPrecision7530_2.jpg', 13), ('image/laptop/DellPrecision7530_3.jpg', 13), ('image/laptop/DellPrecision7530_4.jpg', 13), ('image/laptop/DellPrecision7530_5.jpg', 13), ('image/laptop/DellPrecision7530_6.jpg', 13),
+        ('image/laptop/LenovoThinkpadP51_1.jpg', 14), ('image/laptop/LenovoThinkpadP51_2.jpg', 14), ('image/laptop/LenovoThinkpadP51_3.jpg', 14), ('image/laptop/LenovoThinkpadP51_4.jpg', 14), ('image/laptop/LenovoThinkpadP51_5.jpg', 14), ('image/laptop/LenovoThinkpadP51_6.jpg', 14), ('image/laptop/LenovoThinkpadP51_7.jpg', 14),
+        ('image/laptop/AsusVivobook15R565EA-UH51T_1.jpg', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_2.jpg', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_3.jpg', 15), ('image/laptop/AsusVivobook15R565EA-UH51T_4.jpg', 15);
 

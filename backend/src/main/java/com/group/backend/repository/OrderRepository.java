@@ -16,7 +16,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
         where o.user = :user
         order by o.id desc
     """)
-    List<Order> getLastOrderByUser(User user);
+    List<Order> reverseSortedOrderByUser(User user);
     List<Order> findByUserId(long customerId);
     List<Order> findAll();
 

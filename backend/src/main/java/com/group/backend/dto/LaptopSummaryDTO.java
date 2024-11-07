@@ -13,5 +13,5 @@ public class LaptopSummaryDTO {
     private int price;
     private int sale;
     private List<Image> images;
-    private Specification specification;
+    private SpecificationDTO specification;
 }

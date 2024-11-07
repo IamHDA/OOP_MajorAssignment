@@ -34,6 +34,22 @@ public class LaptopServiceImp implements LaptopService {
     }
 
     @Override
+    public Laptop getLastLaptop() {
+        List<Laptop> laptops = laptopRepo.findLastLaptop();
+        for(Laptop laptop : laptops){
+            return laptop;
+        }
+        return null;
+    }
+
+    @Override
+    public String addLaptop(LaptopDTO laptopDTO) {
+        Laptop laptop = modelMapper.map(laptopDTO, Laptop.class);
+        laptopRepo.save(laptop);
+        return "Laptop added successfully";
+    }
+
+    @Override
     public List<LaptopDTO> getLaptopByCategory(String category) {
         List<Laptop> laptops =laptopRepo.findByCategory(category);
         return laptops.stream()

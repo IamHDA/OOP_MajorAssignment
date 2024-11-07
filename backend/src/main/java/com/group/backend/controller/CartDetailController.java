@@ -1,7 +1,6 @@
 package com.group.backend.controller;
 
 import com.group.backend.dto.CartDetailDTO;
-import com.group.backend.entity.Cart_Detail;
 import com.group.backend.entity.Laptop;
 import com.group.backend.entity.User;
 import com.group.backend.repository.CartDetailRepository;
@@ -39,13 +38,13 @@ public class CartDetailController {
         if(cartDetailRepo.findByLaptopAndUser(laptop, user).isPresent()){
             return ResponseEntity.badRequest().body("Laptop is already in cart");
         }
-        cartDetailService.updateOrInsert(cartDetailDTO);
+        cartDetailService.addToCart(cartDetailDTO);
         return ResponseEntity.ok().body("Laptop added successfully");
     }
 
     @PutMapping("/update")
     public ResponseEntity<Void> updateCart(@RequestBody CartDetailDTO cartDetailDTO){
-        cartDetailService.updateOrInsert(cartDetailDTO);
+        cartDetailService.adjustQuantity(cartDetailDTO);
         return ResponseEntity.ok().build();
     }
 

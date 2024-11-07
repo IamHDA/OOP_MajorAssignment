@@ -16,7 +16,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("/getAllOrders")
+    @GetMapping("/getCurrentUserOrder")
     public ResponseEntity<List<OrderDTO>> getCurrentOrder(){
         return ResponseEntity.ok(orderService.getOrderByUser());
     }
@@ -25,6 +25,7 @@ public class OrderController {
     public ResponseEntity<Order> createOrderFromCart(@RequestBody OrderDTO orderDTO){
         return ResponseEntity.ok(orderService.createOrderFromCart(orderDTO));
     }
+
     @DeleteMapping("/deleteUserOrder")
     public ResponseEntity<Void> deleteOrderUser(){
         orderService.deleteOrderUser();
