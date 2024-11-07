@@ -175,9 +175,7 @@
                             <div class="customer-etc">
                                 <input class="customer-name" type="text" placeholder="Họ tên người nhận">
                                 <input class="customer-contact" type="text" placeholder="Số điện thoại người nhận">
-                                <input class="customer-email" type="text" placeholder="Email">
-                                <input class="customer-contact" type="text" placeholder="Địa chỉ nhận hàng">
-                                <!-- <input class="customer-note" type="text" placeholder="Ghi chú"> -->
+                                <input class="customer-address" type="text" placeholder="Địa chỉ nhận hàng">
                                 <textarea class="customer-note" placeholder="Ghi chú"></textarea>
                                 <form class="all-option">      
                                     <input type="radio" id="option1" name="payment" value="1" class="chose-method">
@@ -186,6 +184,8 @@
                                     <label for="option2">Thanh toán khi nhận hàng &#40;COD&#41;</label><br>
                                 </form> 
                             </div>
+
+                            <div class="war"> - Vui lòng điền đầy đủ thông tin và chọn phương thức thanh toán để thực hiện việc đặt hàng!</div>
                         </div>   
                         <button class="make-order-button">Đặt hàng</button> 
                     </div> 
@@ -252,5 +252,6 @@
         <script src="js/register__login__or__account.js"></script>
         <script src="js/cartDetail.js"></script>
         <script src="js/clear__local__storage.js"></script>
+        <script src="js/accessToken.js"></script>
     </body>
 </html>

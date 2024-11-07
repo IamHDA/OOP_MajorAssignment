@@ -52,7 +52,8 @@ async function buildCartDeTail(){
     console.log(responseData);
     responseData.forEach(function(element){
         const idTableRow = '<div class = "id__table__row">' + element.id + '</div>'; 
-        const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath + ".jpg" + '"alt=""></img>';
+        const idLapTop = '<div class = "id__product">' + element.laptop.id + '</div>';
+        const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath  + '"alt=""></img>';
         const nameProduct = '<a href="product.html" class="laptop-name">' + element.laptop.name + ' ' + '(' + element.laptop.specification.cpu + ', ' + element.laptop.specification.ram + ', ' + element.laptop.specification.rom + ', ' + element.laptop.specification.graphicsCard + ', ' + element.laptop.specification.screen + ')' +'</a>';
         const td1 = '<td>' + imgProduct + nameProduct + '</td>';
         const subButton = '<button class="left-button">-</button>';
@@ -69,7 +70,7 @@ async function buildCartDeTail(){
         tmp2 = daucham(tmp2.toString()) + " VNĐ";
         const totalUnitPrice = '<p class="total-unit-price">' + tmp2 + '</p>';
         const td2 = '<td>' + adjustAndDelete + unitPrice + totalUnitPrice + '</td>';
-        const tableRow = '<tr class="table-row">' + idTableRow + td1 + td2 + '</tr>';
+        const tableRow = '<tr class="table-row">' + idTableRow + idLapTop + td1 + td2 + '</tr>';
         cartTable.innerHTML += tableRow;
     });
     const totalPriceText = '<td class="total-price-text">Tổng giá trị đơn hàng</td>';
@@ -128,13 +129,14 @@ async function buildCartDeTail(){
 
                 // thay doi database
                 let id_cart = document.querySelector('.id__table__row').textContent;
-                id_cart = parseInt(id, 10);
+                id_cart = parseInt(id_cart, 10);
+                newNumber = parseInt(newNumber, 10);
                 const data = {
                     id: id_cart,
                     quantity: newNumber
                 };
                 let accessToken = localStorage.getItem('accessToken');
-                await fetch(`http://localhost:8080/cart-detail/delete/${id_cart}`,{
+                await fetch(`http://localhost:8080/cart-detail/update`,{
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -176,13 +178,14 @@ async function buildCartDeTail(){
 
             // thay doi database
             let id_cart = document.querySelector('.id__table__row').textContent;
-            id_cart = parseInt(id, 10);
+            id_cart = parseInt(id_cart, 10);
+            newNumber = parseInt(newNumber, 10);
             const data = {
                 id: id_cart,
                 quantity: newNumber
             };
             let accessToken = localStorage.getItem('accessToken');
-            await fetch(`http://localhost:8080/cart-detail/delete/${id_cart}`,{
+            await fetch(`http://localhost:8080/cart-detail/update`,{
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -271,6 +274,76 @@ function deleteAllProduct(){
     })
 }
 
+function selecProduct(){
+    let tableRow = document.querySelectorAll('.table-row');
+    tableRow.forEach(function(element){
+        let idProduct = element.querySelector('.id_product').textContent;
+        localStorage.setItem('id__product', idProduct);
+    });
+}
+
+function creatOrder(){
+    let buttonCreatOrder = document.querySelector('.make-order-button');
+    buttonCreatOrder.addEventListener('click', async function(){
+        let nameCustomer = document.querySelector('.customer-name').value;
+        let numberPhone = document.querySelector('.customer-contact').value;
+        let address = document.querySelector('.customer-address').value;
+        let noteContent = document.querySelector('.customer-note').value;
+        let price = document.querySelector('.total-price').textContent;
+        price = parseInt(price, 10);
+        let paymentMethod1 = document.getElementById('#option1');
+        let paymentMethod2 = document.getElementById('#option2');
+        let idPaymentMethod = 0;
+
+        if(paymentMethod1.checked){
+            idPaymentMethod = 1;
+        }
+
+        if(paymentMethod2.checked){
+            idPaymentMethod = 2;
+        }
+
+
+        if(!nameCustomer || !numberPhone || !address || idPaymentMethod == 0){
+            document.querySelector('.war').style.display = "block";
+        }
+        else{
+            const data = {
+                receiverName: nameCustomer,
+                receiverPhone: numberPhone,
+                shippingAddress: address,
+                note: noteContent,
+                totalPrice: price,
+                paymentMethod: {
+                    id: idPaymentMethod
+                }
+            }
+            const responseData = await getDataCartDetail();
+            const dataCart = {
+                responseData
+            }
+            let accessToken = localStorage.getItem('accessToken');
+            await fetch(`http://localhost:8080//order/createOrderFromCart`, {
+                method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
+                    },
+                    body: JSON.stringify(data) 
+            });
+
+            await fetch(`http://localhost:8080//order/order-detail/add`, {
+                method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
+                    },
+                    body: JSON.stringify(dataCart) 
+            });
+        }
+    });
+}
+
 // main
 async function mainCartDetail(){
     await buildCartDeTail();
@@ -289,6 +362,8 @@ async function mainCartDetail(){
     adjustNumberProduct();
     deleteProduct();
     deleteAllProduct();
+    selecProduct();
+    creatOrder();
 }
 
 mainCartDetail();

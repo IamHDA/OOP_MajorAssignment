@@ -41,8 +41,8 @@ function getDaTa(){
         productName.innerHTML += response.name;
 
         for(let i = 0; i < response.images.length; i++){
-            productImgMain.innerHTML += '<img src= "' + response.images[i].filePath + ".jpg" + '"alt=""></img>';
-            productImgList.innerHTML += '<img src= "' + response.images[i].filePath + ".jpg" + '"alt=""></img>';
+            productImgMain.innerHTML += '<img src= "' + response.images[i].filePath + '"alt=""></img>';
+            productImgList.innerHTML += '<img src= "' + response.images[i].filePath + '"alt=""></img>';
         }
 
         ulProductSpecification.innerHTML += '<li>CPU : '  + response.specification.cpu + '</li>';
