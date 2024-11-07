@@ -29,9 +29,8 @@ function daucham(num){
 async function getDataUserName() {
     
     var text = document.querySelector("#taikhoancua");
-    let accessToken = localStorage.getItem("accessToken");
-    // Lay ten 
     checkAccessTokenIsvalid();
+    let accessToken = localStorage.getItem("accessToken");
     let response = await fetch('http://localhost:8080/user/info', {
         method: 'GET',
         headers: {
@@ -279,6 +278,7 @@ async function changePassword(){
         else{
             war1.style.display = 'none';
             // lay mat khau hien tai
+            checkAccessTokenIsvalid();
             var accessToken = localStorage.getItem('accessToken');
             const data = {
                 password: newPass1

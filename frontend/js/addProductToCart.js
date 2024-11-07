@@ -1,3 +1,5 @@
+import { checkAccessTokenIsvalid } from 'accessToken.js';
+
 async function fetchAddProductToCart(idProduct){
     try {
         const data = {
@@ -6,6 +8,7 @@ async function fetchAddProductToCart(idProduct){
                 "id": idProduct
            }
         };
+        checkAccessTokenIsvalid();
         var accessToken = localStorage.getItem("accessToken");
         const response = await fetch('http://localhost:8080/cart-detail/add', {
             method: 'POST',
