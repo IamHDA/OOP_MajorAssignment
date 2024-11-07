@@ -145,30 +145,30 @@ VALUES ('Thanh toán tại cửa hàng'),
        ('Thanh toán khi nhận hàng');
 -- pause here
 
-INSERT INTO customer_order(shipping_address, total_price, payment_method_id, status_id, user_id)
-VALUES	('Số 1, Đường Láng, Quận Đống Đa, Hà Nội', 78997000, 1, 2, 1),
-		('Số 10, Phố Huế, Quận Hai Bà Trưng, Hà Nội', 19990000, 2, 1, 1),
-        ('Số 50, Đường Kim Mã, Quận Ba Đình, Hà Nội', 39980000, 1, 2, 2),
-        ('Số 25, Phố Trần Duy Hưng, Quận Cầu Giấy, Hà Nội', 27990000, 1, 1, 2),
-        ('Số 123, Phố Tràng Thi, Quận Hoàn Kiếm, Hà Nội', 55980000, 1, 1, 3);
--- pause here
+-- INSERT INTO customer_order(shipping_address, total_price, payment_method_id, status_id, user_id)
+-- VALUES	('Số 1, Đường Láng, Quận Đống Đa, Hà Nội', 78997000, 1, 2, 1),
+-- 		('Số 10, Phố Huế, Quận Hai Bà Trưng, Hà Nội', 19990000, 2, 1, 1),
+--         ('Số 50, Đường Kim Mã, Quận Ba Đình, Hà Nội', 39980000, 1, 2, 2),
+--         ('Số 25, Phố Trần Duy Hưng, Quận Cầu Giấy, Hà Nội', 27990000, 1, 1, 2),
+--         ('Số 123, Phố Tràng Thi, Quận Hoàn Kiếm, Hà Nội', 55980000, 1, 1, 3);
+-- -- pause here
 
-INSERT INTO order_detail(quantity, unit_price, laptop_id, customer_order_id)
-VALUES	(1, 26990000, 2, 1), (1, 25990000, 10, 1), (1, 25990000, 11, 2), (1, 23990000, 5, 3),
-		(1, 19990000, 3, 3), (1, 19990000, 4, 4), (1, 27990000, 9, 5),
-        (2, 27990000, 8, 5);
--- pause here
+-- INSERT INTO order_detail(quantity, unit_price, laptop_id, customer_order_id)
+-- VALUES	(1, 26990000, 2, 1), (1, 25990000, 10, 1), (1, 25990000, 11, 2), (1, 23990000, 5, 3),
+-- 		(1, 19990000, 3, 3), (1, 19990000, 4, 4), (1, 27990000, 9, 5),
+--         (2, 27990000, 8, 5);
+-- -- pause here
 
 INSERT INTO laptop_comment(comment, post_at, update_at, laptop_id, user_id)
-VALUES	('Laptop dùng sướng mỗi tội hơi nóng', '2024-10-15 17:48:23', null, 8, 3),
-		('Không có gì để chê', '2024-10-10 15:48:23', null, 11, 1),
-        ('Sản phẩm này đẹp ghê', '2024-10-15 17:48:23', null, 9, 2);
+VALUES	('Laptop dùng sướng mỗi tội hơi nóng', '2024-10-15 17:48:23', null, 8, 2),
+		('Không có gì để chê', '2024-10-10 15:48:23', null, 11, 3),
+        ('Sản phẩm này đẹp ghê', '2024-10-15 17:48:23', null, 9, 4);
 -- pause here
 
 INSERT INTO image (file_path, laptop_id)
 VALUES	('image/laptop/DellInspiron165630_1.jpg', 1), ('image/laptop/DellInspiron165630_2.jpg', 1), ('image/laptop/DellInspiron165630_3.jpg', 1), ('image/laptop/DellInspiron165630_4.jpg', 1), ('image/laptop/DellInspiron165630_5.jpg', 1), ('image/laptop/DellInspiron165630_6.jpg', 1), ('image/laptop/DellInspiron165630_7.jpg', 1), ('image/laptop/DellInspiron165630_8.jpg', 1),
 		('image/laptop/DellInspiron165630_1.jpg', 2), ('image/laptop/DellInspiron165630_2.jpg', 2), ('image/laptop/DellInspiron165630_3.jpg', 2), ('image/laptop/DellInspiron165630_4.jpg', 2), ('image/laptop/DellInspiron165630_5.jpg', 2), ('image/laptop/DellInspiron165630_6.jpg', 2), ('image/laptop/DellInspiron165630_7.jpg', 2), ('image/laptop/DellInspiron165630_7.jpg', 1),
-        ('image/laptop/DellInspiron165620_1', 3), ('image/laptop/DellInspiron165620_2', 3), ('image/laptop/DellInspiron165620_3', 3), ('image/laptop/DellInspiron165620_4', 3), ('image/laptop/DellInspiron165620_5', 3), ('image/laptop/DellInspiron165620_6', 3), ('image/laptop/DellInspiron165620_7', 3),
+        ('image/laptop/DellInspiron165620_1.jpg', 3), ('image/laptop/DellInspiron165620_2.jpg', 3), ('image/laptop/DellInspiron165620_3.jpg', 3), ('image/laptop/DellInspiron165620_4.jpg', 3), ('image/laptop/DellInspiron165620_5.jpg', 3), ('image/laptop/DellInspiron165620_6.jpg', 3), ('image/laptop/DellInspiron165620_7.jpg', 3),
         ('image/laptop/DellInspiron74452-in-1_1.jpg', 4), ('image/laptop/DellInspiron74452-in-1_2.jpg', 4), ('image/laptop/DellInspiron74452-in-1_3.jpg', 4), ('image/laptop/DellInspiron74452-in-1_4.jpg', 4), ('image/laptop/DellInspiron74452-in-1_5.jpg', 4), ('image/laptop/DellInspiron74452-in-1_6.jpg', 4), ('image/laptop/DellInspiron74452-in-1_7.jpg', 4), ('image/laptop/DellInspiron74452-in-1_8.jpg', 4),
         ('image/laptop/AcerAspire5A515-58GM-53PZ_1.jpg', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_2.jpg', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_3.jpg', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_4.jpg', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_5.jpg', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_6.jpg', 5), ('image/laptop/AcerAspire5A515-58GM-53PZ_7.jpg', 5),
         ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_1.jpg', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_2.jpg', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_3.jpg', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_4.jpg', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_5.jpg', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_6.jpg', 6), ('image/laptop/AcerSwiftGo14AISFG14-73-53X7_7.jpg', 6),

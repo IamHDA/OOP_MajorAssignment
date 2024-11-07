@@ -149,6 +149,8 @@ async function register(){
                 body: JSON.stringify(dataUser) // Chuyển dữ liệu thành JSON
             });
 
+            console.log("SDFDSFDSFSDFSDFDS");
+
             response = await response.json();
 
             if(response.message == "Email is already in use"){
