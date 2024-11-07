@@ -242,7 +242,7 @@ function buildOder(){
             let id = '<td class="id">' + '#' + '100' + element.id.toString() + '</td>';
             let price = '<td class="totalPrice">' + daucham(element.totalPrice.toString()) + ' VNĐ' + '</td>';
             let status = '<td class="status">'  + element.status + '</td>';
-            let nextRow =  '<tr class="nextRow">' + stt + id + price + status + '</tr>'
+            let nextRow =  '<tr class="nextRow">' + stt + id + price + status + '</tr>';
             tableDanhSachDonHang.innerHTML += nextRow;
         });
 

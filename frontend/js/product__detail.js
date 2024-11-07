@@ -178,3 +178,4 @@ function getDaTa(){
 
 getDaTa();
 
+ulProductSpecification.innerHTML += '<li>Cổng kết nối: <br>' + '<div class = "tab">' + response.specification.connectionPort.replace(/\n/g, "<br>") + '</div>' + '</li>';
