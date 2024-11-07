@@ -229,7 +229,6 @@ function deleteAllProduct(){
         cartCounter.innerHTML = "(0 sản phẩm)";
         cartDetail.style.display = 'none';
         emptyCart.style.display = 'block';
-
         let accessToken = localStorage.getItem('accessToken');
         await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
             method: 'DELETE',
