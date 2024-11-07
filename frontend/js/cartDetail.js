@@ -18,7 +18,7 @@ function daucham(num){
 }
 
 function boDauCham(num){
-    res = ""
+    res = "";
     for(let i = 0; i < num.length; i++){
         if(num[i] != "."){
             res += num[i];
@@ -78,7 +78,7 @@ async function buildCartDeTail(){
 } 
 
 // adjustNumberProduct
-function adjustNumberProduct(){
+ function adjustNumberProduct(){
     let totalPrice = document.querySelector('.total-price');
     let tableRow = document.querySelectorAll('.table-row');
     tableRow.forEach(function(element){
@@ -97,7 +97,7 @@ function adjustNumberProduct(){
         }
 
         // Bấm nút giảm
-        buttonLeft.addEventListener('click', function(){
+        buttonLeft.addEventListener('click', async function(){
             if(numberProduct.textContent != "1"){
                 let currentNumber = parseInt(numberProduct.textContent, 10);
                 let newNumber = currentNumber - 1;
@@ -125,12 +125,28 @@ function adjustNumberProduct(){
                 totalPriceNumber = totalPriceNumber.toString();
                 totalPriceNumber = daucham(totalPriceNumber) + " VNĐ";
                 totalPrice.innerHTML = totalPriceNumber;
+
+                // thay doi database
+                let id_cart = document.querySelector('.id__table__row').textContent;
+                id_cart = parseInt(id, 10);
+                const data = {
+                    id: id_cart,
+                    quantity: newNumber
+                };
+                let accessToken = localStorage.getItem('accessToken');
+                await fetch(`http://localhost:8080/cart-detail/delete/${id_cart}`,{
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
+                    },
+                    body: JSON.stringify(data) 
+                });
             }    
         })
 
         // Bấm nút tăng
-
-        buttonRight.addEventListener('click', function(){
+        buttonRight.addEventListener('click', async function(){
             let currentNumber = parseInt(numberProduct.textContent, 10);
             let newNumber = currentNumber + 1;
             newNumber = newNumber.toString();
@@ -157,9 +173,24 @@ function adjustNumberProduct(){
             totalPriceNumber = totalPriceNumber.toString();
             totalPriceNumber = daucham(totalPriceNumber) + " VNĐ";
             totalPrice.innerHTML = totalPriceNumber;
+
+            // thay doi database
+            let id_cart = document.querySelector('.id__table__row').textContent;
+            id_cart = parseInt(id, 10);
+            const data = {
+                id: id_cart,
+                quantity: newNumber
+            };
+            let accessToken = localStorage.getItem('accessToken');
+            await fetch(`http://localhost:8080/cart-detail/delete/${id_cart}`,{
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                },
+                body: JSON.stringify(data) 
+            });
         })
-
-
     })
 }
 
