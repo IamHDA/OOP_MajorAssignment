@@ -128,13 +128,13 @@ async function buildCartDeTail(){
 
                 // thay doi database
                 let id_cart = document.querySelector('.id__table__row').textContent;
-                id_cart = parseInt(id, 10);
+                id_cart = parseInt(id_cart, 10);
                 const data = {
                     id: id_cart,
                     quantity: newNumber
                 };
                 let accessToken = localStorage.getItem('accessToken');
-                await fetch(`http://localhost:8080/cart-detail/delete/${id_cart}`,{
+                await fetch(`http://localhost:8080/cart-detail/update`,{
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -176,13 +176,13 @@ async function buildCartDeTail(){
 
             // thay doi database
             let id_cart = document.querySelector('.id__table__row').textContent;
-            id_cart = parseInt(id, 10);
+            id_cart = parseInt(id_cart, 10);
             const data = {
                 id: id_cart,
                 quantity: newNumber
             };
             let accessToken = localStorage.getItem('accessToken');
-            await fetch(`http://localhost:8080/cart-detail/delete/${id_cart}`,{
+            await fetch(`http://localhost:8080/cart-detail/update`,{
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

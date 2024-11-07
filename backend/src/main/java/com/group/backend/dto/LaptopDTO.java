@@ -9,7 +9,6 @@ import java.util.List;
 
 @Data
 public class LaptopDTO {
-
     private long id;
     private String name;
     private int price;

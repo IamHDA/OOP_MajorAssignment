@@ -1,4 +1,7 @@
 package com.group.backend.service;
 
-public class PaymentMethodService {
+import com.group.backend.dto.PaymentMethodDTO;
+
+public interface PaymentMethodService {
+    PaymentMethodDTO getPaymentMethodById(long id);
 }

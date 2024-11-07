@@ -6,6 +6,8 @@ import com.group.backend.entity.User;
 import com.group.backend.repository.OrderRepository;
 import com.group.backend.security.CurrentUser;
 import com.group.backend.service.OrderService;
+import com.group.backend.service.PaymentMethodService;
+import com.group.backend.service.StatusService;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +18,17 @@ import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImp implements OrderService {
+
     @Autowired
     private CurrentUser currentUser;
-
     @Autowired
     private OrderRepository orderRepo;
-
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private StatusService statusService;
+    @Autowired
+    private PaymentMethodService paymentMethodService;
 
     @Override
     public List<OrderDTO> getOrdersByUser() {
@@ -48,6 +53,8 @@ public class OrderServiceImp implements OrderService {
     @Override
     public Order createOrderFromCart(OrderDTO orderDTO) {
         User user = currentUser.getCurrentUser();
+        orderDTO.setStatus(statusService.getStatusById(1));
+        orderDTO.setPaymentMethod(paymentMethodService.getPaymentMethodById(orderDTO.getStatus().getId()));
         Order order = modelMapper.map(orderDTO, Order.class);
         order.setUser(user);
         return orderRepo.save(order);
