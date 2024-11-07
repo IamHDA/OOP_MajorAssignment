@@ -16,7 +16,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("/getAllOrders")
+    @GetMapping("/getCurrentUserOrder")
     public ResponseEntity<List<OrderDTO>> getCurrentOrder(){
         return ResponseEntity.ok(orderService.getOrdersByUser());
     }

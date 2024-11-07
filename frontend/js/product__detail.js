@@ -19,7 +19,7 @@ function getDaTa(){
 
     let id = localStorage.getItem('id__product'); 
 
-    fetch(`http://localhost:8080/laptop/${id}`, {
+    fetch(`http://localhost:8080/laptop/api/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -54,8 +54,7 @@ function getDaTa(){
         ulProductSpecification.innerHTML += '<li>Trọng lượng : ' + response.specification.weight + '</li>';
         ulProductSpecification.innerHTML += '<li>Webcam : ' +  response.specification.webcam + '</li>';
         ulProductSpecification.innerHTML += '<li>Hệ điều hành: ' +  response.specification.operatingSystem + '</li>';
-        specification.connectionPort.replace(/\n/g, "<br>");
-        ulProductSpecification.innerHTML += '<li>Cổng kết nối: ' + response.specification.connectionPort + '</li>';
+        ulProductSpecification.innerHTML += '<li>Cổng kết nối: <br>' + '<div class = "tab">' + response.specification.connectionPort.replace(/\n/g, "<br>") + '</div>' + '</li>';
 
         let basePrice = response.price.toString();
         basePrice = daucham(basePrice);
@@ -117,62 +116,6 @@ function getDaTa(){
 
             commentContainer.innerHTML += inforAndTime + content;
         })
-    })
-    .then(data =>{
-        let productSpecification = document.querySelector('.product__specifications');
-        let ulProductSpecification = productSpecification.getElementsByTagName('ul')[0];
-        for(let i = 3; i < ulProductSpecification.children.length; i++){
-            ulProductSpecification.children[i].style.display = 'none';
-        }
-        var button = document.querySelector('.product__specifications__see_all');
-        var seeAll = button.getElementsByTagName('h1')[0];
-        var summary = button.getElementsByTagName('h2')[0];
-
-        seeAll.style.display = 'block';
-        summary.style.display = 'none';
-
-        seeAll.addEventListener('click', function(){
-            for(let i = 3; i < ulProductSpecification.children.length; i++){
-                ulProductSpecification.children[i].style.display = 'block';
-                summary.style.display = 'block';
-                seeAll.style.display = 'none';
-            }
-        });
-        summary.addEventListener('click', function(){
-            for(let i = 3; i < ulProductSpecification.children.length; i++){
-                ulProductSpecification.children[i].style.display = 'none';
-                summary.style.display = 'none';
-                seeAll.style.display = 'block';
-            }
-        });
-    })
-    .then(data =>{
-        function seeAllSpecification(){
-            let productSpecification = document.querySelector('.product__specifications');
-            let ulProductSpecification = productSpecification.getElementsByTagName('ul')[0];
-            for(let i = 3; i < ulProductSpecification.children.length; i++){
-                ulProductSpecification.children[i].style.display = 'none';
-            }
-            var button = document.querySelector('.product__specifications__see_all');
-            var seeAll = button.getElementsByTagName('h1')[0];
-            var summary = button.getElementsByTagName('h2')[0];
-        
-            seeAll.addEventListener('click', function(){
-                for(let i = 3; i < ulProductSpecification.children.length; i++){
-                    ulProductSpecification.children[i].style.display = 'block';
-                    summary.style.display = 'block';
-                    seeAll.style.display = 'none';
-                }
-            });
-            summary.addEventListener('click', function(){
-                for(let i = 3; i < ulProductSpecification.children.length; i++){
-                    ulProductSpecification.children[i].style.display = 'none';
-                    summary.style.display = 'none';
-                    seeAll.style.display = 'block';
-                }
-            });
-        }
-        seeAllSpecification();
     })
 }
 

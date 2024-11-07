@@ -1,8 +1,10 @@
 package com.group.backend.dto;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class SpecificationDTO {
     private long id;
     private String cpu;

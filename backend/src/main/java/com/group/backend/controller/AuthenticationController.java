@@ -18,7 +18,7 @@ public class AuthenticationController {
 
 
     @Autowired
-    private final AuthenticationService authenticationService;
+    private AuthenticationService authenticationService;
 
     public AuthenticationController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;

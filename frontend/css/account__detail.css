@@ -369,8 +369,6 @@
 }
 
 .tableDanhSachDonHang{
-    width: 920px;
-    height: auto;
     border-collapse: collapse;
 }
 .tableDanhSachDonHang .firstRow{

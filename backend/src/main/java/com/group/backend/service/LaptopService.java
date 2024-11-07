@@ -11,6 +11,7 @@ import java.util.List;
 public interface LaptopService {
     LaptopDTO getLaptopById(long id);
     Laptop getLastLaptop();
+    String addLaptop(LaptopDTO laptopDTO);
     List<LaptopDTO> getLaptopByCategory(String category);
     List<LaptopDTO> getLaptopByBrand(String brand);
     List<LaptopDTO> getLaptopByState(String state);
