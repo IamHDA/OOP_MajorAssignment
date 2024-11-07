@@ -339,7 +339,7 @@ function creatOrder(){
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${accessToken}`
                     },
-                    body: dataCart
+                    body: JSON.stringify() 
             });
 
             deleteAllProduct();

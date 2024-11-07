@@ -6,7 +6,7 @@ import com.group.backend.dto.LaptopSummaryDTO;
 import java.util.List;
 
 public interface FormatService {
-    long priceFormat(long price);
+    int priceFormat(int price);
     String cpuFormat(String text);
     String screenFormat(String text);
     String vgaFormat(String text);

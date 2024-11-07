@@ -17,7 +17,7 @@ public class FormatServiceImp implements FormatService {
     private ModelMapper modelMapper;
 
     @Override
-    public long priceFormat(long price) {
+    public int priceFormat(int price) {
         price /= 100000;
         price = Math.round(price) * 100000;
         return price;
