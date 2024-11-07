@@ -21,7 +21,7 @@ async function buildSearchProduct(dataResponse){
     let allLaptop = document.querySelector('.all-laptop');
     for(let i = 0; i < dataResponse.length; i++){
         var idProduct = '<div class="id__product">' + dataResponse[i].id + '</div>';
-        var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + dataResponse[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
+        var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + dataResponse[i].images[0].filePath  + '" alt="">'+ '</a>';
         var nameProduct = '<a href="product.html" class="product__name">' + dataResponse[i].name + '( ' + dataResponse[i].specification.cpu + ', ' + dataResponse[i].specification.graphicsCard + ', ' + dataResponse[i].specification.ram + ', ' + dataResponse[i].specification.rom +', '+ dataResponse[i].specification.screen + ' )' + '</a>';
         let basePrice = dataResponse[i].price.toString();
         basePrice = daucham(basePrice);
