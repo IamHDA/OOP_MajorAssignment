@@ -1,277 +1,387 @@
-var thongTinTaiKhoan = document.querySelector(".thong-tin-tai-khoan");
-var danhSachDonHang = document.querySelector(".danh-sach-don-hang");
-var thayDoiMatKhau = document.querySelector(".thay-doi-mat-khau");
-var logOut = document.querySelector(".log-out");
+function lamtron(num) {
+    return Math.round(num / 100000) * 100000;
+}
 
-var account = document.querySelector(".account");
 
-var thongTinTaiKhoanBox = document.querySelector('.account__detail__content___thong-tin-tai-khoan');
-var danhSachDonHangBox = document.querySelector('.account__detail__content___danh-sach-don-hang');
-var thayDoiMatKhauBox = document.querySelector('.account__detail__content___thay-doi-mat-khau');
-var empty = document.querySelector('.empty');
+function daucham(num){
+    let tmp = "";
+    let mark = 0;
+    for(let i = num.length - 1; i >= 0; i--){
+        mark += 1;
+        tmp = num[i] + tmp;
+        if(mark == 3 && i != 0){
+            tmp = "." + tmp;
+            mark = 0
+        }
+    }
+    return tmp;
+}
 
-async function getDataUserName() {
-    
-    var text = document.querySelector("#taikhoancua");
-    let accessToken = localStorage.getItem("accessToken");
-    // Lay ten 
-    // await checkAccessTokenIsvalid();
-    let response = await fetch('http://localhost:8080/user/info', {
+function boDauCham(num){
+    res = "";
+    for(let i = 0; i < num.length; i++){
+        if(num[i] != "."){
+            res += num[i];
+        }
+        if(num[i] == " " ){
+            break;
+        }
+    }
+    return res;
+}
+
+// getDataCartDetail
+async function getDataCartDetail() {
+    let accessToken = localStorage.getItem('accessToken');
+    // await checkAccessTokenIsvalid(); // check accessToken   
+    const response = await fetch('http://localhost:8080/cart-detail', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
-        }       
+        }
     });
-    response = await response.json();
-    var tmpname = '<p class="user-name">' + response.name + '</p>';
-    var tmp = 'Tài khoản của, ' + '\n' + tmpname;
-    text.innerHTML = tmp;
-    console.log(tmpname);
-    text.style.fontFamily = "Arial, sans-serif";
-    tmpname = response.name;
-    tmp = '<p> Xin chào ' + tmpname + '<p>';
-    var account = document.querySelector('.account');
-    account.innerHTML = tmp;
-}
-// hover selection
-function hoverSelection(){
-    thongTinTaiKhoan.addEventListener('mouseover', function(){
-        thongTinTaiKhoan.style.backgroundColor = "rgb(0, 91, 173)";
-        thongTinTaiKhoan.style.color = 'white';
-    });
-    thongTinTaiKhoan.addEventListener('mouseout', function(){
-        thongTinTaiKhoan.style.backgroundColor = 'rgb(235, 235, 235)';
-        thongTinTaiKhoan.style.color = 'rgb(102, 102, 102)';
-    });
-
-    danhSachDonHang.addEventListener('mouseover', function(){
-        danhSachDonHang.style.backgroundColor = "rgb(0, 91, 173)";
-        danhSachDonHang.style.color = 'white';
-    });
-    danhSachDonHang.addEventListener('mouseout', function(){
-        danhSachDonHang.style.backgroundColor = 'rgb(235, 235, 235)';
-        danhSachDonHang.style.color = 'rgb(102, 102, 102)';
-    });
-
-    thayDoiMatKhau.addEventListener('mouseover', function(){
-        thayDoiMatKhau.style.backgroundColor = "rgb(0, 91, 173)";
-        thayDoiMatKhau.style.color = 'white';
-    });
-    thayDoiMatKhau.addEventListener('mouseout', function(){
-        thayDoiMatKhau.style.backgroundColor = 'rgb(235, 235, 235)';
-        thayDoiMatKhau.style.color = 'rgb(102, 102, 102)';
-    });
-
-    logOut.addEventListener('mouseover', function(){
-        logOut.style.backgroundColor = "rgb(0, 91, 173)";
-        logOut.style.color = 'white';
-    });
-    logOut.addEventListener('mouseout', function(){
-        logOut.style.backgroundColor = 'rgb(235, 235, 235)';
-        logOut.style.color = 'rgb(102, 102, 102)';
-    });
-
-    thongTinTaiKhoanBox.style.display = 'none';
-    danhSachDonHangBox.style.display = 'none';
-    thayDoiMatKhauBox.style.display = 'none';
+    return await response.json();
 }
 
-// ----------------------click selection----------------------
-function clickSelection(){
-    thongTinTaiKhoan.addEventListener('click', function(){
-        // Thay doi style selection
-        thongTinTaiKhoan.addEventListener('mouseout', function(){
-            thongTinTaiKhoan.style.backgroundColor = "rgb(0, 91, 173)";
-            thongTinTaiKhoan.style.color = 'white';
-        });
-        danhSachDonHang.addEventListener('mouseout', function(){
-            danhSachDonHang.style.backgroundColor = 'rgb(235, 235, 235)';
-            danhSachDonHang.style.color = 'rgb(102, 102, 102)';
-        });
-        thayDoiMatKhau.addEventListener('mouseout', function(){
-            thayDoiMatKhau.style.backgroundColor = 'rgb(235, 235, 235)';
-            thayDoiMatKhau.style.color = 'rgb(102, 102, 102)';
-        });
-        danhSachDonHang.style.backgroundColor = 'rgb(235, 235, 235)';
-        danhSachDonHang.style.color = 'rgb(102, 102, 102)';
-        thayDoiMatKhau.style.backgroundColor = 'rgb(235, 235, 235)';
-        thayDoiMatKhau.style.color = 'rgb(102, 102, 102)';
-        // Mo thongTinTaiKhoanBox
-        empty.style.display = 'none';
-        thongTinTaiKhoanBox.style.display = 'block';
-        danhSachDonHangBox.style.display = 'none';
-        thayDoiMatKhauBox.style.display = 'none';
-    })
+// buildCartDetail
+async function buildCartDeTail(){
+    const responseData = await getDataCartDetail();
+    let sum = 0;
+    let cartTable = document.querySelector('.cart-table');
+    console.log(responseData);
+    responseData.forEach(function(element){
+        const idTableRow = '<div class = "id__table__row">' + element.id + '</div>'; 
+        const idLapTop = '<div class = "id__product">' + element.laptop.id + '</div>';
+        const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath + '"alt=""></img>';
+        const nameProduct = '<a href="product.html" class="laptop-name">' + element.laptop.name + ' ' + '(' + element.laptop.specification.cpu + ', ' + element.laptop.specification.ram + ', ' + element.laptop.specification.rom + ', ' + element.laptop.specification.graphicsCard + ', ' + element.laptop.specification.screen + ')' +'</a>';
+        const td1 = '<td>' + imgProduct + nameProduct + '</td>';
+        const subButton = '<button class="left-button">-</button>';
+        const counter = '<div class="laptop-counter">' + element.quantity + '</div>';
+        const addButton = '<button class="right-button">+</button>';
+        const adjust = '<div class="adjust">' + subButton + counter + addButton + '</div>';
+        const trash = '<button class="trash-button"><img src="image/cart/trash-icon.png" class="trash-image"></button>';
+        const adjustAndDelete = '<div class="adjust-delete-button">' + adjust + trash + '</div>';
+        let tmp = element.unitPrice.toString();
+        sum += element.unitPrice * element.quantity;
+        tmp = daucham(tmp) + " VNĐ";
+        const unitPrice = '<p class="unit-price">' + tmp + '</p>';
+        let tmp2 = element.unitPrice * parseInt(element.quantity);
+        tmp2 = daucham(tmp2.toString()) + " VNĐ";
+        const totalUnitPrice = '<p class="total-unit-price">' + tmp2 + '</p>';
+        const td2 = '<td>' + adjustAndDelete + unitPrice + totalUnitPrice + '</td>';
+        const tableRow = '<tr class="table-row">' + idTableRow + idLapTop + td1 + td2 + '</tr>';
+        cartTable.innerHTML += tableRow;
+    });
+    const totalPriceText = '<td class="total-price-text">Tổng giá trị đơn hàng</td>';
+    const totalPrice = '<td class="total-price">' + daucham(sum.toString()) + " VNĐ" + '</td>';
+    cartTable.innerHTML += '<tr>' + totalPriceText + totalPrice + '</td>';
+} 
 
-    danhSachDonHang.addEventListener('click', function(){
-        // Thay doi style selection
-        danhSachDonHang.addEventListener('mouseout', function(){
-            danhSachDonHang.style.backgroundColor = "rgb(0, 91, 173)";
-            danhSachDonHang.style.color = 'white';  
-        });
-        thongTinTaiKhoan.addEventListener('mouseout', function(){
-            thongTinTaiKhoan.style.backgroundColor = 'rgb(235, 235, 235)';
-            thongTinTaiKhoan.style.color = 'rgb(102, 102, 102)';
-        });
-        thongTinTaiKhoan.style.backgroundColor = 'rgb(235, 235, 235)';
-        thongTinTaiKhoan.style.color = 'rgb(102, 102, 102)';
-        thayDoiMatKhau.addEventListener('mouseout', function(){
-            thayDoiMatKhau.style.backgroundColor = 'rgb(235, 235, 235)';
-            thayDoiMatKhau.style.color = 'rgb(102, 102, 102)';
-        });
-        thayDoiMatKhau.style.backgroundColor = 'rgb(235, 235, 235)';
-        thayDoiMatKhau.style.color = 'rgb(102, 102, 102)';
-        // Mo danhSachDonHangBox
-        empty.style.display = 'none';
-        thongTinTaiKhoanBox.style.display = 'none';
-        danhSachDonHangBox.style.display = 'block';
-        thayDoiMatKhauBox.style.display = 'none';
-    })
+// adjustNumberProduct
+ function adjustNumberProduct(){
+    let totalPrice = document.querySelector('.total-price');
+    let tableRow = document.querySelectorAll('.table-row');
+    tableRow.forEach(function(element){
+        let buttonRight = element.querySelector('.right-button');
+        let numberProduct = element.querySelector('.laptop-counter');
+        let buttonLeft = element.querySelector('.left-button');
+        let unitPrice = element.querySelector('.unit-price');
+        let totalUnitPrice = element.querySelector('.total-unit-price');
 
-    thayDoiMatKhau.addEventListener('click', function(){
-        // Thay doi style selection
-        thayDoiMatKhau.addEventListener('mouseout', function(){
-            thayDoiMatKhau.style.backgroundColor = "rgb(0, 91, 173)";
-            thayDoiMatKhau.style.color = 'white';
-        });
-        thongTinTaiKhoan.addEventListener('mouseout', function(){
-            thongTinTaiKhoan.style.backgroundColor = 'rgb(235, 235, 235)';
-            thongTinTaiKhoan.style.color = 'rgb(102, 102, 102)';
-        });
-        thongTinTaiKhoan.style.backgroundColor = 'rgb(235, 235, 235)';
-        thongTinTaiKhoan.style.color = 'rgb(102, 102, 102)';
-        danhSachDonHang.addEventListener('mouseout', function(){
-            danhSachDonHang.style.backgroundColor = 'rgb(235, 235, 235)';
-            danhSachDonHang.style.color = 'rgb(102, 102, 102)';
-        });
-        danhSachDonHang.style.backgroundColor = 'rgb(235, 235, 235)';
-        danhSachDonHang.style.color = 'rgb(102, 102, 102)';
-        // Mo thayDoiMatKhauBox
-        empty.style,display = 'none'
-        thongTinTaiKhoanBox.style.display = 'none';
-        danhSachDonHangBox.style.display = 'none';
-        thayDoiMatKhauBox.style.display = 'block';
-    })
-}
+        // Chỉnh màu cho nút giảm khi sản phẩm bằng 1 và khác 1
+        if(numberProduct.textContent == "1"){
+            buttonLeft.style.color = '#D4D1D1';
+        }
+        if(numberProduct.textContent != "1"){
+            buttonLeft.style.color = 'black';
+        }
 
+        // Bấm nút giảm
+        buttonLeft.addEventListener('click', async function(){
+            if(numberProduct.textContent != "1"){
+                let currentNumber = parseInt(numberProduct.textContent, 10);
+                let newNumber = currentNumber - 1;
+                newNumber = newNumber.toString();
+                numberProduct.innerHTML = newNumber;
+                // Chỉnh giá
+                let unitPriceNumber = unitPrice.textContent; // gia 1 product
+                unitPriceNumber = boDauCham(unitPriceNumber);
+                unitPriceNumber = parseInt(unitPriceNumber, 10); // chuyen gia 1 product ve int
+                let totalUnitPriceNumber = unitPriceNumber * parseInt(newNumber, 10); // tinh tong gia moi
+                totalUnitPriceNumber = totalUnitPriceNumber.toString(); // chuyen tong gia moi ve string
+                totalUnitPriceNumber = daucham(totalUnitPriceNumber) + " VNĐ";
+                totalUnitPrice.innerHTML = totalUnitPriceNumber;
 
+                // Chỉnh màu cho nút giảm khi sản phẩm bằng 1
+                if(numberProduct.textContent == "1"){
+                    buttonLeft.style.color = '#D4D1D1';
+                }
 
+                // Chinh tong gia cart
+                let totalPriceNumber = totalPrice.textContent;
+                totalPriceNumber = boDauCham(totalPriceNumber);
+                totalPriceNumber = parseInt(totalPriceNumber, 10);
+                totalPriceNumber -= unitPriceNumber;
+                totalPriceNumber = totalPriceNumber.toString();
+                totalPriceNumber = daucham(totalPriceNumber) + " VNĐ";
+                totalPrice.innerHTML = totalPriceNumber;
 
-// -----------------Box------------------------
-
-// thongTinTaiKhoanBox
-async function changeUserInfor() {
-    thongTinTaiKhoan.addEventListener('click', async function(){
-        var name = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-name__input");
-        var email = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-email__input");
-        var address = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-address__input");
-        var phone = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-numberphone__input");
-
-
-        var accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://localhost:8080/user/info', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
+                // thay doi database
+                let id_cart = document.querySelector('.id__table__row').textContent;
+                id_cart = parseInt(id_cart, 10);
+                newNumber = parseInt(newNumber, 10);
+                const data = {
+                    id: id_cart,
+                    quantity: newNumber
+                };
+                let accessToken = localStorage.getItem('accessToken');
+                await fetch(`http://localhost:8080/cart-detail/update`,{
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
+                    },
+                    body: JSON.stringify(data) 
+                });
             }    
-        });
-        
-        response = await response.json();
-        name.value = response.name;
-        email.value = response.email;
-        address.value = response.address;
-        phone.value = response.phone;
+        })
 
-        var button = document.querySelector(".account__detail__content___thong-tin-tai-khoan__submit");
+        // Bấm nút tăng
+        buttonRight.addEventListener('click', async function(){
+            let currentNumber = parseInt(numberProduct.textContent, 10);
+            let newNumber = currentNumber + 1;
+            newNumber = newNumber.toString();
+            numberProduct.innerHTML = newNumber;
+            // Chỉnh giá
+            let unitPriceNumber = unitPrice.textContent; // gia 1 product
+            unitPriceNumber = boDauCham(unitPriceNumber);
+            unitPriceNumber = parseInt(unitPriceNumber, 10); // chuyen gia 1 product ve int
+            let totalUnitPriceNumber = unitPriceNumber * parseInt(newNumber, 10); // tinh tong gia moi
+            totalUnitPriceNumber = totalUnitPriceNumber.toString(); // chuyen tong gia moi ve string
+            totalUnitPriceNumber = daucham(totalUnitPriceNumber) + " VNĐ";
+            totalUnitPrice.innerHTML = totalUnitPriceNumber;
 
-        button.addEventListener('click', async function(){
-            const data = {
-                name: name.value,
-                address: address.value,
-                phone: phone.value
+            // Chỉnh màu cho nút giảm khi sản phẩm khac 1
+            if(numberProduct.textContent != "1"){
+                buttonLeft.style.color = 'black';
             }
-            
-            await fetch('http://localhost:8080/user/changeInfo',{
+
+            // Chinh tong gia cart
+            let totalPriceNumber = totalPrice.textContent;
+            totalPriceNumber = boDauCham(totalPriceNumber); 
+            totalPriceNumber = parseInt(totalPriceNumber, 10);
+            totalPriceNumber += unitPriceNumber;
+            totalPriceNumber = totalPriceNumber.toString();
+            totalPriceNumber = daucham(totalPriceNumber) + " VNĐ";
+            totalPrice.innerHTML = totalPriceNumber;
+
+            // thay doi database
+            let id_cart = document.querySelector('.id__table__row').textContent;
+            id_cart = parseInt(id_cart, 10);
+            newNumber = parseInt(newNumber, 10);
+            const data = {
+                id: id_cart,
+                quantity: newNumber
+            };
+            let accessToken = localStorage.getItem('accessToken');
+            await fetch(`http://localhost:8080/cart-detail/update`,{
                 method: 'PUT',
                 headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
                 },
-                body: JSON.stringify(data)  
+                body: JSON.stringify(data) 
             });
-                localStorage.setItem('name', name.value);
-                alert("Cập nhật thông tin thành công");
         })
     })
 }
 
-// thay doi mat khau
+// deleteProduct
+function deleteProduct(){
+    let tableRow = document.querySelectorAll('.table-row');
+    let countTableRow = tableRow.length;
+    let cartCounter = document.querySelector('.cart-counter');
+    cartCounter.innerHTML = "(" + countTableRow + " sản phẩm" + ")";
+    for(let i = 0; i < tableRow.length; i++){
+        let deleteButton = tableRow[i].querySelector('.trash-button');
+        deleteButton.addEventListener('click', async function(){
+            // thay doi tong gia cart
+            let totalUnitPrice = tableRow[i].querySelector('.total-unit-price');
+            let totalUnitPriceNumber = totalUnitPrice.textContent;
+            totalUnitPriceNumber = boDauCham(totalUnitPriceNumber);
+            totalUnitPriceNumber = parseInt(totalUnitPriceNumber, 10);
 
-var thayDoiMatKhauButton = document.querySelector('.button_thaydoimatkhau');
+            let totalPrice = document.querySelector('.total-price');
+            let totalPriceNumber = totalPrice.textContent;
+            totalPriceNumber = boDauCham(totalPriceNumber);
+            totalPriceNumber = parseInt(totalPriceNumber, 10);
 
-async function changePassword(){
+            totalPriceNumber -= totalUnitPriceNumber;
+            totalPriceNumber = totalPriceNumber.toString(); // chuyen tong gia moi ve string
+            totalPriceNumber = daucham(totalPriceNumber) + " VNĐ";
+            totalPrice.innerHTML = totalPriceNumber;
 
-    thayDoiMatKhauButton.addEventListener('click', async function(){
-        var currentPass = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai__input").value;
-        var newPass1 = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-moi-1__input").value;
-        var newPass2 = document.querySelector(".account__detail__content___thay-doi-mat-khau__mat-khau-moi-2__input").value;
+            // xoa the div
+            tableRow[i].remove();
+            countTableRow -= 1;
+            cartCounter.innerHTML = "(" + countTableRow + " sản phẩm" + ")";
+            console.log(tableRow.length);
 
-        var war1 = document.querySelector('.war1');
-        var war2 = document.querySelector('.war2');
+            let id = document.querySelector('.id__table__row').textContent;
+            id = parseInt(id, 10);
+            let accessToken = localStorage.getItem('accessToken');
 
-        if(newPass1 != newPass2){
-            war1.style.display = 'block';
-        }
-
-        else{
-            war1.style.display = 'none';
-            // lay mat khau hien tai
-            var accessToken = localStorage.getItem('accessToken');
-            const data = {
-                password: newPass1
-            }
-            let response = await fetch('http://localhost:8080/user/changePass',{
-                method: 'PUT',
+            await fetch(`http://localhost:8080/cart-detail/delete/${id}`,{
+                method: 'DELETE',
                 headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
-                },
-                body: JSON.stringify(data)
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
             });
-            
-            response = await response.text();
-            
-            if(response === "Change password successful"){
-                alert("Thay đổi mật khẩu thành công!");
-                 // reset
-                currentPass = "";
-                newPass1 = "";
-                newPass2 = "";
-            }else{
-                alert("Mật khẩu mới không được trùng với mật khẩu trước đó!");
+
+            if (countTableRow == 0){
+                cartDetail.style.display = 'none';
+                emptyCart.style.display = 'block';
+                cartCounter.innerHTML = "(" + countTableRow + " sản phẩm" + ")";
             }
+        })
+    }
+}
+
+// deletaAllProduct
+function deleteAllProduct(){
+    let tableRow = document.querySelectorAll('.table-row');
+    let buttonClear = document.querySelector('.make-empty-button');
+    let cartCounter = document.querySelector('.cart-counter');
+    let cartDetail = document.querySelector('.my-cart-detail');
+    let emptyCart = document.querySelector('.empty-cart');
+    let buttonCreatOrder = document.querySelector('.make-order-button');
+
+    buttonClear.addEventListener('click', async function(){
+        for(let i = 0; i < tableRow.length; i++){
+            tableRow[i].remove();
         }
+        cartCounter.innerHTML = "(0 sản phẩm)";
+        cartDetail.style.display = 'none';
+        emptyCart.style.display = 'block';
+        let accessToken = localStorage.getItem('accessToken');
+        await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
+            method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+        });
     })
-}
-// log out
-function logOutFunc(){
-    logOut.addEventListener('click', function(){
-        console.log("event called");
-        localStorage.clear();
-        document.querySelector(".register__login").style.display = "display";
-        document.querySelector(".account").style.display = 'none';
+
+    buttonCreatOrder.addEventListener('click', async function(){
+        for(let i = 0; i < tableRow.length; i++){
+            tableRow[i].remove();
+        }
+        cartCounter.innerHTML = "(0 sản phẩm)";
+        cartDetail.style.display = 'none';
+        emptyCart.style.display = 'block';
+        let accessToken = localStorage.getItem('accessToken');
+        await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
+            method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+        });
     })
 }
 
-async function mainAccountDetail() {
-    await getDataUserName();
-    hoverSelection();
-    clickSelection();
-    await changeUserInfor();
-    await changePassword();
-    logOutFunc();
+// function selecProduct(){
+//     let tableRow = document.querySelectorAll('.table-row');
+//     tableRow.forEach(function(element){
+//         let idProduct = element.querySelector('.id_product').textContent;
+//         localStorage.setItem('id__product', idProduct);
+//     });
+// }
+
+function creatOrder(){
+    let buttonCreatOrder = document.querySelector('.make-order-button');
+    buttonCreatOrder.addEventListener('click', async function(){
+        let nameCustomer = document.querySelector('.customer-name').value;
+        let numberPhone = document.querySelector('.customer-contact').value;
+        let address = document.querySelector('.customer-address').value;
+        let noteContent = document.querySelector('.customer-note').value;
+        let price = document.querySelector('.total-price').textContent;
+        price = parseInt(price, 10);
+        let paymentMethod1 = document.getElementById('option1');
+        let paymentMethod2 = document.getElementById('option2');
+        let idPaymentMethod = 0;
+
+        if(paymentMethod1.checked){
+            idPaymentMethod = 1;
+        }
+
+        if(paymentMethod2.checked){
+            idPaymentMethod = 2;
+        }
+
+
+        if(nameCustomer === "" || numberPhone === "" || address === "" || idPaymentMethod == 0){
+            document.querySelector('.war').style.display = "block";
+        }
+        else{
+            document.querySelector('.war').style.display = "none";
+            const data = {
+                receiverName: nameCustomer,
+                receiverPhone: numberPhone,
+                shippingAddress: address,
+                note: noteContent,
+                totalPrice: price,
+                paymentMethod: {
+                    id: idPaymentMethod
+                }
+            }
+            let responseData = await getDataCartDetail();
+            let accessToken = localStorage.getItem('accessToken');
+            await fetch(`http://localhost:8080/order/createOrderFromCart`, {
+                method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
+                    },
+                    body: JSON.stringify(data) 
+            });
+            await fetch(`http://localhost:8080/order-detail/add`, {
+                method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
+                    },
+                    body: JSON.stringify(responseData)
+            });
+            alert("Đặt hàng thành công");
+            deleteAllProduct();
+        }
+    });
 }
 
-mainAccountDetail();
+// main
+async function mainCartDetail(){
+    await buildCartDeTail();
+    let cartDetail = document.querySelector('.my-cart-detail');
+    let emptyCart = document.querySelector('.empty-cart');
+    let tableRow = document.querySelectorAll('.table-row');
+    if (tableRow.length != 0){
+        cartDetail.style.display = 'flex';
+        emptyCart.style.display = 'none';
+    }
+    if (tableRow.length == 0){
+        cartDetail.style.display = 'none';
+        emptyCart.style.display = 'block';
+    }
+    
+    adjustNumberProduct();
+    deleteProduct();
+    deleteAllProduct();
+    // selecProduct();
+    creatOrder();
+}
+
+mainCartDetail();

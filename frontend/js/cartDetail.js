@@ -356,10 +356,8 @@ function creatOrder(){
                     },
                     body: JSON.stringify(responseData)
             });
-            console.log(JSON.stringify(responseData));
-            deleteAllProduct();
-
             alert("Đặt hàng thành công");
+            deleteAllProduct();
         }
     });
 }
