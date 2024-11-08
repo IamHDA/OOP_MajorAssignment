@@ -1,0 +1,19 @@
+.main-container{
+    margin: 0 auto;
+    margin-left: -8px;
+    margin-right: -8px;
+    width: 1520px;
+    height: 776px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.overall-container{
+    margin-left: 241px;
+    margin-top: 50px;
+}
+
+.sales{
+    margin-left: 70px;
+}
