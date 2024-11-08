@@ -12,9 +12,9 @@ public interface LaptopService {
     LaptopDTO getLaptopById(long id);
     Laptop getLastLaptop();
     String addLaptop(LaptopDTO laptopDTO);
-    List<LaptopDTO> getLaptopByCategory(String category);
-    List<LaptopDTO> getLaptopByBrand(String brand);
-    List<LaptopDTO> getLaptopByState(String state);
-    List<LaptopDTO> getLaptopByCriteria(Filter filter);
+    List<LaptopSummaryDTO> getLaptopByCategory(String category);
+    List<LaptopSummaryDTO> getLaptopByBrand(String brand);
+    List<LaptopSummaryDTO> getLaptopByState(String state);
+    List<LaptopSummaryDTO> getLaptopByCriteria(Filter filter);
     List<LaptopSummaryDTO> searchLaptop(String keyword);
 }

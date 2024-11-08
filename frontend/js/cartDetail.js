@@ -1,3 +1,5 @@
+import { checkAccessTokenIsvalid } from './accessToken.js';
+
 function lamtron(num) {
     return Math.round(num / 100000) * 100000;
 }
@@ -32,8 +34,8 @@ function boDauCham(num){
 
 // getDataCartDetail
 async function getDataCartDetail() {
+    checkAccessTokenIsvalid();
     let accessToken = localStorage.getItem('accessToken');
-    // await checkAccessTokenIsvalid(); // check accessToken   
     const response = await fetch('http://localhost:8080/cart-detail', {
         method: 'GET',
         headers: {
@@ -135,6 +137,7 @@ async function buildCartDeTail(){
                     id: id_cart,
                     quantity: newNumber
                 };
+                checkAccessTokenIsvalid();
                 let accessToken = localStorage.getItem('accessToken');
                 await fetch(`http://localhost:8080/cart-detail/update`,{
                     method: 'PUT',
@@ -184,6 +187,7 @@ async function buildCartDeTail(){
                 id: id_cart,
                 quantity: newNumber
             };
+            checkAccessTokenIsvalid();
             let accessToken = localStorage.getItem('accessToken');
             await fetch(`http://localhost:8080/cart-detail/update`,{
                 method: 'PUT',
@@ -230,8 +234,9 @@ function deleteProduct(){
 
             let id = document.querySelector('.id__table__row').textContent;
             id = parseInt(id, 10);
-            let accessToken = localStorage.getItem('accessToken');
 
+            checkAccessTokenIsvalid();
+            let accessToken = localStorage.getItem('accessToken');
             await fetch(`http://localhost:8080/cart-detail/delete/${id}`,{
                 method: 'DELETE',
                 headers: {
@@ -265,6 +270,7 @@ function deleteAllProduct(){
         cartCounter.innerHTML = "(0 sản phẩm)";
         cartDetail.style.display = 'none';
         emptyCart.style.display = 'block';
+        checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
         await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
             method: 'DELETE',
@@ -282,6 +288,7 @@ function deleteAllProduct(){
         cartCounter.innerHTML = "(0 sản phẩm)";
         cartDetail.style.display = 'none';
         emptyCart.style.display = 'block';
+        checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
         await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
             method: 'DELETE',
@@ -309,7 +316,7 @@ function creatOrder(){
         let address = document.querySelector('.customer-address').value;
         let noteContent = document.querySelector('.customer-note').value;
         let price = document.querySelector('.total-price').textContent;
-        price = parseInt(price, 10);
+        price = parseInt(boDauCham(price), 10);
         let paymentMethod1 = document.getElementById('option1');
         let paymentMethod2 = document.getElementById('option2');
         let idPaymentMethod = 0;
@@ -339,6 +346,7 @@ function creatOrder(){
                 }
             }
             let responseData = await getDataCartDetail();
+            checkAccessTokenIsvalid();
             let accessToken = localStorage.getItem('accessToken');
             await fetch(`http://localhost:8080/order/createOrderFromCart`, {
                 method: 'POST',

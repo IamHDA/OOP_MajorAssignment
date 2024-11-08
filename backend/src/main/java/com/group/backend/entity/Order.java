@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -24,6 +26,7 @@ public class Order {
     private String shippingAddress;
     @Column(nullable = false)
     private long totalPrice;
+    private LocalDate orderDate;
     private String note;
 
     @ManyToOne

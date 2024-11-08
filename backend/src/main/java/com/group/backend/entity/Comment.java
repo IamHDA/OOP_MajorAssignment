@@ -16,7 +16,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false)
-    private String comment;
+    private String content;
     @Column(nullable = false)
     private LocalDateTime postAt;
     private LocalDateTime updateAt;

@@ -26,11 +26,17 @@ public class LaptopServiceImp implements LaptopService {
     private LaptopFilterRepository laptopFilterRepo;
     @Autowired
     private FormatService formatService;
+    @Autowired
+    private SpecificationServiceImp specificationServiceImp;
 
     @Override
     public LaptopDTO getLaptopById(long id) {
         Laptop laptop = laptopRepo.findById(id);
-        return modelMapper.map(laptop, LaptopDTO.class);
+        LaptopDTO laptopDTO = modelMapper.map(laptop, LaptopDTO.class);
+        laptopDTO.setComments(laptop.getComments().stream()
+                .map(comment -> formatService.localDateTimeCommentFormat(comment))
+                .collect(Collectors.toList()));
+        return laptopDTO;
     }
 
     @Override
@@ -45,49 +51,51 @@ public class LaptopServiceImp implements LaptopService {
     @Override
     public String addLaptop(LaptopDTO laptopDTO) {
         Laptop laptop = modelMapper.map(laptopDTO, Laptop.class);
+        laptop.setSpecification(specificationServiceImp.getLastSpecification());
+        laptop.setBrand(laptop.getBrand());
         laptopRepo.save(laptop);
         return "Laptop added successfully";
     }
 
     @Override
-    public List<LaptopDTO> getLaptopByCategory(String category) {
+    public List<LaptopSummaryDTO> getLaptopByCategory(String category) {
         List<Laptop> laptops =laptopRepo.findByCategory(category);
         return laptops.stream()
-                .map(l -> modelMapper.map(l, LaptopDTO.class))
+                .map(l -> modelMapper.map(l, LaptopSummaryDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<LaptopDTO> getLaptopByBrand(String brand) {
+    public List<LaptopSummaryDTO> getLaptopByBrand(String brand) {
         List<Laptop> laptops = laptopRepo.findByBrand(brand);
         return laptops.stream()
-                .map(l -> modelMapper.map(l, LaptopDTO.class))
+                .map(l -> modelMapper.map(l, LaptopSummaryDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<LaptopDTO> getLaptopByState(String state) {
+    public List<LaptopSummaryDTO> getLaptopByState(String state) {
         List<Laptop> laptops = laptopRepo.findByState(state);
         return laptops.stream()
-                .map(l -> modelMapper.map(l, LaptopDTO.class))
+                .map(l -> modelMapper.map(l, LaptopSummaryDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<LaptopDTO> getLaptopByCriteria(Filter filter) {
+    public List<LaptopSummaryDTO> getLaptopByCriteria(Filter filter) {
         List<Laptop> laptops = laptopFilterRepo.findLaptopByCriteria(filter);
         return laptops.stream()
-                .map(l -> modelMapper.map(l, LaptopDTO.class))
+                .map(l -> modelMapper.map(l, LaptopSummaryDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<LaptopSummaryDTO> searchLaptop(String keyword) {
         List<Laptop> laptops = laptopRepo.searchLaptop(keyword);
-        List<LaptopDTO> laptopDTO = laptops.stream()
-                .map(l -> modelMapper.map(l, LaptopDTO.class))
+        List<LaptopSummaryDTO> laptopSummaryDTO = laptops.stream()
+                .map(l -> modelMapper.map(l, LaptopSummaryDTO.class))
                 .collect(Collectors.toList());
-        return formatService.listOfFormattedLaptopSummary(laptopDTO);
+        return formatService.listOfFormattedLaptopSummary(laptopSummaryDTO);
     }
 
 }
