@@ -48,7 +48,7 @@ async function fetchCatalog(url) {
         data.forEach(item => {
             const idProduct = '<div class="id__product">' + item.id + '</div>';
             const imgProduct = '<a href="product.html" class="product__img">' + '<img src="' + item.images[0].filePath + '" alt="">' + '</a>';
-            const nameProduct = '<a href="product.html" class="product__name">' + item.name + ' ' + '(' + item.specification.cpu + ' ' + item.specification.ram + ' ' + item.specification.rom + ' ' + item.specification.graphicsCard + ' ' + item.specification.screen + ')' +'</a>';
+            const nameProduct = '<a href="product.html" class="product__name">' + item.name + ' ' + '(' + item.specification.cpu + ', ' + item.specification.ram + ', ' + item.specification.rom + ', ' + item.specification.graphicsCard + ', ' + item.specification.screen + ')' +'</a>';
             let basePrice = daucham(item.price.toString());
             let price = lamtron(item.price * (100 - item.sale) / 100).toString();
             price = daucham(price);

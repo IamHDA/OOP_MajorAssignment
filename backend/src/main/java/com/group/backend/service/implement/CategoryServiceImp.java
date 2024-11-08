@@ -21,25 +21,25 @@ public class CategoryServiceImp implements CategoryService {
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByCategory(String category) {
-        List<LaptopDTO> laptops = laptopService.getLaptopByCategory(category);
+        List<LaptopSummaryDTO> laptops = laptopService.getLaptopByCategory(category);
         return formatService.listOfFormattedLaptopSummary(laptops);
     }
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByBrand(String brand) {
-        List<LaptopDTO> laptops = laptopService.getLaptopByBrand(brand);
+        List<LaptopSummaryDTO> laptops = laptopService.getLaptopByBrand(brand);
         return formatService.listOfFormattedLaptopSummary(laptops);
     }
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByState(String state) {
-        List<LaptopDTO> laptops = laptopService.getLaptopByState(state);
+        List<LaptopSummaryDTO> laptops = laptopService.getLaptopByState(state);
         return formatService.listOfFormattedLaptopSummary(laptops);
     }
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByCriteria(Filter filter) {
-        List<LaptopDTO> laptops = laptopService.getLaptopByCriteria(filter);
+        List<LaptopSummaryDTO> laptops = laptopService.getLaptopByCriteria(filter);
         return formatService.listOfFormattedLaptopSummary(laptops);
     }
 }

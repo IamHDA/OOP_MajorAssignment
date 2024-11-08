@@ -1,12 +1,14 @@
 package com.group.backend.service.implement;
 
-import com.group.backend.dto.LaptopDTO;
+import com.group.backend.dto.CommentDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
+import com.group.backend.entity.Comment;
 import com.group.backend.service.FormatService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -85,6 +87,17 @@ public class FormatServiceImp implements FormatService {
     }
 
     @Override
+    public CommentDTO localDateTimeCommentFormat(Comment comment) {
+        CommentDTO commentDTO = modelMapper.map(comment, CommentDTO.class);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        commentDTO.setPostAt(comment.getPostAt().format(formatter));
+        if(comment.getUpdateAt() != null) {
+            commentDTO.setUpdateAt(comment.getUpdateAt().format(formatter));
+        }
+        return commentDTO;
+    }
+
+    @Override
     public LaptopSummaryDTO formattedLaptopSummary(LaptopSummaryDTO laptopSummaryDTO) {
         laptopSummaryDTO.getSpecification().setRam(ramFormat(laptopSummaryDTO.getSpecification().getRam()));
         laptopSummaryDTO.getSpecification().setCpu(cpuFormat(laptopSummaryDTO.getSpecification().getCpu()));
@@ -96,16 +109,15 @@ public class FormatServiceImp implements FormatService {
 
 
     @Override
-    public List<LaptopSummaryDTO> listOfFormattedLaptopSummary(List<LaptopDTO> laptops) {
+    public List<LaptopSummaryDTO> listOfFormattedLaptopSummary(List<LaptopSummaryDTO> laptops) {
         return laptops.stream()
                 .map(l -> {
-                    LaptopSummaryDTO laptopSummary = modelMapper.map(l, LaptopSummaryDTO.class);
-                    laptopSummary.getSpecification().setCpu(cpuFormat(laptopSummary.getSpecification().getCpu()));
-                    laptopSummary.getSpecification().setRom(romFormat(laptopSummary.getSpecification().getRom()));
-                    laptopSummary.getSpecification().setRam(ramFormat(laptopSummary.getSpecification().getRam()));
-                    laptopSummary.getSpecification().setScreen(screenFormat(laptopSummary.getSpecification().getScreen()));
-                    laptopSummary.getSpecification().setGraphicsCard(vgaFormat(laptopSummary.getSpecification().getGraphicsCard()));
-                    return laptopSummary;
+                    l.getSpecification().setCpu(cpuFormat(l.getSpecification().getCpu()));
+                    l.getSpecification().setRom(romFormat(l.getSpecification().getRom()));
+                    l.getSpecification().setRam(ramFormat(l.getSpecification().getRam()));
+                    l.getSpecification().setScreen(screenFormat(l.getSpecification().getScreen()));
+                    l.getSpecification().setGraphicsCard(vgaFormat(l.getSpecification().getGraphicsCard()));
+                    return l;
                 })
                 .collect(Collectors.toList());
     }

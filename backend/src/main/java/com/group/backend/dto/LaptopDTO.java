@@ -13,7 +13,8 @@ public class LaptopDTO {
     private int price;
     private int sale;
     private boolean available;
+    private String state;
     private SpecificationDTO specification;
     private List<Image> images;
-    private List<Comment> comments;
+    private List<CommentDTO> comments;
 }

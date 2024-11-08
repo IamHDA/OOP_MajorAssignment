@@ -38,20 +38,30 @@ public class Laptop {
     private List<Cart_Detail> cartDetails;
 
     @OneToMany(mappedBy = "laptop", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "laptop", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images;
 
     @OneToMany(mappedBy = "laptop")
+    @JsonIgnore
     private List<Order_Detail> orderDetails;
 
     @OneToMany(mappedBy = "laptop", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Laptop_Category> laptopCategories;
 
     public int getDiscountedPrice(){
         double discount = 1 - sale/100.0;
         return (int) (price * discount);
+    }
+
+    public String getBrand(){
+        String tmp[] = name.split(" ");
+        if(tmp[0].length() > 2){
+            tmp[0] = tmp[0].toLowerCase();
+            tmp[0] = Character.toUpperCase(tmp[0].charAt(0)) + tmp[0].substring(1);
+        }
+        return tmp[0];
     }
 }

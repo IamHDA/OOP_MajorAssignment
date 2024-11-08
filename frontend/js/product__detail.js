@@ -1,5 +1,3 @@
-import { checkAccessTokenIsvalid } from 'accessToken.js';
-
 function getDaTa(){
     function lamtron(num) {
         return Math.round(num / 100000) * 100000;
@@ -114,7 +112,7 @@ function getDaTa(){
             var time = '<div class="comment__time">' + element.postAt + '</div>';
             var inforAndTime = '<div class="comment__infor_and_time">' + name + partition + time + '</div>';
 
-            var content = '<div class="comment__content">' + element.comment + '</div>';
+            var content = '<div class="comment__content">' + element.content + '</div>';
 
             commentContainer.innerHTML += inforAndTime + content;
         })
@@ -122,5 +120,3 @@ function getDaTa(){
 }
 
 getDaTa();
-
-ulProductSpecification.innerHTML += '<li>Cổng kết nối: <br>' + '<div class = "tab">' + response.specification.connectionPort.replace(/\n/g, "<br>") + '</div>' + '</li>';

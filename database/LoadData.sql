@@ -159,10 +159,10 @@ VALUES ('Thanh toán tại cửa hàng'),
 --         (2, 27990000, 8, 5);
 -- -- pause here
 
-INSERT INTO laptop_comment(comment, post_at, update_at, laptop_id, user_id)
-VALUES	('Laptop dùng sướng mỗi tội hơi nóng', '2024-10-15 17:48:23', null, 8, 2),
-		('Không có gì để chê', '2024-10-10 15:48:23', null, 11, 3),
-        ('Sản phẩm này đẹp ghê', '2024-10-15 17:48:23', null, 9, 4);
+INSERT INTO laptop_comment(content, post_at, update_at, laptop_id, user_id)
+VALUES	('Laptop dùng sướng mỗi tội hơi nóng', '2024-10-15 17:48:23', null, 8, 1),
+		('Không có gì để chê', '2024-10-10 15:48:23', null, 11, 2),
+        ('Sản phẩm này đẹp ghê', '2024-10-15 17:48:23', null, 9, 3);
 -- pause here
 
 INSERT INTO image (file_path, laptop_id)

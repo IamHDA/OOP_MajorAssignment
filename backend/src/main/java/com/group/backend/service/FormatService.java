@@ -1,8 +1,11 @@
 package com.group.backend.service;
 
+import com.group.backend.dto.CommentDTO;
 import com.group.backend.dto.LaptopDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
+import com.group.backend.entity.Comment;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface FormatService {
@@ -14,6 +17,7 @@ public interface FormatService {
     String romFormat(String text);
     String laptopNameFormat(String text);
     String imgTypeFormat(String text);
+    CommentDTO localDateTimeCommentFormat(Comment comment);
     LaptopSummaryDTO formattedLaptopSummary(LaptopSummaryDTO LaptopSummaryDTO);
-    List<LaptopSummaryDTO> listOfFormattedLaptopSummary(List<LaptopDTO> laptops);
+    List<LaptopSummaryDTO> listOfFormattedLaptopSummary(List<LaptopSummaryDTO> laptops);
 }
