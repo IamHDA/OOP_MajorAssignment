@@ -18,4 +18,9 @@ public class CommentController {
     public ResponseEntity<String> postComment(@RequestBody CommentDTO commentDTO, @RequestParam long laptopId){
         return ResponseEntity.ok(commentService.postComment(commentDTO, laptopId));
     }
+
+    @PutMapping("/modify")
+    public ResponseEntity<String> modifyComment(@RequestBody CommentDTO commentDTO){
+        return ResponseEntity.ok(commentService.updateComment(commentDTO));
+    }
 }
