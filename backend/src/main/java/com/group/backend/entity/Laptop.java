@@ -64,4 +64,9 @@ public class Laptop {
         }
         return tmp[0];
     }
+
+    public String getCategory(){
+        String tmp[] = name.split(" ");
+        return tmp[0] + "-" + tmp[1];
+    }
 }

@@ -87,6 +87,16 @@ public class FormatServiceImp implements FormatService {
     }
 
     @Override
+    public String filterConditionFormat(String text) {
+        String tmp[] = text.split("-");
+        String res = "";
+        for(String s : tmp) {
+            res += s + " ";
+        }
+        return res.trim();
+    }
+
+    @Override
     public CommentDTO localDateTimeCommentFormat(Comment comment) {
         CommentDTO commentDTO = modelMapper.map(comment, CommentDTO.class);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
