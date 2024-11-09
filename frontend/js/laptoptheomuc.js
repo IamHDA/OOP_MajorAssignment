@@ -92,6 +92,19 @@ async function selectCategoryProduct(){
     }
 }
 
+async function filter() {
+    let option = document.querySelectorAll('.option');
+    option.forEach(function(element){
+        let choices = element.querySelector('.choices');
+        let choice = choices.querySelectorAll('a');
+        choice.forEach(function(ele){
+            ele.addEventListener('click', function(){
+                localStorage.setItem('thuongHieu', ele.textContent);
+            })
+        })
+    })
+}
+
 // main
 async function mainLapTopTheoMuc(){
     
