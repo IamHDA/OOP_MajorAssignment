@@ -17,3 +17,5 @@ function selectProduct(){
         })
     })
 }
+
+selectProduct();
