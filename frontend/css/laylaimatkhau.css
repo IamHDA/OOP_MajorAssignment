@@ -88,3 +88,9 @@ button{
 .confirm-button:hover{
     background-color: rgba(65, 139, 250, 0.9);
 }
+
+.content-container .war{
+    color: red;
+    margin-top: 10px;
+    display: none;
+}

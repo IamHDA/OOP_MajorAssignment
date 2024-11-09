@@ -2,7 +2,7 @@ async function layLaiMatKhau(){
     let quenMatKhau = document.querySelector(".quenMatKhau");
     let button = quenMatKhau.querySelector(".button");
     button.addEventListener("click", async function(){
-        let email = quenMatKhau.querySelector("input").value;
+        let email = quenMatKhau.querySelector("input").value.trim();
         try{
             let response1 = await fetch(`http://localhost:8080/forgetPassword/checkEmail/${email}`,{
                 method: 'GET',
@@ -21,9 +21,10 @@ async function layLaiMatKhau(){
                         'Content-Type': 'application/json'
                         }
                     });
-                    response2 = await response2.text();
-                    if(response2 == "Email sent successfully"){
+                    response2 = await response2.json();
+                    if(response2 === "Send mail successfully"){
                         alert("Yêu cầu lấy lại mật khẩu của bạn cần được xác minh. Hãy vào kiểm tra Email của bạn để xác nhận đổi mật khẩu!");
+                        localStorage.setItem('email', email);
                     }
                 }
                 catch(error){
