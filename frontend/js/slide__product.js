@@ -75,7 +75,7 @@ async function fetchAllCatalogs() {
     for (const url of urls) {
         await fetchCatalog(url);
     }
-    selectProduct();
+    console.log("Slide"); 
 }
 
 fetchAllCatalogs();
