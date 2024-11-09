@@ -38,4 +38,13 @@ public class PasswordResetServiceImp implements PasswordResetService {
         userService.changePass(user, passwordDTO);
         return "Password reset successfully";
     }
+
+    @Override
+    public String checkEmail(String email) {
+        User user = userRepo.findByEmail(email).orElse(null);
+        if(user == null) {
+            return "User not found";
+        }
+        return "User found";
+    }
 }

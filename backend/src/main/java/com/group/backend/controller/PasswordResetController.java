@@ -8,19 +8,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/resetPassword")
+@RequestMapping("/forgetPassword")
 public class PasswordResetController {
 
     @Autowired
     private PasswordResetService passwordResetService;
 
-    @GetMapping("/sendMail")
-    public ResponseEntity<String> sendResetMail(@RequestBody String email) throws MessagingException {
+    @GetMapping("/sendMail/{email}")
+    public ResponseEntity<String> sendResetMail(@PathVariable String email) throws MessagingException {
         System.out.println(email);
         return ResponseEntity.ok(passwordResetService.sendResetMail(email));
     }
 
-    @PostMapping
+    @GetMapping("/checkEmail/{email}")
+    public ResponseEntity<String> checkEmail(@PathVariable String email){
+        return ResponseEntity.ok(passwordResetService.checkEmail(email));
+    }
+
+    @PostMapping("/resetPassword")
     public ResponseEntity<String> resetPassword(@RequestParam String email, @RequestBody PasswordDTO passwordDTO){
         return ResponseEntity.ok(passwordResetService.resetPassword(email, passwordDTO));
     }
