@@ -14,15 +14,14 @@ public class PasswordResetController {
     @Autowired
     private PasswordResetService passwordResetService;
 
-    @GetMapping("/sendMail")
-    public ResponseEntity<String> sendResetMail(@RequestBody String email) throws MessagingException {
+    @GetMapping("/sendMail/{email}")
+    public ResponseEntity<String> sendResetMail(@PathVariable String email) throws MessagingException {
         System.out.println(email);
         return ResponseEntity.ok(passwordResetService.sendResetMail(email));
     }
 
-    @GetMapping("/checkEmail")
-    public ResponseEntity<String> checkEmail(@RequestBody String email){
-        System.out.println(email);
+    @GetMapping("/checkEmail/{email}")
+    public ResponseEntity<String> checkEmail(@PathVariable String email){
         return ResponseEntity.ok(passwordResetService.checkEmail(email));
     }
 
