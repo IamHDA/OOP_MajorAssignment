@@ -21,8 +21,8 @@ async function layLaiMatKhau(){
                         'Content-Type': 'application/json'
                         }
                     });
-                    response2 = await response2.json();
-                    if(response2 === "Send mail successfully"){
+                    response2 = await response2.text();
+                    if(response2 === "Email sent successfully"){
                         alert("Yêu cầu lấy lại mật khẩu của bạn cần được xác minh. Hãy vào kiểm tra Email của bạn để xác nhận đổi mật khẩu!");
                         localStorage.setItem('email', email);
                     }
