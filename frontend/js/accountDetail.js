@@ -27,9 +27,7 @@ function daucham(num){
 async function getDataUserName() {
     
     var text = document.querySelector("#taikhoancua");
-    console.log("Start");
     await checkAccessTokenIsvalid();
-    console.log("End");
     let accessToken = localStorage.getItem("accessToken");
     let response = await fetch('http://localhost:8080/user/info', {
         method: 'GET',
@@ -182,7 +180,7 @@ async function changeUserInfor() {
         var email = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-email__input");
         var address = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-address__input");
         var phone = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-numberphone__input");
-        console.log("Đọc info");
+
         await checkAccessTokenIsvalid();
         var accessToken = localStorage.getItem('accessToken');
         let response = await fetch('http://localhost:8080/user/info', {
@@ -207,7 +205,7 @@ async function changeUserInfor() {
                 address: address.value,
                 phone: phone.value
             }
-            console.log("thay đổi");
+            
             await checkAccessTokenIsvalid();
             await fetch('http://localhost:8080/user/changeInfo',{
                 method: 'PUT',
@@ -227,7 +225,6 @@ async function changeUserInfor() {
 function buildOder(){
     let danhSachDonHang = document.querySelector('.danh-sach-don-hang');
     danhSachDonHang.addEventListener('click', async function(){
-        console.log("danh sách đơn hàng");
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
         let response = await fetch('http://localhost:8080/order/getCurrentUserOrder', {
@@ -280,7 +277,7 @@ async function changePassword(){
         else{
             war1.style.display = 'none';
             // lay mat khau hien tai
-           
+            await checkAccessTokenIsvalid();
             var accessToken = localStorage.getItem('accessToken');
             const data = {
                 password: newPass1
