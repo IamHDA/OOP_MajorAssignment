@@ -4,7 +4,7 @@ async function layLaiMatKhau(){
     button.addEventListener("click", async function(){
         let email = quenMatKhau.querySelector("input").value.trim();
         try{
-            let response1 = await fetch('http://localhost:8080/forgetPassword/checkEmail',{
+            let response1 = await fetch(`http://localhost:8080/forgetPassword/checkEmail/${email}`,{
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json'
@@ -15,7 +15,8 @@ async function layLaiMatKhau(){
             if(response1 === "User found"){
                 quenMatKhau.querySelector('.war').style.display = "none";
                 try{
-                    let response2 = await fetch('http://localhost:8080/forgetPassword/sendEmail',{
+                    alert("Yêu cầu của bạn đang được xử lý, vui lòng đợi!");
+                    let response2 = await fetch(`http://localhost:8080/forgetPassword/sendMail/${email}`,{
                         method: 'GET',
                         headers: {
                         'Content-Type': 'application/json'
