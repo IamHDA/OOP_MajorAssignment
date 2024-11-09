@@ -1,4 +1,4 @@
-import { checkAccessTokenIsvalid } from './accessToken.js';
+import checkAccessTokenIsvalid from './accessToken.js';
 
 async function fetchAddProductToCart(idProduct){
     try {

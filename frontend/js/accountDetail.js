@@ -1,11 +1,9 @@
-import { checkAccessTokenIsvalid } from './accessToken.js';
+import checkAccessTokenIsvalid from './accessToken';
 
 var thongTinTaiKhoan = document.querySelector(".thong-tin-tai-khoan");
 var danhSachDonHang = document.querySelector(".danh-sach-don-hang");
 var thayDoiMatKhau = document.querySelector(".thay-doi-mat-khau");
 var logOut = document.querySelector(".log-out");
-
-var account = document.querySelector(".account");
 
 var thongTinTaiKhoanBox = document.querySelector('.account__detail__content___thong-tin-tai-khoan');
 var danhSachDonHangBox = document.querySelector('.account__detail__content___danh-sach-don-hang');

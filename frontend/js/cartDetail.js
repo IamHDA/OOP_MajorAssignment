@@ -1,4 +1,4 @@
-import { checkAccessTokenIsvalid } from './accessToken.js';
+import checkAccessTokenIsvalid  from './accessToken.js';
 
 function lamtron(num) {
     return Math.round(num / 100000) * 100000;

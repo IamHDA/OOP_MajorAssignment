@@ -1,11 +1,10 @@
 function datLaiMatKhau(){
-    
     let box = document.querySelector('.content-container');
     let button = box.querySelector('.confirm-button');
     button.addEventListener('click', async function(){
         let pass1 = box.querySelector('.password-input1').value;
         let pass2 = box.querySelector('.password-input2').value;
-        console.log("DSFDSFDSFFSDFSD");
+
         if(pass1 != pass2){
             box.querySelector('.war').style.display = "block";
         }

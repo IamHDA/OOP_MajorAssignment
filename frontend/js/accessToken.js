@@ -1,4 +1,4 @@
-export async function checkAccessTokenIsvalid() {
+async function checkAccessTokenIsvalid() {
     try {
         let accessToken = localStorage.getItem('accessToken');
         if (!accessToken) {
@@ -50,3 +50,5 @@ export async function checkAccessTokenIsvalid() {
         console.error('Error during token validation or refresh:', error);
     }
 }
+
+export default checkAccessTokenIsvalid();

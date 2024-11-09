@@ -1,5 +1,3 @@
-import { checkAccessTokenIsvalid } from 'accessToken.js';
-
 function selectionCategory() {
     let lapTopMoi = document.querySelector('.category__detail__lap_top_moi');
     let lapTopLikeNew = document.querySelectorAll('.category__detail__lap_top_like_new');
