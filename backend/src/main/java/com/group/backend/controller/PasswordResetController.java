@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/resetPassword")
+@RequestMapping("/forgetPassword")
 public class PasswordResetController {
 
     @Autowired
@@ -20,7 +20,7 @@ public class PasswordResetController {
         return ResponseEntity.ok(passwordResetService.sendResetMail(email));
     }
 
-    @PostMapping
+    @PostMapping("/resetPassword")
     public ResponseEntity<String> resetPassword(@RequestParam String email, @RequestBody PasswordDTO passwordDTO){
         return ResponseEntity.ok(passwordResetService.resetPassword(email, passwordDTO));
     }

@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface LaptopRepository extends JpaRepository<Laptop, Long> {
     List<Laptop> findAll();
+    Laptop findByName(String name);
     Laptop findById(long id);
     List<Laptop> findByBrand(String brand);
     List<Laptop> findByState(String state);

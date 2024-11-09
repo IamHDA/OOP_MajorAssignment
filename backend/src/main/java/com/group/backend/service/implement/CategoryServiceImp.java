@@ -1,11 +1,15 @@
 package com.group.backend.service.implement;
 
+import com.group.backend.dto.CategoryDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
 import com.group.backend.dto.Filter;
 import com.group.backend.dto.LaptopDTO;
+import com.group.backend.entity.Category;
+import com.group.backend.repository.CategoryRepository;
 import com.group.backend.service.CategoryService;
 import com.group.backend.service.LaptopService;
 import com.group.backend.service.FormatService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,16 @@ public class CategoryServiceImp implements CategoryService {
     private LaptopService laptopService;
     @Autowired
     private FormatService formatService;
+    @Autowired
+    private CategoryRepository categoryRepo;
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @Override
+    public void addCategory(CategoryDTO categoryDTO) {
+        Category category = modelMapper.map(categoryDTO, Category.class);
+        categoryRepo.save(category);
+    }
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByCategory(String category) {

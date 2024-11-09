@@ -5,9 +5,11 @@ import com.group.backend.entity.Category;
 import com.group.backend.entity.Laptop;
 import com.group.backend.entity.Laptop_Category;
 import com.group.backend.entity.Specification;
+import com.group.backend.service.FormatService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -15,6 +17,10 @@ import java.util.List;
 
 @Repository
 public class LaptopFilterRepository {
+
+    @Autowired
+    private FormatService formatService;
+
     private final EntityManager em;
 
     public LaptopFilterRepository(EntityManager em) {
@@ -44,15 +50,15 @@ public class LaptopFilterRepository {
             predicates.add(newPredicate);
         }
         if(!filter.getRam().isEmpty()){
-            Predicate newPredicate = cb.like(specification.get("ram"), "%" + filter.getRam() + "%");
+            Predicate newPredicate = cb.like(specification.get("ram"), "%" + formatService.filterConditionFormat(filter.getRam()) + "%");
             predicates.add(newPredicate);
         }
         if(!filter.getCpu().isEmpty()){
-            Predicate newPredicate = cb.like(specification.get("cpu"), "%" + filter.getCpu() + "%");
+            Predicate newPredicate = cb.like(specification.get("cpu"), "%" + formatService.filterConditionFormat(filter.getCpu()) + "%");
             predicates.add(newPredicate);
         }
         if(!filter.getVga().isEmpty()){
-            Predicate newPredicate = cb.like(specification.get("graphicsCard"), "%" + filter.getVga() + "%");
+            Predicate newPredicate = cb.like(specification.get("graphicsCard"), "%" + formatService.filterConditionFormat(filter.getVga()) + "%");
             predicates.add(newPredicate);
         }
         if(!filter.getSsd().isEmpty()){

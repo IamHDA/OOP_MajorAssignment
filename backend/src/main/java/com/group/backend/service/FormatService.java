@@ -17,6 +17,7 @@ public interface FormatService {
     String romFormat(String text);
     String laptopNameFormat(String text);
     String imgTypeFormat(String text);
+    String filterConditionFormat(String text);
     CommentDTO localDateTimeCommentFormat(Comment comment);
     LaptopSummaryDTO formattedLaptopSummary(LaptopSummaryDTO LaptopSummaryDTO);
     List<LaptopSummaryDTO> listOfFormattedLaptopSummary(List<LaptopSummaryDTO> laptops);
