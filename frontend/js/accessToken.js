@@ -1,10 +1,10 @@
 async function checkAccessTokenIsvalid() {
     try {
         let accessToken = localStorage.getItem('accessToken');
-        if (!accessToken) {
-            console.error('No access token found');
-            return;
-        }
+        // if (!accessToken) {
+        //     console.error('No access token found');
+        //     return;
+        // }
 
         let response = await fetch('http://localhost:8080/check-accessToken', {
             method: 'GET',
@@ -19,10 +19,6 @@ async function checkAccessTokenIsvalid() {
         if (textResponse !== "Token is still valid") {
             // If token is not valid, try to refresh it
             let refreshToken = localStorage.getItem('refreshToken');
-            if (!refreshToken) {
-                console.error('No refresh token found');
-                return;
-            }
 
             const refreshResponse = await fetch('http://localhost:8080/refresh-token', {
                 method: 'POST',
@@ -49,6 +45,6 @@ async function checkAccessTokenIsvalid() {
     } catch (error) {
         console.error('Error during token validation or refresh:', error);
     }
-}
+};
 
-export default checkAccessTokenIsvalid();
+export default checkAccessTokenIsvalid;
