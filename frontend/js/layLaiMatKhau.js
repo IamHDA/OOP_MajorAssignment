@@ -8,8 +8,7 @@ async function layLaiMatKhau(){
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json'
-                },
-                body: email
+                }
             });
             response1 = await response1.text();
             if(response1 === "User found"){
@@ -20,12 +19,12 @@ async function layLaiMatKhau(){
                         method: 'GET',
                         headers: {
                         'Content-Type': 'application/json'
-                        },
-                        body: email
+                        }
                     });
                     response2 = await response2.json();
                     if(response2 === "Send mail successfully"){
                         alert("Yêu cầu lấy lại mật khẩu của bạn cần được xác minh. Hãy vào kiểm tra Email của bạn để xác nhận đổi mật khẩu!");
+                        localStorage.setItem('email', email);
                     }
                 }
                 catch(error){
