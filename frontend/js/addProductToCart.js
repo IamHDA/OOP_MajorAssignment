@@ -8,7 +8,6 @@ async function fetchAddProductToCart(idProduct){
                 "id": idProduct
            }
         };
-        checkAccessTokenIsvalid();
         var accessToken = localStorage.getItem("accessToken");
         const response = await fetch('http://localhost:8080/cart-detail/add', {
             method: 'POST',
@@ -28,13 +27,13 @@ async function fetchAddProductToCart(idProduct){
 
 async function addProductToCart(){
     let productContainer = document.querySelectorAll('.product__container');
-
     productContainer.forEach(function(element){
         let buttonAddToCart = element.querySelector('.product__cart');
         let idProduct = element.querySelector('.id__product').textContent;
 
         buttonAddToCart.addEventListener('click', async function(){
             try {
+                await checkAccessTokenIsvalid();
                 const response = await fetchAddProductToCart(idProduct);
                 const message = await response.text();
                 console.log(message);
@@ -52,5 +51,3 @@ async function addProductToCart(){
         });
     });
 }
-
-addProductToCart();

@@ -115,7 +115,6 @@ async function mainLapTopTheoMuc(){
     if(localStorage.getItem('action') === "selectionCategory"){
         await selectCategoryProduct();
     }
-    await addProductToCart();
     selectProduct();
 }
 
