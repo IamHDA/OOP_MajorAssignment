@@ -51,4 +51,4 @@ async function checkAccessTokenIsvalid() {
     }
 }
 
-export default checkAccessTokenIsvalid();
+export default checkAccessTokenIsvalid;
