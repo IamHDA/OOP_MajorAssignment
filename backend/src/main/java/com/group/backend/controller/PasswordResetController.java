@@ -20,6 +20,12 @@ public class PasswordResetController {
         return ResponseEntity.ok(passwordResetService.sendResetMail(email));
     }
 
+    @GetMapping("/checkEmail")
+    public ResponseEntity<String> checkEmail(@RequestBody String email){
+        System.out.println(email);
+        return ResponseEntity.ok(passwordResetService.checkEmail(email));
+    }
+
     @PostMapping("/resetPassword")
     public ResponseEntity<String> resetPassword(@RequestParam String email, @RequestBody PasswordDTO passwordDTO){
         return ResponseEntity.ok(passwordResetService.resetPassword(email, passwordDTO));
