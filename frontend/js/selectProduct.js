@@ -18,4 +18,4 @@ function selectProduct(){
     })
 }
 
-selectProduct();
+export default selectProduct;

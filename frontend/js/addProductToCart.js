@@ -52,3 +52,5 @@ async function addProductToCart(){
         });
     });
 }
+
+export default addProductToCart;
