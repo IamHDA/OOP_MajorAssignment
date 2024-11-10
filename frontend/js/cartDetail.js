@@ -20,7 +20,7 @@ function daucham(num){
 }
 
 function boDauCham(num){
-    res = "";
+    var res = "";
     for(let i = 0; i < num.length; i++){
         if(num[i] != "."){
             res += num[i];

@@ -1,5 +1,5 @@
-import addProductToCart from './addProductToCart';
-import selectProduct from './selectProduct';
+import addProductToCart from './addProductToCart.js';
+import selectProduct from './selectProduct.js';
 
 async function fetchCatalog(url) {
     function lamtron(num) {
