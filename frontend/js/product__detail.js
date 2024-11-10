@@ -100,8 +100,8 @@ async function buildProductDetail(response){
     var commentList = response.comments;
 
     await checkAccessTokenIsvalid();
-    let currentUser = localStorage.getItem("accessToken");
-    let response = await fetch('http://localhost:8080/currentUser', {
+    let accessToken = localStorage.getItem("accessToken");
+    let currentUser = await fetch('http://localhost:8080/currentUser', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -121,6 +121,8 @@ async function buildProductDetail(response){
             var time = '<div class="comment__time">' + element.updateAt + '</div>';
             var status = '<div class="status">Đã chỉnh sửa</div>';
         }
+
+        var inforAndTime = '<div class="comment__infor_and_time">' + name + partition + status +  time + '</div>';
         if(currentUser.id == element.user.id){
             var editComment = '<div class="editComment">Chỉnh sửa</div>';
             var deleteCommet = '<div class="deleteComment">Xóa</div>';
@@ -129,9 +131,9 @@ async function buildProductDetail(response){
         else{
             var action = '';
         }
-        var inforAndTime = '<div class="comment__infor_and_time">' + name + partition + status +  time + action + '</div>';
+
         var content = '<div class="comment__content">' + element.content + '</div>';
-        commentContainer.innerHTML += inforAndTime + content;
+        commentContainer.innerHTML += inforAndTime + content + action;
     })
 }
 
