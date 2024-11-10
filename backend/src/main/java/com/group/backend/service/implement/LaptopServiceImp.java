@@ -53,6 +53,7 @@ public class LaptopServiceImp implements LaptopService {
         Laptop laptop = modelMapper.map(laptopDTO, Laptop.class);
         laptop.setSpecification(specificationServiceImp.getLastSpecification());
         laptop.setBrand(laptop.getBrand());
+        laptop.setAvailable(true);
         laptopRepo.save(laptop);
         return "Laptop added successfully";
     }

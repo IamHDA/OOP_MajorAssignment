@@ -1,0 +1,40 @@
+.laptop-container{
+    font-size: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 248px;
+    margin-top: 50px;
+}
+
+.first-row{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.name, .price, .state, .sale{
+    margin-top: 8px;
+    font-size: 18px;
+    padding: 5px 10px 5px 5px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.name{
+    width: 400px;
+}
+
+.price{
+    width: 120px;
+}
+
+.state{
+    width: 130px;
+}
+
+.sale{
+    width: 140px;
+}
+
