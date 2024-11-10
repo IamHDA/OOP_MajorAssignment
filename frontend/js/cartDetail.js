@@ -1,4 +1,5 @@
 import checkAccessTokenIsvalid  from './accessToken.js';
+import selectProduct from './selectProduct.js';
 
 function lamtron(num) {
     return Math.round(num / 100000) * 100000;
@@ -388,7 +389,7 @@ async function mainCartDetail(){
     adjustNumberProduct();
     deleteProduct();
     deleteAllProduct();
-    // selecProduct();
+    selecProduct();
     creatOrder();
 }
 
