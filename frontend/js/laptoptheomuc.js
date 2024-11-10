@@ -1,3 +1,5 @@
+import selectProduct from "./selectProduct.js";
+
 function lamtron(num) {
     return Math.round(num / 100000) * 100000;
 }
@@ -115,6 +117,8 @@ async function mainLapTopTheoMuc(){
     if(localStorage.getItem('action') === "selectionCategory"){
         await selectCategoryProduct();
     }
+
+    selectProduct();
 }
 
 mainLapTopTheoMuc();

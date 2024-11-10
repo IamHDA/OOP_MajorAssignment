@@ -1,4 +1,6 @@
-function getDaTa(){
+import checkAccessTokenIsvalid from "./accessToken.js";
+
+async function getDaTa(){
     function lamtron(num) {
         return Math.round(num / 100000) * 100000;
     }
@@ -108,16 +110,64 @@ function getDaTa(){
         var commentContainer = document.querySelector('.comment__container');
         var commentList = response.comments;
         commentList.forEach(function(element){
+
             var name = '<div class="comment__user__name">' + element.userName + '</div>';
             var partition = '<div class="infor_and_time__partition"> | </div>';
-            var time = '<div class="comment__time">' + element.postAt + '</div>';
-            var inforAndTime = '<div class="comment__infor_and_time">' + name + partition + time + '</div>';
-
+            if(element.updateAt === null){
+                var time = '<div class="comment__time">' + element.postAt + '</div>';
+            }
+            else{
+                var time = '<div class="comment__time">' + 'Đã chỉnh sửa' + element.updateAt + '</div>';
+            }
+            var update = '<div class="comment__time">' + '     | Chỉnh sửa' + '</div>';
+            var inforAndTime = '<div class="comment__infor_and_time">' + name + partition + time + update + '</div>';
             var content = '<div class="comment__content">' + element.content + '</div>';
-
             commentContainer.innerHTML += inforAndTime + content;
         })
     })
 }
 
-getDaTa();
+async function postComment() {
+    let productComment = document.querySelector('.product__comment');
+    let button = productComment.querySelector('.button__submit_comment');
+    button.addEventListener('click', async function(){
+        let accessToken = localStorage.getItem('accessToken');
+        if(accessToken === null){
+            alert("Bạn cần phải đăng nhập để bình luận!")
+        }
+        else{
+            checkAccessTokenIsvalid();
+            accessToken = localStorage.getItem('accessToken');
+            let comment = productComment.querySelector('.inputContent').value;
+            let data = {
+                content: comment
+            };
+            try{
+                let idProduct = localStorage.getItem('id__product');
+                let response = await fetch(`http://localhost:8080/comment/post?laptopId=${idProduct}`, {
+                    method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${accessToken}`
+                        },
+                        body: JSON.stringify(data)
+                });
+                response = await response.text();
+                if(response == "Comment posted successfully"){
+                    location.reload();
+                }
+            }
+            catch(error){
+                console.log(error);
+                alert("Đã có lỗi xảy ra!");
+            }
+        }
+    });
+}
+
+async function productDetailMain(){
+    await getDaTa();
+    await postComment();
+}
+
+productDetailMain();
