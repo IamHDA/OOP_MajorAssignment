@@ -65,22 +65,22 @@ public class LaptopServiceImp implements LaptopService {
                 .map(l -> modelMapper.map(l, LaptopSummaryDTO.class))
                 .collect(Collectors.toList());
     }
-
-    @Override
-    public List<LaptopSummaryDTO> getLaptopByBrand(String brand) {
-        List<Laptop> laptops = laptopRepo.findByBrand(brand);
-        return laptops.stream()
-                .map(l -> modelMapper.map(l, LaptopSummaryDTO.class))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<LaptopSummaryDTO> getLaptopByState(String state) {
-        List<Laptop> laptops = laptopRepo.findByState(state);
-        return laptops.stream()
-                .map(l -> modelMapper.map(l, LaptopSummaryDTO.class))
-                .collect(Collectors.toList());
-    }
+//
+//    @Override
+//    public List<LaptopSummaryDTO> getLaptopByBrand(String brand) {
+//        List<Laptop> laptops = laptopRepo.findByBrand(brand);
+//        return laptops.stream()
+//                .map(l -> modelMapper.map(l, LaptopSummaryDTO.class))
+//                .collect(Collectors.toList());
+//    }
+//
+//    @Override
+//    public List<LaptopSummaryDTO> getLaptopByState(String state) {
+//        List<Laptop> laptops = laptopRepo.findByState(state);
+//        return laptops.stream()
+//                .map(l -> modelMapper.map(l, LaptopSummaryDTO.class))
+//                .collect(Collectors.toList());
+//    }
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByCriteria(Filter filter) {
