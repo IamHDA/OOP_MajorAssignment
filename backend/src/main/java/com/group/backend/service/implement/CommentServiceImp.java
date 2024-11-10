@@ -46,4 +46,10 @@ public class CommentServiceImp implements CommentService {
         commentRepo.save(comment);
         return "Comment updated successfully";
     }
+
+    @Override
+    public String deleteComment(long id) {
+        commentRepo.deleteById(id);
+        return "Comment deleted successfully";
+    }
 }

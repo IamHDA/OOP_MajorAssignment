@@ -9,4 +9,5 @@ public class CommentDTO {
     private String content;
     private String postAt;
     private String updateAt;
+    private UserDTO user;
 }

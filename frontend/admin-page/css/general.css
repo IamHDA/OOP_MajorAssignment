@@ -13,6 +13,15 @@ a{
     text-decoration: none;
 }
 
+textarea{
+    resize: none;
+    outline: none;
+}
+
+input{
+    outline: none;
+}
+
 .main-container{
     margin: 0 auto;
     margin-left: -8px;
