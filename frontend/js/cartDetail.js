@@ -1,11 +1,4 @@
 import checkAccessTokenIsvalid  from './accessToken.js';
-import selectProduct from './selectProduct.js';
-
-function lamtron(num) {
-    return Math.round(num / 100000) * 100000;
-}
-
-
 function daucham(num){
     let tmp = "";
     let mark = 0;
@@ -33,6 +26,14 @@ function boDauCham(num){
     return res;
 }
 
+function selecProduct(){
+    let tableRow = document.querySelectorAll('.table-row');
+    tableRow.forEach(function(element){
+        element.addEventListener('click', function(){
+            localStorage.setItem('id__product', element.laptop.id);
+        })
+    })
+}
 // getDataCartDetail
 async function getDataCartDetail() {
     checkAccessTokenIsvalid();
@@ -373,24 +374,30 @@ function creatOrder(){
 
 // main
 async function mainCartDetail(){
-    await buildCartDeTail();
-    let cartDetail = document.querySelector('.my-cart-detail');
-    let emptyCart = document.querySelector('.empty-cart');
-    let tableRow = document.querySelectorAll('.table-row');
-    if (tableRow.length != 0){
-        cartDetail.style.display = 'flex';
-        emptyCart.style.display = 'none';
+    let accessToken = localStorage.getItem('accessToken');
+    if(accessToken === null){
+        alert("Bạn cần đăng nhập để xem giỏ hàng");
     }
-    if (tableRow.length == 0){
-        cartDetail.style.display = 'none';
-        emptyCart.style.display = 'block';
+    else{
+        await buildCartDeTail();
+        let cartDetail = document.querySelector('.my-cart-detail');
+        let emptyCart = document.querySelector('.empty-cart');
+        let tableRow = document.querySelectorAll('.table-row');
+        if (tableRow.length != 0){
+            cartDetail.style.display = 'flex';
+            emptyCart.style.display = 'none';
+        }
+        if (tableRow.length == 0){
+            cartDetail.style.display = 'none';
+            emptyCart.style.display = 'block';
+        }
+        
+        adjustNumberProduct();
+        deleteProduct();
+        deleteAllProduct();
+        creatOrder();
+        selecProduct();
     }
-    
-    adjustNumberProduct();
-    deleteProduct();
-    deleteAllProduct();
-    selecProduct();
-    creatOrder();
 }
 
 mainCartDetail();
