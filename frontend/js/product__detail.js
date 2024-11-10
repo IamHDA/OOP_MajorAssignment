@@ -100,8 +100,8 @@ async function buildProductDetail(response){
     var commentList = response.comments;
 
     await checkAccessTokenIsvalid();
-    let currentUser = localStorage.getItem("accessToken");
-    let response = await fetch('http://localhost:8080/currentUser', {
+    let accessToken = localStorage.getItem("accessToken");
+    let currentUser = await fetch('http://localhost:8080/currentUser', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
