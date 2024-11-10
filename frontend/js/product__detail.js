@@ -96,6 +96,7 @@ async function buildProductDetail(response){
         })
     }
 
+    var productComment = document.querySelector('.product__comment');
     var commentContainer = document.querySelector('.comment__container');
     var commentList = response.comments;
 
@@ -111,6 +112,7 @@ async function buildProductDetail(response){
 
     currentUser = await currentUser.json();
     commentList.forEach(function(element){
+        var id = '<div class="id">' + element.id + '</div>';
         var name = '<div class="comment__user__name">' + element.userName + '</div>';
         var partition = '<div class="infor_and_time__partition"> | </div>';
         if(element.updateAt === null){
@@ -133,7 +135,8 @@ async function buildProductDetail(response){
         }
 
         var content = '<div class="comment__content">' + element.content + '</div>';
-        commentContainer.innerHTML += inforAndTime + content + action;
+        commentContainer = '<div class="comment__container">' + id + inforAndTime + content + action + '</div>';
+        productComment.innerHTML += commentContainer;
     })
 }
 
@@ -191,9 +194,42 @@ async function postComment() {
     });
 }
 
+async function editComment(){
+    var commentContainer = document.querySelectorAll('.comment__container');
+    commentContainer.forEach(function(element){
+        let editComment = element.querySelector('.editComment');
+        editComment.addEventListener('click', function(){
+            element.querySelector('.inputText').style.display = "block";
+            element.querySelector('.button').style.display = "block";
+        });
+        let button = element.querySelector('.button');
+        button.addEventListener('click', async function() {
+            checkAccessTokenIsvalid();
+            let idComment = element.querySelector('.id').textContent;
+            let text = element.inputText.textContent;
+            data = {
+                id: idComment,
+                content: text
+            }
+            let response = await fetch('http://localhost:8080/comment/modify', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },  
+                body: JSON.stringify(data)
+            });
+            response = await response.text();
+            if(response == "Comment updated successfully"){
+                location.reload();
+            }
+        })
+    })
+}
+
 async function productDetailMain(){
     await getDaTa();
     await postComment();
+    await editComment();
 }
 
 productDetailMain();

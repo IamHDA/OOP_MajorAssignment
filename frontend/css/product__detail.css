@@ -510,3 +510,35 @@
 .product__comment .action .editComment{
     margin-right: 20px;
 }
+
+.product__comment .input textarea{
+    margin-left: 150px;
+    margin-top: 10px;
+    width: 700px;
+    height: 60px;
+    resize: none;
+    padding: 10px;
+    font-size: 15px;
+    outline: none;
+}
+
+.product__comment .input .button{
+   margin-left: 780px; 
+   margin-top: 30px;
+   height: 40px;
+   width: 70px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: red;
+   color: white;
+   cursor: pointer;
+}
+
+.comment__container{
+    margin-bottom: 20px;
+}
+
+.comment__container .id{
+    display: none;
+}
