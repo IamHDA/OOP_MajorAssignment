@@ -79,6 +79,6 @@ public class OrderServiceImp implements OrderService {
         StatusDTO statusDTO = statusService.getStatusById(orderDTO.getStatus().getId());
         order.setStatus(modelMapper.map(statusDTO, Status.class));
         orderRepo.save(order);
-        return "Order status updated compleleted!";
+        return "Order status updated completed!";
     }
 }

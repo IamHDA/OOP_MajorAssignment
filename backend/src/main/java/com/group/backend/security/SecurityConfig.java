@@ -57,6 +57,7 @@ public class SecurityConfig {
                                 "/resetPassword/**",
                                 "/**")
                         .permitAll()
+                        .requestMatchers("/order/admin/**").hasAuthority("Admin")
                         .anyRequest()
                         .authenticated())
                 .httpBasic(Customizer.withDefaults())
