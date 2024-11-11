@@ -138,6 +138,7 @@ async function buildProductDetail(response){
             var editComment = '<div class="editComment">Chỉnh sửa</div>';
             var button = '<div class="button">' + 'Gửi' + '</div>';
             var deleteCommet = '<div class="deleteComment">Xóa</div>';
+
             var action = '<div class="action">' + editComment + deleteCommet + '</div>';
         }
         else{
@@ -214,10 +215,8 @@ async function editComment(){
         });
         let button = element.querySelector('.button');
         button.addEventListener('click', async function() {
-            checkAccessTokenIsvalid();
             let idComment = parseInt(element.querySelector('.id').textContent, 10);
             let text = element.querySelector('.inputText').value;
-            console.log(text);
             let data = {
                 id: idComment,
                 content: text
@@ -237,10 +236,32 @@ async function editComment(){
     })
 }
 
+async function deleteCommet(){
+    var commentContainer = document.querySelectorAll('.comment__container');
+    commentContainer.forEach(function(element){
+        let action = element.querySelector('.action');
+        let deleteComment = action.querySelector('.deleteComment');
+        deleteComment.addEventListener('click', async function() {
+            let idComment = parseInt(element.querySelector('.id').textContent, 10) 
+            let response = await fetch(`http://localhost:8080/comment/delete/${idComment}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },  
+            });
+            response = await response.text();
+            if(response == "Comment deleted successfully"){
+                location.reload();
+            }
+        })
+    })
+}
+
 async function productDetailMain() {
     await getDaTa();        
     await postComment();    
     await editComment();
+    await deleteCommet();
 }
 
 productDetailMain();
