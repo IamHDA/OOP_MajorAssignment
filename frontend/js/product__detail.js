@@ -103,7 +103,7 @@ async function buildProductDetail(response){
     await checkAccessTokenIsvalid();
     let currentUser;
     let accessToken = localStorage.getItem("accessToken");
-    if(accessToken !== null){
+    if(accessToken === null){
         currentUser = {
         }
     }
@@ -131,18 +131,24 @@ async function buildProductDetail(response){
         }
 
         var inforAndTime = '<div class="comment__infor_and_time">' + name + partition + status +  time + '</div>';
-        if(currentUser.id == element.user.id){
+        console.log(currentUser.id);
+        console.log(element.userId);
+        if(currentUser.id == element.userId){
+            var input = '<div class="input"><textarea class="inputText"></textarea></div>';
             var editComment = '<div class="editComment">Chỉnh sửa</div>';
+            var button = '<div class="button">' + 'Gửi' + '</div>';
             var deleteCommet = '<div class="deleteComment">Xóa</div>';
 
             var action = '<div class="action">' + editComment + deleteCommet + '</div>';
         }
         else{
             var action = '';
+            var button = '';
+            var input = '';
         }
 
         var content = '<div class="comment__content">' + element.content + '</div>';
-        commentContainer = '<div class="comment__container">' + id + inforAndTime + content + action + '</div>';
+        commentContainer = '<div class="comment__container">' + id + inforAndTime + content + action + input + button + '</div>';
         productComment.innerHTML += commentContainer;
     })
 }
@@ -150,21 +156,18 @@ async function buildProductDetail(response){
 
 async function getDaTa(){
     let id = localStorage.getItem('id__product'); 
-
-    fetch(`http://localhost:8080/laptop/api/${id}`, {
+    let response = await fetch(`http://localhost:8080/laptop/api/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         }
     })
-    .then(response => {
-        return response.json();
-    })
-    .then(response => buildProductDetail(response))
+    response = await response.json();
+    await buildProductDetail(response);
 }
 
 async function postComment() {
-    let commentInput = document.querySelector('.product__comment');
+    let commentInput = document.querySelector('.comment__input');
     let button = commentInput.querySelector('.button__submit_comment');
     button.addEventListener('click', async function(){
         let accessToken = localStorage.getItem('accessToken');
@@ -202,6 +205,7 @@ async function postComment() {
 }
 
 async function editComment(){
+    console.log("editcomment");
     var commentContainer = document.querySelectorAll('.comment__container');
     commentContainer.forEach(function(element){
         let action = element.querySelector('.action');
@@ -213,9 +217,9 @@ async function editComment(){
         let button = element.querySelector('.button');
         button.addEventListener('click', async function() {
             checkAccessTokenIsvalid();
-            let idComment = element.querySelector('.id').textContent;
-            let text = element.inputText.value;
-            data = {
+            let idComment = parseInt(element.querySelector('.id').textContent, 10);
+            let text = element.querySelector('.inputText').value;
+            let data = {
                 id: idComment,
                 content: text
             }
@@ -234,9 +238,9 @@ async function editComment(){
     })
 }
 
-async function productDetailMain(){
-    await getDaTa();
-    await postComment();
+async function productDetailMain() {
+    await getDaTa();        
+    await postComment();    
     await editComment();
 }
 

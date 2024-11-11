@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="battery-container">
                                     <p>Pin</p>
-                                    <input class="pin" type="text" placeholder="Nhập loại pin">
+                                    <input class="battery" type="text" placeholder="Nhập loại pin">
                                 </div>
                                 <div class="os-container">
                                     <p>Hệ điều hành</p>
@@ -96,11 +96,71 @@
                                     <p>Mux-switch</p>
                                     <input type="radio" id="opt1" name="port" value="yes">
                                     <label for="opt1">Có</label>
+                                    <br>
                                     <input type="radio" id="opt2" name="port" value="no">
                                     <label for="opt2">Không</label>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="third-row">
+                        <div class="laptop-category">
+                            <p>Danh mục Laptop</p>
+                            <div class="dropdown">
+                                <button onclick="toggleDropdown()">Danh sách danh mục</button>
+                                <div class="dropdown-list">
+                                    <p>Học tập văn phòng</p>
+                                    <p>Laptop Gaming</p>
+                                    <p>Đồ họa hiệu năng cao</p>
+                                    <p>Mỏng nhẹ cao cấp</p>
+                                    <p>Asus TUF</p>
+                                    <p>Asus Zenbook</p>
+                                    <p>Asus Vivobook</p>
+                                    <p>Asus ROG</p>
+                                    <p>Dell Alienware</p>
+                                    <p>Dell Precision</p>
+                                    <p>Dell XPS</p>
+                                    <p>Dell Vostro</p>
+                                    <p>Dell Inspiron</p>
+                                    <p>Acer Aspire</p>
+                                    <p>Acer Nitro</p>
+                                    <p>Acer Predator</p>
+                                    <p>Acer Swift</p>
+                                    <p>Lenovo Ideapad</p>
+                                    <p>Lenovo ThinkBook</p>
+                                    <p>Lenovo Legion</p>
+                                    <p>Lenovo Thinkpad</p>
+                                    <p>Lenovo LOQ</p>
+                                    <p>HP Pavilion</p>
+                                    <p>HP Omen</p>
+                                    <p>HP Envy</p>
+                                    <p>MSI Modern</p>
+                                    <p>MSI Bravo</p>
+                                    <p>MSI Sword</p>
+                                    <p>MSI Katana</p>
+                                </div>
+                            </div>
+                            <div class="selected-category">
+                                <div class="chosen">
+                                    <p>Lenovo Legion</p>
+                                    <i class="fa-solid fa-delete-left"></i>
+                                </div>
+                                <div class="chosen">
+                                    <p>Học tập văn phòng</p>
+                                    <i class="fa-solid fa-delete-left"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="laptop-images">
+                            <p>Ảnh của laptop</p>
+                            <form>
+                                <div class="file-input-wrapper"> 
+                                    <button class="file-input-button">Chọn Tệp</button> 
+                                    <input type="file" class="file-input" name="file" multiple> 
+                                </div>
+                            </form>
+                        </div>
+                        <button class="confirm-button">Xác nhận</button>
                     </div>
                 </div>
             </div>

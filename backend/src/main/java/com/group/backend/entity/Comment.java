@@ -36,4 +36,8 @@ public class Comment {
         return user.getName();
     }
 
+    @JsonProperty("userId")
+    private long getUserId(){
+        return user.getId();
+    }
 }

@@ -6,11 +6,11 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(0, 115, 255);
+    z-index: 100;
 }
 
 .header-container p{
     font-size: 30px;
     font-weight: 600;
     color: white;
-    z-index: 100;
 }
