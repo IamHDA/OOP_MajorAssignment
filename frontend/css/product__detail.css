@@ -409,7 +409,7 @@
     margin: auto;
     background-color: white;
     margin-top: 50px;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
 }
 
 .comment__title{
@@ -487,6 +487,7 @@
     font-weight: 600;
     border-radius: 5px;
     margin: 50px 80px 100px auto;
+    cursor: pointer;
 }
 
 .tab{
@@ -511,18 +512,29 @@
     margin-right: 20px;
 }
 
-.product__comment .input textarea{
+.product__comment .input{
     margin-left: 150px;
     margin-top: 10px;
-    width: 700px;
-    height: 60px;
-    resize: none;
+    width: 750px;
+    height: 100px;
+    display: none;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
-    font-size: 15px;
-    outline: none;
+    border: 1px solid black;
 }
 
-.product__comment .input .button{
+.product__comment .input textarea{
+    width: 700px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: 500;
+    resize: none;
+    outline: none;
+    border: none;
+}
+
+.product__comment .button{
    margin-left: 780px; 
    margin-top: 30px;
    height: 40px;
@@ -533,6 +545,7 @@
    background-color: red;
    color: white;
    cursor: pointer;
+   display: none;
 }
 
 .comment__container{
@@ -541,4 +554,17 @@
 
 .comment__container .id{
     display: none;
+}
+
+.comment__input{
+    height: auto;
+    width: 1200px;
+    margin-top: 0px;
+    background-color: white;
+    margin: auto;
+    border-radius: 0 0 10px 10px;
+}
+
+.comment__input .inputContent{
+    margin-top: 50px;
 }
