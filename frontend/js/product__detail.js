@@ -236,8 +236,9 @@ async function editComment(){
     })
 }
 
-async function deleteCommet(){
+async function deleteComment(){
     var commentContainer = document.querySelectorAll('.comment__container');
+    console.log("DSFDSFDS");
     commentContainer.forEach(function(element){
         let action = element.querySelector('.action');
         let deleteComment = action.querySelector('.deleteComment');
@@ -259,9 +260,9 @@ async function deleteCommet(){
 
 async function productDetailMain() {
     await getDaTa();        
-    await postComment();    
+    await postComment();
     await editComment();
-    await deleteCommet();
+    await deleteComment();
 }
 
 productDetailMain();
