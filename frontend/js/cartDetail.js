@@ -28,9 +28,11 @@ function boDauCham(num){
 
 function selecProduct(){
     let tableRow = document.querySelectorAll('.table-row');
+    console.log(tableRow);
     tableRow.forEach(function(element){
+        console.log(element);
         element.addEventListener('click', function(){
-            localStorage.setItem('id__product', element.laptop.id);
+            localStorage.setItem('id__product', element.querySelector('.id__table__row').textContent);
         })
     })
 }
@@ -55,8 +57,8 @@ async function buildCartDeTail(){
     let cartTable = document.querySelector('.cart-table');
     console.log(responseData);
     responseData.forEach(function(element){
-        const idTableRow = '<div class = "id__table__row">' + element.id + '</div>'; 
-        const idLapTop = '<div class = "id__product">' + element.laptop.id + '</div>';
+        const idTableRow = '<td class = "id__table__row">' + element.id + '</td>'; 
+        const idLapTop = '<td class = "id__product">' + element.laptop.id + '</td>';
         const imgProduct = '<img class = "laptop-img" src= "' + element.laptop.images[0].filePath + '"alt=""></img>';
         const nameProduct = '<a href="product.html" class="laptop-name">' + element.laptop.name + ' ' + '(' + element.laptop.specification.cpu + ', ' + element.laptop.specification.ram + ', ' + element.laptop.specification.rom + ', ' + element.laptop.specification.graphicsCard + ', ' + element.laptop.specification.screen + ')' +'</a>';
         const td1 = '<td>' + imgProduct + nameProduct + '</td>';
@@ -132,7 +134,7 @@ async function buildCartDeTail(){
                 totalPrice.innerHTML = totalPriceNumber;
 
                 // thay doi database
-                let id_cart = document.querySelector('.id__table__row').textContent;
+                let id_cart = element.querySelector('.id__table__row').textContent;
                 id_cart = parseInt(id_cart, 10);
                 newNumber = parseInt(newNumber, 10);
                 const data = {
@@ -182,7 +184,7 @@ async function buildCartDeTail(){
             totalPrice.innerHTML = totalPriceNumber;
 
             // thay doi database
-            let id_cart = document.querySelector('.id__table__row').textContent;
+            let id_cart = element.querySelector('.id__table__row').textContent;
             id_cart = parseInt(id_cart, 10);
             newNumber = parseInt(newNumber, 10);
             const data = {
