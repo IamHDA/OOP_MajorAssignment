@@ -134,6 +134,7 @@ async function buildProductDetail(response){
         if(currentUser.id == element.user.id){
             var editComment = '<div class="editComment">Chỉnh sửa</div>';
             var deleteCommet = '<div class="deleteComment">Xóa</div>';
+
             var action = '<div class="action">' + editComment + deleteCommet + '</div>';
         }
         else{
@@ -203,7 +204,8 @@ async function postComment() {
 async function editComment(){
     var commentContainer = document.querySelectorAll('.comment__container');
     commentContainer.forEach(function(element){
-        let editComment = element.querySelector('.editComment');
+        let action = element.querySelector('.action');
+        let editComment = action.querySelector('.editComment');
         editComment.addEventListener('click', function(){
             element.querySelector('.input').style.display = "flex";
             element.querySelector('.button').style.display = "flex";
@@ -212,7 +214,7 @@ async function editComment(){
         button.addEventListener('click', async function() {
             checkAccessTokenIsvalid();
             let idComment = element.querySelector('.id').textContent;
-            let text = element.inputText.textContent;
+            let text = element.inputText.value;
             data = {
                 id: idComment,
                 content: text
