@@ -204,7 +204,6 @@ async function postComment() {
 }
 
 async function editComment(){
-    console.log("editcomment");
     var commentContainer = document.querySelectorAll('.comment__container');
     commentContainer.forEach(function(element){
         let action = element.querySelector('.action');
