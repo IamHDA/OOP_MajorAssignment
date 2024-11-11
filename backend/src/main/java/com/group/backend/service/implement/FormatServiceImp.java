@@ -71,7 +71,8 @@ public class FormatServiceImp implements FormatService {
     @Override
     public String romFormat(String text) {
         String tmp[] = text.split(" ");
-        return tmp[1];
+        if(!Character.isAlphabetic(tmp[1].charAt(tmp[1].length() - 1)));
+        return tmp[1].substring(0, tmp[1].length() - 1);
     }
 
     @Override
