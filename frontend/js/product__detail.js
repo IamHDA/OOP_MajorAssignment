@@ -101,16 +101,22 @@ async function buildProductDetail(response){
     var commentList = response.comments;
 
     await checkAccessTokenIsvalid();
+    let currentUser;
     let accessToken = localStorage.getItem("accessToken");
-    let currentUser = await fetch('http://localhost:8080/currentUser', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        }       
-    });
-
-    currentUser = await currentUser.json();
+    if(accessToken !== null){
+        currentUser = {
+        }
+    }
+    else{
+        currentUser = await fetch('http://localhost:8080/currentUser', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }       
+        });
+        currentUser = await currentUser.json();
+    }
     commentList.forEach(function(element){
         var id = '<div class="id">' + element.id + '</div>';
         var name = '<div class="comment__user__name">' + element.userName + '</div>';
@@ -157,8 +163,8 @@ async function getDaTa(){
 }
 
 async function postComment() {
-    let productComment = document.querySelector('.product__comment');
-    let button = productComment.querySelector('.button__submit_comment');
+    let commentInput = document.querySelector('.product__comment');
+    let button = commentInput.querySelector('.button__submit_comment');
     button.addEventListener('click', async function(){
         let accessToken = localStorage.getItem('accessToken');
         if(accessToken === null){
@@ -167,7 +173,7 @@ async function postComment() {
         else{
             checkAccessTokenIsvalid();
             accessToken = localStorage.getItem('accessToken');
-            let comment = productComment.querySelector('.inputContent').value;
+            let comment = commentInput.querySelector('.inputContent').value;
             let data = {
                 content: comment
             };
@@ -199,8 +205,8 @@ async function editComment(){
     commentContainer.forEach(function(element){
         let editComment = element.querySelector('.editComment');
         editComment.addEventListener('click', function(){
-            element.querySelector('.inputText').style.display = "block";
-            element.querySelector('.button').style.display = "block";
+            element.querySelector('.input').style.display = "flex";
+            element.querySelector('.button').style.display = "flex";
         });
         let button = element.querySelector('.button');
         button.addEventListener('click', async function() {

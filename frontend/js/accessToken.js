@@ -1,10 +1,10 @@
 async function checkAccessTokenIsvalid() {
     try {
         let accessToken = localStorage.getItem('accessToken');
-        // if (!accessToken) {
-        //     console.error('No access token found');
-        //     return;
-        // }
+        if (!accessToken) {
+            console.error('No access token found');
+            return;
+        }
 
         let response = await fetch('http://localhost:8080/check-accessToken', {
             method: 'GET',
