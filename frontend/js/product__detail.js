@@ -207,32 +207,34 @@ async function postComment() {
 async function editComment(){
     var commentContainer = document.querySelectorAll('.comment__container');
     commentContainer.forEach(function(element){
-        let action = element.querySelector('.action');
-        let editComment = action.querySelector('.editComment');
-        editComment.addEventListener('click', function(){
-            element.querySelector('.input').style.display = "flex";
-            element.querySelector('.button').style.display = "flex";
-        });
-        let button = element.querySelector('.button');
-        button.addEventListener('click', async function() {
-            let idComment = parseInt(element.querySelector('.id').textContent, 10);
-            let text = element.querySelector('.inputText').value;
-            let data = {
-                id: idComment,
-                content: text
-            }
-            let response = await fetch('http://localhost:8080/comment/modify', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },  
-                body: JSON.stringify(data)
+        if(element.contains('.action')){
+            let action = element.querySelector('.action');
+            let editComment = action.querySelector('.editComment');
+            editComment.addEventListener('click', function(){
+                element.querySelector('.input').style.display = "flex";
+                element.querySelector('.button').style.display = "flex";
             });
-            response = await response.text();
-            if(response == "Comment updated successfully"){
-                location.reload();
-            }
-        })
+            let button = element.querySelector('.button');
+            button.addEventListener('click', async function() {
+                let idComment = parseInt(element.querySelector('.id').textContent, 10);
+                let text = element.querySelector('.inputText').value;
+                let data = {
+                    id: idComment,
+                    content: text
+                }
+                let response = await fetch('http://localhost:8080/comment/modify', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },  
+                    body: JSON.stringify(data)
+                });
+                response = await response.text();
+                if(response == "Comment updated successfully"){
+                    location.reload();
+                }
+            })
+        }
     })
 }
 
