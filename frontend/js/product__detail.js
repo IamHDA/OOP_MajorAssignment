@@ -207,9 +207,8 @@ async function postComment() {
 async function editComment(){
     var commentContainer = document.querySelectorAll('.comment__container');
     commentContainer.forEach(function(element){
-        if(element.contains('.action')){
-            let action = element.querySelector('.action');
-            let editComment = action.querySelector('.editComment');
+        let editComment = element.querySelector('.editComment');
+        if(editComment !== null){
             editComment.addEventListener('click', function(){
                 element.querySelector('.input').style.display = "flex";
                 element.querySelector('.button').style.display = "flex";
@@ -242,21 +241,22 @@ async function deleteComment(){
     var commentContainer = document.querySelectorAll('.comment__container');
     console.log("DSFDSFDS");
     commentContainer.forEach(function(element){
-        let action = element.querySelector('.action');
-        let deleteComment = action.querySelector('.deleteComment');
-        deleteComment.addEventListener('click', async function() {
-            let idComment = parseInt(element.querySelector('.id').textContent, 10) 
-            let response = await fetch(`http://localhost:8080/comment/delete/${idComment}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },  
-            });
-            response = await response.text();
-            if(response == "Comment deleted successfully"){
-                location.reload();
-            }
-        })
+        let deleteComment = element.querySelector('.deleteComment');
+        if(deleteComment !== null){
+            deleteComment.addEventListener('click', async function() {
+                let idComment = parseInt(element.querySelector('.id').textContent, 10) 
+                let response = await fetch(`http://localhost:8080/comment/delete/${idComment}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },  
+                });
+                response = await response.text();
+                if(response == "Comment deleted successfully"){
+                    location.reload();
+                }
+            })
+        }
     })
 }
 
