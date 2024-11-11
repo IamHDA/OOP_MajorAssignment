@@ -28,9 +28,7 @@ function boDauCham(num){
 
 function selecProduct(){
     let tableRow = document.querySelectorAll('.table-row');
-    console.log(tableRow);
     tableRow.forEach(function(element){
-        console.log(element);
         element.addEventListener('click', function(){
             localStorage.setItem('id__product', element.querySelector('.id__table__row').textContent);
         })
@@ -265,27 +263,8 @@ function deleteAllProduct(){
     let cartCounter = document.querySelector('.cart-counter');
     let cartDetail = document.querySelector('.my-cart-detail');
     let emptyCart = document.querySelector('.empty-cart');
-    let buttonCreatOrder = document.querySelector('.make-order-button');
 
     buttonClear.addEventListener('click', async function(){
-        for(let i = 0; i < tableRow.length; i++){
-            tableRow[i].remove();
-        }
-        cartCounter.innerHTML = "(0 sản phẩm)";
-        cartDetail.style.display = 'none';
-        emptyCart.style.display = 'block';
-        checkAccessTokenIsvalid();
-        let accessToken = localStorage.getItem('accessToken');
-        await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
-            method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`
-                }
-        });
-    })
-
-    buttonCreatOrder.addEventListener('click', async function(){
         for(let i = 0; i < tableRow.length; i++){
             tableRow[i].remove();
         }
@@ -368,8 +347,23 @@ function creatOrder(){
                     },
                     body: JSON.stringify(responseData)
             });
+            let tableRow = document.querySelectorAll('.table-row');
+            for(let i = 0; i < tableRow.length; i++){
+                tableRow[i].remove();
+            }
+            cartCounter.innerHTML = "(0 sản phẩm)";
+            cartDetail.style.display = 'none';
+            emptyCart.style.display = 'block';
+            checkAccessTokenIsvalid();
+            accessToken = localStorage.getItem('accessToken');
+            await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
+                method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+            });
             alert("Đặt hàng thành công");
-            deleteAllProduct();
         }
     });
 }
