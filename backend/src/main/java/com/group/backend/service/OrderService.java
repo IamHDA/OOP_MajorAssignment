@@ -12,4 +12,5 @@ public interface OrderService {
     Order createOrderFromCart(OrderDTO orderDTO);
     void deleteOrderUser();
 
+    String updateStatus(OrderDTO orderDTO);
 }

@@ -32,5 +32,11 @@ public class OrderController {
         return ResponseEntity.ok().build();
     }
 
+    // API cap nhat trang thai don hang
 
+    @PutMapping("/admin/updateOrderStatus")
+    public ResponseEntity<String> updateOrderStatus(@RequestBody OrderDTO orderDTO){
+
+        return ResponseEntity.ok(orderService.updateStatus(orderDTO));
+    }
 }

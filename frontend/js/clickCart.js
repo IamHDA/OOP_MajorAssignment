@@ -8,7 +8,7 @@ function clickCart(){
             alert("Bạn cần đăng nhập để xem giỏ hàng!");
         }
         else{
-           window.location('cart_detail.html');
+           window.location.href = 'cart_detail.html';
         }
     })
 }

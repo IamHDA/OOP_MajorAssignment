@@ -1,7 +1,9 @@
 package com.group.backend.service.implement;
 
 import com.group.backend.dto.OrderDTO;
+import com.group.backend.dto.StatusDTO;
 import com.group.backend.entity.Order;
+import com.group.backend.entity.Status;
 import com.group.backend.entity.User;
 import com.group.backend.repository.OrderRepository;
 import com.group.backend.security.CurrentUser;
@@ -69,5 +71,14 @@ public class OrderServiceImp implements OrderService {
     public void deleteOrderUser() {
         User user = currentUser.getCurrentUser();
         orderRepo.deleteByUser(user);
+    }
+
+    @Override
+    public String updateStatus(OrderDTO orderDTO) {
+        Order order = orderRepo.findById(orderDTO.getId());
+        StatusDTO statusDTO = statusService.getStatusById(orderDTO.getStatus().getId());
+        order.setStatus(modelMapper.map(statusDTO, Status.class));
+        orderRepo.save(order);
+        return "Order status updated compleleted!";
     }
 }
