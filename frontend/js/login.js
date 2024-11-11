@@ -99,11 +99,28 @@ async function login(){
     })
 }
 
+function quenMatKhau(){
+    let loginBox = document.querySelector(".login__box");
+    let losePassword = loginBox.querySelector(".losePassword");
+    let quenMatKhau = document.querySelector('.quenMatKhau');
+    losePassword.addEventListener('click', function(){
+        loginBox.style.display = "none";
+        quenMatKhau.style.display = "block";
+    });
+    var quayLai = quenMatKhau.querySelector('.return');
+    quayLai.addEventListener('click', function(){
+        loginBox.style.display = "block";
+        quenMatKhau.style.display = "none";
+    })
+
+}
+
 async function mainLogin(){
     await login();
     openLoginBox();
     closeLoginBox();
     secondaryRegister();
+    quenMatKhau();
 }
 
 mainLogin();

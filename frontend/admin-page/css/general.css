@@ -13,8 +13,23 @@ a{
     text-decoration: none;
 }
 
-.main-container{
-    margin: 0 auto;
+textarea{
+    resize: none;
+    outline: none;
 }
 
+input{
+    outline: none;
+}
 
+.main-container{
+    padding-bottom: 40px;
+    margin: 0 auto;
+    margin-left: -8px;
+    margin-right: -8px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}

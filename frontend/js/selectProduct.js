@@ -17,3 +17,5 @@ function selectProduct(){
         })
     })
 }
+
+export default selectProduct;

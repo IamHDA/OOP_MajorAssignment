@@ -1,3 +1,6 @@
+import addProductToCart from './addProductToCart.js';
+import selectProduct from './selectProduct.js';
+
 async function fetchCatalog(url) {
     function lamtron(num) {
         return Math.round(num / 100000) * 100000;
@@ -75,8 +78,8 @@ async function fetchAllCatalogs() {
     for (const url of urls) {
         await fetchCatalog(url);
     }
+    addProductToCart(); 
     selectProduct();
-    addProductToCart();
 }
 
 fetchAllCatalogs();

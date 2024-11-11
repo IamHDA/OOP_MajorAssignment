@@ -1,4 +1,4 @@
-import { checkAccessTokenIsvalid } from './accessToken.js';
+import checkAccessTokenIsvalid from './accessToken.js';
 
 async function fetchAddProductToCart(idProduct){
     try {
@@ -27,14 +27,15 @@ async function fetchAddProductToCart(idProduct){
 
 
 async function addProductToCart(){
+    console.log("add to cart");
     let productContainer = document.querySelectorAll('.product__container');
-
     productContainer.forEach(function(element){
         let buttonAddToCart = element.querySelector('.product__cart');
         let idProduct = element.querySelector('.id__product').textContent;
-
+        
         buttonAddToCart.addEventListener('click', async function(){
             try {
+                await checkAccessTokenIsvalid();
                 const response = await fetchAddProductToCart(idProduct);
                 const message = await response.text();
                 console.log(message);
@@ -52,3 +53,5 @@ async function addProductToCart(){
         });
     });
 }
+
+export default addProductToCart;

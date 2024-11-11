@@ -1,11 +1,9 @@
-import { checkAccessTokenIsvalid } from './accessToken.js';
+import checkAccessTokenIsvalid from './accessToken.js';
 
 var thongTinTaiKhoan = document.querySelector(".thong-tin-tai-khoan");
 var danhSachDonHang = document.querySelector(".danh-sach-don-hang");
 var thayDoiMatKhau = document.querySelector(".thay-doi-mat-khau");
 var logOut = document.querySelector(".log-out");
-
-var account = document.querySelector(".account");
 
 var thongTinTaiKhoanBox = document.querySelector('.account__detail__content___thong-tin-tai-khoan');
 var danhSachDonHangBox = document.querySelector('.account__detail__content___danh-sach-don-hang');
@@ -29,7 +27,7 @@ function daucham(num){
 async function getDataUserName() {
     
     var text = document.querySelector("#taikhoancua");
-    checkAccessTokenIsvalid();
+    await checkAccessTokenIsvalid();
     let accessToken = localStorage.getItem("accessToken");
     let response = await fetch('http://localhost:8080/user/info', {
         method: 'GET',
@@ -183,7 +181,7 @@ async function changeUserInfor() {
         var address = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-address__input");
         var phone = document.querySelector(".account__detail__content___thong-tin-tai-khoan__user-numberphone__input");
 
-        checkAccessTokenIsvalid();
+        await checkAccessTokenIsvalid();
         var accessToken = localStorage.getItem('accessToken');
         let response = await fetch('http://localhost:8080/user/info', {
             method: 'GET',
@@ -208,7 +206,7 @@ async function changeUserInfor() {
                 phone: phone.value
             }
             
-            checkAccessTokenIsvalid();
+            await checkAccessTokenIsvalid();
             await fetch('http://localhost:8080/user/changeInfo',{
                 method: 'PUT',
                 headers: {
@@ -227,7 +225,7 @@ async function changeUserInfor() {
 function buildOder(){
     let danhSachDonHang = document.querySelector('.danh-sach-don-hang');
     danhSachDonHang.addEventListener('click', async function(){
-        checkAccessTokenIsvalid();
+        await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
         let response = await fetch('http://localhost:8080/order/getCurrentUserOrder', {
             method: 'GET',
@@ -279,7 +277,7 @@ async function changePassword(){
         else{
             war1.style.display = 'none';
             // lay mat khau hien tai
-            checkAccessTokenIsvalid();
+            await checkAccessTokenIsvalid();
             var accessToken = localStorage.getItem('accessToken');
             const data = {
                 password: newPass1

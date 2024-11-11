@@ -409,7 +409,8 @@
     margin: auto;
     background-color: white;
     margin-top: 50px;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
+    padding-bottom: 20px;
 }
 
 .comment__title{
@@ -487,9 +488,84 @@
     font-weight: 600;
     border-radius: 5px;
     margin: 50px 80px 100px auto;
+    cursor: pointer;
 }
 
 .tab{
     margin-left: 30px;
 }
 
+.product__comment .status{
+    font-size: 20px;
+    margin-left: 2px;
+    color: rgb(161, 157, 153);
+}
+
+.product__comment .action{
+    margin-top: 5px;
+    display: flex;
+    margin-left: 30px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.product__comment .action .editComment{
+    margin-right: 20px;
+}
+
+.product__comment .input{
+    margin-left: 150px;
+    margin-top: 10px;
+    width: 750px;
+    height: 100px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.product__comment .input textarea{
+    width: 700px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: 500;
+    resize: none;
+    outline: none;
+    border: none;
+}
+
+.product__comment .button{
+   margin-left: 780px; 
+   margin-top: 30px;
+   height: 40px;
+   width: 70px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: red;
+   color: white;
+   cursor: pointer;
+   display: none;
+}
+
+.comment__container{
+    margin-bottom: 20px;
+}
+
+.comment__container .id{
+    display: none;
+}
+
+.comment__input{
+    height: auto;
+    width: 1200px;
+    margin-top: 0px;
+    background-color: white;
+    margin: auto;
+    border-radius: 0 0 10px 10px;
+}
+
+.comment__input .inputContent{
+    margin-top: 50px;
+}
