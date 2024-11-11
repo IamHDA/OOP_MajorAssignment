@@ -95,6 +95,7 @@ async function login(){
             localStorage.setItem('refreshToken', response.refreshToken);
 
             await saveUserName();
+            location.reload();
         }    
     })
 }
