@@ -174,6 +174,7 @@ async function register(){
                 
                 localStorage.setItem('accessToken', response.accessToken);
                 localStorage.setItem('refreshToken', response.refreshToken);
+                location.reload();
                 
                 // Lay ten 
                 try{
