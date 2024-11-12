@@ -21,7 +21,7 @@ function selectionCategory() {
         selectionLapTopLikeNew.forEach(function(element) {
             let nameBranch = element.querySelector('.id').textContent;
             element.addEventListener('click', function() {
-                localStorage.setItem('branch', nameBranch);
+                localStorage.setItem('category', nameBranch);
                 localStorage.setItem('state', 'Like-New');
                 localStorage.setItem('action', 'selectionCategory');
             });
