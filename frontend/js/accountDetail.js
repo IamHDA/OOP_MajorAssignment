@@ -294,7 +294,7 @@ async function changePassword(){
             
             response = await response.text();
             
-            if(response === "Change password successful"){
+            if(response === "Change password successfully"){
                 alert("Thay đổi mật khẩu thành công!");
                  // reset
                 currentPass = "";
