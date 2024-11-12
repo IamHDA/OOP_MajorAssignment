@@ -29,7 +29,8 @@ function boDauCham(num){
 function selecProduct(){
     let tableRow = document.querySelectorAll('.table-row');
     tableRow.forEach(function(element){
-        element.addEventListener('click', function(){
+        let img = element.children[2];
+        img.addEventListener('click', function(){
             localStorage.setItem('id__product', element.querySelector('.id__product').textContent);
         })
     })

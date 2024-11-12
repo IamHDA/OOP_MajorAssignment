@@ -91,6 +91,10 @@ function selectCategoryProduct(){
     })
 }
 
+function filter(){
+    
+}
+
 function selectProduct(){
     var allLaptop = document.querySelector('.all-laptop');
     var childrenAllLapTop = Array.from(allLaptop.children);
