@@ -67,6 +67,16 @@ async function fetchCatalog(url) {
     }
 }
 
+function seeAll(){
+    seeAll = document.querySelectorAll('.see-all');
+    for(let i = 0; i < 4; i++){
+        seeAll[i].addEventListener('click', function(){
+            localStorage.setItem('action', 'seeAll' + i);
+            window.location.href = 'laptoptheomuc.html';
+        })
+    }
+}
+
 async function fetchAllCatalogs() {
     const urls = [
         'http://localhost:8080/collections/laptops-category/Hoc-tap-van-phong',
@@ -83,4 +93,5 @@ async function fetchAllCatalogs() {
 }
 
 fetchAllCatalogs();
+seeAll();
 
