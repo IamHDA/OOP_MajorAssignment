@@ -1,22 +1,22 @@
-async function searchProduct(){
-    function lamtron(num) {
-        return Math.round(num / 100000) * 100000;
-    }
-    
-    function daucham(num){
-        let tmp = "";
-        let mark = 0;
-        for(let i = num.length - 1; i >= 0; i--){
-            mark += 1;
-            tmp = num[i] + tmp;
-            if(mark == 3 && i != 0){
-                tmp = "." + tmp;
-                mark = 0
-            }
-        }
-        return tmp; 
-    }
+function lamtron(num) {
+    return Math.round(num / 100000) * 100000;
+}
 
+function daucham(num){
+    let tmp = "";
+    let mark = 0;
+    for(let i = num.length - 1; i >= 0; i--){
+        mark += 1;
+        tmp = num[i] + tmp;
+        if(mark == 3 && i != 0){
+            tmp = "." + tmp;
+            mark = 0
+        }
+    }
+    return tmp;
+}
+
+async function searchProduct(){
     let keyword = localStorage.getItem('valueSearch');
     let data = await fetch(`http://localhost:8080/laptop/search?keyword=${keyword}`)
     data = await data.json();
@@ -43,23 +43,6 @@ async function selectCategoryProduct(){
     let category = localStorage.getItem('category');
     let state = localStorage.getItem('state');
     let api = 'http://localhost:8080/collections/filter?category=' + category + '&brand=&state=' + state + '&cpu&vga&ram&ssd&screenSize&sortBy&sortOrder&minPrice=0&maxPrice=0';    
-    function lamtron(num) {
-        return Math.round(num / 100000) * 100000;
-    }
-    
-    function daucham(num){
-        let tmp = "";
-        let mark = 0;
-        for(let i = num.length - 1; i >= 0; i--){
-            mark += 1;
-            tmp = num[i] + tmp;
-            if(mark == 3 && i != 0){
-                tmp = "." + tmp;
-                mark = 0
-            }
-        }
-        return tmp;
-    }
 
     let data = await fetch(`${api}`)
     data = await data.json();
@@ -96,23 +79,6 @@ async function seeAll(){
     }
     else{
         api = 'http://localhost:8080/collections/laptops-category/Mong-nhe-cao-cap';
-    }
-    function lamtron(num) {
-        return Math.round(num / 100000) * 100000;
-    }
-    
-    function daucham(num){
-        let tmp = "";
-        let mark = 0;
-        for(let i = num.length - 1; i >= 0; i--){
-            mark += 1;
-            tmp = num[i] + tmp;
-            if(mark == 3 && i != 0){
-                tmp = "." + tmp;
-                mark = 0
-            }
-        }
-        return tmp;
     }
 
     let data = await fetch(`${api}`)
@@ -189,7 +155,7 @@ async function getDaTaFilter() {
 
     let api = 'http://localhost:8080/collections/filter?category=' + category + '&brand=' + brand +  '&state=' + state + '&cpu' + '&vga=' + vga + '&ram=' + ram + '&ssd=' + ssd + '&screenSize=' + screenSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder + '&minPrice=' + minPrice + '&maxPrice=' + maxPrice;
     let response = await fetch(`${api}`);
-    response = await response.json();
+    let data = await response.json()
     let allLaptop = document.querySelector('.all-laptop');
     allLaptop.innerHTML = "";
     for(let i = 0; i < data.length; i++){
