@@ -30,7 +30,7 @@ function selecProduct(){
     let tableRow = document.querySelectorAll('.table-row');
     tableRow.forEach(function(element){
         element.addEventListener('click', function(){
-            localStorage.setItem('id__product', element.querySelector('.id__table__row').textContent);
+            localStorage.setItem('id__product', element.querySelector('.id__product').textContent);
         })
     })
 }
