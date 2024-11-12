@@ -308,9 +308,9 @@ function creatOrder(){
         let idPaymentMethod = 0;
 
         async function checkNumberPhone(){
-            if(numberPhone.length() != 10) return 0;
-            for(let i = 0; i < numberPhone.length(); i++){
-                if(!isNaN(numberPhone[i])){
+            if(numberPhone.length != 10) return 0;
+            for(let i = 0; i < numberPhone.length; i++){
+                if(numberPhone[i] < '0' || numberPhone[i] > '9'){
                     return 0;
                 }
             }
@@ -318,7 +318,9 @@ function creatOrder(){
         }
 
         let ok1 = 1;
-        let ok2 = await checkNumberPhone();
+        let ok2 = 1;
+
+        ok2 = await checkNumberPhone();
 
         if(paymentMethod1.checked){
             idPaymentMethod = 1;
@@ -327,19 +329,24 @@ function creatOrder(){
         if(paymentMethod2.checked){
             idPaymentMethod = 2;
         }
-
-        if(ok2 == 0){
-            document.querySelector('.war2').style.display = "block";
-        }
-        if(ok2 == 1){
-            document.querySelector('.war2').style.display = "none";
-        }
         if(nameCustomer == "" || numberPhone == "" || address == "" || idPaymentMethod == 0){
             document.querySelector('.war').style.display = "block";
             ok1 = 0;
         }
-        if(ok1 == 1 && ok2 == 1){
+        else{
             document.querySelector('.war').style.display = "none";
+        }
+        if(ok1 == 1){
+            if(ok2 == 0){
+                document.querySelector('.war2').style.display = "block";
+            }
+            if(ok2 == 1){
+                document.querySelector('.war2').style.display = "none";
+            }
+        }
+        console.log(ok1);
+            console.log(ok2);
+        if(ok1 == 1 && ok2 == 1){
             const data = {
                 receiverName: nameCustomer,
                 receiverPhone: numberPhone,
