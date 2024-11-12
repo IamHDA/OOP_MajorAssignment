@@ -171,7 +171,6 @@ async function laptoptheomucMain(){
     if(localStorage.getItem('action') === "search"){
         await searchProduct();
     }
-    
     else if(localStorage.getItem('action') === "selectionCategory"){
         await selectCategoryProduct();
     }
