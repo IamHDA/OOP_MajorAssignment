@@ -19,6 +19,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> reverseSortedOrderByUser(User user);
     List<Order> findByUserId(long customerId);
     List<Order> findAll();
+
     @Transactional
     void deleteByUser(User user);
+
+    Order findById(long id);
 }

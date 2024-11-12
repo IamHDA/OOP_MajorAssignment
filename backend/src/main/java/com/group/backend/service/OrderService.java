@@ -2,12 +2,15 @@ package com.group.backend.service;
 
 import com.group.backend.dto.OrderDTO;
 import com.group.backend.entity.Order;
+import com.group.backend.entity.User;
 
 import java.util.List;
 
 public interface OrderService {
-    List<OrderDTO> getOrdersByUser();
+    List<OrderDTO> getOrderByUser();
     Order getLastOrderByUser();
-    com.group.backend.entity.Order createOrderFromCart(OrderDTO orderDTO);
+    Order createOrderFromCart(OrderDTO orderDTO);
     void deleteOrderUser();
+
+    String updateStatus(OrderDTO orderDTO);
 }

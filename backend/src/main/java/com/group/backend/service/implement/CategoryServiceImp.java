@@ -3,7 +3,6 @@ package com.group.backend.service.implement;
 import com.group.backend.dto.CategoryDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
 import com.group.backend.dto.Filter;
-import com.group.backend.dto.LaptopDTO;
 import com.group.backend.entity.Category;
 import com.group.backend.repository.CategoryRepository;
 import com.group.backend.service.CategoryService;
