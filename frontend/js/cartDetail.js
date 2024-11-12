@@ -294,6 +294,9 @@ function deleteAllProduct(){
 function creatOrder(){
     let buttonCreatOrder = document.querySelector('.make-order-button');
     buttonCreatOrder.addEventListener('click', async function(){
+        let emptyCart = document.querySelector('.empty-cart');
+        let cartDetail = document.querySelector('.my-cart-detail');
+        let cartCounter = document.querySelector('.cart-counter');
         let nameCustomer = document.querySelector('.customer-name').value;
         let numberPhone = document.querySelector('.customer-contact').value;
         let address = document.querySelector('.customer-address').value;
