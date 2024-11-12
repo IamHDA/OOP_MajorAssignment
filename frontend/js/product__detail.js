@@ -206,69 +206,81 @@ async function postComment() {
 
 async function addProductToCart() {
     let idProduct = localStorage.getItem('id__product');
-    try {
-        const data = {
-           "quantity" : 1,
-           "laptop":{
+    let accessToken = localStorage.getItem('accessToken');
+    if(accessToken === null){
+        alert("Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!");
+    }
+    else{
+        try {
+            const data = {
+            "quantity" : 1,
+            "laptop":{
                 "id": idProduct
-           }
-        };
-        checkAccessTokenIsvalid();
-        var accessToken = localStorage.getItem("accessToken");
-        const response = await fetch('http://localhost:8080/cart-detail/add', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
-            },  
-            body: JSON.stringify(data)
-        });
+            }
+            };
+            checkAccessTokenIsvalid();
+            accessToken = localStorage.getItem("accessToken");
+            const response = await fetch('http://localhost:8080/cart-detail/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                },  
+                body: JSON.stringify(data)
+            });
 
-        const message = await response.text();
-        console.log(message);
-        if (response.status === 200) {
-            alert("Thêm thành công");
-        } else if(response.status === 400 && message === "Laptop is already in cart"){
-            alert("Sản phẩm đã tồn tại trong giỏ hàng");
-        }else{
-            alert("Thất bại");
+            const message = await response.text();
+            console.log(message);
+            if (response.status === 200) {
+                alert("Thêm thành công");
+            } else if(response.status === 400 && message === "Laptop is already in cart"){
+                alert("Sản phẩm đã tồn tại trong giỏ hàng");
+            }else{
+                alert("Thất bại");
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
-    } catch (error) {
-        console.error('Error fetching data:', error);
     }
 }
 
 async function buyNow() {
+    let accessToken = localStorage.getItem('accessToken');
     let idProduct = localStorage.getItem('id__product');
-    try {
-        const data = {
-           "quantity" : 1,
-           "laptop":{
+    if(accessToken === null){
+        alert("Bạn cần đăng nhập để mua sản phẩm này!");
+    }
+    else{
+        try {
+            const data = {
+            "quantity" : 1,
+            "laptop":{
                 "id": idProduct
-           }
-        };
-        checkAccessTokenIsvalid();
-        var accessToken = localStorage.getItem("accessToken");
-        const response = await fetch('http://localhost:8080/cart-detail/add', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
-            },  
-            body: JSON.stringify(data)
-        });
+            }
+            };
+            checkAccessTokenIsvalid();
+            accessToken = localStorage.getItem("accessToken");
+            const response = await fetch('http://localhost:8080/cart-detail/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                },  
+                body: JSON.stringify(data)
+            });
 
-        const message = await response.text();
-        console.log(message);
-        if (response.status === 200) {
-            window.location.href = 'cart_detail.html';
-        } else if(response.status === 400 && message === "Laptop is already in cart"){
-            window.location.href = 'cart_detail.html';
-        }else{
-            alert("Thất bại");
+            const message = await response.text();
+            console.log(message);
+            if (response.status === 200) {
+                window.location.href = 'cart_detail.html';
+            } else if(response.status === 400 && message === "Laptop is already in cart"){
+                window.location.href = 'cart_detail.html';
+            }else{
+                alert("Thất bại");
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
-    } catch (error) {
-        console.error('Error fetching data:', error);
     }
 }
 

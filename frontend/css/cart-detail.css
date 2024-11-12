@@ -311,7 +311,8 @@ input{
     display: none;
 }
 
-.war{
+.war, .war2
+{
     color: red;
     display: none;
 }

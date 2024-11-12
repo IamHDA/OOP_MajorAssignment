@@ -307,6 +307,19 @@ function creatOrder(){
         let paymentMethod2 = document.getElementById('option2');
         let idPaymentMethod = 0;
 
+        async function checkNumberPhone(){
+            if(numberPhone.length() != 10) return 0;
+            for(let i = 0; i < numberPhone.length(); i++){
+                if(!isNaN(numberPhone[i])){
+                    return 0;
+                }
+            }
+            return 1;
+        }
+
+        let ok1 = 1;
+        let ok2 = await checkNumberPhone();
+
         if(paymentMethod1.checked){
             idPaymentMethod = 1;
         }
@@ -315,11 +328,17 @@ function creatOrder(){
             idPaymentMethod = 2;
         }
 
-
+        if(ok2 == 0){
+            document.querySelector('.war2').style.display = "block";
+        }
+        if(ok2 == 1){
+            document.querySelector('.war2').style.display = "none";
+        }
         if(nameCustomer == "" || numberPhone == "" || address == "" || idPaymentMethod == 0){
             document.querySelector('.war').style.display = "block";
+            ok1 = 0;
         }
-        else{
+        if(ok1 == 1 && ok2 == 1){
             document.querySelector('.war').style.display = "none";
             const data = {
                 receiverName: nameCustomer,
