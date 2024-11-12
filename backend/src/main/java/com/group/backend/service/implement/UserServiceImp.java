@@ -1,5 +1,6 @@
 package com.group.backend.service.implement;
 
+import com.group.backend.dto.ChangeUserRoleDTO;
 import com.group.backend.dto.PasswordDTO;
 import com.group.backend.dto.UserDTO;
 import com.group.backend.entity.User;
@@ -10,6 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -54,6 +57,24 @@ public class UserServiceImp implements UserService {
         }
         user.setPass(encoder.encode(passwordDTO.getPassword()));
         userRepo.save(user);
-        return "Change password successful";
+        return "Change password successfully";
+    }
+
+    @Override
+    public String changeUsersRole(ChangeUserRoleDTO changeUserRoleDTO) {
+        for(long x : changeUserRoleDTO.getUserIds()) {
+            User user = userRepo.findById(x).get();
+            user.setRole(changeUserRoleDTO.getRole());
+            userRepo.save(user);
+        }
+        return "Change users role successfully";
+    }
+
+    @Override
+    public String deleteUsers(List<Long> list) {
+        for(long x : list) {
+            userRepo.deleteById(x);
+        }
+        return "Delete users successfully";
     }
 }

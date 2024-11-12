@@ -1,5 +1,6 @@
 package com.group.backend.controller;
 
+import com.group.backend.dto.ChangeUserRoleDTO;
 import com.group.backend.dto.UserDTO;
 import com.group.backend.entity.User;
 import com.group.backend.security.CurrentUser;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.group.backend.dto.PasswordDTO;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -32,5 +35,15 @@ public class UserController {
     public ResponseEntity<String> changePass(@RequestBody PasswordDTO passwordDTO){
         User thisUser = currentUser.getCurrentUser();
         return ResponseEntity.ok(userService.changePass(thisUser, passwordDTO));
+    }
+
+    @PutMapping("/changeUsersRole")
+    public ResponseEntity<String> changeUsersRole(@RequestBody ChangeUserRoleDTO changeUserRoleDTO){
+        return ResponseEntity.ok(userService.changeUsersRole(changeUserRoleDTO));
+    }
+
+    @DeleteMapping("/deleteUsers")
+    public ResponseEntity<String> deleteUsers(@RequestBody List<Long> list){
+        return ResponseEntity.ok(userService.deleteUsers(list));
     }
 }

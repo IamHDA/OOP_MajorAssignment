@@ -16,6 +16,11 @@
     flex-direction: column;
 }
 
+.second-row{
+    display: flex;
+    justify-content: space-around;
+}
+
 .title{
     font-size: 25px;
     font-weight: 600;
@@ -62,4 +67,61 @@
 
 .role{
     width: 97px;
+}
+
+.change-role, .delete-account{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: auto;
+    gap: 10px;
+}
+
+.change-role .title, .delete-account .title{
+    font-size: 22px;
+}
+
+.id-input{
+    padding: 10px 40px 10px 10px;
+    width: 280px;
+    font-size: 20px;
+    border-radius: 5px;
+    border-color: black;
+}
+
+.role-input{
+    text-align: center;
+    margin: auto;
+    padding: 10px 10px 10px 10px;
+    width: 150px;
+    font-size: 20px;
+    border-radius: 5px;
+    border-color: black;
+}
+
+.change-role .to{
+    margin: auto;
+}
+
+.submit1, .submit2{
+    display: block;
+    margin: auto;
+    font-size: 18px;
+    padding: 12px;
+    width: 200px;
+    background-color: white;
+    border-radius: 6px;
+    color: rgb(0, 125, 234);
+    border: 2px, solid, rgb(0, 125, 234);
+    justify-content: center;
+    cursor: pointer;
+}
+
+.submit2{
+    margin-top: 0px;
+}
+
+.new-role{
+    display: block;
+    width: 100px !important;
 }
