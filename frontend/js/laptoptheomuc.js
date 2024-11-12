@@ -453,6 +453,20 @@ function selectProduct(){
     })
 }
 
+async function reset(){
+    localStorage.setItem('brand', null);
+    localStorage.setItem('state', null);
+    localStorage.setItem('cpu', null);
+    localStorage.setItem('vga', null);
+    localStorage.setItem('ram', null);
+    localStorage.setItem('ssd', null);
+    localStorage.setItem('screenSize', null);
+    localStorage.setItem('minPrice', null);
+    localStorage.setItem('maxPrice', null);
+    localStorage.setItem('sortBy', null);
+    localStorage.setItem('sortOrder', null);
+}
+
 
 async function laptoptheomucMain(){
     if(localStorage.getItem('action') === "search"){
@@ -465,6 +479,7 @@ async function laptoptheomucMain(){
     else{
         await seeAll();
     }
+    await reset();
     await getDaTaFilter();
     selectProduct();
 } 
