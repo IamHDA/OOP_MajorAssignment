@@ -1,4 +1,4 @@
-function searchProduct(){
+async function searchProduct(){
     function lamtron(num) {
         return Math.round(num / 100000) * 100000;
     }
@@ -44,7 +44,7 @@ function searchProduct(){
     .catch(error => console.log(error));
 }
 
-function selectCategoryProduct(){
+async function selectCategoryProduct(){
     let branch = localStorage.getItem('branch');
     let state = localStorage.getItem('state');
     let api = 'http://localhost:8080/collections/filter?category=' + branch + '&brand=&cpu&vga&ram&ssd&screenSize&state=' + state + '&sortBy&sortOrder&minPrice=0&maxPrice=0';    
@@ -132,7 +132,7 @@ async function seeAll(){
         let allLaptop = document.querySelector('.all-laptop');
         for(let i = 0; i < data.length; i++){
             var idProduct = '<div class="id__product">' + data[i].id + '</div>';
-            var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
+            var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
             var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + ' ' + data[i].specification.cpu + ' ' + data[i].specification.ram + ' ' + data[i].specification.graphicsCard + '</a>';
             let basePrice = data[i].price.toString();
             basePrice = daucham(basePrice);
@@ -150,11 +150,10 @@ async function seeAll(){
 }
 
 function selectProduct(){
-    var allLaptop = document.querySelector('.all-laptop');
-    var childrenAllLapTop = Array.from(allLaptop.children);
+    var productContainer = document.querySelectorAll('.product__container');
     
-    childrenAllLapTop.forEach(function(element){
-        var productImg = element.getElementsByTagName('img');
+    productContainer.forEach(function(element){
+        var productImg = element.querySelector('.product__img');
         var productName = element.querySelector('.product__name');
         var productId = element.querySelector(".id__product");
 
@@ -168,14 +167,18 @@ function selectProduct(){
 }
 
 
+async function laptoptheomucMain(){
+    if(localStorage.getItem('action') === "search"){
+        await searchProduct();
+    }
+    
+    else if(localStorage.getItem('action') === "selectionCategory"){
+        await selectCategoryProduct();
+    }
+    else{
+        await seeAll();
+    }
+    selectProduct();
+} 
 
-if(localStorage.getItem('action') === "search"){
-    searchProduct();
-}
-
-if(localStorage.getItem('action') === "selectionCategory"){
-    selectCategoryProduct();
-}
-
-selectProduct();
-seeAll();
+laptoptheomucMain();
