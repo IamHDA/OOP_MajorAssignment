@@ -204,6 +204,74 @@ async function postComment() {
     });
 }
 
+async function addProductToCart() {
+    let idProduct = localStorage.getItem('id__product');
+    try {
+        const data = {
+           "quantity" : 1,
+           "laptop":{
+                "id": idProduct
+           }
+        };
+        checkAccessTokenIsvalid();
+        var accessToken = localStorage.getItem("accessToken");
+        const response = await fetch('http://localhost:8080/cart-detail/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            },  
+            body: JSON.stringify(data)
+        });
+
+        const message = await response.text();
+        console.log(message);
+        if (response.status === 200) {
+            alert("Thêm thành công");
+        } else if(response.status === 400 && message === "Laptop is already in cart"){
+            alert("Sản phẩm đã tồn tại trong giỏ hàng");
+        }else{
+            alert("Thất bại");
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+async function buyNow() {
+    let idProduct = localStorage.getItem('id__product');
+    try {
+        const data = {
+           "quantity" : 1,
+           "laptop":{
+                "id": idProduct
+           }
+        };
+        checkAccessTokenIsvalid();
+        var accessToken = localStorage.getItem("accessToken");
+        const response = await fetch('http://localhost:8080/cart-detail/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            },  
+            body: JSON.stringify(data)
+        });
+
+        const message = await response.text();
+        console.log(message);
+        if (response.status === 200) {
+            window.location.href = 'cart_detail.html';
+        } else if(response.status === 400 && message === "Laptop is already in cart"){
+            window.location.href = 'cart_detail.html';
+        }else{
+            alert("Thất bại");
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
 async function editComment(){
     var commentContainer = document.querySelectorAll('.comment__container');
     commentContainer.forEach(function(element){
@@ -265,6 +333,8 @@ async function productDetailMain() {
     await postComment();
     await editComment();
     await deleteComment();
+    await addProductToCart();
+    await buyNow();
 }
 
 productDetailMain();

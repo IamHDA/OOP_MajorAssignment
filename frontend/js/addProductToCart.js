@@ -27,7 +27,6 @@ async function fetchAddProductToCart(idProduct){
 
 
 async function addProductToCart(){
-    console.log("add to cart");
     let productContainer = document.querySelectorAll('.product__container');
     productContainer.forEach(function(element){
         let buttonAddToCart = element.querySelector('.product__cart');
