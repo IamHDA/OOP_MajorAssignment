@@ -177,6 +177,8 @@ async function laptoptheomucMain(){
     else{
         await seeAll();
     }
+    var productContainer = document.querySelectorAll('.product__container');
+    console.log(productContainer);
     selectProduct();
 }
 
