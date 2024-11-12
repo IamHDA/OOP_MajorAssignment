@@ -1,4 +1,4 @@
-function searchProduct(){
+async function searchProduct(){
     function lamtron(num) {
         return Math.round(num / 100000) * 100000;
     }
@@ -26,8 +26,8 @@ function searchProduct(){
         let allLaptop = document.querySelector('.all-laptop');
         for(let i = 0; i < data.length; i++){
             var idProduct = '<div class="id__product">' + data[i].id + '</div>';
-            var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
-            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + ' ' + data[i].specification.cpu + ' ' + data[i].specification.ram + ' ' + data[i].specification.graphicsCard + '</a>';
+            var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '" alt="">'+ '</a>';
+            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' +'</a>';
             let basePrice = data[i].price.toString();
             basePrice = daucham(basePrice);
             let price = data[i].price * (100 - data[i].sale) / 100;
@@ -44,7 +44,7 @@ function searchProduct(){
     .catch(error => console.log(error));
 }
 
-function selectCategoryProduct(){
+async function selectCategoryProduct(){
     let branch = localStorage.getItem('branch');
     let state = localStorage.getItem('state');
     let api = 'http://localhost:8080/collections/filter?category=' + branch + '&brand=&cpu&vga&ram&ssd&screenSize&state=' + state + '&sortBy&sortOrder&minPrice=0&maxPrice=0';    
@@ -74,8 +74,8 @@ function selectCategoryProduct(){
         let allLaptop = document.querySelector('.all-laptop');
         for(let i = 0; i < data.length; i++){
             var idProduct = '<div class="id__product">' + data[i].id + '</div>';
-            var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
-            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + ' ' + data[i].specification.cpu + ' ' + data[i].specification.ram + ' ' + data[i].specification.graphicsCard + '</a>';
+            var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '" alt="">'+ '</a>';
+            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' +'</a>';
             let basePrice = data[i].price.toString();
             basePrice = daucham(basePrice);
             let price = data[i].price * (100 - data[i].sale) / 100;
@@ -94,13 +94,13 @@ function selectCategoryProduct(){
 async function seeAll(){
     let action = localStorage.getItem('action');
     let api;
-    if(action == "seeAll1"){
+    if(action == "seeAll0"){
         api =  'http://localhost:8080/collections/laptops-category/Hoc-tap-van-phong';   
     }
-    else if(action == "seeAll2"){
+    else if(action == "seeAll1"){
         api =  'http://localhost:8080/collections/laptops-category/Laptop-Gaming';   
     }
-    else if(action == "seeAll3"){
+    else if(action == "seeAll2"){
         api =  'http://localhost:8080/collections/laptops-category/Do-hoa-hieu-nang-cao';   
     }
     else{
@@ -132,8 +132,8 @@ async function seeAll(){
         let allLaptop = document.querySelector('.all-laptop');
         for(let i = 0; i < data.length; i++){
             var idProduct = '<div class="id__product">' + data[i].id + '</div>';
-            var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
-            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + ' ' + data[i].specification.cpu + ' ' + data[i].specification.ram + ' ' + data[i].specification.graphicsCard + '</a>';
+            var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '" alt="">'+ '</a>';
+            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' +'</a>';
             let basePrice = data[i].price.toString();
             basePrice = daucham(basePrice);
             let price = data[i].price * (100 - data[i].sale) / 100;
@@ -150,11 +150,10 @@ async function seeAll(){
 }
 
 function selectProduct(){
-    var allLaptop = document.querySelector('.all-laptop');
-    var childrenAllLapTop = Array.from(allLaptop.children);
+    var productContainer = document.querySelectorAll('.product__container');
     
-    childrenAllLapTop.forEach(function(element){
-        var productImg = element.getElementsByTagName('img');
+    productContainer.forEach(function(element){
+        var productImg = element.querySelector('.product__img');
         var productName = element.querySelector('.product__name');
         var productId = element.querySelector(".id__product");
 
@@ -168,14 +167,18 @@ function selectProduct(){
 }
 
 
-
-if(localStorage.getItem('action') === "search"){
-    searchProduct();
+async function laptoptheomucMain(){
+    if(localStorage.getItem('action') === "search"){
+        await searchProduct();
+    }
+    
+    else if(localStorage.getItem('action') === "selectionCategory"){
+        await selectCategoryProduct();
+    }
+    else{
+        await seeAll();
+    }
+    selectProduct();
 }
 
-if(localStorage.getItem('action') === "selectionCategory"){
-    selectCategoryProduct();
-}
-
-selectProduct();
-seeAll();
+laptoptheomucMain();
