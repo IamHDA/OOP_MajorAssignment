@@ -14,7 +14,7 @@ async function searchProduct(){
                 mark = 0
             }
         }
-        return tmp;
+        return tmp; 
     }
 
     let keyword = localStorage.getItem('valueSearch');
@@ -26,8 +26,8 @@ async function searchProduct(){
         let allLaptop = document.querySelector('.all-laptop');
         for(let i = 0; i < data.length; i++){
             var idProduct = '<div class="id__product">' + data[i].id + '</div>';
-            var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
-            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + ' ' + data[i].specification.cpu + ' ' + data[i].specification.ram + ' ' + data[i].specification.graphicsCard + '</a>';
+            var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '" alt="">'+ '</a>';
+            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' +'</a>';
             let basePrice = data[i].price.toString();
             basePrice = daucham(basePrice);
             let price = data[i].price * (100 - data[i].sale) / 100;
@@ -74,8 +74,8 @@ async function selectCategoryProduct(){
         let allLaptop = document.querySelector('.all-laptop');
         for(let i = 0; i < data.length; i++){
             var idProduct = '<div class="id__product">' + data[i].id + '</div>';
-            var imgProduct = '<a href="product.html" class="produc__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
-            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + ' ' + data[i].specification.cpu + ' ' + data[i].specification.ram + ' ' + data[i].specification.graphicsCard + '</a>';
+            var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '" alt="">'+ '</a>';
+            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' +'</a>';
             let basePrice = data[i].price.toString();
             basePrice = daucham(basePrice);
             let price = data[i].price * (100 - data[i].sale) / 100;
@@ -94,13 +94,13 @@ async function selectCategoryProduct(){
 async function seeAll(){
     let action = localStorage.getItem('action');
     let api;
-    if(action == "seeAll1"){
+    if(action == "seeAll0"){
         api =  'http://localhost:8080/collections/laptops-category/Hoc-tap-van-phong';   
     }
-    else if(action == "seeAll2"){
+    else if(action == "seeAll1"){
         api =  'http://localhost:8080/collections/laptops-category/Laptop-Gaming';   
     }
-    else if(action == "seeAll3"){
+    else if(action == "seeAll2"){
         api =  'http://localhost:8080/collections/laptops-category/Do-hoa-hieu-nang-cao';   
     }
     else{
@@ -132,8 +132,8 @@ async function seeAll(){
         let allLaptop = document.querySelector('.all-laptop');
         for(let i = 0; i < data.length; i++){
             var idProduct = '<div class="id__product">' + data[i].id + '</div>';
-            var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '.jpg' + '" alt="">'+ '</a>';
-            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + ' ' + data[i].specification.cpu + ' ' + data[i].specification.ram + ' ' + data[i].specification.graphicsCard + '</a>';
+            var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '" alt="">'+ '</a>';
+            var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' +'</a>';
             let basePrice = data[i].price.toString();
             basePrice = daucham(basePrice);
             let price = data[i].price * (100 - data[i].sale) / 100;

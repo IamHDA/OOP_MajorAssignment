@@ -50,7 +50,7 @@ public class LaptopFilterRepository {
             predicates.add(newPredicate);
         }
         if(!filter.getRam().isEmpty()){
-            Predicate newPredicate = cb.like(specification.get("ram"), "%" + formatService.filterConditionFormat(filter.getRam()) + "%");
+            Predicate newPredicate = cb.like(specification.get("ram"), "%" + filter.getRam() + "%");
             predicates.add(newPredicate);
         }
         if(!filter.getCpu().isEmpty()){
