@@ -24,7 +24,7 @@ async function searchProduct(){
     for(let i = 0; i < data.length; i++){
         var idProduct = '<div class="id__product">' + data[i].id + '</div>';
         var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '" alt="">'+ '</a>';
-        var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' +'</a>';
+        var nameProduct = '<a href="product.html" class="product__name">' + '<p>' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' + '</p>' + '</a>';
         let basePrice = data[i].price.toString();
         basePrice = daucham(basePrice);
         let price = data[i].price * (100 - data[i].sale) / 100;
@@ -50,7 +50,7 @@ async function selectCategoryProduct(){
     for(let i = 0; i < data.length; i++){
         var idProduct = '<div class="id__product">' + data[i].id + '</div>';
         var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '" alt="">'+ '</a>';
-        var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' +'</a>';
+        var nameProduct = '<a href="product.html" class="product__name">' + '<p>' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' + '</p>' + '</a>';
         let basePrice = data[i].price.toString();
         basePrice = daucham(basePrice);
         let price = data[i].price * (100 - data[i].sale) / 100;
@@ -91,7 +91,7 @@ async function seeAll(){
     for(let i = 0; i < data.length; i++){
         var idProduct = '<div class="id__product">' + data[i].id + '</div>';
         var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '" alt="">'+ '</a>';
-        var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' +'</a>';
+        var nameProduct = '<a href="product.html" class="product__name">' + '<p>' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' + '</p>' + '</a>';
         let basePrice = data[i].price.toString();
         basePrice = daucham(basePrice);
         let price = data[i].price * (100 - data[i].sale) / 100;
@@ -166,7 +166,7 @@ async function getDaTaFilter() {
     for(let i = 0; i < data.length; i++){
         var idProduct = '<div class="id__product">' + data[i].id + '</div>';
         var imgProduct = '<a href="product.html" class="product__img">'+ '<img src="' + data[i].images[0].filePath + '" alt="">'+ '</a>';
-        var nameProduct = '<a href="product.html" class="product__name">' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' +'</a>';
+        var nameProduct = '<a href="product.html" class="product__name">' + '<p>' + data[i].name + '(' + data[i].specification.cpu + ', ' + data[i].specification.ram + ', ' + data[i].specification.rom + ', ' + data[i].specification.graphicsCard + ', ' + data[i].specification.screen + ')' + '</p>' + '</a>';
         let basePrice = data[i].price.toString();
         basePrice = daucham(basePrice);
         let price = data[i].price * (100 - data[i].sale) / 100;
