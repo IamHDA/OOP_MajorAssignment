@@ -1,5 +1,6 @@
 package com.group.backend.controller;
 
+import com.group.backend.dto.ChangeOrderStatusDTO;
 import com.group.backend.dto.OrderDTO;
 import com.group.backend.entity.Order;
 import com.group.backend.service.OrderService;
@@ -36,8 +37,7 @@ public class OrderController {
     // API cap nhat trang thai don hang
 
     @PutMapping("/admin/updateOrderStatus")
-    @PreAuthorize("hasAuthority('Admin')")
-    public ResponseEntity<String> updateOrderStatus(@RequestBody OrderDTO orderDTO){
-        return ResponseEntity.ok(orderService.updateStatus(orderDTO));
+    public ResponseEntity<String> updateOrderStatus(@RequestBody ChangeOrderStatusDTO changeOrderStatusDTO){
+        return ResponseEntity.ok(orderService.updateStatus(changeOrderStatusDTO));
     }
 }
