@@ -11,6 +11,7 @@ public interface OrderService {
     Order getLastOrderByUser();
     Order createOrderFromCart(OrderDTO orderDTO);
     void deleteOrderUser();
-
+    long getThisMonthRevenue();
+    long countThisMonthOrder();
     String updateStatus(ChangeOrderStatusDTO changeOrderStatusDTO);
 }

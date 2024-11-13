@@ -22,6 +22,15 @@ public class OrderController {
     public ResponseEntity<List<OrderDTO>> getCurrentOrder(){
         return ResponseEntity.ok(orderService.getOrderByUser());
     }
+    @GetMapping("/admin/getThisMonthRevenue")
+    public ResponseEntity<Long> getThisMonthRevenue(){
+        return ResponseEntity.ok(orderService.getThisMonthRevenue());
+    }
+
+    @GetMapping("/admin/countThisMonthOrder")
+    public ResponseEntity<Long> getThisMonthOrderNumber(){
+        return ResponseEntity.ok(orderService.countThisMonthOrder());
+    }
 
     @PostMapping("/createOrderFromCart")
     public ResponseEntity<Order> createOrderFromCart(@RequestBody OrderDTO orderDTO){

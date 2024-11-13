@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -75,17 +74,25 @@ public class OrderServiceImp implements OrderService {
     }
 
     @Override
+    public long getThisMonthRevenue() {
+        LocalDate today = LocalDate.now();
+        return orderRepo.getThisMonthRevenue(today);
+    }
+
+    @Override
+    public long countThisMonthOrder() {
+        LocalDate today = LocalDate.now();
+        return orderRepo.countThisMonthOrder(today);
+    }
+
+    @Override
     public String updateStatus(ChangeOrderStatusDTO changeOrderStatusDTO) {
         for(long x : changeOrderStatusDTO.getOrderIds()) {
-            Order order = orderRepo.findById(x).get();
+            Order order = orderRepo.findById(x);
             StatusDTO statusDTO = statusService.getStatusById(changeOrderStatusDTO.getStatusId());
             order.setStatus(modelMapper.map(statusDTO, Status.class));
             orderRepo.save(order);
         }
-//        Order order = orderRepo.findById(orderDTO.getId());
-//        StatusDTO statusDTO = statusService.getStatusById(orderDTO.getStatus().getId());
-//        order.setStatus(modelMapper.map(statusDTO, Status.class));
-//        orderRepo.save(order);
         return "Order status updated completed!";
     }
 }

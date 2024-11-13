@@ -33,9 +33,6 @@ public class LaptopServiceImp implements LaptopService {
     public LaptopDTO getLaptopById(long id) {
         Laptop laptop = laptopRepo.findById(id);
         LaptopDTO laptopDTO = modelMapper.map(laptop, LaptopDTO.class);
-        laptopDTO.setComments(laptop.getComments().stream()
-                .map(comment -> formatService.localDateTimeCommentFormat(comment))
-                .collect(Collectors.toList()));
         return laptopDTO;
     }
 

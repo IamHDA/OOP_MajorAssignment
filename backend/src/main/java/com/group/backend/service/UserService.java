@@ -13,4 +13,5 @@ public interface UserService {
     String changePass(User user, PasswordDTO passwordDTO);
     String changeUsersRole(ChangeUserRoleDTO changeUserRoleDTO);
     String deleteUsers(List<Long> list);
+    List<UserDTO> getAllUsers();
 }

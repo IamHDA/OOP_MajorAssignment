@@ -8,8 +8,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.Normalizer;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -98,14 +100,12 @@ public class FormatServiceImp implements FormatService {
     }
 
     @Override
-    public CommentDTO localDateTimeCommentFormat(Comment comment) {
-        CommentDTO commentDTO = modelMapper.map(comment, CommentDTO.class);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        commentDTO.setPostAt(comment.getPostAt().format(formatter));
-        if(comment.getUpdateAt() != null) {
-            commentDTO.setUpdateAt(comment.getUpdateAt().format(formatter));
-        }
-        return commentDTO;
+    public String removeSignFromTextFormat(String text) {
+        text = text.replace(" ", "-");
+        String noSignText = Normalizer.normalize(text, Normalizer.Form.NFD);
+        return Pattern.compile("\\p{InCombiningDiacriticalMarks}+")
+                .matcher(noSignText)
+                .replaceAll("");
     }
 
     @Override

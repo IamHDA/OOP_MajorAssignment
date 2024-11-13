@@ -13,4 +13,6 @@ public interface CategoryService {
 //    List<LaptopSummaryDTO> getLaptopByBrand(String brand);
 //    List<LaptopSummaryDTO> getLaptopByState(String state);
     List<LaptopSummaryDTO> getLaptopByCriteria(Filter filter);
+    String addCategory(List<CategoryDTO> categoryDTOS);
+    String removeCategory(List<CategoryDTO> categoryDTOS);
 }

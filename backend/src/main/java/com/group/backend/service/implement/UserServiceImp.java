@@ -9,10 +9,12 @@ import com.group.backend.security.CurrentUser;
 import com.group.backend.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -76,5 +78,13 @@ public class UserServiceImp implements UserService {
             userRepo.deleteById(x);
         }
         return "Delete users successfully";
+    }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+        List<User> users = userRepo.findAll();
+        return users.stream()
+                .map(tmp -> modelMapper.map(tmp, UserDTO.class))
+                .collect(Collectors.toList());
     }
 }
