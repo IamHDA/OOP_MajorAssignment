@@ -70,15 +70,19 @@ async function seeAll(){
     let api;
     if(action == "seeAll0"){
         api =  'http://localhost:8080/collections/laptops-category/Hoc-tap-van-phong';   
+        localStorage.setItem('category', "Hoc-tap-van-phong");
     }
     else if(action == "seeAll1"){
         api =  'http://localhost:8080/collections/laptops-category/Laptop-Gaming';   
+        localStorage.setItem('category', "Laptop-Gaming");
     }
     else if(action == "seeAll2"){
-        api =  'http://localhost:8080/collections/laptops-category/Do-hoa-hieu-nang-cao';   
+        api =  'http://localhost:8080/collections/laptops-category/Do-hoa-hieu-nang-cao'; 
+        localStorage.setItem('category', "Do-hoa-hieu-nang-cao");  
     }
     else{
         api = 'http://localhost:8080/collections/laptops-category/Mong-nhe-cao-cap';
+        localStorage.setItem('category', "Mong-nhe-cao-cap");  
     }
 
     let data = await fetch(`${api}`)
@@ -153,9 +157,10 @@ async function getDaTaFilter() {
         sortOrder = "";
     }
 
-    let api = 'http://localhost:8080/collections/filter?category=' + category + '&brand=' + brand +  '&state=' + state + '&cpu' + '&vga=' + vga + '&ram=' + ram + '&ssd=' + ssd + '&screenSize=' + screenSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder + '&minPrice=' + minPrice + '&maxPrice=' + maxPrice;
+    let api = 'http://localhost:8080/collections/filter?category=' + category + '&brand=' + brand +  '&state=' + state + '&cpu=' + cpu + '&vga=' + vga + '&ram=' + ram + '&ssd=' + ssd + '&screenSize=' + screenSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder + '&minPrice=' + minPrice + '&maxPrice=' + maxPrice;
     let response = await fetch(`${api}`);
     let data = await response.json()
+    console.log(data);
     let allLaptop = document.querySelector('.all-laptop');
     allLaptop.innerHTML = "";
     for(let i = 0; i < data.length; i++){
@@ -187,7 +192,7 @@ async function buildFilter(){
 
     let choices1 = option1.querySelectorAll('.choice');
     for(let i = 0; i < choices1.length; i++){
-       choices1[i].addEventListener('click', async function(){
+        choices1[i].addEventListener('click', async function(){
             if(i == 0){
                 localStorage.setItem('brand', 'Acer');
                 await getDaTaFilter();
@@ -216,6 +221,7 @@ async function buildFilter(){
     }
 
     let choices2 = option2.querySelectorAll('.choice');
+    console.log(option2);
     for(let i = 0; i < choices2.length; i++){
         choices2[i].addEventListener('click', async function(){
             if(i == 0){
@@ -253,6 +259,7 @@ async function buildFilter(){
 
     let choices3 = option3.querySelectorAll('.choice');
     for(let i = 0; i < choices3.length; i++){
+        console.log(choices3[i]);
         choices3[i].addEventListener('click', async function(){
             if(i == 0){
                 localStorage.setItem('cpu', 'Core-i3');
@@ -294,7 +301,7 @@ async function buildFilter(){
     }
     let choices4 = option4.querySelectorAll('.choice');
     for(let i = 0; i < choices4.length; i++){
-        choices3[i].addEventListener('click', async function(){
+        choices4[i].addEventListener('click', async function(){
             if(i == 0){
                 localStorage.setItem('vga', 'RTX-3050');
                 await getDaTaFilter();
@@ -324,11 +331,27 @@ async function buildFilter(){
                 await getDaTaFilter();
             }
             if(i == 7){
-                localStorage.setItem('vga', 'Irix-Xe');
+                localStorage.setItem('vga', 'MX550');
                 await getDaTaFilter();
             }
             if(i == 8){
+                localStorage.setItem('vga', 'Arc');
+                await getDaTaFilter();
+            }
+            if(i == 9){
+                localStorage.setItem('vga', 'Iris-Xe');
+                await getDaTaFilter();
+            }
+            if(i == 10){
                 localStorage.setItem('vga', 'UHD');
+                await getDaTaFilter();
+            }
+            if(i == 11){
+                localStorage.setItem('vga', 'Quadro-P2000');
+                await getDaTaFilter();
+            }
+            if(i == 12){
+                localStorage.setItem('vga', 'Radeon');
                 await getDaTaFilter();
             }
         })
@@ -360,45 +383,48 @@ async function buildFilter(){
     }
     let choices6 = option6.querySelectorAll('.choice');
     for(let i = 0; i < choices6.length; i++){
-        if(i == 0){
-            localStorage.setItem('ssd', '256GB');
-            await getDaTaFilter();
-        }
-        if(i == 1){
-            localStorage.setItem('ssd', '512GB');
-            await getDaTaFilter();
-        }
-        if(i == 2){
-            localStorage.setItem('ssd', '1T');
-            await getDaTaFilter();
-        }
+        choices6[i].addEventListener('click', async function(){
+            if(i == 0){
+                localStorage.setItem('ssd', '256GB');
+                await getDaTaFilter();
+            }
+            if(i == 1){
+                localStorage.setItem('ssd', '512GB');
+                await getDaTaFilter();
+            }
+            if(i == 2){
+                localStorage.setItem('ssd', '1T');
+                await getDaTaFilter();
+            }
+        })
     }
     let choices7 = option7.querySelectorAll('.choice');
     for(let i = 0; i < choices7.length; i++){
-        if(i == 0){
-            localStorage.setItem('screenSize', '14');
-            await getDaTaFilter();
-        }
-        if(i == 1){
-            localStorage.setItem('screenSize', '15');
-            await getDaTaFilter();
-        }
-        if(i == 2){
-            localStorage.setItem('screenSize', '16');
-            await getDaTaFilter();
-        }
+        choices7[i].addEventListener('click', async function(){
+            if(i == 0){
+                localStorage.setItem('screenSize', '14');
+                await getDaTaFilter();
+            }
+            if(i == 1){
+                localStorage.setItem('screenSize', '15');
+                await getDaTaFilter();
+            }
+            if(i == 2){
+                localStorage.setItem('screenSize', '16');
+                await getDaTaFilter();
+            }    
+        })
     }
 
-    let sort = document.querySelector('.sort');
-    let options = sort.querySelectorAll('.option');
-    options.forEach(function(element){
-        element.addEventListener('click', async function(params){
-            let value = element.value;
+    let sort = document.querySelector('.sortSelect');
+    console.log(sort);
+    sort.addEventListener('change', async function(){
+            let value = sort.value;
+            console.log(value);
             let tmp = value.split(" ");
             localStorage.setItem('sortBy', tmp[0]);
             localStorage.setItem('sortOrder', tmp[1]);
             await getDaTaFilter();
-        })
     })
 }
 
@@ -420,17 +446,16 @@ function selectProduct(){
 }
 
 async function reset(){
-    localStorage.setItem('brand', null);
-    localStorage.setItem('state', null);
-    localStorage.setItem('cpu', null);
-    localStorage.setItem('vga', null);
-    localStorage.setItem('ram', null);
-    localStorage.setItem('ssd', null);
-    localStorage.setItem('screenSize', null);
-    localStorage.setItem('minPrice', null);
-    localStorage.setItem('maxPrice', null);
-    localStorage.setItem('sortBy', null);
-    localStorage.setItem('sortOrder', null);
+    localStorage.setItem('brand', "");
+    localStorage.setItem('cpu', "");
+    localStorage.setItem('vga', "");
+    localStorage.setItem('ram', "");
+    localStorage.setItem('ssd', "");
+    localStorage.setItem('screenSize', "");
+    localStorage.setItem('minPrice', 0);
+    localStorage.setItem('maxPrice', 0);
+    localStorage.setItem('sortBy', "");
+    localStorage.setItem('sortOrder', "");
 }
 
 
@@ -446,7 +471,7 @@ async function laptoptheomucMain(){
         await seeAll();
     }
     await reset();
-    await getDaTaFilter();
+    await buildFilter();
     selectProduct();
 } 
 

@@ -17,7 +17,6 @@ function selectionCategory() {
     // For each "lapTopLikeNew" element
     lapTopLikeNew.forEach(function(lapTop) {
         let selectionLapTopLikeNew = lapTop.querySelectorAll('.category__detail__branch__detail');
-        
         selectionLapTopLikeNew.forEach(function(element) {
             let nameBranch = element.querySelector('.id').textContent;
             element.addEventListener('click', function() {
