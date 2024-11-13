@@ -49,9 +49,72 @@
 }
 
 .name{
-    width: 110px;
+    width: 140px;
 }
 
 .payment-method{
-    width: 100px;
+    width: 90px;
+}
+
+.status{
+    width: 120px;
+}
+
+.order-date{
+    width: 110px;
+}
+
+.note{
+    width: 150px;
+}
+
+.address{
+    width: 150px;
+}
+
+.change-status .title{
+    font-size: 22px;
+}
+
+.input{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.status-input{
+    margin: auto;
+    padding: 10px 10px 10px 10px;
+    width: 200px;
+    font-size: 20px;
+    border-radius: 5px;
+    border-color: black;
+}
+
+.to{
+    margin: auto;
+}
+
+.id-input{
+    margin: auto;
+    padding: 10px 40px 10px 10px;
+    width: 280px;
+    font-size: 20px;
+    border-radius: 5px;
+    border-color: black;
+}
+
+.submit{
+    display: block;
+    margin: auto;
+    font-size: 18px;
+    padding: 12px;
+    width: 200px;
+    background-color: white;
+    border-radius: 6px;
+    color: rgb(0, 125, 234);
+    border: 2px, solid, rgb(0, 125, 234);
+    justify-content: center;
+    cursor: pointer;
 }
