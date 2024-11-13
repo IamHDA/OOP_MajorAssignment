@@ -8,8 +8,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.Normalizer;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -95,6 +97,15 @@ public class FormatServiceImp implements FormatService {
             res += s + " ";
         }
         return res.trim();
+    }
+
+    @Override
+    public String removeSignFromTextFormat(String text) {
+        text = text.replace(" ", "-");
+        String noSignText = Normalizer.normalize(text, Normalizer.Form.NFD);
+        return Pattern.compile("\\p{InCombiningDiacriticalMarks}+")
+                .matcher(noSignText)
+                .replaceAll("");
     }
 
     @Override

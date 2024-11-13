@@ -323,7 +323,7 @@ async function mainAccountDetail() {
     await changeUserInfor();
     await changePassword();
     logOutFunc();
-    buildOder();
+    // buildOder();
 }
 
 mainAccountDetail();

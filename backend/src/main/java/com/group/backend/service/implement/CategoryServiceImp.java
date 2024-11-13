@@ -55,4 +55,14 @@ public class CategoryServiceImp implements CategoryService {
         List<LaptopSummaryDTO> laptops = laptopService.getLaptopByCriteria(filter);
         return formatService.listOfFormattedLaptopSummary(laptops);
     }
+ 
+    @Override
+    public String addCategory(List<CategoryDTO> categoryDTOS) {
+        return "";
+    }
+
+    @Override
+    public String removeCategory(List<CategoryDTO> categoryDTOS) {
+        return "";
+    }
 }

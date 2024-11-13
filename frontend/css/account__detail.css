@@ -369,6 +369,8 @@
 }
 
 .tableDanhSachDonHang{
+    width: 98%;
+    border-radius: 8px;
     border-collapse: collapse;
 }
 .tableDanhSachDonHang .firstRow{
@@ -378,17 +380,27 @@
     color: white;
     font-size: 16px;
     font-weight: 600;
-    text-align: center;
 }
 
 .tableDanhSachDonHang .nextRow{
+    padding: 10px;
     width: 100%;
     height: 40px;
     font-size: 16px;
     font-weight: 500;
     text-align: center;
+    transition: background-color 0.15s;
 }
 
 .tableDanhSachDonHang  th, .tableDanhSachDonHang td{
     border: 1px solid black;
+}
+
+.tableDanhSachDonHang tr{
+    text-align: center;
+}
+
+.tableDanhSachDonHang .nextRow:hover{
+    background-color: rgb(235, 235, 235);
+    cursor: pointer;
 }
