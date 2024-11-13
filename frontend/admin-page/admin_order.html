@@ -3,7 +3,7 @@
     <head>
         <title>Admin Page</title>
         <meta charset = "UTF-8">
-        <link href="css/admin_account.css" rel="stylesheet">
+        <link href="css/admin_order.css" rel="stylesheet">
         <link href="css/header.css" rel="stylesheet">
         <link href="css/general.css" rel="stylesheet">
         <link href="css/side-bar.css" rel="stylesheet">
@@ -22,57 +22,51 @@
                     <ul class="menu">
                         <a href="admin_overall.html"><li class="option1"><i class="fa-solid fa-chart-simple"></i> <p>Tổng Quan</p></li></a>
                         <a  href="admin_laptop.html"><li class="option2"><i class="fa-solid fa-laptop"></i> <p>Quản lý Laptop</p></li></a>
-                        <a  href="admin_account.html"><li class="option3"><i class="fa-solid fa-users"></i> <p>Quản lý tài khoản</p></li></a>
+                        <a href="admin_account.html"><li class="option3"><i class="fa-solid fa-users"></i> <p>Quản lý tài khoản</p></li></a>
                         <li class="option4"><i class="fa-solid fa-receipt"></i> <p>Quản lý đơn hàng</p></li>
                         <li class="option5"><i class="fa-solid fa-layer-group"></i> <p>Quản lý danh mục</p></li>
                         <li class="option6"><i class="fa-solid fa-file-invoice-dollar"></i> <p>Quản lý phương thức thanh toán</p></li>
                         <li class="option7"><i class="fa-solid fa-comments"></i> <p>Quản lý comment</p></li>
                     </ul>
                 </div>
-                <div class="account-container">
+                <div class="order-container">
                     <div class="first-row">
                         <p class="title">Tài khoản</p>
                         <table class="cart-table">
                             <tr class="table-row1">
                                 <td class="stt">Id</td>
                                 <td class="name">Họ tên</td>
-                                <td class="email">Email</td>
                                 <td class="contact">Số điện thoại</td>
                                 <td class="address">Địa chỉ</td>
-                                <td class="role">Vai trò</td>
+                                <td class="total-price">Đơn giá</td>
+                                <td class="order-date">Ngày đặt</td>
+                                <td class="note">Ghi chú</td>
+                                <td class="status">Trạng thái</td>
+                                <td class="payment-method">Phương thức thanh toán</td>
                             </tr>
                             <tr class="table-row">
                                 <td class="stt">1</td>
                                 <td>Hứa Duy Anh</td>
-                                <td>huaduyanh090@gmail.com</td>
                                 <td>0914615581</td>
                                 <td>Lạng Sơn</td>
-                                <td>Khách hàng</td>
+                                <td>100000000</td>
+                                <td>30-10-2024</td>
+                                <td>Laptop xịn</td>
+                                <td>Shop đang xác nhận</td>
+                                <td>COD</td>
                             </tr>
                             <tr class="table-row">
-                                <td class="stt">2</td>
-                                <td>Phan Văn Biên</td>
-                                <td>pvbien0804@gmail.com</td>
-                                <td>0921345581</td>
-                                <td>Thái Bình</td>
-                                <td>Quản trị</td>
+                                <td class="stt">1</td>
+                                <td>Hứa Thứ Hai</td>
+                                <td>0914615581</td>
+                                <td>Lạng Sơn</td>
+                                <td>1000000000</td>
+                                <td>30-10-2024</td>
+                                <td></td>
+                                <td>Đã giao hàng</td>
+                                <td>COD</td>
                             </tr>
                         </table>
-                    </div>
-                    <div class="second-row">
-                        <div class="change-role">
-                            <p class="title">Thay đổi vai trò</p>
-                            <input class="id-input" type="text" placeholder="Nhập id cách nhau bằng dấu ,">
-                            <p class="to">TO</p>
-                            <input class="role-input" type="text" placeholder="Nhập vai trò mới">
-                            <button class="submit1">Xác nhận</button>
-                            
-                        </div>
-                        <div class="delete-account">
-                            <p class="title">Xóa tài khoản</p>
-                            <input class="id-input" type="text" placeholder="Nhập id cách nhau bằng dấu ,">
-                            <button class="submit2">Xác nhận</button>
-                        </div>
                     </div>
                 </div>
             </div>
