@@ -88,6 +88,7 @@
     margin-top: 15px;
     color: rgb(33, 42, 54);
     cursor: pointer;
+    overflow: hidden;
 }
 
 .product__price{
