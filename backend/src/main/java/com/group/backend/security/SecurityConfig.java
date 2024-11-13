@@ -54,10 +54,14 @@ public class SecurityConfig {
                                 "/register",
                                 "/laptop/**",
                                 "/collections/**",
-                                "/resetPassword/**",
-                                "/**")
+                                "/resetPassword/**")
                         .permitAll()
-                        .requestMatchers("/order/admin/**").hasAuthority("Admin")
+                        .requestMatchers(
+                                    "/order/admin/**",
+                                    "/user/admin/**",
+                                    "/laptop/admin/**"
+                                    )
+                            .hasAuthority("Admin")
                         .anyRequest()
                         .authenticated())
                 .httpBasic(Customizer.withDefaults())

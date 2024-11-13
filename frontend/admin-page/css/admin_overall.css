@@ -1,7 +1,14 @@
 .overall-container{
+    font-size: 18px;
     width: 100%;
-    margin-left: 241px;
-    margin-top: 50px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-left: 248px;
+    padding-top: 80px;
+    padding-left: 55px;
+    padding-right: 55px;
 }
 
 .header{

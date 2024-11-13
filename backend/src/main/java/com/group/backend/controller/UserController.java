@@ -7,6 +7,7 @@ import com.group.backend.security.CurrentUser;
 import com.group.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.group.backend.dto.PasswordDTO;
 
@@ -26,6 +27,11 @@ public class UserController {
         return ResponseEntity.ok(userService.getInformation());
     }
 
+    @GetMapping("/getAllUsers")
+    public ResponseEntity<List<UserDTO>> getAllUsers(){
+        return ResponseEntity.ok(userService.getAllUsers());
+    }
+
     @PutMapping("/changeInfo")
     public ResponseEntity<UserDTO> changeInfo(@RequestBody UserDTO userDTO){
         return ResponseEntity.ok(userService.changeInfo(userDTO));
@@ -37,12 +43,12 @@ public class UserController {
         return ResponseEntity.ok(userService.changePass(thisUser, passwordDTO));
     }
 
-    @PutMapping("/changeUsersRole")
+    @PutMapping("/admin/changeUsersRole")
     public ResponseEntity<String> changeUsersRole(@RequestBody ChangeUserRoleDTO changeUserRoleDTO){
         return ResponseEntity.ok(userService.changeUsersRole(changeUserRoleDTO));
     }
 
-    @DeleteMapping("/deleteUsers")
+    @DeleteMapping("/admin/deleteUsers")
     public ResponseEntity<String> deleteUsers(@RequestBody List<Long> list){
         return ResponseEntity.ok(userService.deleteUsers(list));
     }

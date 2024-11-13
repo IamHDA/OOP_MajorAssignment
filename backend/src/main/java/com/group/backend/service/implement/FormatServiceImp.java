@@ -109,17 +109,6 @@ public class FormatServiceImp implements FormatService {
     }
 
     @Override
-    public CommentDTO localDateTimeCommentFormat(Comment comment) {
-        CommentDTO commentDTO = modelMapper.map(comment, CommentDTO.class);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        commentDTO.setPostAt(comment.getPostAt().format(formatter));
-        if(comment.getUpdateAt() != null) {
-            commentDTO.setUpdateAt(comment.getUpdateAt().format(formatter));
-        }
-        return commentDTO;
-    }
-
-    @Override
     public LaptopSummaryDTO formattedLaptopSummary(LaptopSummaryDTO laptopSummaryDTO) {
         laptopSummaryDTO.getSpecification().setRam(ramFormat(laptopSummaryDTO.getSpecification().getRam()));
         laptopSummaryDTO.getSpecification().setCpu(cpuFormat(laptopSummaryDTO.getSpecification().getCpu()));

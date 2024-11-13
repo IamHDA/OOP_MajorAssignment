@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImp implements CategoryService {
@@ -58,11 +59,30 @@ public class CategoryServiceImp implements CategoryService {
  
     @Override
     public String addCategory(List<CategoryDTO> categoryDTOS) {
-        return "";
+        List<Category> categories = categoryDTOS.stream()
+                .map(tmp -> {
+                    Category category = modelMapper.map(tmp, Category.class);
+                    category.setName(formatService.removeSignFromTextFormat(category.getName()));
+                    return category;
+                })
+                .collect(Collectors.toList());
+        categoryRepo.saveAll(categories);
+        return "Category added successfully";
     }
 
     @Override
     public String removeCategory(List<CategoryDTO> categoryDTOS) {
+        List<Category> categories = categoryDTOS.stream()
+                .map(tmp -> {
+                    Category category = modelMapper.map(tmp, Category.class);
+                    category.setName(formatService.removeSignFromTextFormat(category.getName()));
+                    return category;
+                })
+                .collect(Collectors.toList());
+        for(Category category : categories) {
+            Category tmp = categoryRepo.findByName(category.getName());
+            categoryRepo.deleteById(tmp.getId());
+        }
         return "";
     }
 }

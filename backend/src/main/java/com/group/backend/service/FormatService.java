@@ -19,7 +19,6 @@ public interface FormatService {
     String imgTypeFormat(String text);
     String filterConditionFormat(String text);
     String removeSignFromTextFormat(String text);
-    CommentDTO localDateTimeCommentFormat(Comment comment);
     LaptopSummaryDTO formattedLaptopSummary(LaptopSummaryDTO LaptopSummaryDTO);
     List<LaptopSummaryDTO> listOfFormattedLaptopSummary(List<LaptopSummaryDTO> laptops);
 }

@@ -5,7 +5,6 @@ import com.group.backend.entity.Order;
 import com.group.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +21,16 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrderByUser());
     }
 
+    @GetMapping("/admin/getThisMonthRevenue")
+    public ResponseEntity<Long> getThisMonthRevenue(){
+        return ResponseEntity.ok(orderService.getThisMonthRevenue());
+    }
+
+    @GetMapping("/admin/countThisMonthOrder")
+    public ResponseEntity<Long> getThisMonthOrderNumber(){
+        return ResponseEntity.ok(orderService.countThisMonthOrder());
+    }
+
     @PostMapping("/createOrderFromCart")
     public ResponseEntity<Order> createOrderFromCart(@RequestBody OrderDTO orderDTO){
         return ResponseEntity.ok(orderService.createOrderFromCart(orderDTO));
@@ -36,7 +45,6 @@ public class OrderController {
     // API cap nhat trang thai don hang
 
     @PutMapping("/admin/updateOrderStatus")
-    @PreAuthorize("hasAuthority('Admin')")
     public ResponseEntity<String> updateOrderStatus(@RequestBody OrderDTO orderDTO){
         return ResponseEntity.ok(orderService.updateStatus(orderDTO));
     }
