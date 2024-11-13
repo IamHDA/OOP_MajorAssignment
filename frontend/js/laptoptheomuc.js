@@ -331,11 +331,27 @@ async function buildFilter(){
                 await getDaTaFilter();
             }
             if(i == 7){
-                localStorage.setItem('vga', 'Irix-Xe');
+                localStorage.setItem('vga', 'MX550');
                 await getDaTaFilter();
             }
             if(i == 8){
+                localStorage.setItem('vga', 'Arc');
+                await getDaTaFilter();
+            }
+            if(i == 9){
+                localStorage.setItem('vga', 'Iris-Xe');
+                await getDaTaFilter();
+            }
+            if(i == 10){
                 localStorage.setItem('vga', 'UHD');
+                await getDaTaFilter();
+            }
+            if(i == 11){
+                localStorage.setItem('vga', 'Quadro-P2000');
+                await getDaTaFilter();
+            }
+            if(i == 12){
+                localStorage.setItem('vga', 'Radeon');
                 await getDaTaFilter();
             }
         })
