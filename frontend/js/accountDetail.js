@@ -335,8 +335,8 @@ async function buildOrderDetail(){
             await getDataOrderDetail(id, idOrder, receiverName, receiverPhone, shippingAddress, note, status, totalPrice);
             selectProduct();
         })
+        selectProduct();
     })
-    
 }
 
 function selectProduct(){
