@@ -194,26 +194,30 @@ async function buildFilter(){
     for(let i = 0; i < choices1.length; i++){
         choices1[i].addEventListener('click', async function(){
             if(i == 0){
-                localStorage.setItem('brand', 'Acer');
+                localStorage.setItem('brand', '');
                 await getDaTaFilter();
             }
             if(i == 1){
-                localStorage.setItem('brand', 'Asus');
+                localStorage.setItem('brand', 'Acer');
                 await getDaTaFilter();
             }
             if(i == 2){
-                localStorage.setItem('brand', 'Dell');
+                localStorage.setItem('brand', 'Asus');
                 await getDaTaFilter();
             }
             if(i == 3){
-                localStorage.setItem('brand', 'HP');
+                localStorage.setItem('brand', 'Dell');
                 await getDaTaFilter();
             }
             if(i == 4){
-                localStorage.setItem('brand', 'Lenovo');
+                localStorage.setItem('brand', 'HP');
                 await getDaTaFilter();
             }
             if(i == 5){
+                localStorage.setItem('brand', 'Lenovo');
+                await getDaTaFilter();
+            }
+            if(i == 6){
                 localStorage.setItem('brand', 'MSI');
                 await getDaTaFilter();
             }
@@ -226,30 +230,35 @@ async function buildFilter(){
         choices2[i].addEventListener('click', async function(){
             if(i == 0){
                 localStorage.setItem('minPrice', '0');
-                localStorage.setItem('maxPrice', '10000000');
+                localStorage.setItem('maxPrice', '0');
                 await getDaTaFilter();
             }
             if(i == 1){
+                localStorage.setItem('minPrice', '0');
+                localStorage.setItem('maxPrice', '10000000');
+                await getDaTaFilter();
+            }
+            if(i == 2){
                 localStorage.setItem('minPrice', '10000000');
                 localStorage.setItem('maxPrice', '20000000');
                 await getDaTaFilter();
             }
-            if(i == 2){
+            if(i == 3){
                 localStorage.setItem('minPrice', '20000000');
                 localStorage.setItem('maxPrice', '30000000');
                 await getDaTaFilter();
             }
-            if(i == 3){
+            if(i == 4){
                 localStorage.setItem('minPrice', '30000000');
                 localStorage.setItem('maxPrice', '40000000');
                 await getDaTaFilter();
             }
-            if(i == 4){
+            if(i == 5){
                 localStorage.setItem('minPrice', '40000000');
                 localStorage.setItem('maxPrice', '50000000');
                 await getDaTaFilter();
             }
-            if(i == 5){
+            if(i == 6){
                 localStorage.setItem('minPrice', '50000000');
                 localStorage.setItem('maxPrice', '0');
                 await getDaTaFilter();
@@ -262,38 +271,42 @@ async function buildFilter(){
         console.log(choices3[i]);
         choices3[i].addEventListener('click', async function(){
             if(i == 0){
-                localStorage.setItem('cpu', 'Core-i3');
+                localStorage.setItem('cpu', '');
                 await getDaTaFilter();
             }
             if(i == 1){
-                localStorage.setItem('cpu', 'Core-i5');
+                localStorage.setItem('cpu', 'Core-i3');
                 await getDaTaFilter();
             }
             if(i == 2){
-                localStorage.setItem('cpu', 'Core-i7');
+                localStorage.setItem('cpu', 'Core-i5');
                 await getDaTaFilter();
             }
             if(i == 3){
-                localStorage.setItem('cpu', 'Core-i9');
+                localStorage.setItem('cpu', 'Core-i7');
                 await getDaTaFilter();
             }
             if(i == 4){
-                localStorage.setItem('cpu', 'Ultra-5');
+                localStorage.setItem('cpu', 'Core-i9');
                 await getDaTaFilter();
             }
             if(i == 5){
-                localStorage.setItem('cpu', 'Ultra-7');
+                localStorage.setItem('cpu', 'Ultra-5');
                 await getDaTaFilter();
             }
             if(i == 6){
-                localStorage.setItem('cpu', 'Ryzen-5');
+                localStorage.setItem('cpu', 'Ultra-7');
                 await getDaTaFilter();
             }
             if(i == 7){
-                localStorage.setItem('cpu', 'Ryzen-7');
+                localStorage.setItem('cpu', 'Ryzen-5');
                 await getDaTaFilter();
             }
             if(i == 8){
+                localStorage.setItem('cpu', 'Ryzen-7');
+                await getDaTaFilter();
+            }
+            if(i == 9){
                 localStorage.setItem('cpu', 'Ryzen-9');
                 await getDaTaFilter();
             }
@@ -303,54 +316,58 @@ async function buildFilter(){
     for(let i = 0; i < choices4.length; i++){
         choices4[i].addEventListener('click', async function(){
             if(i == 0){
-                localStorage.setItem('vga', 'RTX-3050');
+                localStorage.setItem('vga', '');
                 await getDaTaFilter();
             }
             if(i == 1){
-                localStorage.setItem('vga', 'RTX-3050Ti');
+                localStorage.setItem('vga', 'RTX-3050');
                 await getDaTaFilter();
             }
             if(i == 2){
-                localStorage.setItem('vga', 'RTX-3060');
+                localStorage.setItem('vga', 'RTX-3050Ti');
                 await getDaTaFilter();
             }
             if(i == 3){
-                localStorage.setItem('vga', 'RTX-3070Ti');
+                localStorage.setItem('vga', 'RTX-3060');
                 await getDaTaFilter();
             }
             if(i == 4){
-                localStorage.setItem('vga', 'RTX-4050');
+                localStorage.setItem('vga', 'RTX-3070Ti');
                 await getDaTaFilter();
             }
             if(i == 5){
-                localStorage.setItem('vga', 'RTX-4060');
+                localStorage.setItem('vga', 'RTX-4050');
                 await getDaTaFilter();
             }
             if(i == 6){
-                localStorage.setItem('vga', 'RTX-4070');
+                localStorage.setItem('vga', 'RTX-4060');
                 await getDaTaFilter();
             }
             if(i == 7){
-                localStorage.setItem('vga', 'MX550');
+                localStorage.setItem('vga', 'RTX-4070');
                 await getDaTaFilter();
             }
             if(i == 8){
-                localStorage.setItem('vga', 'Arc');
+                localStorage.setItem('vga', 'MX550');
                 await getDaTaFilter();
             }
             if(i == 9){
-                localStorage.setItem('vga', 'Iris-Xe');
+                localStorage.setItem('vga', 'Arc');
                 await getDaTaFilter();
             }
             if(i == 10){
-                localStorage.setItem('vga', 'UHD');
+                localStorage.setItem('vga', 'Iris-Xe');
                 await getDaTaFilter();
             }
             if(i == 11){
-                localStorage.setItem('vga', 'Quadro-P2000');
+                localStorage.setItem('vga', 'UHD');
                 await getDaTaFilter();
             }
             if(i == 12){
+                localStorage.setItem('vga', 'Quadro-P2000');
+                await getDaTaFilter();
+            }
+            if(i == 13){
                 localStorage.setItem('vga', 'Radeon');
                 await getDaTaFilter();
             }
@@ -360,22 +377,26 @@ async function buildFilter(){
     for(let i = 0; i < choices5.length; i++){
         choices5[i].addEventListener('click', async function(){
             if(i == 0){
-                localStorage.setItem('ram', '4GB');
+                localStorage.setItem('ram', '');
                 await getDaTaFilter();
             }
             if(i == 1){
-                localStorage.setItem('ram', '8GB');
+                localStorage.setItem('ram', '4GB');
                 await getDaTaFilter();
             }
             if(i == 2){
-                localStorage.setItem('ram', '12GB');
+                localStorage.setItem('ram', '8GB');
                 await getDaTaFilter();
             }
             if(i == 3){
-                localStorage.setItem('ram', '16GB');
+                localStorage.setItem('ram', '12GB');
                 await getDaTaFilter();
             }
             if(i == 4){
+                localStorage.setItem('ram', '16GB');
+                await getDaTaFilter();
+            }
+            if(i == 5){
                 localStorage.setItem('ram', '32GB');
                 await getDaTaFilter();
             }
@@ -385,14 +406,18 @@ async function buildFilter(){
     for(let i = 0; i < choices6.length; i++){
         choices6[i].addEventListener('click', async function(){
             if(i == 0){
-                localStorage.setItem('ssd', '256GB');
+                localStorage.setItem('ssd', '');
                 await getDaTaFilter();
             }
             if(i == 1){
-                localStorage.setItem('ssd', '512GB');
+                localStorage.setItem('ssd', '256GB');
                 await getDaTaFilter();
             }
             if(i == 2){
+                localStorage.setItem('ssd', '512GB');
+                await getDaTaFilter();
+            }
+            if(i == 3){
                 localStorage.setItem('ssd', '1T');
                 await getDaTaFilter();
             }
@@ -402,14 +427,18 @@ async function buildFilter(){
     for(let i = 0; i < choices7.length; i++){
         choices7[i].addEventListener('click', async function(){
             if(i == 0){
-                localStorage.setItem('screenSize', '14');
+                localStorage.setItem('screenSize', '');
                 await getDaTaFilter();
             }
             if(i == 1){
-                localStorage.setItem('screenSize', '15');
+                localStorage.setItem('screenSize', '14');
                 await getDaTaFilter();
             }
             if(i == 2){
+                localStorage.setItem('screenSize', '15');
+                await getDaTaFilter();
+            }
+            if(i == 3){
                 localStorage.setItem('screenSize', '16');
                 await getDaTaFilter();
             }    
