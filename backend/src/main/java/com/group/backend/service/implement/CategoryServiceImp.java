@@ -45,11 +45,11 @@ public class CategoryServiceImp implements CategoryService {
 //        return formatService.listOfFormattedLaptopSummary(laptops);
 //    }
 
-//    @Override
-//    public List<LaptopSummaryDTO> getLaptopByState(String state) {
-//        List<LaptopSummaryDTO> laptops = laptopService.getLaptopByState(state);
-//        return formatService.listOfFormattedLaptopSummary(laptops);
-//    }
+    @Override
+    public List<LaptopSummaryDTO> getLaptopByState(String state) {
+        List<LaptopSummaryDTO> laptops = laptopService.getLaptopByState(state);
+        return formatService.listOfFormattedLaptopSummary(laptops);
+    }
 
     @Override
     public List<LaptopSummaryDTO> getLaptopByCriteria(Filter filter) {

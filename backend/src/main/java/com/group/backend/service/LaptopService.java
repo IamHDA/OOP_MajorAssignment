@@ -14,7 +14,7 @@ public interface LaptopService {
     String addLaptop(LaptopDTO laptopDTO);
     List<LaptopSummaryDTO> getLaptopByCategory(String category);
 //    List<LaptopSummaryDTO> getLaptopByBrand(String brand);
-//    List<LaptopSummaryDTO> getLaptopByState(String state);
+    List<LaptopSummaryDTO> getLaptopByState(String state);
     List<LaptopSummaryDTO> getLaptopByCriteria(Filter filter);
     List<LaptopSummaryDTO> searchLaptop(String keyword);
 }
