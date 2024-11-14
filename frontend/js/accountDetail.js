@@ -334,8 +334,8 @@ async function buildOrderDetail(){
             let totalPrice = element.querySelector('.totalPrice').textContent;
             await getDataOrderDetail(id, idOrder, receiverName, receiverPhone, shippingAddress, note, status, totalPrice);
         })
+        selectProduct();
     })
-    selectProduct();
 }
 
 function selectProduct(){
@@ -343,7 +343,7 @@ function selectProduct(){
     let nextRow = tableOrder.querySelectorAll('.nextRow');
     nextRow.forEach(function(element){
         let productName = element.querySelector('.productName');
-        let idProduct = element.querySelector('.idProduct');
+        let idProduct = element.querySelector('.idProduct').textContent;
         productName.addEventListener('click', function(){
             localStorage.setItem('id__product', idProduct);
             window.location.href = 'product.html';
