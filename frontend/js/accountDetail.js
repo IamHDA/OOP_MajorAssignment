@@ -1,10 +1,25 @@
 import checkAccessTokenIsvalid from './accessToken.js';
 
+
+function daucham(num){
+    let tmp = "";
+    let mark = 0;
+    for(let i = num.length - 1; i >= 0; i--){
+        mark += 1;
+        tmp = num[i] + tmp;
+        if(mark == 3 && i != 0){
+            tmp = "." + tmp;
+            mark = 0
+        }
+    }
+    return tmp;
+}
+
 var thongTinTaiKhoan = document.querySelector(".thong-tin-tai-khoan");
 var danhSachDonHang = document.querySelector(".danh-sach-don-hang");
 var thayDoiMatKhau = document.querySelector(".thay-doi-mat-khau");
 var logOut = document.querySelector(".log-out");
-
+var orderDetail = document.querySelector('.orderDetail');
 var thongTinTaiKhoanBox = document.querySelector('.account__detail__content___thong-tin-tai-khoan');
 var danhSachDonHangBox = document.querySelector('.account__detail__content___danh-sach-don-hang');
 var thayDoiMatKhauBox = document.querySelector('.account__detail__content___thay-doi-mat-khau');
@@ -115,6 +130,7 @@ function clickSelection(){
         thongTinTaiKhoanBox.style.display = 'block';
         danhSachDonHangBox.style.display = 'none';
         thayDoiMatKhauBox.style.display = 'none';
+        orderDetail.style.display = 'none';
     })
 
     danhSachDonHang.addEventListener('click', function(){
@@ -140,6 +156,7 @@ function clickSelection(){
         thongTinTaiKhoanBox.style.display = 'none';
         danhSachDonHangBox.style.display = 'block';
         thayDoiMatKhauBox.style.display = 'none';
+        orderDetail.style.display = 'none';
     })
 
     thayDoiMatKhau.addEventListener('click', function(){
@@ -165,6 +182,7 @@ function clickSelection(){
         thongTinTaiKhoanBox.style.display = 'none';
         danhSachDonHangBox.style.display = 'none';
         thayDoiMatKhauBox.style.display = 'block';
+        orderDetail.style.display = 'none';
     })
 }
 
@@ -222,7 +240,7 @@ async function changeUserInfor() {
 }
 
 // Don hang
-function buildOder(){
+async function buildOder(){
     let danhSachDonHang = document.querySelector('.danh-sach-don-hang');
     danhSachDonHang.addEventListener('click', async function(){
         let tableDanhSachDonHang = document.querySelector('.tableDanhSachDonHang');
@@ -242,9 +260,14 @@ function buildOder(){
             let stt = '<td class="stt">' + index + '</td>';
             index += 1;
             let id = '<td class="id">' + '#' + '100' + element.id.toString() + '</td>';
+            let idOrder = '<td class="idOrder">' + element.id.toString() + '</td>';
             let price = '<td class="totalPrice">' + daucham(element.totalPrice.toString()) + ' VNĐ' + '</td>';
             let status = '<td class="status">'  + element.status.name + '</td>';
-            let nextRow =  '<tr class="nextRow">' + stt + id + price + status + '</tr>'
+            let receiverName = '<td class="receiverName">' + element.receiverName + '</td>';
+            let receiverPhone = '<td class="receiverPhone">' + element.receiverPhone +  '</td>';
+            let shippingAddress = '<td class="shippingAddress">' + element.shippingAddress + '</td>';
+            let note = '<td class="note">' + element.note + '</td>';
+            let nextRow =  '<tr class="nextRow">' + stt + id + idOrder + price + status + receiverName + receiverPhone + shippingAddress + note + '</tr>';
             tableDanhSachDonHang.innerHTML += nextRow;
         });
 
@@ -257,6 +280,70 @@ function buildOder(){
             document.querySelector('.tableDanhSachDonHang').style.display = "block";
         }
     })    
+}
+
+//OrderDetail
+async function getDataOrderDetail(id, idOrder, receiverName, receiverPhone, shippingAddress, note, status, totalPrice){
+    let orderDetail = document.querySelector('.orderDetail');
+    let IdOder = orderDetail.querySelector('.idOrder');
+    let Status = orderDetail.querySelector('.status');
+    let ReceiverName = orderDetail.querySelector('.nameText');
+    let ReceiverPhone = orderDetail.querySelector('.phoneNumber');
+    let ShippingAddress = orderDetail.querySelector('.addressText');
+    let Note = orderDetail.querySelector('.noteText');
+
+    IdOder.innerHTML = 'Đơn hàng số' + id;
+    Status.innerHTML = status;
+    ReceiverName.innerHTML = receiverName;
+    ReceiverPhone.innerHTML = receiverPhone;
+    ShippingAddress.innerHTML = shippingAddress;
+    Note.innerHTML = note;
+
+    let response = await fetch(`http://localhost:8080//order-detail/${idOrder}`, {
+        headers: {
+            'Content-Type': 'application/json',
+        } 
+    });
+
+    response = await response.json();
+    let index = 1;
+    let tableOrder = orderDetail.querySelector('.tableOrder')
+    response.forEach(function(element){
+        let idProduct = '<td class="idProduct">' + element.laptop.id + '</td>'
+        let ordinalNumber = '<td class="ordinalNumber">' + index + '</td>';
+        index += 1;
+        let img =  '<td class="productImg">' + '<img src="' + element.laptop.images[0].filePath + '" alt="">' + '</td>';
+        let productName =  '<td class="productName">' + element.laptop.name + '</td>';
+        let productPrice = '<td class="productPrice">' + daucham(element.unitPrice.toString()) + ' đ' + '</td>';
+        let quantity = '<td class="productQuantity">' + element.quantity + '</td>';
+        let totalPrice = '<td class="totalPrice">' + daucham((element.unitPrice * element.quantity).toString()) + ' đ' + '</td>';
+        let nextRow = '<tr class="nextRow">' + idProduct + ordinalNumber + img + productName + productPrice + quantity + totalPrice + '</tr>';
+        tableOrder.innerHTML += nextRow;
+    })
+
+    let table2 = orderDetail.querySelector('.table2');
+    let soTien = table2.querySelector('.soTien');
+    soTien.innerHTML = totalPrice;
+}   
+
+async function buildOrderDetail(){
+    let tableDanhSachDonHang = document.querySelector('.tableDanhSachDonHang');
+    let nextRow = tableDanhSachDonHang.querySelectorAll('.nextRow');
+    nextRow.forEach(function(element){
+        element.addEventListener('click', async function(){
+            danhSachDonHangBox.style.display = 'none';
+            document.querySelector('.orderDetail').style.display = 'block';
+            let id = element.querySelector('.id').textContent;
+            let idOrder = element.querySelector('.idOrder').textContent;
+            let receiverName = element.querySelector('.receiverName').textContent;
+            let receiverPhone = element.querySelector('.receiverPhone').textContent;
+            let shippingAddress = element.querySelector('.shippingAddress').textContent;
+            let note = element.querySelector('.note').textContent;
+            let status = element.querySelector('.status').textContent;
+            let totalPrice = element.querySelector('.totalPrice').textContent;
+            await getDataOrderDetail(id, idOrder, receiverName, receiverPhone, shippingAddress, note, status, totalPrice);
+        })
+    })
 }
 
 // thay doi mat khau
@@ -322,8 +409,9 @@ async function mainAccountDetail() {
     clickSelection();
     await changeUserInfor();
     await changePassword();
+    await buildOder();
+    await buildOrderDetail();
     logOutFunc();
-    buildOder();
 }
 
 mainAccountDetail();
