@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentServiceImp implements CommentService {
@@ -52,4 +54,13 @@ public class CommentServiceImp implements CommentService {
         commentRepo.deleteById(id);
         return "Comment deleted successfully";
     }
+
+    @Override
+    public List<CommentDTO> getAllComment () {
+        List<Comment> list = commentRepo.findAll();
+        return list.stream()
+                .map(tmp -> modelMapper.map(tmp, CommentDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }

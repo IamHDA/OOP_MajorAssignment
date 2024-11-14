@@ -1,5 +1,6 @@
 package com.group.backend.service;
 
+import com.group.backend.dto.ChangeOrderStatusDTO;
 import com.group.backend.dto.OrderDTO;
 import com.group.backend.entity.Order;
 
@@ -12,5 +13,5 @@ public interface OrderService {
     void deleteOrderUser();
     long getThisMonthRevenue();
     long countThisMonthOrder();
-    String updateStatus(OrderDTO orderDTO);
+    String updateStatus(ChangeOrderStatusDTO changeOrderStatusDTO);
 }

@@ -1,5 +1,6 @@
 package com.group.backend.service.implement;
 
+import com.group.backend.dto.ChangeOrderStatusDTO;
 import com.group.backend.dto.OrderDTO;
 import com.group.backend.dto.StatusDTO;
 import com.group.backend.entity.Order;
@@ -85,11 +86,13 @@ public class OrderServiceImp implements OrderService {
     }
 
     @Override
-    public String updateStatus(OrderDTO orderDTO) {
-        Order order = orderRepo.findById(orderDTO.getId());
-        StatusDTO statusDTO = statusService.getStatusById(orderDTO.getStatus().getId());
-        order.setStatus(modelMapper.map(statusDTO, Status.class));
-        orderRepo.save(order);
+    public String updateStatus(ChangeOrderStatusDTO changeOrderStatusDTO) {
+        for(long x : changeOrderStatusDTO.getOrderIds()) {
+            Order order = orderRepo.findById(x);
+            StatusDTO statusDTO = statusService.getStatusById(changeOrderStatusDTO.getStatusId());
+            order.setStatus(modelMapper.map(statusDTO, Status.class));
+            orderRepo.save(order);
+        }
         return "Order status updated completed!";
     }
 }
