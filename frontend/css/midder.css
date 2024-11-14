@@ -9,7 +9,7 @@
 
 .midder__container{
     height: auto;
-    width: 1200px;
+    width: auto;
     display: flex;
 }
 
@@ -45,7 +45,7 @@
 .midder__center{
     height: auto;
     width: auto;
-    margin-left: 20px;
+    margin-left: 320px;
 }
 
 .midder__slide{
