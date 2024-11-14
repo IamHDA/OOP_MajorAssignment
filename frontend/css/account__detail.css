@@ -404,3 +404,7 @@
     background-color: rgb(235, 235, 235);
     cursor: pointer;
 }
+
+.delete{
+    padding: 10px;
+}
