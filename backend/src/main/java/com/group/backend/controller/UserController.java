@@ -32,7 +32,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
-    @GetMapping("/thisMonthUsers")
+    @GetMapping("/admin/thisMonthUsers")
     public ResponseEntity<List<UserDTO>> getThisMonthUsers(){
         return ResponseEntity.ok(userService.getThisMonthUsers());
     }
