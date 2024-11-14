@@ -420,6 +420,7 @@
 .orderDetail{
     height: auto;
     border-radius: 20px;
+    display: none;
 }
 
 .orderDetail .idOrder{

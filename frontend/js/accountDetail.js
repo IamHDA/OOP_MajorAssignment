@@ -335,6 +335,20 @@ async function buildOrderDetail(){
             await getDataOrderDetail(id, idOrder, receiverName, receiverPhone, shippingAddress, note, status, totalPrice);
         })
     })
+    selectProduct();
+}
+
+function selectProduct(){
+    let tableOrder = document.querySelector('.tableOrder');
+    let nextRow = tableOrder.querySelectorAll('.nextRow');
+    nextRow.forEach(function(element){
+        let productName = element.querySelector('.productName');
+        let idProduct = element.querySelector('.idProduct');
+        productName.addEventListener('click', function(){
+            localStorage.setItem('id__product', idProduct);
+            window.location.href = 'product.html';
+        })
+    })
 }
 
 // thay doi mat khau
