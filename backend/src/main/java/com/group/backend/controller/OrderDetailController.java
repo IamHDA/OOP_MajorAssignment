@@ -27,14 +27,8 @@ public class OrderDetailController {
     @PostMapping("/add")
     public ResponseEntity<Void> addOrderDetail(@RequestBody List<CartDetailDTO> cartDetailDTOS) {
         List<OrderDetailDTO> orderDetailDTOS = cartDetailDTOS.stream()
-                        .map(tmp -> {
-                            OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
-                            orderDetailDTO.setQuantity(tmp.getQuantity());
-                            orderDetailDTO.setLaptop(tmp.getLaptop());
-                            orderDetailDTO.setUnitPrice(tmp.getUnitPrice());
-                            return orderDetailDTO;
-                        })
-                                .collect(Collectors.toList());
+                        .map(tmp -> modelMapper.map(tmp, OrderDetailDTO.class))
+                        .collect(Collectors.toList());
         orderDetailService.addOrderDetail(orderDetailDTOS);
         return ResponseEntity.ok().build();
     }

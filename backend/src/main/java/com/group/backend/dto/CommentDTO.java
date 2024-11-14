@@ -14,5 +14,5 @@ public class CommentDTO {
     @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
     private LocalDateTime postAt;
     @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
-    private String updateAt;
+    private LocalDateTime updateAt;
 }
