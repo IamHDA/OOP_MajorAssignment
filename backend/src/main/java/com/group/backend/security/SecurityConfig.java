@@ -53,6 +53,7 @@ public class SecurityConfig {
                                 "/login",
                                 "/register",
                                 "/laptop/**",
+                                "/refresh-token",
                                 "/collections/**",
                                 "/resetPassword/**")
                         .permitAll()

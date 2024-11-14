@@ -25,20 +25,6 @@ var danhSachDonHangBox = document.querySelector('.account__detail__content___dan
 var thayDoiMatKhauBox = document.querySelector('.account__detail__content___thay-doi-mat-khau');
 var empty = document.querySelector('.empty');
 
-function daucham(num){
-    let tmp = "";
-    let mark = 0;
-    for(let i = num.length - 1; i >= 0; i--){
-        mark += 1;
-        tmp = num[i] + tmp;
-        if(mark == 3 && i != 0){
-            tmp = "." + tmp;
-            mark = 0
-        }
-    }
-    return tmp;
-}
-
 async function getDataUserName() {
     
     var text = document.querySelector("#taikhoancua");
@@ -244,7 +230,7 @@ async function buildOder(){
     let danhSachDonHang = document.querySelector('.danh-sach-don-hang');
     danhSachDonHang.addEventListener('click', async function(){
         let tableDanhSachDonHang = document.querySelector('.tableDanhSachDonHang');
-        tableDanhSachDonHang.innerHTML = '<tr class="firstRow"><td class="stt">STT</td><td class="id">Số đơn hàng</td><td class="totalPrice">Giá trị</td><td class="status">Trạng thái</td></tr>';
+        tableDanhSachDonHang.innerHTML = '<tr class="firstRow"><td class="stt">STT</td><td class="id">Mã đơn hàng</td><td class="totalPrice">Đơn giá</td><td>Ngày đặt hàng</td><td>Phương thức thanh toán</td><td class="status">Trạng thái</td></tr>';
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
         let response = await fetch('http://localhost:8080/order/getCurrentUserOrder', {
@@ -277,9 +263,9 @@ async function buildOder(){
         }
         else{
             document.querySelector('.oderEmpty').style.display = "none";
-            document.querySelector('.tableDanhSachDonHang').style.display = "block";
-        }
-    })    
+        } 
+        await buildOrderDetail(); 
+    })  
 }
 
 //OrderDetail
@@ -299,15 +285,19 @@ async function getDataOrderDetail(id, idOrder, receiverName, receiverPhone, ship
     ShippingAddress.innerHTML = shippingAddress;
     Note.innerHTML = note;
 
-    let response = await fetch(`http://localhost:8080//order-detail/${idOrder}`, {
+    await checkAccessTokenIsvalid();
+    let accessToken = localStorage.getItem('accessToken');
+    let response = await fetch(`http://localhost:8080/order-detail/${idOrder}`, {
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
         } 
     });
 
     response = await response.json();
     let index = 1;
-    let tableOrder = orderDetail.querySelector('.tableOrder')
+    let tableOrder = orderDetail.querySelector('.tableOrder');
+    tableOrder.innerHTML = '<tr class="firstRow"><td class="ordinalNumber">STT</td><td class="productImg">Ảnh</td><td class="productName">Tên sản phẩm</td><td class="productPrice">Giá bán</td><td class="productQuantity">Số lượng</td><td class="totalPrice">Tổng</td> </tr>';
     response.forEach(function(element){
         let idProduct = '<td class="idProduct">' + element.laptop.id + '</td>'
         let ordinalNumber = '<td class="ordinalNumber">' + index + '</td>';
@@ -329,6 +319,7 @@ async function getDataOrderDetail(id, idOrder, receiverName, receiverPhone, ship
 async function buildOrderDetail(){
     let tableDanhSachDonHang = document.querySelector('.tableDanhSachDonHang');
     let nextRow = tableDanhSachDonHang.querySelectorAll('.nextRow');
+    console.log(nextRow);
     nextRow.forEach(function(element){
         element.addEventListener('click', async function(){
             danhSachDonHangBox.style.display = 'none';
@@ -410,7 +401,6 @@ async function mainAccountDetail() {
     await changeUserInfor();
     await changePassword();
     await buildOder();
-    await buildOrderDetail();
     logOutFunc();
 }
 

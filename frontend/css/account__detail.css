@@ -70,6 +70,8 @@
     height: auto;
     width: 960px;
     border-radius: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .account__detail__content .empty{
@@ -369,7 +371,7 @@
 }
 
 .tableDanhSachDonHang{
-    width: 98%;
+    width: 97.5%;
     border-radius: 8px;
     border-collapse: collapse;
 }
@@ -390,11 +392,6 @@
     font-weight: 500;
     text-align: center;
     transition: background-color 0.15s;
-}
-
-.tableDanhSachDonHang .nextRow .receiverName, .tableDanhSachDonHang .nextRow .receiverPhone, .tableDanhSachDonHang .nextRow .shippingAddress, .tableDanhSachDonHang .nextRow .note
-.tableDanhSachDonHang .nextRow .idOrder{
-    display: none;
 }
 
 .tableDanhSachDonHang .nextRow .receiverName, .tableDanhSachDonHang .nextRow .receiverPhone, .tableDanhSachDonHang .nextRow .shippingAddress, .tableDanhSachDonHang .nextRow .note
@@ -508,8 +505,14 @@
 }
 
 .productImg img{
-    height: 70px;
-    width: auto;
+    height: 80px;
+    width: 80px;
+    object-fit: contain;
+    object-position: center;
+}
+
+.productImg{
+    width: 100px;
 }
 
 .firstRow {
@@ -522,6 +525,27 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+.ordinalNumber{
+    width: 40px;
+}
+
+.productQuantity{
+    width: 80px;
+}
+
+.totalPrice{
+    width: 130px;
+}
+
+.productPrice{
+    width: 120px;
+}
+
+.productName{
+    width: 518px;
+}
+
 .nextRow .idProduct{
     display: none;
 }
@@ -552,6 +576,10 @@
     color: red;
     font-size: 20px;
     font-weight: 600;
+}
+
+.orderPrice .title{
+    width: 589px;
 }
 
 
