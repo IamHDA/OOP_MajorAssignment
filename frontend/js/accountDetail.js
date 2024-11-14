@@ -278,7 +278,7 @@ async function getDataOrderDetail(id, idOrder, receiverName, receiverPhone, ship
     let ShippingAddress = orderDetail.querySelector('.addressText');
     let Note = orderDetail.querySelector('.noteText');
 
-    IdOder.innerHTML = 'Đơn hàng số' + id;
+    IdOder.innerHTML = 'Đơn hàng số ' + id;
     Status.innerHTML = status;
     ReceiverName.innerHTML = receiverName;
     ReceiverPhone.innerHTML = receiverPhone;
@@ -333,17 +333,19 @@ async function buildOrderDetail(){
             let status = element.querySelector('.status').textContent;
             let totalPrice = element.querySelector('.totalPrice').textContent;
             await getDataOrderDetail(id, idOrder, receiverName, receiverPhone, shippingAddress, note, status, totalPrice);
+            selectProduct();
         })
     })
-    selectProduct();
+    
 }
 
 function selectProduct(){
     let tableOrder = document.querySelector('.tableOrder');
     let nextRow = tableOrder.querySelectorAll('.nextRow');
+    console.log(nextRow);
     nextRow.forEach(function(element){
         let productName = element.querySelector('.productName');
-        let idProduct = element.querySelector('.idProduct');
+        let idProduct = element.querySelector('.idProduct').textContent;
         productName.addEventListener('click', function(){
             localStorage.setItem('id__product', idProduct);
             window.location.href = 'product.html';

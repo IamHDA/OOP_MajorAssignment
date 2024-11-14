@@ -18,7 +18,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Transactional
     void deleteByUser(User user);
     @Query("""
-        select o from Order o
+        select o 
+        from Order o
         where o.user = :user
         order by o.id desc
     """)

@@ -32,6 +32,11 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
+    @GetMapping("/thisMonthUsers")
+    public ResponseEntity<List<UserDTO>> getThisMonthUsers(){
+        return ResponseEntity.ok(userService.getThisMonthUsers());
+    }
+
     @PutMapping("/changeInfo")
     public ResponseEntity<UserDTO> changeInfo(@RequestBody UserDTO userDTO){
         return ResponseEntity.ok(userService.changeInfo(userDTO));

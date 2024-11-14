@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,6 +84,15 @@ public class UserServiceImp implements UserService {
     @Override
     public List<UserDTO> getAllUsers() {
         List<User> users = userRepo.findAll();
+        return users.stream()
+                .map(tmp -> modelMapper.map(tmp, UserDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserDTO> getThisMonthUsers() {
+        LocalDate today = LocalDate.now();
+        List<User> users = userRepo.findThisMonthUsers(today);
         return users.stream()
                 .map(tmp -> modelMapper.map(tmp, UserDTO.class))
                 .collect(Collectors.toList());

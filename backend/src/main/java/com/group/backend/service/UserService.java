@@ -14,4 +14,5 @@ public interface UserService {
     String changeUsersRole(ChangeUserRoleDTO changeUserRoleDTO);
     String deleteUsers(List<Long> list);
     List<UserDTO> getAllUsers();
+    List<UserDTO> getThisMonthUsers();
 }

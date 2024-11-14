@@ -175,7 +175,7 @@ async function postComment() {
             alert("Bạn cần phải đăng nhập để bình luận!")
         }
         else{
-            checkAccessTokenIsvalid();
+            await checkAccessTokenIsvalid();
             accessToken = localStorage.getItem('accessToken');
             let comment = commentInput.querySelector('.inputContent').value;
             let data = {
@@ -220,7 +220,7 @@ async function addProductToCart() {
                     "id": idProduct
                 }
                 };
-                checkAccessTokenIsvalid();
+                await checkAccessTokenIsvalid();
                 accessToken = localStorage.getItem("accessToken");
                 const response = await fetch('http://localhost:8080/cart-detail/add', {
                     method: 'POST',
@@ -263,7 +263,7 @@ async function buyNow() {
                     "id": idProduct
                 }
                 };
-                checkAccessTokenIsvalid();
+                await checkAccessTokenIsvalid();
                 accessToken = localStorage.getItem("accessToken");
                 const response = await fetch('http://localhost:8080/cart-detail/add', {
                     method: 'POST',
@@ -291,6 +291,7 @@ async function buyNow() {
 }
 
 async function editComment(){
+    let accessToken = localStorage.getItem('accessToken');
     var commentContainer = document.querySelectorAll('.comment__container');
     commentContainer.forEach(function(element){
         let editComment = element.querySelector('.editComment');
@@ -307,10 +308,13 @@ async function editComment(){
                     id: idComment,
                     content: text
                 }
+                await checkAccessTokenIsvalid();
+                accessToken = localStorage.getItem('accessToken');
                 let response = await fetch('http://localhost:8080/comment/modify', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
                     },  
                     body: JSON.stringify(data)
                 });
@@ -324,17 +328,20 @@ async function editComment(){
 }
 
 async function deleteComment(){
+    let accessToken = localStorage.getItem('accessToken');
     var commentContainer = document.querySelectorAll('.comment__container');
-    console.log("DSFDSFDS");
     commentContainer.forEach(function(element){
         let deleteComment = element.querySelector('.deleteComment');
         if(deleteComment !== null){
             deleteComment.addEventListener('click', async function() {
-                let idComment = parseInt(element.querySelector('.id').textContent, 10) 
+                let idComment = parseInt(element.querySelector('.id').textContent, 10);
+                await checkAccessTokenIsvalid();
+                accessToken = localStorage.getItem('accessToken');
                 let response = await fetch(`http://localhost:8080/comment/delete/${idComment}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
                     },  
                 });
                 response = await response.text();
@@ -356,3 +363,4 @@ async function productDetailMain() {
 }
 
 productDetailMain();
+

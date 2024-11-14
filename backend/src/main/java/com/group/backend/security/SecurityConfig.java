@@ -55,7 +55,8 @@ public class SecurityConfig {
                                 "/laptop/**",
                                 "/refresh-token",
                                 "/collections/**",
-                                "/resetPassword/**")
+                                "/forgetPassword/**"
+                        )
                         .permitAll()
                         .requestMatchers(
                                 "/order/admin/**",
