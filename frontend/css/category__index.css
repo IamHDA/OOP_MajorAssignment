@@ -38,6 +38,7 @@
     font-weight: 700;
     color: rgb(0, 102, 193);
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .category__detail__branch .exception{

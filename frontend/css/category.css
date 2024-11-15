@@ -71,6 +71,7 @@
 }
 
 .category__detail__branch__name{
+    cursor: pointer;
     margin-top: 50px;
     font-size: 27px;
     font-weight: 700;
