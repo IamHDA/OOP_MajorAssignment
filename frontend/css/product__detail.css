@@ -356,7 +356,8 @@
 }
 
 .lienhekinhdoanh{
-    height: 190px;
+    height: auto;
+    padding-bottom: 13px;
     width: 270px;
     margin-top: 30px;
     border: 1px solid rgb(25, 136, 236);
@@ -548,6 +549,7 @@
 
 .comment__container{
     margin-bottom: 20px;
+    
 }
 
 .comment__container .id{
@@ -557,9 +559,9 @@
 .comment__input{
     height: auto;
     width: 1200px;
-    margin-top: 0px;
     background-color: white;
     margin: auto;
+    margin-bottom: 30px;
     border-radius: 0 0 10px 10px;
 }
 

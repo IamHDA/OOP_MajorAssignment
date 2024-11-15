@@ -52,7 +52,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/login",
                                 "/register",
-                                "/laptop/**",
+                                "/laptop/api/**",
                                 "/refresh-token",
                                 "/collections/**",
                                 "/forgetPassword/**"

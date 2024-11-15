@@ -18,7 +18,7 @@ function daucham(num){
 
 async function searchProduct(){
     let keyword = localStorage.getItem('valueSearch');
-    let data = await fetch(`http://localhost:8080/laptop/search?keyword=${keyword}`)
+    let data = await fetch(`http://localhost:8080/laptop/api/search?keyword=${keyword}`)
     data = await data.json();
     let allLaptop = document.querySelector('.all-laptop');
     for(let i = 0; i < data.length; i++){
@@ -445,18 +445,18 @@ async function buildFilter(){
     }
 
     let choices8 = option8.querySelectorAll('.choice');
-    for(let i = 0; i < choices7.length; i++){
+    for(let i = 0; i < choices8.length; i++){
         choices8[i].addEventListener('click', async function(){
             if(i == 0){
-                localStorage.setItem('status', '');
+                localStorage.setItem('state', '');
                 await getDaTaFilter();
             }
             if(i == 1){
-                localStorage.setItem('status', 'New');
+                localStorage.setItem('state', 'New');
                 await getDaTaFilter();
             }
             if(i == 2){
-                localStorage.setItem('status', 'Like-New');
+                localStorage.setItem('state', 'Like-New');
                 await getDaTaFilter();
             } 
         })

@@ -29,6 +29,7 @@ main{
     margin: 0 auto;
     gap: 15px;
     margin-top: -40px;
+    min-height: 310px;
 }
 
 .filter{
