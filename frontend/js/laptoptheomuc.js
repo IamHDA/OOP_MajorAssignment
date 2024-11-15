@@ -189,6 +189,7 @@ async function buildFilter(){
     let option5 = document.querySelector('#option5');
     let option6 = document.querySelector('#option6');
     let option7 = document.querySelector('#option7');
+    let option8 = document.querySelector('#option8');
 
     let choices1 = option1.querySelectorAll('.choice');
     for(let i = 0; i < choices1.length; i++){
@@ -440,6 +441,24 @@ async function buildFilter(){
                 localStorage.setItem('screenSize', '16');
                 await getDaTaFilter();
             }    
+        })
+    }
+
+    let choices8 = option8.querySelectorAll('.choice');
+    for(let i = 0; i < choices7.length; i++){
+        choices8[i].addEventListener('click', async function(){
+            if(i == 0){
+                localStorage.setItem('status', '');
+                await getDaTaFilter();
+            }
+            if(i == 1){
+                localStorage.setItem('status', 'New');
+                await getDaTaFilter();
+            }
+            if(i == 2){
+                localStorage.setItem('status', 'Like-New');
+                await getDaTaFilter();
+            } 
         })
     }
 
