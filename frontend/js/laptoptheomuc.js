@@ -160,7 +160,6 @@ async function getDaTaFilter() {
     let api = 'http://localhost:8080/collections/filter?category=' + category + '&brand=' + brand +  '&state=' + state + '&cpu=' + cpu + '&vga=' + vga + '&ram=' + ram + '&ssd=' + ssd + '&screenSize=' + screenSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder + '&minPrice=' + minPrice + '&maxPrice=' + maxPrice;
     let response = await fetch(`${api}`);
     let data = await response.json()
-    console.log(data);
     let allLaptop = document.querySelector('.all-laptop');
     allLaptop.innerHTML = "";
     for(let i = 0; i < data.length; i++){
@@ -225,7 +224,6 @@ async function buildFilter(){
     }
 
     let choices2 = option2.querySelectorAll('.choice');
-    console.log(option2);
     for(let i = 0; i < choices2.length; i++){
         choices2[i].addEventListener('click', async function(){
             if(i == 0){
@@ -268,7 +266,6 @@ async function buildFilter(){
 
     let choices3 = option3.querySelectorAll('.choice');
     for(let i = 0; i < choices3.length; i++){
-        console.log(choices3[i]);
         choices3[i].addEventListener('click', async function(){
             if(i == 0){
                 localStorage.setItem('cpu', '');
@@ -446,10 +443,8 @@ async function buildFilter(){
     }
 
     let sort = document.querySelector('.sortSelect');
-    console.log(sort);
     sort.addEventListener('change', async function(){
             let value = sort.value;
-            console.log(value);
             let tmp = value.split(" ");
             localStorage.setItem('sortBy', tmp[0]);
             localStorage.setItem('sortOrder', tmp[1]);
