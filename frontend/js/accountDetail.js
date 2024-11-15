@@ -252,10 +252,10 @@ async function buildOder(){
             let receiverName = '<td class="receiverName">' + element.receiverName + '</td>';
             let receiverPhone = '<td class="receiverPhone">' + element.receiverPhone +  '</td>';
             let shippingAddress = '<td class="shippingAddress">' + element.shippingAddress + '</td>';
-            let paymentMethod = '<td class="paymentMethod">' + element.paymentMethod + '</td>';
-            let dayOrder = '<td class="dayOrder">' + element.oderDate +'</td>';
+            let paymentMethod = '<td class="paymentMethod">' + element.paymentMethod.name + '</td>';
+            let dayOrder = '<td class="dayOrder">' + element.orderDate +'</td>';
             let note = '<td class="note">' + element.note + '</td>';
-            let nextRow =  '<tr class="nextRow">' + stt + id + idOrder + price + status + receiverName + receiverPhone + shippingAddress + note + paymentMethod + dayOrder + '</tr>';
+            let nextRow =  '<tr class="nextRow">' + stt + id + price + dayOrder + paymentMethod + status + receiverName + receiverPhone + shippingAddress + note + '</tr>';
             tableDanhSachDonHang.innerHTML += nextRow;
         });
 
