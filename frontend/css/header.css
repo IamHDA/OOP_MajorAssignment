@@ -186,6 +186,7 @@ a{
     position: sticky;
     top: 0;
     z-index: 100;
+    position: relative;
 }
 
 .header__bottom__container{
@@ -242,4 +243,61 @@ a{
     color: rgb(255, 255, 255);
     background-color: #74cdff;
     cursor: pointer;
+}
+
+.sugestion_search{
+    height: 300px;
+    max-height: 300px;
+    width: 1200px;
+    position: absolute;
+    top: 55px;
+    display: none;
+}
+
+.sugestion_search .id{
+    display: none;
+}
+
+.sugestion_search__container{
+    height: 100%;
+    width: 700px;
+    background-color: blue;
+    margin-left: 310px;
+}
+
+.sugestion{
+    height: 100px;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    cursor: pointer;
+}
+
+.sugestion__img{
+    height: 100%;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sugestion__img img{
+    width: auto;
+    height: 80px;
+    border: 0.5px solid rgb(0,91,173);
+}
+
+.sugestion .nameAndPrice .name{
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(0,91,173);
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.sugestion .nameAndPrice .price{
+    font-size: 16px;
+    color: Red;
+    margin-top: 10px;
+    margin-left: 20px;
 }
