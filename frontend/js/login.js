@@ -50,7 +50,11 @@ async function login(){
         });
     
         response = await response.json();
-        
+
+        if(response.role === "Admin"){
+            window.location.href = "admin-page/admin_overall.html";
+        }
+
         localStorage.setItem('name', response.name);
         var tmp = '<p> Xin chào ' + response.name + '<p>';
         var account = document.querySelector('.account');
@@ -76,7 +80,6 @@ async function login(){
         });
         
         response = await response.json();
-
         if(response.message == "User not found" || response.message == "Password is incorrect"){
             var war = document.querySelector('.incorrectEmail');
             war.style.display = "block";
@@ -95,7 +98,7 @@ async function login(){
             localStorage.setItem('refreshToken', response.refreshToken);
 
             await saveUserName();
-            location.reload();
+            // location.reload();
         }    
     })
 }

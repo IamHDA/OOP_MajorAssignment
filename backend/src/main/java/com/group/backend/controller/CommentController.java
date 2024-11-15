@@ -31,10 +31,6 @@ public class CommentController {
         return ResponseEntity.ok(commentService.deleteComment(id));
     }
 
-    @DeleteMapping("/admin/delete/{id}")
-    public ResponseEntity<String> deleteAdminComment(@PathVariable long id){
-        return ResponseEntity.ok(commentService.deleteComment(id));
-    }
     @GetMapping("/admin/getAllComment")
     public ResponseEntity<List<CommentDTO>> getAllComment(){
         return ResponseEntity.ok(commentService.getAllComment());

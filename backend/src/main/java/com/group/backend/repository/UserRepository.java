@@ -13,9 +13,9 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String username);
     @Query("""
-       select u 
+       select count(u) 
        from User u
        where month(u.registrationDate) = month(:today)
     """)
-    List<User> findThisMonthUsers(LocalDate today);
+    Long findThisMonthUsers(LocalDate today);
 }

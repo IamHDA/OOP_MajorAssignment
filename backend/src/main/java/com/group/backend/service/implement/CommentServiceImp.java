@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,7 +43,7 @@ public class CommentServiceImp implements CommentService {
 
     @Override
     public String updateComment(CommentDTO commentDTO) {
-        Comment comment = commentRepo.findById(commentDTO.getId());
+        Comment comment = commentRepo.findById(commentDTO.getId()).orElseThrow(() -> new RuntimeException("Can not find comment in the database"));
         comment.setUpdateAt(LocalDateTime.now());
         comment.setContent(commentDTO.getContent());
         commentRepo.save(comment);
@@ -51,6 +52,7 @@ public class CommentServiceImp implements CommentService {
 
     @Override
     public String deleteComment(long id) {
+        Comment comment = commentRepo.findById(id).orElseThrow(() -> new RuntimeException("Can not find comment in the database"));
         commentRepo.deleteById(id);
         return "Comment deleted successfully";
     }

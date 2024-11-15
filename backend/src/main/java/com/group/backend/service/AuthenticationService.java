@@ -25,6 +25,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -56,6 +57,7 @@ public class AuthenticationService {
         user.setEmail(request.getDataEmail());
         user.setPass(encoder.encode(request.getDataUserPassword()));
         user.setRole("Customer");
+        user.setRegistrationDate(LocalDate.now());
 
         userRepo.save(user);
 

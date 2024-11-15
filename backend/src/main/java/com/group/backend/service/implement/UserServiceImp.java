@@ -66,7 +66,7 @@ public class UserServiceImp implements UserService {
     @Override
     public String changeUsersRole(ChangeUserRoleDTO changeUserRoleDTO) {
         for(long x : changeUserRoleDTO.getUserIds()) {
-            User user = userRepo.findById(x).get();
+            User user = userRepo.findById(x).orElseThrow(() -> new RuntimeException("User not found"));
             user.setRole(changeUserRoleDTO.getRole());
             userRepo.save(user);
         }
@@ -76,6 +76,7 @@ public class UserServiceImp implements UserService {
     @Override
     public String deleteUsers(List<Long> list) {
         for(long x : list) {
+            User user = userRepo.findById(x).orElseThrow(() -> new RuntimeException("User not found"));
             userRepo.deleteById(x);
         }
         return "Delete users successfully";
@@ -90,11 +91,8 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public List<UserDTO> getThisMonthUsers() {
+    public Long getThisMonthUsers() {
         LocalDate today = LocalDate.now();
-        List<User> users = userRepo.findThisMonthUsers(today);
-        return users.stream()
-                .map(tmp -> modelMapper.map(tmp, UserDTO.class))
-                .collect(Collectors.toList());
+        return userRepo.findThisMonthUsers(today);
     }
 }

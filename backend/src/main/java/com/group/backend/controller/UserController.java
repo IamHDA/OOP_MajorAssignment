@@ -32,8 +32,8 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
-    @GetMapping("/admin/thisMonthUsers")
-    public ResponseEntity<List<UserDTO>> getThisMonthUsers(){
+    @GetMapping("/admin/getThisMonthUsers")
+    public ResponseEntity<Long> countThisMonthUsers(){
         return ResponseEntity.ok(userService.getThisMonthUsers());
     }
 
