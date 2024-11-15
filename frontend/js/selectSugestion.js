@@ -20,7 +20,7 @@ function inputTextInSearch(){
     let inputSearch = document.querySelector('.input__search');
     let sugestionSearch = document.querySelector('.sugestion_search');
     let sugestionSearchContainer = document.querySelector('.sugestion_search__container');
-    inputSearch.addEventListener('keydown', async function(){
+    inputSearch.addEventListener('input', async function(){
         sugestionSearchContainer.innerHTML = "";
         sugestionSearch.style.display = 'block';
         let keyword = inputSearch.value;
@@ -29,16 +29,17 @@ function inputTextInSearch(){
         await data.forEach(function(element){
             let id =  '<div class="id">' + element.id + '</div>';
             let img = '<div class="sugestion__img">' + '<img src="'  + element.images[0].filePath + '" alt=""></div>';
-            let name = '<p class="name">' + element.name + element.name + '(' + element.specification.cpu + ', ' + element.specification.ram + ', ' + element.specification.rom + ', ' + element.specification.graphicsCard + ', ' + element.specification.screen + ')' + '</p>';
+            let name = '<p class="name">' + element.name + '(' + element.specification.cpu + ', ' + element.specification.ram + ', ' + element.specification.rom + ', ' + element.specification.graphicsCard + ', ' + element.specification.screen + ')' + '</p>';
             let price = element.price * (100 - element.sale) / 100;
             price = lamtron(price);
             price = price.toString();
             price = daucham(price);
-            let Price = '<p class="price">' + price + '</p>';
+            let Price = '<p class="price">' + price + " VNĐ" + '</p>';
             let nameAndPrice =  '<div class="nameAndPrice">' + name + Price + '</div>';
             let sugestion =  '<div class="sugestion">' + id + img + nameAndPrice + '</div>';
             sugestionSearchContainer.innerHTML += sugestion;
         })
+        selectSugestion();
     })
 }
 
@@ -46,7 +47,7 @@ function selectSugestion(){
     let sugestion = document.querySelectorAll('.sugestion');
     sugestion.forEach(function(element){
         element.addEventListener('click', function(){
-            localStorage.setItem('id__product', element.id.textContent);
+            localStorage.setItem('id__product', element.querySelector('.id').textContent);
             window.location.href = 'product.html';
         })
     })

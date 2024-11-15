@@ -247,11 +247,10 @@ a{
 }
 
 .sugestion_search{
-    height: 300px;
-    max-height: 300px;
-    width: 1200px;
+    width: 700px;
     position: absolute;
     top: 55px;
+    left: 465px;
     display: none;
 }
 
@@ -260,12 +259,12 @@ a{
 }
 
 .sugestion_search__container{
-    height: 100%;
+    height: auto;
+    max-height: 300px;
     width: 700px;
     background-color: white;
     overflow: scroll;
     overflow-x: hidden;
-    margin-left: 310px;
     border-radius: 4.5px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -287,11 +286,16 @@ a{
     background-color: white;
     display: flex;
     cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.sugestion:hover{
+    background-color: rgb(230, 230, 230);
 }
 
 .sugestion__img{
     height: 100%;
-    width: 100px;
+    width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -300,13 +304,13 @@ a{
 .sugestion__img img{
     width: 90px;
     height: 80px;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     border: 0.5px solid rgb(0,91,173);
 }
 
 .sugestion .nameAndPrice .name{
-    width: 550px;
+    width: 560px;
     font-size: 17px;
     font-weight: 500;
     color: rgb(0,91,173);
