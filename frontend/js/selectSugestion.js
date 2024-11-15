@@ -53,3 +53,4 @@ function selectSugestion(){
 }
 
 inputTextInSearch();
+selectSugestion();
