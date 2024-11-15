@@ -262,13 +262,28 @@ a{
 .sugestion_search__container{
     height: 100%;
     width: 700px;
-    background-color: blue;
+    background-color: white;
+    overflow: scroll;
+    overflow-x: hidden;
     margin-left: 310px;
+    border-radius: 4.5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.sugestion_search__container::-webkit-scrollbar {
+    width: 8px; 
+}
+
+.sugestion_search__container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
 }
 
 .sugestion{
     height: 100px;
     width: 100%;
+    margin-left: 10px;
     background-color: white;
     display: flex;
     cursor: pointer;
@@ -283,22 +298,25 @@ a{
 }
 
 .sugestion__img img{
-    width: auto;
+    width: 90px;
     height: 80px;
+    object-fit: contain;
+    object-position: center;
     border: 0.5px solid rgb(0,91,173);
 }
 
 .sugestion .nameAndPrice .name{
-    font-size: 16px;
+    width: 550px;
+    font-size: 17px;
     font-weight: 500;
     color: rgb(0,91,173);
-    margin-top: 20px;
-    margin-left: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 .sugestion .nameAndPrice .price{
-    font-size: 16px;
+    font-size: 17px;
     color: Red;
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
 }

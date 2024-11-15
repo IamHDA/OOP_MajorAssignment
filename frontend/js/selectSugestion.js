@@ -24,12 +24,12 @@ function inputTextInSearch(){
         sugestionSearchContainer.innerHTML = "";
         sugestionSearch.style.display = 'block';
         let keyword = inputSearch.value;
-        let data = await fetch(`http://localhost:8080/laptop/search?keyword=${keyword}`)
+        let data = await fetch(`http://localhost:8080/laptop/api/search?keyword=${keyword}`)
         data = await data.json();
         await data.forEach(function(element){
             let id =  '<div class="id">' + element.id + '</div>';
             let img = '<div class="sugestion__img">' + '<img src="'  + element.images[0].filePath + '" alt=""></div>';
-            let name = '<p class="name">' + element.name + '</p>';
+            let name = '<p class="name">' + element.name + element.name + '(' + element.specification.cpu + ', ' + element.specification.ram + ', ' + element.specification.rom + ', ' + element.specification.graphicsCard + ', ' + element.specification.screen + ')' + '</p>';
             let price = element.price * (100 - element.sale) / 100;
             price = lamtron(price);
             price = price.toString();
@@ -37,7 +37,7 @@ function inputTextInSearch(){
             let Price = '<p class="price">' + price + '</p>';
             let nameAndPrice =  '<div class="nameAndPrice">' + name + Price + '</div>';
             let sugestion =  '<div class="sugestion">' + id + img + nameAndPrice + '</div>';
-            sugestionSearchContainer += sugestion;
+            sugestionSearchContainer.innerHTML += sugestion;
         })
     })
 }
