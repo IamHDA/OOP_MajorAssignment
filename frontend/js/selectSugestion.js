@@ -42,4 +42,14 @@ function inputTextInSearch(){
     })
 }
 
+function selectSugestion(){
+    let sugestion = document.querySelectorAll('.sugestion');
+    sugestion.forEach(function(element){
+        element.addEventListener('click', function(){
+            localStorage.setItem('id__product', element.id.textContent);
+            window.location.href = 'product.html';
+        })
+    })
+}
+
 inputTextInSearch();
