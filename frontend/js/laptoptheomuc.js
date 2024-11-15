@@ -42,7 +42,8 @@ async function searchProduct(){
 async function selectCategoryProduct(){
     let category = localStorage.getItem('category');
     let state = localStorage.getItem('state');
-    let api = 'http://localhost:8080/collections/filter?category=' + category + '&brand=&state=' + state + '&cpu&vga&ram&ssd&screenSize&sortBy&sortOrder&minPrice=0&maxPrice=0';    
+    let brand = localStorage.getItem('brand');
+    let api = 'http://localhost:8080/collections/filter?category=' + category + '&brand=' + brand + '&state=' + state + '&cpu&vga&ram&ssd&screenSize&sortBy&sortOrder&minPrice=0&maxPrice=0';    
 
     let data = await fetch(`${api}`)
     data = await data.json();
