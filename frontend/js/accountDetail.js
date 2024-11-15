@@ -230,7 +230,7 @@ async function buildOder(){
     let danhSachDonHang = document.querySelector('.danh-sach-don-hang');
     danhSachDonHang.addEventListener('click', async function(){
         let tableDanhSachDonHang = document.querySelector('.tableDanhSachDonHang');
-        tableDanhSachDonHang.innerHTML = '<tr class="firstRow"><td class="stt">STT</td><td class="id">Mã đơn hàng</td><td class="totalPrice">Đơn giá</td><td>Ngày đặt hàng</td><td>Phương thức thanh toán</td><td class="status">Trạng thái</td></tr>';
+        tableDanhSachDonHang.innerHTML = '<tr class="firstRow"><td class="stt">STT</td><td class="id">Mã đơn hàng</td><td class="totalPrice">Đơn giá</td><td class="dayOrder">Ngày đặt hàng</td><td class="paymentMethod">Phương thức thanh toán</td><td class="status">Trạng thái</td></tr>';
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
         let response = await fetch('http://localhost:8080/order/getCurrentUserOrder', {
@@ -252,8 +252,10 @@ async function buildOder(){
             let receiverName = '<td class="receiverName">' + element.receiverName + '</td>';
             let receiverPhone = '<td class="receiverPhone">' + element.receiverPhone +  '</td>';
             let shippingAddress = '<td class="shippingAddress">' + element.shippingAddress + '</td>';
+            let paymentMethod = '<td class="paymentMethod">' + element.paymentMethod + '</td>';
+            let dayOrder = '<td class="dayOrder">' + element.oderDate +'</td>';
             let note = '<td class="note">' + element.note + '</td>';
-            let nextRow =  '<tr class="nextRow">' + stt + id + idOrder + price + status + receiverName + receiverPhone + shippingAddress + note + '</tr>';
+            let nextRow =  '<tr class="nextRow">' + stt + id + idOrder + price + status + receiverName + receiverPhone + shippingAddress + note + paymentMethod + dayOrder + '</tr>';
             tableDanhSachDonHang.innerHTML += nextRow;
         });
 
