@@ -39,6 +39,7 @@ async function checkAccessTokenIsvalid() {
             localStorage.setItem('refreshToken', refreshData.refreshToken);
 
             console.log('Tokens refreshed successfully');
+            location.reload();
         } else {
             console.log('Token is still valid');
         }
