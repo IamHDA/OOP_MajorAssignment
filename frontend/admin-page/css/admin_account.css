@@ -40,6 +40,10 @@
     padding: 17px;
 }
 
+.table-first-row{
+    text-align: center;
+}
+
 .table-other-row{
     transition: background-color 0.15s;
 }
@@ -49,7 +53,12 @@
 }
 
 .stt{
-    width: 30px;
+    width: 20px;
+    text-align: center;
+}
+
+.id{
+    width: 10px;
     text-align: center;
 }
 
@@ -57,8 +66,12 @@
     width: 200px;
 }
 
+.registration-date{
+    width: 93px;
+}
+
 .email{
-    width: 300px;
+    width: 270px;
 }
 
 .contact{
