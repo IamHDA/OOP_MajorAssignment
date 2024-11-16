@@ -417,6 +417,10 @@
 }
 /* oderdetail */
 
+.dayOrder{
+    width: 150px;
+}
+
 .orderDetail{
     height: auto;
     border-radius: 20px;
@@ -536,7 +540,7 @@
 }
 
 .totalPrice{
-    width: 130px;
+    width: 170px;
 }
 
 .productPrice{
@@ -583,5 +587,7 @@
     width: 589px;
 }
 
-
+.tableDanhSachDonHang .receiverName, .tableDanhSachDonHang .receiverPhone, .tableDanhSachDonHang .idOrder, .tableDanhSachDonHang .note, .tableDanhSachDonHang .shippingAddress{
+    display: none;
+}
 

@@ -37,6 +37,7 @@ async function searchProduct(){
         var laptopContainer = '<div class="product__container">' + idProduct + imgProduct + nameProduct + productPrice +productBasePrice + cart + '</div>';
         allLaptop.innerHTML += laptopContainer;
     }
+    selectProduct();
 }
 
 async function selectCategoryProduct(){
@@ -64,6 +65,7 @@ async function selectCategoryProduct(){
         var laptopContainer = '<div class="product__container">' + idProduct + imgProduct + nameProduct + productPrice +productBasePrice + cart + '</div>';
         allLaptop.innerHTML += laptopContainer;
     }
+    selectProduct();
 }
 
 async function seeAll(){
@@ -179,9 +181,11 @@ async function getDaTaFilter() {
         var laptopContainer = '<div class="product__container">' + idProduct + imgProduct + nameProduct + productPrice +productBasePrice + cart + '</div>';
         allLaptop.innerHTML += laptopContainer;
     }
+    selectProduct();
 }
 
 async function buildFilter(){
+    await getDaTaFilter();
     let option1 = document.querySelector('#option1');
     let option2 = document.querySelector('#option2');
     let option3 = document.querySelector('#option3');
@@ -472,7 +476,7 @@ async function buildFilter(){
     })
 }
 
-function selectProduct(){
+async function selectProduct(){
     var productContainer = document.querySelectorAll('.product__container');
     
     productContainer.forEach(function(element){
@@ -514,7 +518,6 @@ async function laptoptheomucMain(){
     else{
         await seeAll();
     }
-    await reset();
     await buildFilter();
     selectProduct();
 } 

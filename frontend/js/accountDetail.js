@@ -230,7 +230,7 @@ async function buildOder(){
     let danhSachDonHang = document.querySelector('.danh-sach-don-hang');
     danhSachDonHang.addEventListener('click', async function(){
         let tableDanhSachDonHang = document.querySelector('.tableDanhSachDonHang');
-        tableDanhSachDonHang.innerHTML = '<tr class="firstRow"><td class="stt">STT</td><td class="receiverName"></td><td class="receiverPhone"></td><td class="note"></td><td class="id">Mã đơn hàng</td><td class="totalPrice">Đơn giá</td><td class="dayOrder">Ngày đặt hàng</td><td class="paymentMethod">Phương thức thanh toán</td><td class="status">Trạng thái</td><td class="receiverName"></td><td class="receiverPhone"></td><td class="shippingAddress"></td><td class="shippingAddress"></td><td class="note"></td></tr>';
+        tableDanhSachDonHang.innerHTML = '<tr class="firstRow"><td class="stt">STT</td><td class="receiverName"></td><td class="receiverPhone"></td><td class="id">Mã đơn hàng</td><td class="totalPrice">Đơn giá</td><td class="dayOrder">Ngày đặt hàng</td><td class="paymentMethod">Phương thức thanh toán</td><td class="status">Trạng thái</td><td class="receiverName"></td><td class="receiverPhone"></td><td class="shippingAddress"></td><td class="note"></td></tr>';
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
         let response = await fetch('http://localhost:8080/order/getCurrentUserOrder', {
