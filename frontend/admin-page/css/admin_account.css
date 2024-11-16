@@ -125,3 +125,7 @@
     display: block;
     width: 100px !important;
 }
+
+.first-row .table-row .id{
+    display: none;
+}
