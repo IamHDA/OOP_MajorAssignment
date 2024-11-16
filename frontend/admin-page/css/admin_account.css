@@ -63,7 +63,8 @@
 }
 
 .name{
-    width: 200px;
+    width: 150px;
+    text-align: center;
 }
 
 .registration-date{
@@ -76,10 +77,12 @@
 
 .contact{
     width: 106px;
+    text-align: center;
 }
 
 .role{
-    width: 97px;
+    width: 70px;
+    text-align: center;
 }
 
 .change-role, .delete-account{
@@ -137,8 +140,4 @@
 .new-role{
     display: block;
     width: 100px !important;
-}
-
-.first-row .table-row .id{
-    display: none;
 }

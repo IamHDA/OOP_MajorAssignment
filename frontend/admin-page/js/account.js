@@ -17,19 +17,20 @@ async function getAllAccount(){
 async function buildAllAccount() {
     let data = await getAllAccount();
     let index = 1;
-    let firstRow = document.querySelector('.first-row');
+    let accountTable = document.querySelector('.account-table');
     await data.forEach(function(element){
+        console.log(element);
         let id = '<td class="id">' + element.id + '</td>';
         let stt =  '<td class="stt">' + index + '</td>';
         index += 1;
         let name = '<td class="name">' + element.name + '</td>';
         let email = '<td class="email">' + element.email + '</td>';
-        let contact = '<td class="contact">' + element.contact + '</td>';
+        let contact = '<td class="contact">' + element.phone + '</td>';
         let address = '<td class="address">' + element.address + '</td>';
         let registrationDate = '<td class="registration-date">' + element.registrationDate + '</td>';
         let role = '<td class="role">' + element.role + '</td>';
         let tableRow = '<tr class="table-other-row">' + id + stt + name + email + contact + address + registrationDate + role + '</tr>';
-        firstRow.innerHTML += tableRow;
+        accountTable.innerHTML += tableRow;
     })
 }
 
