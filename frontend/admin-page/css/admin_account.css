@@ -72,7 +72,7 @@
 }
 
 .email{
-    min-width: 270px;
+    min-width: 260px;
 }
 
 .contact{
@@ -103,6 +103,10 @@
     font-size: 20px;
     border-radius: 5px;
     border-color: black;
+}
+
+.address{
+    min-width: 150px;
 }
 
 .role-input{
@@ -145,7 +149,6 @@
 .pages{
     width: 1049px;
     display: flex;
-    overflow-x: hidden;
 }
 
 .pageTransition{
@@ -154,3 +157,4 @@
     gap: 10px;
     font-size: 20px;
 }
+
