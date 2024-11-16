@@ -70,8 +70,7 @@ async function buildProductDetail(response){
 
     for(let i = 0; i < listImg.length; i++){
         listImg[i].addEventListener('click', function(){
-            for(let j = 0
-                ; j < listImg.length; j++){
+            for(let j = 0; j < listImg.length; j++){
                 if(j != i){
                     listImg[j].style.borderWidth = "2px";
                 }

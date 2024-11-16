@@ -16,13 +16,21 @@ async function getAllAccount(){
 
 async function buildAllAccount() {
     let data = await getAllAccount();
+    let numberPage = 0;
+    if(data.length % 5 == 0){
+        numberPage = data.length / 5;
+    }
+    else{
+        numberPage = data.length / 5 + 1;
+    }
+    tmp = numberPage.toString();
+    document.querySelector('.numberPage').innerHTML = number; 
     let index = 1;
     let accountTable = "";
     let pages = document.querySelector('.pages');
     let numberRow = 0;
     await data.forEach(function(element){
         numberRow += 1;
-        
         let id = '<td class="id">' + element.id + '</td>';
         let stt =  '<td class="stt">' + index + '</td>';
         index += 1;
@@ -44,6 +52,35 @@ async function buildAllAccount() {
     if(numberRow > 0){
         accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
         pages.innerHTML += accountTable;
+    }
+    pageTrantition(numberPage);
+}
+
+function pageTrantition(numberPage){
+    let left = document.querySelector('.letf');
+    let right = document.querySelector('.right');
+    let currentPage = 1;
+    let accountTable = querySelectorAll('.account-table');
+    document.querySelector('.currentPage').innerHTML = currentPage;
+
+    if(currentPage > 1){
+        left.addEventListener('click', function(){
+            currentPage -= 1;
+            document.querySelector('.currentPage').innerHTML = currentPage;
+            accountTable.forEach(function(element){
+                element.style.transform = `translateX(-1049px)`;
+            })
+        })
+    }
+
+    if(currentPage < numberPage){
+        right.addEventListener('click', function(){
+            currentPage += 1;
+            document.querySelector('.currentPage').innerHTML = currentPage;
+            accountTable.forEach(function(element){
+                element.style.transform = `translateX(1049px)`;
+            })
+        })
     }
 }
 
