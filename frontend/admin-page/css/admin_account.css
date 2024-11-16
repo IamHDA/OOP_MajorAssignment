@@ -40,10 +40,6 @@
     padding: 17px;
 }
 
-.table-first-row{
-    text-align: center;
-}
-
 .table-other-row{
     transition: background-color 0.15s;
 }
@@ -53,36 +49,24 @@
 }
 
 .stt{
-    width: 20px;
-    text-align: center;
-}
-
-.id{
-    width: 10px;
+    width: 30px;
     text-align: center;
 }
 
 .name{
-    width: 150px;
-    text-align: center;
-}
-
-.registration-date{
-    width: 93px;
+    width: 200px;
 }
 
 .email{
-    width: 270px;
+    width: 300px;
 }
 
 .contact{
     width: 106px;
-    text-align: center;
 }
 
 .role{
-    width: 70px;
-    text-align: center;
+    width: 97px;
 }
 
 .change-role, .delete-account{
@@ -140,4 +124,8 @@
 .new-role{
     display: block;
     width: 100px !important;
+}
+
+.first-row .id{
+    display: none;
 }
