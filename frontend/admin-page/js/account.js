@@ -41,6 +41,10 @@ async function buildAllAccount() {
             numberRow = 0;
         }
     })
+    if(numberRow > 0){
+        accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
+        pages.innerHTML += accountTable;
+    }
 }
 
 await buildAllAccount();
