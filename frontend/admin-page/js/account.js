@@ -63,25 +63,26 @@ function pageTrantition(numberPage){
     let accountTable = querySelectorAll('.account-table');
     document.querySelector('.currentPage').innerHTML = currentPage;
 
-    if(currentPage > 1){
-        left.addEventListener('click', function(){
+    left.addEventListener('click', function(){
+        if(currentPage > 1){
             currentPage -= 1;
             document.querySelector('.currentPage').innerHTML = currentPage;
             accountTable.forEach(function(element){
                 element.style.transform = `translateX(-1049px)`;
             })
-        })
-    }
-
-    if(currentPage < numberPage){
-        right.addEventListener('click', function(){
+        }
+    });
+    
+    right.addEventListener('click', function() {
+        if (currentPage < numberPage) {
             currentPage += 1;
             document.querySelector('.currentPage').innerHTML = currentPage;
-            accountTable.forEach(function(element){
+            accountTable.forEach(function(element) {
                 element.style.transform = `translateX(1049px)`;
-            })
-        })
-    }
+            });
+        }
+            
+    });
 }
 
 await buildAllAccount();
