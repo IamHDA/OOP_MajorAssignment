@@ -169,8 +169,12 @@ async function submitCategory(){
     let chosen = selectedCategory.querySelectorAll('.chosen');
     chosen.forEach(function(element){
         let category = {
-            name: name,
-            catrgory: chuanHoaCategory(element.querySelector('.categoryName').innerHTML)
+            laptop : {
+                name: name,
+            },
+            category:{
+                name: chuanHoaCategory(element.querySelector('.categoryName').innerHTML)
+            } 
         }
         dataCategory.push(category);
     })
@@ -197,9 +201,9 @@ async function laptopMain(){
     let confirmButton = document.querySelector('.confirm-button');
     confirmButton.addEventListener('click', async function(){
         // await submitLaptop();
-        await submitSpecification();
+        // await submitSpecification();
         // await submitImg();
-        // await submitCategory();
+        await submitCategory();
     });
 }
 

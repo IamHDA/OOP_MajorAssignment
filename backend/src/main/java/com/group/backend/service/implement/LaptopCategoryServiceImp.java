@@ -43,6 +43,6 @@ public class LaptopCategoryServiceImp implements LaptopCategoryService {
                 })
                 .collect(Collectors.toList());
         laptopCategoryRepo.saveAll(laptopCategories);
-        return "Added Laptop Category successfully";
+        return "Laptop Category added successfully";
     }
 }

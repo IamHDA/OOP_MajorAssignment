@@ -41,6 +41,6 @@ public class ImageServiceImp implements ImageService {
             images.get(i).transferTo(new File(folderPath));
             System.out.println(folderPath);
         }
-        return "File uploaded successfully";
+        return "Image uploaded successfully";
     }
 }
