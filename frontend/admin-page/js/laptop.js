@@ -17,7 +17,7 @@ async function submitImg(){
     const formData = new FormData();
     let fileInput = document.querySelector('.file-input');
     for(const file of fileInput.files){
-        formData.append("files", file);
+        formData.append("images", file);
     }
     try{
         await checkAccessTokenIsvalid();
@@ -25,7 +25,6 @@ async function submitImg(){
         await fetch(`http://localhost:8080/image/add`,{
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
             },
             body: formData,
@@ -218,8 +217,8 @@ async function laptopMain(){
     confirmButton.addEventListener('click', async function(){
         // await submitLaptop();
         // await submitSpecification();
-        // await submitImg();
-        await submitCategory();
+        await submitImg();
+        // await submitCategory();
     });
 }
 
