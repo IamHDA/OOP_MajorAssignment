@@ -1,3 +1,5 @@
+import checkAccessTokenIsvalid from './accessToken.js';
+
 function selectFileImg(){
     let fileInput = document.querySelector('.file-input');
     let importedFiles = document.querySelector('.imported-files');
@@ -16,10 +18,13 @@ async function submitImg(){
         formData.append("files", file);
     }
     try{
-        await fetch(`http://localhost:8080//image/add`,{
-            method: 'PUT',
+        await checkAccessTokenIsvalid();
+        let accessToken = localStorage.getItem('accessToken');
+        await fetch(`http://localhost:8080/image/add`,{
+            method: 'POST',
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
             },
             body: formData,
         });
@@ -42,13 +47,17 @@ async function submitLaptop() {
         sale: sale
     }
     try{
+        await checkAccessTokenIsvalid();
+        let accessToken = localStorage.getItem('accessToken');
         await fetch(`http://localhost:8080/laptop/admin/add`,{
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify(dataLaptop),
         });
+        console.log(dataLaptop);
     }
     catch(error){
         console.log("Da xay ra loi upload laptop: " + error);
@@ -63,7 +72,7 @@ async function submitSpecification() {
     let screen = document.querySelector('.screen').value;
     let battery = document.querySelector('.battery').value;
     let operatingSystem = document.querySelector('.os').value;
-    let weight = document.querySelector('.weigth').value;
+    let weight = document.querySelector('.weight').value;
     let webcam = document.querySelector('.webcam').value;
     let connectionPort = document.querySelector('.port').value;
     let port = document.getElementsByName("port");
@@ -76,28 +85,30 @@ async function submitSpecification() {
     }
 
     const dataSpecification = {
-        specification : {
-            cpu: cpu,
-            ram: ram,
-            rom: rom,
-            graphicsCard: vga,
-            screen: screen,
-            battery: battery,
-            operatingSystem: operatingSystem,
-            weight: weight,
-            webcam: webcam,
-            connectionPort: connectionPort,
-            muxSwitch: selectedPort
-        }
+        cpu: cpu,
+        ram: ram,
+        rom: rom,
+        graphicsCard: vga,
+        screen: screen,
+        battery: battery,
+        operatingSystem: operatingSystem,
+        weight: weight,
+        webcam: webcam,
+        connectionPort: connectionPort,
+        muxSwitch: selectedPort
     }
     try{
-        await fetch(`http://localhost:8080/laptop/admin/specification/add`,{
+        await checkAccessTokenIsvalid();
+        let accessToken = localStorage.getItem('accessToken');
+        await fetch(`http://localhost:8080/specification/add`,{
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify(dataSpecification),
         });
+        console.log(dataSpecification);
     }
     catch(error){
         console.log("Da xay ra loi upload specification: " + error);
@@ -108,7 +119,7 @@ function selectCategory(){
     let categoryButton = document.querySelector('.categoryButton');
     let drowList = document.querySelector('.dropdown-list');
     categoryButton.addEventListener('click', function(){
-        drowList.style.display = "block";
+        drowList.style.display = "grid";
     })
 
     
@@ -143,10 +154,13 @@ async function submitCategory(){
         name: category
     }
     try{
-        await fetch(`http://localhost:8080/laptop/admin/laptopCategory/add`,{
+        await checkAccessTokenIsvalid();
+        let accessToken = localStorage.getItem('accessToken');
+        await fetch(`http://localhost:8080/laptopCategory/add`,{
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify(dataCategory),
         });
@@ -161,10 +175,10 @@ async function laptopMain(){
     selectFileImg();
     let confirmButton = document.querySelector('.confirm-button');
     confirmButton.addEventListener('click', async function(){
-        await submitLaptop();
+        // await submitLaptop();
         await submitSpecification();
-        await submitImg();
-        await submitCategory();
+        // await submitImg();
+        // await submitCategory();
     });
 }
 
