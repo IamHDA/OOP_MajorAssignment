@@ -20,7 +20,7 @@ async function submitImg(){
         formData.append("images", file);
     }
     try{
-        await checkAccessTokenIsvalid();
+        let response = await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
         await fetch(`http://localhost:8080/image/add`,{
             method: 'POST',
@@ -29,6 +29,11 @@ async function submitImg(){
             },
             body: formData,
         });
+        response = await response.text();
+        if(response == "Image uploaded successfully"){
+            console.log(response);
+            ok4 = 1;
+        }
     }
     catch(error){
         console.log("Da xay ra loi upload file anh:" + error);
@@ -215,10 +220,13 @@ async function laptopMain(){
     selectFileImg();
     let confirmButton = document.querySelector('.confirm-button');
     confirmButton.addEventListener('click', async function(){
-        // await submitLaptop();
-        // await submitSpecification();
+        await submitLaptop();
+        await submitSpecification();
         await submitImg();
-        // await submitCategory();
+        await submitCategory();
+        if(ok1 == 1 && ok2 == 1 && ok3 == 1 && ok4 == 1){
+            location.reload();
+        }
     });
 }
 
