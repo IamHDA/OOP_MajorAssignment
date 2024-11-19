@@ -30,3 +30,10 @@ async function submitData(){
 }
 
 selectFileImg();
+
+async function laptopMain(){
+    let confirmButton = document.querySelector('.confirm-button');
+    confirmButton.addEventListener('click', submitData);
+}
+
+laptopMain();
