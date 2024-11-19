@@ -57,7 +57,7 @@ async function buildAllAccount() {
 }
 
 function pageTrantition(numberPage){
-    let left = document.querySelector('.letf');
+    let left = document.querySelector('.left');
     let right = document.querySelector('.right');
     let currentPage = 1;
     let accountTable = document.querySelectorAll('.account-table');
@@ -68,7 +68,7 @@ function pageTrantition(numberPage){
             currentPage -= 1;
             document.querySelector('.currentPage').innerHTML = currentPage;
             accountTable.forEach(function(element){
-                element.style.transform = `translateX(-1049px)`;
+                element.style.transform = `translateX(+1172px)`;
             })
         }
     });
@@ -78,7 +78,7 @@ function pageTrantition(numberPage){
             currentPage += 1;
             document.querySelector('.currentPage').innerHTML = currentPage;
             accountTable.forEach(function(element) {
-                element.style.transform = `translateX(1049px)`;
+                element.style.transform = `translateX(-1172px)`;
             });
         }
     });
