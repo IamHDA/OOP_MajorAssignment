@@ -130,12 +130,25 @@ function selectCategory(){
     });
 
     let selection = drowList.getElementsByTagName('p');
+    let selectedCategory = document.querySelector('.selected-category');
     for(let i = 0; i < selection.length; i++){
         selection[i].addEventListener('click', function(){
-            categoryButton.innerHTML = selection[i].innerHTML;
+            let tmp  = selection[i].innerHTML;
+            selectedCategory.innerHTML += '<div class="chosen">' + '<p class="categoryName">' + tmp + '</p> <i class="fa-solid fa-delete-left"></i> </div>';
             drowList.style.display = 'none';
+            deleteSelectedCategory();
         })
     }
+}
+
+function deleteSelectedCategory(){
+    let selectedCategory = document.querySelector('.selected-category');
+    let chosen = selectedCategory.querySelectorAll('.chosen');
+    chosen.forEach(function(element){
+        element.querySelector('i').addEventListener('click', function(){
+            element.remove();
+        })
+    })
 }
 
 function chuanHoaCategory(category){
@@ -148,11 +161,19 @@ function chuanHoaCategory(category){
 }
 
 async function submitCategory(){
-    let categoryButton = document.querySelector('.categoryButton');
-    let category = chuanHoaCategory(categoryButton.innerHTML);
-    const dataCategory = {
-        name: category
-    }
+    let name = document.querySelector('.name').value;
+    let selectedCategory = document.querySelector('.selected-category');
+    let dataCategory = [
+        
+    ];
+    let chosen = selectedCategory.querySelectorAll('.chosen');
+    chosen.forEach(function(element){
+        let category = {
+            name: name,
+            catrgory: chuanHoaCategory(element.querySelector('.categoryName').innerHTML)
+        }
+        dataCategory.push(category);
+    })
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
