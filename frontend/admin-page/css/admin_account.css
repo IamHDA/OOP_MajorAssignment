@@ -45,6 +45,7 @@
 }
 
 .table-other-row{
+    max-height: 78px;
     transition: background-color 0.15s;
 }
 
@@ -147,8 +148,9 @@
 }
 
 .pages{
-    width: 1049px;
+    width: 1172px;
     display: flex;
+    overflow-x: hidden;
 }
 
 .pageTransition{
@@ -156,6 +158,10 @@
     margin: 10px 0 0 500px;
     gap: 10px;
     font-size: 20px;
-    overflow-x: hidden;
+}
+
+.number{
+    display: flex;
+    gap: 3px;
 }
 

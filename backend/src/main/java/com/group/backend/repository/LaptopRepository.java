@@ -41,8 +41,8 @@ public interface LaptopRepository extends JpaRepository<Laptop, Long> {
         select l 
         from Laptop l
         join l.specification s
-        where lower(l.name) like lower(concat('%', :keyword, '%'))
-        or lower(l.brand) like lower(concat('%', :keyword, '%'))
+        where lower(l.name) like lower(concat(:keyword, '%'))
+        or lower(l.brand) like lower(concat(:keyword, '%'))
         or lower(s.rom) like lower(concat('%', :keyword, '%'))
         or lower(s.ram) like lower(concat('%', :keyword, '%'))
         or lower(s.cpu) like lower(concat('%', :keyword, '%'))

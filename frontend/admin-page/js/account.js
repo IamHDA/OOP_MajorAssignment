@@ -21,10 +21,10 @@ async function buildAllAccount() {
         numberPage = data.length / 5;
     }
     else{
-        numberPage = data.length / 5 + 1;
+        numberPage = Math.round(data.length / 5) + 1;
     }
-    tmp = numberPage.toString();
-    document.querySelector('.numberPage').innerHTML = number; 
+    let tmp = numberPage.toString();
+    document.querySelector('.numberPage').innerHTML = tmp; 
     let index = 1;
     let accountTable = "";
     let pages = document.querySelector('.pages');
@@ -60,7 +60,7 @@ function pageTrantition(numberPage){
     let left = document.querySelector('.letf');
     let right = document.querySelector('.right');
     let currentPage = 1;
-    let accountTable = querySelectorAll('.account-table');
+    let accountTable = document.querySelectorAll('.account-table');
     document.querySelector('.currentPage').innerHTML = currentPage;
 
     if(currentPage > 1){
@@ -80,6 +80,7 @@ function pageTrantition(numberPage){
             accountTable.forEach(function(element){
                 element.style.transform = `translateX(1049px)`;
             })
+            console.log(currentPage);
         })
     }
 }
