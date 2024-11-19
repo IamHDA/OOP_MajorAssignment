@@ -1,5 +1,7 @@
 import checkAccessTokenIsvalid from './accessToken.js';
 
+let ok1 = 1, ok2 = 1, ok3 = 1, ok4 = 1;
+
 function selectFileImg(){
     let fileInput = document.querySelector('.file-input');
     let importedFiles = document.querySelector('.imported-files');
@@ -47,7 +49,7 @@ async function submitLaptop() {
         sale: sale
     }
     try{
-        await checkAccessTokenIsvalid();
+        let response = await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
         await fetch(`http://localhost:8080/laptop/admin/add`,{
             method: 'POST',
@@ -57,7 +59,11 @@ async function submitLaptop() {
             },
             body: JSON.stringify(dataLaptop),
         });
-        console.log(dataLaptop);
+        response = await response.text();
+        if(response == "Laptop added successfully"){
+            console.log(response);
+            ok3 = 1;
+        }
     }
     catch(error){
         console.log("Da xay ra loi upload laptop: " + error);
@@ -100,7 +106,7 @@ async function submitSpecification() {
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        await fetch(`http://localhost:8080/specification/add`,{
+        let response = await fetch(`http://localhost:8080/specification/add`,{
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -108,7 +114,11 @@ async function submitSpecification() {
             },
             body: JSON.stringify(dataSpecification),
         });
-        console.log(dataSpecification);
+        response = await response.text();
+        if(response == "Specification added successfully"){
+            console.log(response);
+            ok1 = 1;
+        }
     }
     catch(error){
         console.log("Da xay ra loi upload specification: " + error);
@@ -164,7 +174,7 @@ async function submitCategory(){
     let name = document.querySelector('.name').value;
     let selectedCategory = document.querySelector('.selected-category');
     let dataCategory = [
-        
+
     ];
     let chosen = selectedCategory.querySelectorAll('.chosen');
     chosen.forEach(function(element){
@@ -181,7 +191,7 @@ async function submitCategory(){
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        await fetch(`http://localhost:8080/laptopCategory/add`,{
+        let response = await fetch(`http://localhost:8080/laptopCategory/add`,{
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -189,6 +199,12 @@ async function submitCategory(){
             },
             body: JSON.stringify(dataCategory),
         });
+
+        response = await response.text();
+        if(response == "Laptop Category added successfully"){
+            console.log(response);
+            ok2 = 1;
+        }
     }
     catch(error){
         console.log("Da xay ra loi upload category: " + error);
