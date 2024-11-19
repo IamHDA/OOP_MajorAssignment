@@ -152,7 +152,7 @@ async function submitCategory(){
         });
     }
     catch(error){
-        console.log("Da xay ra loi upload specification: " + error);
+        console.log("Da xay ra loi upload category: " + error);
     }
 }
 
