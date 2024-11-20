@@ -23,7 +23,7 @@ async function buildAllAccount() {
         numberPage = data.length / 5;
     }
     else{
-        numberPage = Math.round(data.length / 5) + 1;
+        numberPage = Math.floor(data.length / 5) + 1;
     }
     let currentPageNumber = 1;
     currentPage.innerHTML = currentPageNumber;
@@ -33,7 +33,6 @@ async function buildAllAccount() {
     let left = document.querySelector('.left');
     let right = document.querySelector('.right');
     let pages = document.querySelector('.pages');
-
     left.addEventListener('click', async function(){
         if(currentPageNumber > 1){
             currentPageNumber -= 1;
@@ -49,7 +48,7 @@ async function buildAllAccount() {
                 let address = '<td class="address">' + data[i].address + '</td>';
                 let registrationDate = '<td class="registration-date">' + data[i].registrationDate + '</td>';
                 let role = '<td class="role">' + data[i].role + '</td>';
-                let tableRow = '<tr class="table-other-row">' + id + stt + name + email + contact + address + registrationDate + role + '</tr>';
+                let tableRow = '<tr class="table-other-row">' + stt + id + name + email + contact + address + registrationDate + role + '</tr>';
                 accountTable += tableRow;
                 
                 if(numberRow == 5 || i == data.length - 1){
@@ -76,7 +75,7 @@ async function buildAllAccount() {
                 let address = '<td class="address">' + data[i].address + '</td>';
                 let registrationDate = '<td class="registration-date">' + data[i].registrationDate + '</td>';
                 let role = '<td class="role">' + data[i].role + '</td>';
-                let tableRow = '<tr class="table-other-row">' + id + stt + name + email + contact + address + registrationDate + role + '</tr>';
+                let tableRow = '<tr class="table-other-row">' + stt + id + name + email + contact + address + registrationDate + role + '</tr>';
                 accountTable += tableRow;
         
                 if(numberRow == 5 || i == data.length - 1){
@@ -104,7 +103,7 @@ async function buildPage1(data){
         let address = '<td class="address">' + data[i].address + '</td>';
         let registrationDate = '<td class="registration-date">' + data[i].registrationDate + '</td>';
         let role = '<td class="role">' + data[i].role + '</td>';
-        let tableRow = '<tr class="table-other-row">' + id + stt + name + email + contact + address + registrationDate + role + '</tr>';
+        let tableRow = '<tr class="table-other-row">' + stt + id + name + email + contact + address + registrationDate + role + '</tr>';
         accountTable += tableRow;
 
         if(numberRow == 5 || i == data.length - 1){
@@ -180,16 +179,15 @@ async function deleteAccount(){
     let deleteAccount = document.querySelector('.delete-account');
     let strId = deleteAccount.querySelector('.id-input').value;
     let listId = getListId(strId);
-    let data = {
-        userIds: []
-    }
+    let data = []
     for(let i = 0; i < listId.length; i++){
-        data.userIds.push(listId);
+        let id = parseInt(listId[i], 10);
+        data.push(id);
     }
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://localhost:8080//user/admin/deleteUsers',{
+        let response = await fetch('http://localhost:8080/user/admin/deleteUsers',{
             method: 'DELETE',
             headers: {
             'Content-Type': 'application/json',
