@@ -29,6 +29,7 @@ async function getAllComment() {
 }
 
 async function buildPage1() {
+    pageHTML.innerHTML = "";
     if(allComment.length % 10 == 0){
         numberPageComment = allComment.length % 10;
     }
