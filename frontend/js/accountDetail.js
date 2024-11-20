@@ -276,7 +276,7 @@ async function getDataOrderDetail(id, idOrder, receiverName, receiverPhone, ship
     let IdOder = orderDetail.querySelector('.idOrder');
     let Status = orderDetail.querySelector('.status');
     let ReceiverName = orderDetail.querySelector('.nameText');
-    let ReceiverPhone = orderDetail.querySelector('.phoneNumber');
+    let ReceiverPhone = orderDetail.querySelector('.phoneNumber');  
     let ShippingAddress = orderDetail.querySelector('.addressText');
     let Note = orderDetail.querySelector('.noteText');
 

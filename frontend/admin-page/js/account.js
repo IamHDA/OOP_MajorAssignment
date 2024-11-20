@@ -115,4 +115,67 @@ async function buildPage1(data){
     }
 }
 
+function getListId(StrId){
+    let res = [];
+    StrId = StrId.trim();
+    let listIdArr = listId.split(" ");
+    for(let i = 0; i < listIdArr.length; i++){
+        let tmp = "";
+        let index = 0;
+        while(true){
+            if(listIdArr[i][index] == ","){
+                res.push(tmp);
+                break;
+            }
+            if(index == listIdArr[i].length){
+                res.push(tmp);
+                break;
+            }
+            tmp += listIdArr[i][index];
+            index += 1
+        }
+    }
+    return res;
+}
+
+async function changeUserRole(){
+    let changeRole = document.querySelector('.change-role');
+    let StrId = changeRole.querySelector('.id-input').value;
+    let role = changeRole.querySelector('.role-input').value;
+    let listId = getListId(StrId);
+    let data = {
+        role: role,
+        userIds:[]
+    }
+    for(let i = 0; i < listId.length; i++){
+        let id = parseInt(listId[i], 10);
+        data.userIds.push(id);
+    }
+    try{
+        await checkAccessTokenIsvalid();
+        let accessToken = localStorage.getItem('accessToken');
+        let response = await fetch('http://localhost:8080/user/admin/changeUsersRole',{
+            method: 'GET',
+            headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify(data)
+        });
+        response = await response.text();
+        if(response == "Change user role succesfully"){
+            alert("Đã thay đổi vai trò người dùng thành công!");
+            window.location.reload();
+        }
+    }
+    catch(error){
+        alert("Đã xảy lỗi! Vui lòng thực hiện lại.")
+        console.log(error);
+    };
+}
+
 await buildAllAccount();
+
+let buttonChangeRole = document.querySelector('.submit1');
+
+buttonChangeRole.addEventListener('click', await changeUserRole());
