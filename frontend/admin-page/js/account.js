@@ -138,6 +138,8 @@ function getListId(StrId){
     return res;
 }
 
+await buildAllAccount();
+
 async function changeUserRole(){
     let changeRole = document.querySelector('.change-role');
     let StrId = changeRole.querySelector('.id-input').value;
@@ -174,7 +176,44 @@ async function changeUserRole(){
     };
 }
 
-await buildAllAccount();
+async function deleteAccount(){
+    let deleteAccount = document.querySelector('.delete-account');
+    let strId = deleteAccount.querySelector('.id-input').value;
+    let listId = getListId(strId);
+    let data = {
+        userIds: []
+    }
+    for(let i = 0; i < listId.length; i++){
+        data.userIds.push(listId);
+    }
+    try{
+        await checkAccessTokenIsvalid();
+        let accessToken = localStorage.getItem('accessToken');
+        let response = await fetch('http://localhost:8080//user/admin/deleteUsers',{
+            method: 'DELETE',
+            headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify(data)
+        });
+        response = await response.text();
+        if(response == "Delete users successfully"){
+            alert("Đã thay đổi vai trò người dùng thành công!");
+            window.location.reload();
+        }
+        else if(response == "Can not delete yourself"){
+            alert("Bạn không thể tự xóa tài khoản của chính mình!");
+        }
+        else if(response == "Can not delete admin"){
+            alert("Bạn không thể xóa tài khoản có vai trò là admin");
+        }
+    }
+    catch(error){
+        alert("Đã xảy lỗi! Vui lòng thực hiện lại.")
+        console.log(error);
+    };
+}
 
 let buttonChangeRole = document.querySelector('.submit1');
 
