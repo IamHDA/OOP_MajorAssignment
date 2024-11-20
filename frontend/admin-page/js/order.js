@@ -7,6 +7,21 @@ let numberPageOrderHTML = document.querySelector('.numberPage');
 let numberPageCurrentHTML = document.querySelector('.currentPage');
 let pageHTML = document.querySelector('.page');
 
+function daucham(num){
+    let str = num.toString();
+    let tmp = "";
+    let mark = 0;
+    for(let i = str.length - 1; i >= 0; i--){
+        mark += 1;
+        tmp = str[i] + tmp;
+        if(mark == 3 && i != 0){
+            tmp = "." + tmp;
+            mark = 0
+        }
+    }
+    return tmp;
+}
+
 async function getAllOrder() {
     try{
         await checkAccessTokenIsvalid();
@@ -29,11 +44,11 @@ async function getAllOrder() {
 
 async function buildPage1() {
     pageHTML.innerHTML = "";
-    if(allOrder.length % 10 == 0){
-        numberPageOrder = allOrder.length / 10;
+    if(allOrder.length % 5 == 0){
+        numberPageOrder = allOrder.length / 5;
     }
     else{
-        numberPageOrder = Math.floor(allOrder.length / 10) + 1;
+        numberPageOrder = Math.floor(allOrder.length / 5) + 1;
     }
     numberPageOrderHTML.innerHTML = numberPageOrder;
     numberPageCurrentHTML.innerHTML = numberPageCurrent;
@@ -47,21 +62,21 @@ async function buildPage1() {
         let name = '<td class="name">' + allOrder[i].receiverName + '</td>'
         let contact = '<td class="contact">' + allOrder[i].receiverPhone + '</td>';
         let address = '<td class="address">' + allOrder[i].shippingAddress + '</td>';
-        let totalPrice = '<td class="total-price">' + allOrder[i].totalPrice + 'VNĐ' + '</td>';
+        let totalPrice = '<td class="total-price">' + daucham(allOrder[i].totalPrice) + ' VNĐ' + '</td>';
         let orderDate = '<td class="order-date">' + allOrder[i].orderDate + '</td>';
         let note =  '<td class="note">' + allOrder[i].note + '</td>';
-        let status = '<td class="status">' + allOrder[i].status + '</td>';
-        let paymentMethod = '<td class="payment-method">' + allOrder[i].paymentMethod + '</td>';
+        let status = '<td class="status">' + allOrder[i].status.name + '</td>';
+        let paymentMethod = '<td class="payment-method">' + allOrder[i].paymentMethod.name + '</td>';
         let rowTableOrder = '<tr class="table-other-row">' + stt + orderId + name + contact + address + totalPrice + orderDate + note + status + paymentMethod  + '</tr>';
         page += rowTableOrder;
-        if(indexRow == 10){
-            pageHTML.innerHTML = '<div class="page">' + '<tr class="table-first-row"><td class="stt">STT</td<td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</div>';
+        if(indexRow == 5){
+            pageHTML.innerHTML = '<div class="page">' + '<table class="order-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</table>' + '</div>';
             break;
         }
     }
 
     if(pageHTML.innerHTML == ""){
-        pageHTML.innerHTML = '<div class="page">' + '<tr class="table-first-row"><td class="stt">STT</td<td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</div>';
+        pageHTML.innerHTML = '<div class="page">' + '<table class="order-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</table>' + '</div>';
     }
 
 }
@@ -75,7 +90,7 @@ function pageTransition(){
             pageHTML.innerHTML = "";
             numberPageCurrent -= 1;
             numberPageCurrentHTML.innerHTML = numberPageCurrent;
-            let indexRow = 10 * (numberPageCurrent - 1);
+            let indexRow = 5 * (numberPageCurrent - 1);
             let page = "";
             for(let i = 0; i < allOrder.length; i++){
                 indexRow += 1;
@@ -84,21 +99,21 @@ function pageTransition(){
                 let name = '<td class="name">' + allOrder[i].receiverName + '</td>'
                 let contact = '<td class="contact">' + allOrder[i].receiverPhone + '</td>';
                 let address = '<td class="address">' + allOrder[i].shippingAddress + '</td>';
-                let totalPrice = '<td class="total-price">' + allOrder[i].totalPrice + 'VNĐ' + '</td>';
+                let totalPrice = '<td class="total-price">' + daucham(allOrder[i].totalPrice) + ' VNĐ' + '</td>';
                 let orderDate = '<td class="order-date">' + allOrder[i].orderDate + '</td>';
                 let note =  '<td class="note">' + allOrder[i].note + '</td>';
-                let status = '<td class="status">' + allOrder[i].status + '</td>';
-                let paymentMethod = '<td class="payment-method">' + allOrder[i].paymentMethod + '</td>';
+                let status = '<td class="status">' + allOrder[i].status.name + '</td>';
+                let paymentMethod = '<td class="payment-method">' + allOrder[i].paymentMethod.name + '</td>';
                 let rowTableOrder = '<tr class="table-other-row">' + stt + orderId + name + contact + address + totalPrice + orderDate + note + status + paymentMethod  + '</tr>';
                 page += rowTableOrder;
-                if(indexRow == 10){
-                    pageHTML.innerHTML = '<div class="page">' + '<tr class="table-first-row"><td class="stt">STT</td<td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</div>';
+                if(indexRow == 5){
+                    pageHTML.innerHTML = '<div class="page">' + '<table class="order-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</table>' + '</div>';
                     break;
                 }
             }
 
             if(pageHTML.innerHTML == ""){
-                pageHTML.innerHTML = '<div class="page">' + '<tr class="table-first-row"><td class="stt">STT</td<td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</div>';
+                pageHTML.innerHTML = '<div class="page">' + '<table class="order-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</table>' + '</div>';
             }
         }
     })
@@ -108,7 +123,7 @@ function pageTransition(){
             pageHTML.innerHTML = "";
             numberPageCurrent += 1;
             numberPageCurrentHTML.innerHTML = numberPageCurrent;
-            let indexRow = 10 * (numberPageCurrent - 1);
+            let indexRow = 5 * (numberPageCurrent - 1);
             let page = "";
             for(let i = 0; i < allOrder.length; i++){
                 indexRow += 1;
@@ -117,21 +132,21 @@ function pageTransition(){
                 let name = '<td class="name">' + allOrder[i].receiverName + '</td>'
                 let contact = '<td class="contact">' + allOrder[i].receiverPhone + '</td>';
                 let address = '<td class="address">' + allOrder[i].shippingAddress + '</td>';
-                let totalPrice = '<td class="total-price">' + allOrder[i].totalPrice + 'VNĐ' + '</td>';
+                let totalPrice = '<td class="total-price">' + daucham(allOrder[i].totalPrice) + ' VNĐ' + '</td>';
                 let orderDate = '<td class="order-date">' + allOrder[i].orderDate + '</td>';
                 let note =  '<td class="note">' + allOrder[i].note + '</td>';
-                let status = '<td class="status">' + allOrder[i].status + '</td>';
-                let paymentMethod = '<td class="payment-method">' + allOrder[i].paymentMethod + '</td>';
+                let status = '<td class="status">' + allOrder[i].status.name + '</td>';
+                let paymentMethod = '<td class="payment-method">' + allOrder[i].paymentMethod.name + '</td>';
                 let rowTableOrder = '<tr class="table-other-row">' + stt + orderId + name + contact + address + totalPrice + orderDate + note + status + paymentMethod  + '</tr>';
                 page += rowTableOrder;
-                if(indexRow == 10){
-                    pageHTML.innerHTML = '<div class="page">' + '<tr class="table-first-row"><td class="stt">STT</td<td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</div>';
+                if(indexRow == 5){
+                    pageHTML.innerHTML = '<div class="page">' + '<table class="order-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</table>' + '</div>';
                     break;
                 }
             }
 
             if(pageHTML.innerHTML == ""){
-                pageHTML.innerHTML = '<div class="page">' + '<tr class="table-first-row"><td class="stt">STT</td<td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</div>';
+                pageHTML.innerHTML = '<div class="page">' + '<table class="order-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</table>' + '</div>';
             }
         }
     })
