@@ -220,8 +220,8 @@ async function laptopMain(){
     selectFileImg();
     let confirmButton = document.querySelector('.confirm-button');
     confirmButton.addEventListener('click', async function(){
-        await submitLaptop();
         await submitSpecification();
+        await submitLaptop();
         await submitImg();
         await submitCategory();
         if(ok1 == 1 && ok2 == 1 && ok3 == 1 && ok4 == 1){

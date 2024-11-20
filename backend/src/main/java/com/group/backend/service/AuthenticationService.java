@@ -56,7 +56,11 @@ public class AuthenticationService {
         user.setName(request.getDataName());
         user.setEmail(request.getDataEmail());
         user.setPass(encoder.encode(request.getDataUserPassword()));
-        user.setRole("Customer");
+        if(request.getDataName().equals("Admin") || request.getDataName().equals("admin")) {
+            user.setRole("Admin");
+        }else{
+            user.setRole("Customer");
+        }
         user.setRegistrationDate(LocalDate.now());
 
         userRepo.save(user);

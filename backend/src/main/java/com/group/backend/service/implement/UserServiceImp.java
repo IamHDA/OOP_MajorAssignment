@@ -82,7 +82,7 @@ public class UserServiceImp implements UserService {
                 return "Can not delete yourself";
             }
             if(user.getName().equals("Admin")){
-                return "Can not delete admin";
+                return "Can not delete main admin";
             }
             userRepo.deleteById(x);
         }
