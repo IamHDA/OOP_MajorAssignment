@@ -118,7 +118,7 @@ async function buildPage1(data){
 function getListId(StrId){
     let res = [];
     StrId = StrId.trim();
-    let listIdArr = listId.split(" ");
+    let listIdArr = StrId.split(" ");
     for(let i = 0; i < listIdArr.length; i++){
         let tmp = "";
         let index = 0;
@@ -155,7 +155,7 @@ async function changeUserRole(){
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
         let response = await fetch('http://localhost:8080/user/admin/changeUsersRole',{
-            method: 'GET',
+            method: 'PUT',
             headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
@@ -163,7 +163,7 @@ async function changeUserRole(){
             body: JSON.stringify(data)
         });
         response = await response.text();
-        if(response == "Change user role succesfully"){
+        if(response == "Change users role successfully"){
             alert("Đã thay đổi vai trò người dùng thành công!");
             window.location.reload();
         }

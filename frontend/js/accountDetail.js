@@ -255,7 +255,7 @@ async function buildOder(){
             let paymentMethod = '<td class="paymentMethod">' + element.paymentMethod.name + '</td>';
             let dayOrder = '<td class="dayOrder">' + element.orderDate +'</td>';
             let note = '<td class="note">' + element.note + '</td>';
-            let nextRow =  '<tr class="nextRow">' + stt + id + price + dayOrder + paymentMethod + status + receiverName + receiverPhone + shippingAddress + note + '</tr>';
+            let nextRow =  '<tr class="nextRow">' + stt + id + idOrder + price + dayOrder + paymentMethod + status + receiverName + receiverPhone + shippingAddress + note + '</tr>';
             tableDanhSachDonHang.innerHTML += nextRow;
         });
 
@@ -271,7 +271,7 @@ async function buildOder(){
 }
 
 //OrderDetail
-async function getDataOrderDetail(id, idOrder, receiverName, receiverPhone, shippingAddress, note, status, totalPrice){
+async function getDataOrderDetail(id, idOrder, receiverName, receiverPhone, shippingAddress, note, status, totalPrice, orderDate){
     let orderDetail = document.querySelector('.orderDetail');
     let IdOder = orderDetail.querySelector('.idOrder');
     let Status = orderDetail.querySelector('.status');
@@ -279,8 +279,10 @@ async function getDataOrderDetail(id, idOrder, receiverName, receiverPhone, ship
     let ReceiverPhone = orderDetail.querySelector('.phoneNumber');  
     let ShippingAddress = orderDetail.querySelector('.addressText');
     let Note = orderDetail.querySelector('.noteText');
+    let OrderDate = orderDetail.querySelector('.time');
 
     IdOder.innerHTML = 'Đơn hàng số ' + id;
+    OrderDate.innerHTML = orderDate;
     Status.innerHTML = status;
     ReceiverName.innerHTML = receiverName;
     ReceiverPhone.innerHTML = receiverPhone;
@@ -331,10 +333,11 @@ async function buildOrderDetail(){
             let receiverName = element.querySelector('.receiverName').textContent;
             let receiverPhone = element.querySelector('.receiverPhone').textContent;
             let shippingAddress = element.querySelector('.shippingAddress').textContent;
+            let orderDate = element.querySelector('.dayOrder').textContent;
             let note = element.querySelector('.note').textContent;
             let status = element.querySelector('.status').textContent;
             let totalPrice = element.querySelector('.totalPrice').textContent;
-            await getDataOrderDetail(id, idOrder, receiverName, receiverPhone, shippingAddress, note, status, totalPrice);
+            await getDataOrderDetail(id, idOrder, receiverName, receiverPhone, shippingAddress, note, status, totalPrice, orderDate);
             selectProduct();
         })
         selectProduct();

@@ -67,6 +67,9 @@ public class UserServiceImp implements UserService {
     public String changeUsersRole(ChangeUserRoleDTO changeUserRoleDTO) {
         for(long x : changeUserRoleDTO.getUserIds()) {
             User user = userRepo.findById(x).orElseThrow(() -> new RuntimeException("User not found"));
+            if(user.getName().equals("Admin")){
+                return "Can not change main_admin's role";
+            }
             user.setRole(changeUserRoleDTO.getRole());
             userRepo.save(user);
         }
@@ -82,7 +85,7 @@ public class UserServiceImp implements UserService {
                 return "Can not delete yourself";
             }
             if(user.getName().equals("Admin")){
-                return "Can not delete admin";
+                return "Can not delete main admin";
             }
             userRepo.deleteById(x);
         }
