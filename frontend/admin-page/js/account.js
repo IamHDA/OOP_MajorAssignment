@@ -16,6 +16,8 @@ async function getAllAccount(){
 
 async function buildAllAccount() {
     let data = await getAllAccount();
+    let currentPage = document.querySelector('.currentPage');
+    let numberPageHTML = document.querySelector('.numberPage')
     let numberPage = 0;
     if(data.length % 5 == 0){
         numberPage = data.length / 5;
@@ -23,65 +25,94 @@ async function buildAllAccount() {
     else{
         numberPage = Math.round(data.length / 5) + 1;
     }
-    let tmp = numberPage.toString();
-    document.querySelector('.numberPage').innerHTML = tmp; 
-    let index = 1;
-    let accountTable = "";
-    let pages = document.querySelector('.pages');
-    let numberRow = 0;
-    await data.forEach(function(element){
-        numberRow += 1;
-        let id = '<td class="id">' + element.id + '</td>';
-        let stt =  '<td class="stt">' + index + '</td>';
-        index += 1;
-        let name = '<td class="name">' + element.name + '</td>';
-        let email = '<td class="email">' + element.email + '</td>';
-        let contact = '<td class="contact">' + element.phone + '</td>';
-        let address = '<td class="address">' + element.address + '</td>';
-        let registrationDate = '<td class="registration-date">' + element.registrationDate + '</td>';
-        let role = '<td class="role">' + element.role + '</td>';
-        let tableRow = '<tr class="table-other-row">' + id + stt + name + email + contact + address + registrationDate + role + '</tr>';
-        accountTable += tableRow;
-        if(numberRow == 5){
-            accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
-            pages.innerHTML += accountTable;
-            accountTable = '';
-            numberRow = 0;
-        }
-    })
-    if(numberRow > 0){
-        accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
-        pages.innerHTML += accountTable;
-    }
-    pageTrantition(numberPage);
-}
-
-function pageTrantition(numberPage){
+    let currentPageNumber = 1;
+    currentPage.innerHTML = currentPageNumber;
+    numberPageHTML.innerHTML = numberPage;
+    await buildPage1(data);
+    
     let left = document.querySelector('.left');
     let right = document.querySelector('.right');
-    let currentPage = 1;
-    let accountTable = document.querySelectorAll('.account-table');
-    document.querySelector('.currentPage').innerHTML = currentPage;
+    let pages = document.querySelector('.pages');
 
-    left.addEventListener('click', function(){
-        if(currentPage > 1){
-            currentPage -= 1;
-            document.querySelector('.currentPage').innerHTML = currentPage;
-            accountTable.forEach(function(element){
-                element.style.transform = `translateX(+1172px)`;
-            })
+    left.addEventListener('click', async function(){
+        if(currentPageNumber > 1){
+            currentPageNumber -= 1;
+            let numberRow = 0;
+            let accountTable ="";
+            for(let i = (currentPageNumber - 1) * 5; i < data.length; i++){
+                numberRow += 1;
+                let id = '<td class="id">' + data[i].id + '</td>';
+                let stt =  '<td class="stt">' + numberRow + '</td>';
+                let name = '<td class="name">' + data[i].name + '</td>';
+                let email = '<td class="email">' + data[i].email + '</td>';
+                let contact = '<td class="contact">' + data[i].phone + '</td>';
+                let address = '<td class="address">' + data[i].address + '</td>';
+                let registrationDate = '<td class="registration-date">' + data[i].registrationDate + '</td>';
+                let role = '<td class="role">' + data[i].role + '</td>';
+                let tableRow = '<tr class="table-other-row">' + id + stt + name + email + contact + address + registrationDate + role + '</tr>';
+                accountTable += tableRow;
+                
+                if(numberRow == 5 || i == data.length - 1){
+                    accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
+                    pages.innerHTML = accountTable;
+                    break;
+                }
+            }
+            currentPage.innerHTML = currentPageNumber;
         }
-    });
-    
-    right.addEventListener('click', function() {
-        if (currentPage < numberPage) {
-            currentPage += 1;
-            document.querySelector('.currentPage').innerHTML = currentPage;
-            accountTable.forEach(function(element) {
-                element.style.transform = `translateX(-1172px)`;
-            });
+    })
+    right.addEventListener('click', async function(){
+        if(currentPageNumber < numberPage){
+            currentPageNumber += 1;
+            let numberRow = 0;
+            let accountTable ="";
+            for(let i = (currentPageNumber - 1) * 5; i < data.length; i++){
+                numberRow += 1;
+                let id = '<td class="id">' + data[i].id + '</td>';
+                let stt =  '<td class="stt">' + numberRow + '</td>';
+                let name = '<td class="name">' + data[i].name + '</td>';
+                let email = '<td class="email">' + data[i].email + '</td>';
+                let contact = '<td class="contact">' + data[i].phone + '</td>';
+                let address = '<td class="address">' + data[i].address + '</td>';
+                let registrationDate = '<td class="registration-date">' + data[i].registrationDate + '</td>';
+                let role = '<td class="role">' + data[i].role + '</td>';
+                let tableRow = '<tr class="table-other-row">' + id + stt + name + email + contact + address + registrationDate + role + '</tr>';
+                accountTable += tableRow;
+        
+                if(numberRow == 5 || i == data.length - 1){
+                    accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
+                    pages.innerHTML = accountTable;
+                    break;
+                }
+            }
+            currentPage.innerHTML = currentPageNumber;
         }
-    });
+    })
+}
+
+async function buildPage1(data){
+    let pages = document.querySelector('.pages');
+    let numberRow = 0;
+    let accountTable ="";
+    for(let i = 0; i < data.length; i++){
+        numberRow += 1;
+        let id = '<td class="id">' + data[i].id + '</td>';
+        let stt =  '<td class="stt">' + numberRow + '</td>';
+        let name = '<td class="name">' + data[i].name + '</td>';
+        let email = '<td class="email">' + data[i].email + '</td>';
+        let contact = '<td class="contact">' + data[i].phone + '</td>';
+        let address = '<td class="address">' + data[i].address + '</td>';
+        let registrationDate = '<td class="registration-date">' + data[i].registrationDate + '</td>';
+        let role = '<td class="role">' + data[i].role + '</td>';
+        let tableRow = '<tr class="table-other-row">' + id + stt + name + email + contact + address + registrationDate + role + '</tr>';
+        accountTable += tableRow;
+
+        if(numberRow == 5 || i == data.length - 1){
+            accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
+            pages.innerHTML = accountTable;
+            break;
+        }
+    }
 }
 
 await buildAllAccount();

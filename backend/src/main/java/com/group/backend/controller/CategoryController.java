@@ -1,8 +1,10 @@
 package com.group.backend.controller;
 
+import com.group.backend.dto.CategoryDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
 import com.group.backend.dto.Filter;
 import com.group.backend.service.CategoryService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,18 +23,18 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getLaptopByCategory(category));
     }
 
-//    @GetMapping("/laptops-brand/{brand}")
-//    public ResponseEntity<List<LaptopSummaryDTO>> getLaptopByBrand(@PathVariable("brand") String brand) {
-//        return ResponseEntity.ok(categoryService.getLaptopByBrand(brand));
-//    }
-//
-    @GetMapping("/laptops-state/{state}")
-    public ResponseEntity<List<LaptopSummaryDTO>> getLaptopByState(@PathVariable("state") String state) {
-        return ResponseEntity.ok(categoryService.getLaptopByState(state));
-    }
-
     @GetMapping("/filter")
     public ResponseEntity<List<LaptopSummaryDTO>> getLaptopByFilter(@ModelAttribute Filter filter) {
         return ResponseEntity.ok(categoryService.getLaptopByCriteria(filter));
+    }
+
+    @PostMapping("/admin/add")
+    public ResponseEntity<String> addLaptop(@RequestBody List<CategoryDTO> categoryDTOList){
+        return ResponseEntity.ok(categoryService.addCategory(categoryDTOList));
+    }
+
+    @DeleteMapping("/admin/delete")
+    public ResponseEntity<String> deleteLaptop(@RequestBody List<CategoryDTO> categoryDTOList){
+        return ResponseEntity.ok(categoryService.removeCategory(categoryDTOList));
     }
 }
