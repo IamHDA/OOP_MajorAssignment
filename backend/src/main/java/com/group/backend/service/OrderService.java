@@ -14,4 +14,6 @@ public interface OrderService {
     long getThisMonthRevenue();
     long countThisMonthOrder();
     String updateStatus(ChangeOrderStatusDTO changeOrderStatusDTO);
+
+    List<OrderDTO> getAllOrders();
 }

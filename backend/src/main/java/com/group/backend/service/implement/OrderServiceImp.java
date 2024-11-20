@@ -95,4 +95,11 @@ public class OrderServiceImp implements OrderService {
         }
         return "Order status updated completed!";
     }
+
+    @Override
+    public List<OrderDTO> getAllOrders() {
+        return orderRepo.findAll().stream()
+                .map(tmp -> modelMapper.map(tmp, OrderDTO.class))
+                .collect(Collectors.toList());
+    }
 }

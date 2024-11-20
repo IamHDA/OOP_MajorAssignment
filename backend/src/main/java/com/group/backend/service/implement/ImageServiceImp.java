@@ -39,7 +39,6 @@ public class ImageServiceImp implements ImageService {
             folderPath = folderPath + filePath.replace("/", "\\");
             imageRepo.save(new Image(filePath, laptop));
             images.get(i).transferTo(new File(folderPath));
-            System.out.println(folderPath);
         }
         return "Image uploaded successfully";
     }

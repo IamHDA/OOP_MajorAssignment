@@ -17,6 +17,10 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @GetMapping("/admin/getAllOrders")
+    public ResponseEntity<List<OrderDTO>> getAllOrders() {
+        return  ResponseEntity.ok(orderService.getAllOrders());
+    }
     @GetMapping("/getCurrentUserOrder")
     public ResponseEntity<List<OrderDTO>> getCurrentOrder(){
         return ResponseEntity.ok(orderService.getOrderByUser());
@@ -41,8 +45,6 @@ public class OrderController {
         orderService.deleteOrderUser();
         return ResponseEntity.ok().build();
     }
-
-    // API cap nhat trang thai don hang
 
     @PutMapping("/admin/updateOrderStatus")
     public ResponseEntity<String> updateOrderStatus(@RequestBody ChangeOrderStatusDTO changeOrderStatusDTO){

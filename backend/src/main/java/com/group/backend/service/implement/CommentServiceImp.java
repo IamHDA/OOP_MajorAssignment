@@ -64,5 +64,4 @@ public class CommentServiceImp implements CommentService {
                 .map(tmp -> modelMapper.map(tmp, CommentDTO.class))
                 .collect(Collectors.toList());
     }
-
 }
