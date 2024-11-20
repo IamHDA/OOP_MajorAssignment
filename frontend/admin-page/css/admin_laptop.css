@@ -122,7 +122,7 @@
 .selected-category{
     background-color: white;
     margin-top: 3px;
-    padding: 10px 0px 10px 10px;
+    padding: 10px 10px 10px 10px;
     border-radius: 6px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     display: flex;
