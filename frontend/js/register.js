@@ -44,17 +44,18 @@ function cssRegister(){
 
 async function saveUserName(){
     var accessToken = localStorage.getItem('accessToken');
+    console.log(accessToken);
     let response = await fetch('http://localhost:8080/user/info', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
-        }    
+        }   
     })
-
     response = await response.json();
+    console.log(response.name);
     localStorage.setItem("name", response.name);
-    tmp = '<p> Xin chào ' + response.tmpname + '<p>';
+    tmp = '<p> Xin chào ' + response.name + '<p>';
     var account = document.querySelector('.account');
     account.innerHTML = tmp;     
 }
@@ -149,8 +150,6 @@ async function register(){
                 body: JSON.stringify(dataUser) // Chuyển dữ liệu thành JSON
             });
 
-            console.log("SDFDSFDSFSDFSDFDS");
-
             response = await response.json();
 
             if(response.message == "Email is already in use"){
@@ -174,30 +173,21 @@ async function register(){
                 
                 localStorage.setItem('accessToken', response.accessToken);
                 localStorage.setItem('refreshToken', response.refreshToken);
-                location.reload();
                 
                 // Lay ten 
                 try{
                    await saveUserName();
-                   user_status();
                    cssRegister();
+                   location.reload();
                 }
                 catch(error) {
-                    console.error('Có lỗi ở register!', error);
+                    console.log(error);
                     alert("Đã xảy ra lỗi, đăng ký thất bại!");
                 }
             }
         }
     })
 }
-
-async function mainRegister(){
-    openRegisterBox();
-    closeRegisterBox();
-    await register();
-}
-
-mainRegister();
 
 async function mainRegister(){
     openRegisterBox();
