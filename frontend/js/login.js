@@ -41,7 +41,7 @@ async function login(){
 
     async function saveUserName(){
         var accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://localhost:8080/user/info', {
+        let response = await fetch('http://192.168.0.103:8080/user/info', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ async function login(){
         }
 
         // day tai khoan mat khau len server
-        let response = await fetch('http://localhost:8080/login',{
+        let response = await fetch('http://192.168.0.103:8080/login',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

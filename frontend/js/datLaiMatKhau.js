@@ -15,7 +15,7 @@ function datLaiMatKhau(){
                 password: pass1
             }
             try{
-                let response = await fetch(`http://localhost:8080/forgetPassword/resetPassword?email=${email}`,{
+                let response = await fetch(`http://192.168.0.103:8080/forgetPassword/resetPassword?email=${email}`,{
                     method: 'PUT',
                     headers: {
                     'Content-Type': 'application/json'

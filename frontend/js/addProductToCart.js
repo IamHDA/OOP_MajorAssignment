@@ -10,7 +10,7 @@ async function fetchAddProductToCart(idProduct){
         };
         checkAccessTokenIsvalid();
         var accessToken = localStorage.getItem("accessToken");
-        const response = await fetch('http://localhost:8080/cart-detail/add', {
+        const response = await fetch('http://192.168.0.103:8080/cart-detail/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

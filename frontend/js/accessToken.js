@@ -6,7 +6,7 @@ async function checkAccessTokenIsvalid() {
             return;
         }
 
-        let response = await fetch('http://localhost:8080/check-accessToken', {
+        let response = await fetch('http://192.168.0.103:8080/check-accessToken', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ async function checkAccessTokenIsvalid() {
             // If token is not valid, try to refresh it
             let refreshToken = localStorage.getItem('refreshToken');
 
-            const refreshResponse = await fetch('http://localhost:8080/refresh-token', {
+            const refreshResponse = await fetch('http://192.168.0.103:8080/refresh-token', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

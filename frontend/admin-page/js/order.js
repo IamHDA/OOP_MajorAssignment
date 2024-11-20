@@ -26,7 +26,7 @@ async function getAllOrder() {
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://localhost:8080/order/admin/getAllOrders',{
+        let response = await fetch('http://192.168.0.103:8080/order/admin/getAllOrders',{
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',

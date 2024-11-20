@@ -39,7 +39,7 @@ function selecProduct(){
 async function getDataCartDetail() {
     checkAccessTokenIsvalid();
     let accessToken = localStorage.getItem('accessToken');
-    const response = await fetch('http://localhost:8080/cart-detail', {
+    const response = await fetch('http://192.168.0.103:8080/cart-detail', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ async function buildCartDeTail(){
                 };
                 checkAccessTokenIsvalid();
                 let accessToken = localStorage.getItem('accessToken');
-                await fetch(`http://localhost:8080/cart-detail/update`,{
+                await fetch(`http://192.168.0.103:8080/cart-detail/update`,{
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -192,7 +192,7 @@ async function buildCartDeTail(){
             };
             checkAccessTokenIsvalid();
             let accessToken = localStorage.getItem('accessToken');
-            await fetch(`http://localhost:8080/cart-detail/update`,{
+            await fetch(`http://192.168.0.103:8080/cart-detail/update`,{
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -240,7 +240,7 @@ function deleteProduct(){
 
             checkAccessTokenIsvalid();
             let accessToken = localStorage.getItem('accessToken');
-            await fetch(`http://localhost:8080/cart-detail/delete/${id}`,{
+            await fetch(`http://192.168.0.103:8080/cart-detail/delete/${id}`,{
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -274,7 +274,7 @@ function deleteAllProduct(){
         emptyCart.style.display = 'block';
         checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
+        await fetch(`http://192.168.0.103:8080/cart-detail/deleteUserCart`, {
             method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -361,7 +361,7 @@ function creatOrder(){
             let responseData = await getDataCartDetail();
             checkAccessTokenIsvalid();
             let accessToken = localStorage.getItem('accessToken');
-            await fetch(`http://localhost:8080/order/createOrderFromCart`, {
+            await fetch(`http://192.168.0.103:8080/order/createOrderFromCart`, {
                 method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -369,7 +369,7 @@ function creatOrder(){
                     },
                     body: JSON.stringify(data) 
             });
-            await fetch(`http://localhost:8080/order-detail/add`, {
+            await fetch(`http://192.168.0.103:8080/order-detail/add`, {
                 method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -386,7 +386,7 @@ function creatOrder(){
             emptyCart.style.display = 'block';
             checkAccessTokenIsvalid();
             accessToken = localStorage.getItem('accessToken');
-            await fetch(`http://localhost:8080/cart-detail/deleteUserCart`, {
+            await fetch(`http://192.168.0.103:8080/cart-detail/deleteUserCart`, {
                 method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -401,7 +401,7 @@ function creatOrder(){
 async function getInforUser(){
     await checkAccessTokenIsvalid();
     let accessToken = localStorage.getItem("accessToken");
-    let response = await fetch('http://localhost:8080/user/info', {
+    let response = await fetch('http://192.168.0.103:8080/user/info', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
