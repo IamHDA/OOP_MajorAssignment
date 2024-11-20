@@ -179,11 +179,11 @@ async function updateStatusOrder(){
     let strId = document.querySelector('.id-input').value;
     let listId = getListId(strId);
     let data = {
-        status: document.querySelector('.status-input').value,
-        oderIds: []
+        statusId: document.querySelector('.status-input').value,
+        orderIds: []
     }
     for(let i = 0; i < listId.length; i++){
-        data.oderIds.push(listId[i]);
+        data.orderIds.push(listId[i]);
     }
     try{
         await checkAccessTokenIsvalid();
