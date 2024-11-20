@@ -152,10 +152,70 @@ function pageTransition(){
     })
 }
 
+function getListId(StrId){
+    let res = [];
+    StrId = StrId.trim();
+    let listIdArr = StrId.split(" ");
+    for(let i = 0; i < listIdArr.length; i++){
+        let tmp = "";
+        let index = 0;
+        while(true){
+            if(listIdArr[i][index] == ","){
+                res.push(tmp);
+                break;
+            }
+            if(index == listIdArr[i].length){
+                res.push(tmp);
+                break;
+            }
+            tmp += listIdArr[i][index];
+            index += 1
+        }
+    }
+    return res;
+}
+
+async function updateStatusOrder(){
+    let strId = document.querySelector('.id-input').value;
+    let listId = getListId(strId);
+    let data = {
+        status: document.querySelector('.status-input').value,
+        oderIds: []
+    }
+    for(let i = 0; i < listId.length; i++){
+        data.oderIds.push(listId[i]);
+    }
+    try{
+        await checkAccessTokenIsvalid();
+        let accessToken = localStorage.getItem('accessToken');
+        let response = await fetch('http://192.168.0.103:8080/order/admin/updateOrderStatus',{
+            method: 'PUT',
+            headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify(data)
+        });
+        response = await response.text();
+
+        if(response == "Order status updated completed!"){
+            alert("Cập nhật trạng thái đơn hàng thành công!");
+            window.location.reload();
+        }
+    }
+    catch(error){
+        alert("Đã có lỗi xảy ra! Vui lòng thử lại.");
+        console.log(error);
+    }
+}
+
 async function mainOrder(){
     await getAllOrder();
     await buildPage1();
     pageTransition();
+    document.querySelector('.submit').addEventListener('click', async function(){
+        await updateStatusOrder();
+    })
 }
 
 mainOrder();
