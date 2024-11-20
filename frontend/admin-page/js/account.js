@@ -34,6 +34,8 @@ async function buildAllAccount() {
     let right = document.querySelector('.right');
     let pages = document.querySelector('.pages');
 
+    pages.innerHTML = "";   
+
     left.addEventListener('click', async function(){
         if(currentPageNumber > 1){
             currentPageNumber -= 1;
@@ -184,7 +186,8 @@ async function deleteAccount(){
         userIds: []
     }
     for(let i = 0; i < listId.length; i++){
-        data.userIds.push(listId);
+        let id = parseInt(listId[i], 10);
+        data.userIds.push(id);
     }
     try{
         await checkAccessTokenIsvalid();
@@ -199,7 +202,7 @@ async function deleteAccount(){
         });
         response = await response.text();
         if(response == "Delete users successfully"){
-            alert("Đã thay đổi vai trò người dùng thành công!");
+            alert("Đã xóa tài khoản thành công");
             window.location.reload();
         }
         else if(response == "Can not delete yourself"){
