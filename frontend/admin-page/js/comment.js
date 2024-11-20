@@ -125,13 +125,43 @@ function pageTransition(){
             }
         }
     })
+}
 
+async function deleteComment(){
+    let rowComment = document.querySelectorAll('.table-other-row');
+    rowComment.forEach(function(element){
+        let buttonDete = element.querySelector('.deleteComment');
+        buttonDete.addEventListener('click', async function(){
+            try{
+                await checkAccessTokenIsvalid();
+                let accessToken = localStorage.getItem('accessToken');
+                let id = element.querySelector('commentID').textContent;
+                let response = await fetch(`http://localhost:8080/comment/delete/${id}`,{
+                    method: 'DELETE',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+                response = await response.text();
+                if(response == "Comment deleted successfully"){
+                    alert("Đã xóa comment");
+                    window.location.reload();
+                }
+            }
+            catch(error){
+                alert("Đã xảy ra lỗi! Vui lòng thực hiện lại.");
+                console.log("Lỗi xóa comment: " + error);
+            }
+        })
+    })
 }
 
 async function mainComment(){
     await getAllComment();
     await buildPage1();
     pageTransition();
+    await deleteComment();
 }
 
 mainComment();
