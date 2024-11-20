@@ -54,7 +54,7 @@ async function saveUserName(){
 
     response = await response.json();
     localStorage.setItem("name", response.name);
-    tmp = '<p> Xin chào ' + response.tmpname + '<p>';
+    tmp = '<p> Xin chào ' + response.name + '<p>';
     var account = document.querySelector('.account');
     account.innerHTML = tmp;     
 }
@@ -179,7 +179,6 @@ async function register(){
                 // Lay ten 
                 try{
                    await saveUserName();
-                   user_status();
                    cssRegister();
                 }
                 catch(error) {

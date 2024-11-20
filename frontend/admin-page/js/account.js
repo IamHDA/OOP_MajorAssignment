@@ -178,4 +178,6 @@ await buildAllAccount();
 
 let buttonChangeRole = document.querySelector('.submit1');
 
-buttonChangeRole.addEventListener('click', await changeUserRole());
+buttonChangeRole.addEventListener('click', async function(){
+    await changeUserRole();
+});
