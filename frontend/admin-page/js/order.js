@@ -92,7 +92,7 @@ function pageTransition(){
             numberPageCurrentHTML.innerHTML = numberPageCurrent;
             let indexRow = 5 * (numberPageCurrent - 1);
             let page = "";
-            for(let i = 0; i < allOrder.length; i++){
+            for(let i = indexRow; i < allOrder.length; i++){
                 indexRow += 1;
                 let stt = '<td class="stt">' + indexRow + '</td>';
                 let orderId = '<td class="id">' + allOrder[i].id + '</td>'
@@ -125,7 +125,7 @@ function pageTransition(){
             numberPageCurrentHTML.innerHTML = numberPageCurrent;
             let indexRow = 5 * (numberPageCurrent - 1);
             let page = "";
-            for(let i = 0; i < allOrder.length; i++){
+            for(let i = indexRow; i < allOrder.length; i++){
                 indexRow += 1;
                 let stt = '<td class="stt">' + indexRow + '</td>';
                 let orderId = '<td class="id">' + allOrder[i].id + '</td>'
@@ -139,7 +139,7 @@ function pageTransition(){
                 let paymentMethod = '<td class="payment-method">' + allOrder[i].paymentMethod.name + '</td>';
                 let rowTableOrder = '<tr class="table-other-row">' + stt + orderId + name + contact + address + totalPrice + orderDate + note + status + paymentMethod  + '</tr>';
                 page += rowTableOrder;
-                if(indexRow == 5){
+                if(indexRow % 5 == 0){
                     pageHTML.innerHTML = '<div class="page">' + '<table class="order-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="order-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</table>' + '</div>';
                     break;
                 }
