@@ -33,7 +33,6 @@ async function buildAllAccount() {
     let left = document.querySelector('.left');
     let right = document.querySelector('.right');
     let pages = document.querySelector('.pages');
-    pages.innerHTML = "";   
 
     left.addEventListener('click', async function(){
         if(currentPageNumber > 1){

@@ -31,7 +31,7 @@ async function getAllComment() {
 async function buildPage1() {
     pageHTML.innerHTML = "";
     if(allComment.length % 10 == 0){
-        numberPageComment = allComment.length % 10;
+        numberPageComment = allComment.length / 10;
     }
     else{
         numberPageComment = Math.floor(allComment.length / 10) + 1;
@@ -130,12 +130,12 @@ function pageTransition(){
 async function deleteComment(){
     let rowComment = document.querySelectorAll('.table-other-row');
     rowComment.forEach(function(element){
-        let buttonDete = element.querySelector('.deleteComment');
+        let buttonDete = element.querySelector('.delete');
         buttonDete.addEventListener('click', async function(){
             try{
                 await checkAccessTokenIsvalid();
                 let accessToken = localStorage.getItem('accessToken');
-                let id = element.querySelector('commentID').textContent;
+                let id = element.querySelector('.commentID').textContent;
                 let response = await fetch(`http://localhost:8080/comment/delete/${id}`,{
                     method: 'DELETE',
                     headers: {
