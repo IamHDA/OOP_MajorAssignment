@@ -1,6 +1,6 @@
 import checkAccessTokenIsvalid from './accessToken.js';
 
-let ok1 = 1, ok2 = 1, ok3 = 1, ok4 = 1;
+let ok1 = 0, ok2 = 0, ok3 = 0, ok4 = 0;
 
 function selectFileImg(){
     let fileInput = document.querySelector('.file-input');
