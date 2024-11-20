@@ -31,44 +31,59 @@
                 <div class="container">
                     <div class="first-row">
                         <p class="title">Đơn hàng</p>
-                        <table class="order-table">
-                            <tr class="table-first-row">
-                                <td class="stt">STT</td>
-                                <td class="id">ID</td>
-                                <td class="name">Họ tên</td>
-                                <td class="contact">Số điện thoại</td>
-                                <td class="address">Địa chỉ</td>
-                                <td class="total-price">Đơn giá</td>
-                                <td class="order-date">Ngày đặt</td>
-                                <td class="note">Ghi chú</td>
-                                <td class="status">Trạng thái</td>
-                                <td class="payment-method">Thanh toán</td>
-                            </tr>
-                            <tr class="table-other-row">
-                                <td class="stt">1</td>
-                                <td class="id">1</td>
-                                <td class="name">Hứa Duy Anh</td>
-                                <td class="contact">0914615581</td>
-                                <td class="address">Lạng Sơn</td>
-                                <td class="total-price">100.000.000 VNĐ</td>
-                                <td class="order-date">30-10-2024</td>
-                                <td class="note">Laptop xịn</td>
-                                <td class="status">Shop đang xác nhận</td>
-                                <td class="payment-method">COD</td>
-                            </tr> 
-                            <tr class="table-other-row">
-                                <td class="stt">2</td>
-                                <td class="id">2</td>
-                                <td class="name">Hứa Thứ Hai</td>
-                                <td class="contact">0914615581</td>
-                                <td class="address">Lạng Sơn</td>
-                                <td class="total-price">100.000.000 VNĐ</td>
-                                <td class="order-date">30-10-2024</td>
-                                <td class="note">Laptop xịn</td>
-                                <td class="status">Shop đang xác nhận</td>
-                                <td class="payment-method">COD</td>
-                            </tr>
-                        </table>
+                        <div class="page">
+                            <!-- <table class="order-table">
+                                <tr class="table-first-row">
+                                    <td class="stt">STT</td>
+                                    <td class="id">ID</td>
+                                    <td class="name">Họ tên</td>
+                                    <td class="contact">Số điện thoại</td>
+                                    <td class="address">Địa chỉ</td>
+                                    <td class="total-price">Đơn giá</td>
+                                    <td class="order-date">Ngày đặt</td>
+                                    <td class="note">Ghi chú</td>
+                                    <td class="status">Trạng thái</td>
+                                    <td class="payment-method">Thanh toán</td>
+                                </tr>
+                                <tr class="table-other-row">
+                                    <td class="stt">1</td>
+                                    <td class="id">1</td>
+                                    <td class="name">Hứa Duy Anh</td>
+                                    <td class="contact">0914615581</td>
+                                    <td class="address">Lạng Sơn</td>
+                                    <td class="total-price">100.000.000 VNĐ</td>
+                                    <td class="order-date">30-10-2024</td>
+                                    <td class="note">Laptop xịn</td>
+                                    <td class="status">Shop đang xác nhận</td>
+                                    <td class="payment-method">COD</td>
+                                </tr> 
+                                <tr class="table-other-row">
+                                    <td class="stt">2</td>
+                                    <td class="id">2</td>
+                                    <td class="name">Hứa Thứ Hai</td>
+                                    <td class="contact">0914615581</td>
+                                    <td class="address">Lạng Sơn</td>
+                                    <td class="total-price">100.000.000 VNĐ</td>
+                                    <td class="order-date">30-10-2024</td>
+                                    <td class="note">Laptop xịn</td>
+                                    <td class="status">Shop đang xác nhận</td>
+                                    <td class="payment-method">COD</td>
+                                </tr>
+                            </table> -->
+                        </div>
+                        <div class="pageTransition">
+                            <div class="left">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </div>
+                            <div class="number">
+                                <div class="currentPage"></div>
+                                <div>/</div>
+                                <div class="numberPage"></div>
+                            </div>
+                            <div class="right">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </div>
+                        </div>
                     </div>
                     <div class="second-row">
                         <div class="change-status">
@@ -87,4 +102,7 @@
             </div>
         </main>
     </body>
+
+    <script type="module" src="js/accessToken.js"></script>
+    <script type="module" src="js/order.js"></script>
 </html>
