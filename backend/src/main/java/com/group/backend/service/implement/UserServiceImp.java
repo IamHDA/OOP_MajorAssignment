@@ -75,8 +75,15 @@ public class UserServiceImp implements UserService {
 
     @Override
     public String deleteUsers(List<Long> list) {
+        User thisUser = currentUser.getCurrentUser();
         for(long x : list) {
             User user = userRepo.findById(x).orElseThrow(() -> new RuntimeException("User not found"));
+            if(thisUser.getId() == user.getId()){
+                return "Can not delete yourself";
+            }
+            if(user.getName().equals("Admin")){
+                return "Can not delete admin";
+            }
             userRepo.deleteById(x);
         }
         return "Delete users successfully";

@@ -27,6 +27,7 @@
 }
 
 .account-table{
+    height: auto;
     border: 2px solid rgb(0, 0, 0);
     border-radius: 10px;
     border-collapse: collapse;
@@ -42,6 +43,7 @@
 
 .table-first-row{
     text-align: center;
+    max-height: 40px;
 }
 
 .table-other-row{

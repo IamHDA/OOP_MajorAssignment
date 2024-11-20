@@ -36,9 +36,9 @@ async function buildAllAccount() {
 
     left.addEventListener('click', async function(){
         if(currentPageNumber > 1){
-            let accountTable = "";
             currentPageNumber -= 1;
             let numberRow = 0;
+            let accountTable ="";
             for(let i = (currentPageNumber - 1) * 5; i < data.length; i++){
                 numberRow += 1;
                 let id = '<td class="id">' + data[i].id + '</td>';
@@ -51,7 +51,7 @@ async function buildAllAccount() {
                 let role = '<td class="role">' + data[i].role + '</td>';
                 let tableRow = '<tr class="table-other-row">' + id + stt + name + email + contact + address + registrationDate + role + '</tr>';
                 accountTable += tableRow;
-        
+                
                 if(numberRow == 5 || i == data.length - 1){
                     accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
                     pages.innerHTML = accountTable;
@@ -63,9 +63,9 @@ async function buildAllAccount() {
     })
     right.addEventListener('click', async function(){
         if(currentPageNumber < numberPage){
-            let accountTable = "";
             currentPageNumber += 1;
             let numberRow = 0;
+            let accountTable ="";
             for(let i = (currentPageNumber - 1) * 5; i < data.length; i++){
                 numberRow += 1;
                 let id = '<td class="id">' + data[i].id + '</td>';
@@ -93,7 +93,7 @@ async function buildAllAccount() {
 async function buildPage1(data){
     let pages = document.querySelector('.pages');
     let numberRow = 0;
-    let accountTable = '';
+    let accountTable ="";
     for(let i = 0; i < data.length; i++){
         numberRow += 1;
         let id = '<td class="id">' + data[i].id + '</td>';
@@ -114,9 +114,5 @@ async function buildPage1(data){
         }
     }
 }
-
-
-
-
 
 await buildAllAccount();
