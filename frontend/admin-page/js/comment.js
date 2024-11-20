@@ -30,7 +30,7 @@ async function getAllComment() {
 
 async function buildPage1() {
     if(allComment.length % 10 == 0){
-        numberPageComment = allComment.length % 10;
+        numberPageComment = allComment.length / 10;
     }
     else{
         numberPageComment = Math.floor(allComment.length / 10) + 1;
