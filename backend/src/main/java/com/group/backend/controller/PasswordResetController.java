@@ -16,7 +16,6 @@ public class PasswordResetController {
 
     @GetMapping("/sendMail/{email}")
     public ResponseEntity<String> sendResetMail(@PathVariable String email) throws MessagingException {
-        System.out.println(email);
         return ResponseEntity.ok(passwordResetService.sendResetMail(email));
     }
 

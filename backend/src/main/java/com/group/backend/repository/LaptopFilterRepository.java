@@ -58,7 +58,6 @@ public class LaptopFilterRepository {
             predicates.add(newPredicate);
         }
         if(!filter.getVga().isEmpty()){
-            System.out.println(formatService.filterConditionFormat(filter.getVga()));
             Predicate newPredicate = cb.like(specification.get("graphicsCard"), "%" + formatService.filterConditionFormat(filter.getVga()) + "%");
             predicates.add(newPredicate);
         }
