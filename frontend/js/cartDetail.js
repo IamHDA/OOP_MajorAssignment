@@ -398,6 +398,22 @@ function creatOrder(){
     });
 }
 
+async function getInforUser(){
+    await checkAccessTokenIsvalid();
+    let accessToken = localStorage.getItem("accessToken");
+    let response = await fetch('http://localhost:8080/user/info', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        }       
+    });
+    response = await response.json();
+    document.querySelector('.customer-name').value = response.name;
+    document.querySelector('.customer-contact').value = response.phone;
+    document.querySelector('.customer-address').value = response.address;
+}
+
 // main
 async function mainCartDetail(){
     let accessToken = localStorage.getItem('accessToken');
@@ -417,7 +433,7 @@ async function mainCartDetail(){
             cartDetail.style.display = 'none';
             emptyCart.style.display = 'block';
         }
-        
+        getInforUser();
         adjustNumberProduct();
         deleteProduct();
         deleteAllProduct();
