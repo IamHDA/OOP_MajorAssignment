@@ -20,6 +20,7 @@ async function getAllComment() {
         });
         response = await response.json();
         allComment = response;
+        console.log(allComment);
     }
     catch(error){
         alert("Đã xảy ra lỗi! Vui lòng thử lại.");
@@ -46,7 +47,7 @@ async function buildPage1() {
         let userId = '<td class="userID">' + allComment[i].userId + '</td>';
         let content = '<td class="content">' + allComment[i].content + '</td>';
         let postAt = '<td class="post-at">' + allComment[i].postAt + '</td>';
-        let apdateAt = '<td class="update-at">' + Null + '</td>';
+        let apdateAt = '<td class="update-at">' + allComment[i].updateAt + '</td>';
         let deleteComment = '<td class="delete"><i class="fa-solid fa-xmark"></i></td>';
         let rowTableComment = '<tr class="table-other-row">' + stt + commentId + userId + content + postAt + apdateAt + deleteComment + '</tr>';
         page += rowTableComment;
@@ -80,7 +81,7 @@ function pageTransition(){
                 let userId = '<td class="userID">' + allComment[i].userId + '</td>';
                 let content = '<td class="content">' + allComment[i].content + '</td>';
                 let postAt = '<td class="post-at">' + allComment[i].postAt + '</td>';
-                let apdateAt = '<td class="update-at">' + Null + '</td>';
+                let apdateAt = '<td class="update-at">' + allComment[i].updateAt + '</td>';
                 let deleteComment = '<td class="delete"><i class="fa-solid fa-xmark"></i></td>';
                 let rowTableComment = '<tr class="table-other-row">' + stt + commentId + userId + content + postAt + apdateAt + deleteComment + '</tr>';
                 page += rowTableComment;
@@ -109,7 +110,7 @@ function pageTransition(){
                 let userId = '<td class="userID">' + allComment[i].userId + '</td>';
                 let content = '<td class="content">' + allComment[i].content + '</td>';
                 let postAt = '<td class="post-at">' + allComment[i].postAt + '</td>';
-                let apdateAt = '<td class="update-at">' + Null + '</td>';
+                let apdateAt = '<td class="update-at">' + allComment[i].updateAt + '</td>';
                 let deleteComment = '<td class="delete"><i class="fa-solid fa-xmark"></i></td>';
                 let rowTableComment = '<tr class="table-other-row">' + stt + commentId + userId + content + postAt + apdateAt + deleteComment + '</tr>';
                 page += rowTableComment;
@@ -131,3 +132,5 @@ async function mainComment(){
     await buildPage1();
     pageTransition();
 }
+
+mainComment();
