@@ -27,6 +27,7 @@
 }
 
 .comment-table{
+    height: auto;
     border: 1px solid rgb(166, 166, 166);
     border-radius: 10px;
     border-collapse: collapse;
@@ -53,12 +54,16 @@
     text-align: center;
 }
 
+.content{
+    width: 510px
+}
+
 .commentID, .userID, .stt{
     text-align: center;
 }
 
 .post-at, .update-at{
-    width: 158px;
+    width: 190px;
     text-align: center;
 }
 
