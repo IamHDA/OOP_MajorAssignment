@@ -31,37 +31,55 @@
                 <div class="container">
                     <div class="first-row">
                         <p class="title">Bình luận</p>
-                        <table class="comment-table">
-                            <tr class="table-first-row">
-                                <td class="stt">STT</td>
-                                <td class="commentID">CommentID</td>
-                                <td class="userID">UserID</td>
-                                <td class="content">Nội dung</td>
-                                <td class="post-at">Thời gian đăng</td>
-                                <td class="update-at">Thời gian thay đổi</td>
-                            </tr>
-                            <tr class="table-other-row">
-                                <td class="stt">1</td>
-                                <td class="commentID">1</td>
-                                <td class="userID">2</td>
-                                <td class="content">Duy Anh đẹp trai nhất thế giới</td>
-                                <td class="post-at">26-03-2024 16:05:00</td>
-                                <td class="update-at">Null</td>
-                                <td class="delete"><i class="fa-solid fa-xmark"></i></td>
-                            </tr>
-                            <tr class="table-other-row">
-                                <td class="stt">2</td>
-                                <td class="commentID">2</td>
-                                <td class="userID">3</td>
-                                <td class="content">Biên Ngu</td>
-                                <td class="post-at">26-06-2004 13:05:00</td>
-                                <td class="update-at">Null</td>
-                                <td class="delete"><i class="fa-solid fa-xmark"></i></td>
-                            </tr>
-                        </table>
+                        <div class="page">
+                            <!-- <table class="comment-table">
+                                <tr class="table-first-row">
+                                    <td class="stt">STT</td>
+                                    <td class="commentID">CommentID</td>
+                                    <td class="userID">UserID</td>
+                                    <td class="content">Nội dung</td>
+                                    <td class="post-at">Thời gian đăng</td>
+                                    <td class="update-at">Thời gian thay đổi</td>
+                                </tr>
+                                <tr class="table-other-row">
+                                    <td class="stt">1</td>
+                                    <td class="commentID">1</td>
+                                    <td class="userID">2</td>
+                                    <td class="content">Duy Anh đẹp trai nhất thế giới</td>
+                                    <td class="post-at">26-03-2024 16:05:00</td>
+                                    <td class="update-at">Null</td>
+                                    <td class="delete"><i class="fa-solid fa-xmark"></i></td>
+                                </tr>
+                                <tr class="table-other-row">
+                                    <td class="stt">2</td>
+                                    <td class="commentID">2</td>
+                                    <td class="userID">3</td>
+                                    <td class="content">Biên Ngu</td>
+                                    <td class="post-at">26-06-2004 13:05:00</td>
+                                    <td class="update-at">Null</td>
+                                    <td class="delete"><i class="fa-solid fa-xmark"></i></td>
+                                </tr>
+                            </table> -->
+                        </div>
+                        <div class="pageTransition">
+                            <div class="left">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </div>
+                            <div class="number">
+                                <div class="currentPage"></div>
+                                <div>/</div>
+                                <div class="numberPage"></div>
+                            </div>
+                            <div class="right">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
     </body>
+
+    <script type="module" src="js/accessToken.js"></script>
+    <script type="module" src="js/comment.js"></script>
 </html>

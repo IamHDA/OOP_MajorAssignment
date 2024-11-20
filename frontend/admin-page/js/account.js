@@ -33,6 +33,8 @@ async function buildAllAccount() {
     let left = document.querySelector('.left');
     let right = document.querySelector('.right');
     let pages = document.querySelector('.pages');
+    pages.innerHTML = "";   
+
     left.addEventListener('click', async function(){
         if(currentPageNumber > 1){
             currentPageNumber -= 1;
@@ -197,7 +199,7 @@ async function deleteAccount(){
         });
         response = await response.text();
         if(response == "Delete users successfully"){
-            alert("Đã thay đổi vai trò người dùng thành công!");
+            alert("Đã xóa tài khoản thành công");
             window.location.reload();
         }
         else if(response == "Can not delete yourself"){
