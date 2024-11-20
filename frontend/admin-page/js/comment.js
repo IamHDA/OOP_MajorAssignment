@@ -51,9 +51,13 @@ async function buildPage1() {
         let rowTableComment = '<tr class="table-other-row">' + stt + commentId + userId + content + postAt + apdateAt + deleteComment + '</tr>';
         page += rowTableComment;
         if(indexRow == 10){
-            pageHTML.innerHTML = '<div class="page">' + '<table class="comment-table"><tr class="table-first-row"><td class="stt">STT</td><td class="commentID">CommentID</td><td class="userID">UserID</td><td class="content">Nội dung</td><td class="post-at">Thời gian đăng</td><td class="update-at">Thời gian thay đổi</td></tr>'+ page + '</div>'
+            pageHTML.innerHTML = '<div class="page">' + '<table class="comment-table"><tr class="table-first-row"><td class="stt">STT</td><td class="commentID">CommentID</td><td class="userID">UserID</td><td class="content">Nội dung</td><td class="post-at">Thời gian đăng</td><td class="update-at">Thời gian thay đổi</td></tr>'+ page + '</div>';
             break;
         }
+    }
+
+    if(pageHTML.innerHTML == ""){
+        pageHTML.innerHTML = '<div class="page">' + '<table class="comment-table"><tr class="table-first-row"><td class="stt">STT</td><td class="commentID">CommentID</td><td class="userID">UserID</td><td class="content">Nội dung</td><td class="post-at">Thời gian đăng</td><td class="update-at">Thời gian thay đổi</td></tr>'+ page + '</div>';
     }
 
 }
@@ -64,6 +68,7 @@ function pageTransition(){
 
     left.addEventListener('click', async function(){
         if(numberPageCurrent > 1){
+            pageHTML.innerHTML = "";
             numberPageCurrent -= 1;
             numberPageCurrentHTML.innerHTML = numberPageCurrent;
             let indexRow = 10 * (numberPageCurrent - 1);
@@ -84,11 +89,15 @@ function pageTransition(){
                     break;
                 }
             }
+            if(pageHTML.innerHTML == ""){
+                pageHTML.innerHTML = '<div class="page">' + '<table class="comment-table"><tr class="table-first-row"><td class="stt">STT</td><td class="commentID">CommentID</td><td class="userID">UserID</td><td class="content">Nội dung</td><td class="post-at">Thời gian đăng</td><td class="update-at">Thời gian thay đổi</td></tr>'+ page + '</div>';
+            }
         }
     })
 
     right.addEventListener('click', async function(){
         if(numberPageCurrent < numberPageComment){
+            pageHTML.innerHTML = "";
             numberPageCurrent += 1;
             numberPageCurrentHTML.innerHTML = numberPageCurrent;
             let indexRow = 10 * (numberPageCurrent - 1);
@@ -108,6 +117,9 @@ function pageTransition(){
                     pageHTML.innerHTML = '<div class="page">' + '<table class="comment-table"><tr class="table-first-row"><td class="stt">STT</td><td class="commentID">CommentID</td><td class="userID">UserID</td><td class="content">Nội dung</td><td class="post-at">Thời gian đăng</td><td class="update-at">Thời gian thay đổi</td></tr>'+ page + '</div>'
                     break;
                 }
+            }
+            if(pageHTML.innerHTML == ""){
+                pageHTML.innerHTML = '<div class="page">' + '<table class="comment-table"><tr class="table-first-row"><td class="stt">STT</td><td class="commentID">CommentID</td><td class="userID">UserID</td><td class="content">Nội dung</td><td class="post-at">Thời gian đăng</td><td class="update-at">Thời gian thay đổi</td></tr>'+ page + '</div>';
             }
         }
     })
