@@ -216,7 +216,12 @@ async function deleteAccount(){
 }
 
 let buttonChangeRole = document.querySelector('.submit1');
+let buttonDeleteAccount = document.querySelector('.submit2');
 
 buttonChangeRole.addEventListener('click', async function(){
     await changeUserRole();
 });
+
+buttonDeleteAccount.addEventListener('click', async function(){
+    await deleteAccount();
+})
