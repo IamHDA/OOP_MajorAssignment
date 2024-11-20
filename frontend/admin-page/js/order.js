@@ -188,7 +188,7 @@ async function updateStatusOrder(){
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://localhost:8080/order/admin/updateOrderStatus',{
+        let response = await fetch('http://192.168.0.103:8080/order/admin/updateOrderStatus',{
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json',
