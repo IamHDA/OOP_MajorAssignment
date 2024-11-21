@@ -1,6 +1,5 @@
 package com.group.backend.service;
 
-import ch.qos.logback.core.encoder.EchoEncoder;
 import com.group.backend.dto.AuthenticationResponse;
 import com.group.backend.dto.payload.LoginRequest;
 import com.group.backend.dto.payload.RegisterRequest;
@@ -11,16 +10,12 @@ import com.group.backend.repository.UserRepository;
 import com.group.backend.security.JwtTokenProvider;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;

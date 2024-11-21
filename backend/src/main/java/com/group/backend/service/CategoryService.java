@@ -1,7 +1,6 @@
 package com.group.backend.service;
 
 import com.group.backend.dto.CategoryDTO;
-import com.group.backend.dto.LaptopDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
 import com.group.backend.dto.Filter;
 

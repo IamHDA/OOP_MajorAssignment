@@ -1,6 +1,5 @@
 package com.group.backend.dto;
 
-import com.group.backend.entity.Comment;
 import com.group.backend.entity.Image;
 import lombok.Data;
 

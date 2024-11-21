@@ -4,7 +4,6 @@ import com.group.backend.dto.Filter;
 import com.group.backend.dto.LaptopDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
 import com.group.backend.entity.Laptop;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

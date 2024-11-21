@@ -1,7 +1,6 @@
 package com.group.backend.dto;
 
 import com.group.backend.entity.Image;
-import com.group.backend.entity.Specification;
 import lombok.Data;
 
 import java.util.List;

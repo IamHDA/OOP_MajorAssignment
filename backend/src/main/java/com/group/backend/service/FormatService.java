@@ -1,11 +1,6 @@
 package com.group.backend.service;
 
-import com.group.backend.dto.CommentDTO;
-import com.group.backend.dto.LaptopDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
-import com.group.backend.entity.Comment;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface FormatService {

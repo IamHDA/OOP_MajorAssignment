@@ -25,9 +25,6 @@ public class ImageServiceImp implements ImageService {
     private LaptopService laptopService;
     @Autowired
     private FormatService formatService;
-    private final String Upload_DIR = "D:\\OOP_MajorAssignment\\frontend\\";
-    @Autowired
-    private ModelMapper modelMapper;
 
     @Override
     public String uploadImages(List<MultipartFile> images) throws IOException {

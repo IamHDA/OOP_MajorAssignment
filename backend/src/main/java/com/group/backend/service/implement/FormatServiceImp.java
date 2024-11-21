@@ -1,24 +1,16 @@
 package com.group.backend.service.implement;
 
-import com.group.backend.dto.CommentDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
-import com.group.backend.entity.Comment;
 import com.group.backend.service.FormatService;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.Normalizer;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
 public class FormatServiceImp implements FormatService {
-
-    @Autowired
-    private ModelMapper modelMapper;
 
     @Override
     public int priceFormat(int price) {

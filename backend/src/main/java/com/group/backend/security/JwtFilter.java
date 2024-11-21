@@ -1,6 +1,5 @@
 package com.group.backend.security;
 
-import com.group.backend.exception.ExceptionDetail;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -14,9 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 @Configuration
 public class JwtFilter extends OncePerRequestFilter {

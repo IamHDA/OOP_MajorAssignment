@@ -1,7 +1,6 @@
 package com.group.backend.dto;
 
 import lombok.Data;
-
 import java.util.List;
 
 @Data

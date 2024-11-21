@@ -7,7 +7,6 @@ import com.group.backend.entity.Laptop_Category;
 import com.group.backend.repository.CategoryRepository;
 import com.group.backend.repository.LaptopCategoryRepository;
 import com.group.backend.repository.LaptopRepository;
-import com.group.backend.service.CategoryService;
 import com.group.backend.service.LaptopCategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,6 @@ public class LaptopCategoryServiceImp implements LaptopCategoryService {
     private LaptopRepository laptopRepo;
     @Autowired
     private CategoryRepository categoryRepo;
-    @Autowired
-    private CategoryService categoryService;
     @Autowired
     private LaptopCategoryRepository laptopCategoryRepo;
     @Autowired
