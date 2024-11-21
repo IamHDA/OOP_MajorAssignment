@@ -27,6 +27,11 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getLaptopByCriteria(filter));
     }
 
+    @GetMapping("/admin/getAllCategories")
+    public ResponseEntity<List<CategoryDTO>> getAllCategories() {
+        return ResponseEntity.ok(categoryService.getAllCategories());
+    }
+
     @PostMapping("/admin/add")
     public ResponseEntity<String> addLaptop(@RequestBody List<CategoryDTO> categoryDTOList){
         return ResponseEntity.ok(categoryService.addCategory(categoryDTOList));
