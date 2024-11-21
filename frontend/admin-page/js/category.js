@@ -43,12 +43,12 @@ function addCategory(){
         console.log("adfadf");
         let strListCategory = addCategory.querySelector('.input').value;
         let listCategory = getListCategory(strListCategory);
-        let data = [];
+        let data = {
+            name: []
+        };
         for(let i = 0; i < listCategory.length; i++){
-           data.push({
-            name: listCategory[i]
-           })
-        }
+           data.name.push(listCategory[i]);
+        };
         try{
             await checkAccessTokenIsvalid();
             let accessToken = localStorage.getItem('accessToken');
