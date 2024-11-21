@@ -54,7 +54,7 @@ function addCategory(){
             await checkAccessTokenIsvalid();
             let accessToken = localStorage.getItem('accessToken');
             let response = await fetch('http://192.168.0.103:8080/collections/admin/add',{
-                method: 'GET',
+                method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${accessToken}`

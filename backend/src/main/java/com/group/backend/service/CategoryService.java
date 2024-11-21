@@ -8,7 +8,7 @@ import com.group.backend.dto.Filter;
 import java.util.List;
 
 public interface CategoryService {
-    void addCategory(CategoryDTO category);
+    List<CategoryDTO> getAllCategories();
     List<LaptopSummaryDTO> getLaptopByCategory(String category);
     List<LaptopSummaryDTO> getLaptopByCriteria(Filter filter);
     String addCategory(List<CategoryDTO> categoryDTOS);

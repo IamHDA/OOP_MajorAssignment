@@ -28,9 +28,11 @@ public class CategoryServiceImp implements CategoryService {
     private ModelMapper modelMapper;
 
     @Override
-    public void addCategory(CategoryDTO categoryDTO) {
-        Category category = modelMapper.map(categoryDTO, Category.class);
-        categoryRepo.save(category);
+    public List<CategoryDTO> getAllCategories() {
+        List<Category> categories = categoryRepo.findAll();
+        return categories.stream()
+                .map(tmp -> modelMapper.map(tmp, CategoryDTO.class))
+                .collect(Collectors.toList());
     }
 
     @Override
