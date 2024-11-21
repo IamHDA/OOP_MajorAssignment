@@ -37,18 +37,17 @@ function getListCategory(strListCategory){
 }
 
 function addCategory(){
-    console.log("adfadf");
     let addCategory = document.querySelector('.add-category');
     let buttonAdd = addCategory.querySelector('.submit');
     buttonAdd.addEventListener('click', async function(){
         console.log("adfadf");
         let strListCategory = addCategory.querySelector('.input').value;
         let listCategory = getListCategory(strListCategory);
-        let data = {
-            name: []
-        }
+        let data = [];
         for(let i = 0; i < listCategory.length; i++){
-            data.name.push(listCategory[i]);
+           data.push({
+            name: listCategory[i]
+           })
         }
         try{
             await checkAccessTokenIsvalid();
