@@ -70,7 +70,7 @@ public class CategoryServiceImp implements CategoryService {
                 })
                 .collect(Collectors.toList());
         for(Category category : categories) {
-            Category tmp = categoryRepo.findByName(category.getName());
+            Category tmp = categoryRepo.findByName(category.getName()).orElseThrow(() -> new RuntimeException("Category not found"));
             categoryRepo.deleteById(tmp.getId());
         }
         return "";

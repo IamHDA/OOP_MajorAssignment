@@ -36,7 +36,7 @@ public class LaptopCategoryServiceImp implements LaptopCategoryService {
                 .map(tmp -> {
                     Laptop_Category laptopCategory = modelMapper.map(tmp, Laptop_Category.class);
                     Laptop laptop = laptopRepo.findByName(laptopCategory.getLaptop().getName());
-                    Category category = categoryRepo.findByName(laptopCategory.getCategory().getName());
+                    Category category = categoryRepo.findByName(laptopCategory.getCategory().getName()).orElseThrow(() -> new RuntimeException("Category not found"));
                     laptopCategory.setLaptop(laptop);
                     laptopCategory.setCategory(category);
                     return laptopCategory;
