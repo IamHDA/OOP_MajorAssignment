@@ -59,7 +59,7 @@
 }
 
 .sub-option{
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 10px;
     padding-left: 47px;
