@@ -72,11 +72,8 @@ a{
     font-weight: 600;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    margin: auto;
-}
-
-.account{
     margin-right: 0px;
+    margin-left: auto;
 }
 
 .header__top h6{
@@ -98,6 +95,7 @@ a{
     height: 100%;
     width: 1200px;
     display: flex;
+    gap: 30px;
 }
 
 /* logo */
@@ -170,7 +168,7 @@ a{
     align-items: center;
     justify-content: center;
     margin: auto 0;
-    margin-left: 60px;
+    margin-left: 105px;
     background-color: rgb(255, 255, 255);
     color: black;
     border-radius: 50%;
@@ -189,6 +187,7 @@ a{
     position: sticky;
     top: 0;
     z-index: 100;
+    position: relative;
 }
 
 .header__bottom__container{
@@ -245,4 +244,84 @@ a{
     color: rgb(255, 255, 255);
     background-color: #74cdff;
     cursor: pointer;
+}
+
+.sugestion_search{
+    width: 700px;
+    position: absolute;
+    top: 55px;
+    left: 465px;
+    display: none;
+}
+
+.sugestion_search .id{
+    display: none;
+}
+
+.sugestion_search__container{
+    padding-left: 5px;
+    height: auto;
+    max-height: 310px;
+    width: 700px;
+    background-color: white;
+    overflow: scroll;
+    overflow-x: hidden;
+    border-radius: 4.5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.sugestion_search__container::-webkit-scrollbar {
+    width: 8px; 
+}
+
+.sugestion_search__container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+.sugestion{
+    height: 100px;
+    width: 100%;
+    margin-left: 10px;
+    background-color: white;
+    display: flex;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.sugestion:hover{
+    background-color: rgb(230, 230, 230);
+}
+
+.sugestion__img{
+    height: 100%;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sugestion__img img{
+    width: 90px;
+    height: 80px;
+    object-fit: cover;
+    object-position: center;
+    border: 0.5px solid rgb(0,91,173);
+}
+
+.sugestion .nameAndPrice .name{
+    width: 560px;
+    font-size: 17px;
+    font-weight: 500;
+    color: rgb(0,91,173);
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.sugestion .nameAndPrice .price{
+    font-size: 17px;
+    color: Red;
+    margin-top: 10px;
+    margin-left: 10px;
 }

@@ -1,7 +1,6 @@
-const accessToken = localStorage.getItem('accessToken');
-
 function user_status() {
 
+    const accessToken = localStorage.getItem('accessToken');
     const registerLogin = document.querySelector(".register__login");
     const account = document.querySelector(".account");
 

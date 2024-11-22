@@ -6,6 +6,6 @@ import lombok.Data;
 public class CartDetailDTO {
     private long id;
     private int quantity;
-    private int price;
+    private int unitPrice;
     private LaptopSummaryDTO laptop;
 }

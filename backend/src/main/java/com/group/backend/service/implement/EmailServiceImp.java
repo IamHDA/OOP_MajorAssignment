@@ -21,7 +21,7 @@ public class EmailServiceImp implements EmailService {
     }
 
     @Override
-    public String sendEmail(String to) throws MessagingException {
+    public void sendEmail(String to) throws MessagingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
@@ -34,6 +34,5 @@ public class EmailServiceImp implements EmailService {
         helper.setText(process, true);
 
         mailSender.send(mimeMessage);
-        return "Send mail successfully";
     }
 }

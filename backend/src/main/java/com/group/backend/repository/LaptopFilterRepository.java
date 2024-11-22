@@ -5,9 +5,11 @@ import com.group.backend.entity.Category;
 import com.group.backend.entity.Laptop;
 import com.group.backend.entity.Laptop_Category;
 import com.group.backend.entity.Specification;
+import com.group.backend.service.FormatService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -15,6 +17,10 @@ import java.util.List;
 
 @Repository
 public class LaptopFilterRepository {
+
+    @Autowired
+    private FormatService formatService;
+
     private final EntityManager em;
 
     public LaptopFilterRepository(EntityManager em) {
@@ -48,15 +54,15 @@ public class LaptopFilterRepository {
             predicates.add(newPredicate);
         }
         if(!filter.getCpu().isEmpty()){
-            Predicate newPredicate = cb.like(specification.get("cpu"), "%" + filter.getCpu() + "%");
+            Predicate newPredicate = cb.like(specification.get("cpu"), "%" + formatService.filterConditionFormat(filter.getCpu()) + "%");
             predicates.add(newPredicate);
         }
         if(!filter.getVga().isEmpty()){
-            Predicate newPredicate = cb.like(specification.get("graphicsCard"), "%" + filter.getVga() + "%");
+            Predicate newPredicate = cb.like(specification.get("graphicsCard"), "%" + formatService.filterConditionFormat(filter.getVga()) + "%");
             predicates.add(newPredicate);
         }
         if(!filter.getSsd().isEmpty()){
-            Predicate newPredicate = cb.like(specification.get("ssd"), "%" + filter.getSsd() + "%");
+            Predicate newPredicate = cb.like(specification.get("rom"), "%" + filter.getSsd() + "%");
             predicates.add(newPredicate);
         }
         if(!filter.getScreenSize().isEmpty()){
@@ -72,12 +78,19 @@ public class LaptopFilterRepository {
             predicates.add(newPredicate);
         }
 
+        Predicate newPredicate = cb.equal(laptop.get("available"), "YES");
+        predicates.add(newPredicate);
+
         cq.where(predicates.toArray(new Predicate[0]));
 
         if("name".equals(filter.getSortBy())){
             cq.orderBy("asc".equals(filter.getSortOrder()) ? cb.asc(laptop.get("name")) : cb.desc(laptop.get("name")));
         }else if("price".equals(filter.getSortBy())){
-            cq.orderBy("asc".equals(filter.getSortOrder()) ? cb.asc(laptop.get("price")) : cb.desc(laptop.get("price")));
+            Expression<Double> price = laptop.get("price").as(Double.class);
+            Expression<Double> salePercent = laptop.get("sale").as(Double.class);
+            Expression<Number> salePrice = cb.diff(1, cb.quot(salePercent, 100));
+            Expression<Number> res =  cb.prod(price, salePrice);
+            cq.orderBy("asc".equals(filter.getSortOrder()) ? cb.asc(res) : cb.desc(res));
         }
 
         TypedQuery<Laptop> query = em.createQuery(cq);

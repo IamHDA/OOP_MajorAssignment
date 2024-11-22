@@ -3,8 +3,7 @@ package com.group.backend.entity;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.ToString;
-
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -17,9 +16,14 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false)
+    private String receiverName;
+    @Column(nullable = false)
+    private String receiverPhone;
+    @Column(nullable = false)
     private String shippingAddress;
     @Column(nullable = false)
     private long totalPrice;
+    private LocalDate orderDate;
     private String note;
 
     @ManyToOne

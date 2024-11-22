@@ -20,18 +20,6 @@
                     <i class="fa-solid fa-location-dot"></i>
                     <p>Hệ thống Showroom</p>
                 </div>
-                <div class="hotlinehanoi">
-                    <i class="fa-solid fa-headphones"></i>
-                    <p>Hotline Hà Nội</p>
-                </div>
-                <div class="hotlinemienttrung">
-                    <i class="fa-solid fa-headphones"></i>
-                    <p>Hotline Miền Trung</p>
-                </div>
-                <div class="hotlinehochiminh">
-                    <i class="fa-solid fa-headphones"></i>
-                    <p>Hotline Hồ Chí Minh</p>
-                </div>
 
                 <div class="register__login">
                     <div class="register">
@@ -63,10 +51,6 @@
                 </a>
     
                 <!--Chinh sach-->
-                <a href="hotrotragop.html" class="hotrotragop">
-                    <i class="fa-solid fa-hand-holding-dollar"></i>
-                    <p>Hỗ trợ trả góp</p>
-                </a>
                 <a href="giauudainhat.html" class="giauudainhat">
                     <i class="fa-solid fa-money-bill"></i>
                     <p>Giá ưu đãi nhất</p>
@@ -81,97 +65,184 @@
                 </a>
     
                 <!--Cart-->
-                <a class="cart" href="cart_detail.html">
+                <a class="cart">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
             </div>
         </div>
     
-        <!--account__detail-->
-        <div class = "account__detail">
-            <div class="account__detail__container">
-                <div class="account__detail__selection">
-                    <div class = "profile">
-                        <i class="fa-solid fa-user"></i>
-                        <div class="text" id = "taikhoancua">  
+        <main>
+            <!--account__detail-->
+            <div class = "account__detail">
+                <div class="account__detail__container">
+                    <div class="account__detail__selection">
+                        <div class = "profile">
+                            <i class="fa-solid fa-user"></i>
+                            <div class="text" id = "taikhoancua">  
+                            </div>
                         </div>
+                        <div class="thong-tin-tai-khoan">
+                            <i class="fa-solid fa-user"></i>
+                            <p>Thông tin tài khoản</p>
+                        </div>
+                        <div class="danh-sach-don-hang">
+                            <i class="fa-solid fa-list"></i>
+                            <p>Danh sách đơn hàng</p>
+                        </div>
+                        <div class="thay-doi-mat-khau">
+                            <i class="fa-solid fa-lock"></i>
+                            <p>Thay đổi mật khẩu</p>
+                        </div>
+                        <a href="index.html" class="log-out">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <p>Log out</p>
+                        </a>
                     </div>
-                    <div class="thong-tin-tai-khoan">
-                        <i class="fa-solid fa-user"></i>
-                        <p>Thông tin tài khoản</p>
-                    </div>
-                    <div class="danh-sach-don-hang">
-                        <i class="fa-solid fa-list"></i>
-                        <p>Danh sách đơn hàng</p>
-                    </div>
-                    <div class="thay-doi-mat-khau">
-                        <i class="fa-solid fa-lock"></i>
-                        <p>Thay đổi mật khẩu</p>
-                    </div>
-                    <a href="index.html" class="log-out">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <p>Log out</p>
-                    </a>
-                </div>
-    
-                <div class="account__detail__content">
-                    <div class="empty">
-                        <p>Bạn đang ở trang tài khoản. Vui lòng chọn các mục bên trái để xem thông tin.</p>
-                    </div>
-                    <!--Thong tin tai khoan-->
-                    <div class="account__detail__content___thong-tin-tai-khoan">
-                        <h1>Cập nhật thông tin cá nhân</h1>
-                        <div class="account__detail__content___thong-tin-tai-khoan__user-name">
-                            <p>Họ tên</p>
-                            <input type="text" class="account__detail__content___thong-tin-tai-khoan__user-name__input">
+        
+                    <div class="account__detail__content">
+                        <div class="empty">
+                            <p>Bạn đang ở trang tài khoản. Vui lòng chọn các mục bên trái để xem thông tin.</p>
                         </div>
-                        <div class="account__detail__content___thong-tin-tai-khoan__user-email">
-                            <p>Địa chỉ email</p>
-                            <input type="text" class = "account__detail__content___thong-tin-tai-khoan__user-email__input" readonly>
+                        <!--Thong tin tai khoan-->
+                        <div class="account__detail__content___thong-tin-tai-khoan">
+                            <h1>Cập nhật thông tin cá nhân</h1>
+                            <div class="account__detail__content___thong-tin-tai-khoan__user-name">
+                                <p>Họ tên</p>
+                                <input type="text" class="account__detail__content___thong-tin-tai-khoan__user-name__input">
+                            </div>
+                            <div class="account__detail__content___thong-tin-tai-khoan__user-email">
+                                <p>Địa chỉ email</p>
+                                <input type="text" class = "account__detail__content___thong-tin-tai-khoan__user-email__input" readonly>
+                            </div>
+                            <div class="account__detail__content___thong-tin-tai-khoan__user-address">
+                                <p>Địa chỉ</p>
+                                <input type="text" class="account__detail__content___thong-tin-tai-khoan__user-address__input">
+                            </div>
+                            <div class="account__detail__content___thong-tin-tai-khoan__user-numberphone">
+                                <p>Điện thoại</p>
+                                <input type="text" class="account__detail__content___thong-tin-tai-khoan__user-numberphone__input">
+                            </div>
+                            <button class="account__detail__content___thong-tin-tai-khoan__submit">
+                                Thay đổi
+                            </button>
                         </div>
-                        <div class="account__detail__content___thong-tin-tai-khoan__user-address">
-                            <p>Địa chỉ</p>
-                            <input type="text" class="account__detail__content___thong-tin-tai-khoan__user-address__input">
+                        <!--Danh sach don hang-->
+                        <div class="account__detail__content___danh-sach-don-hang">
+                            <p class="oderEmpty">Khach hang chua mua san pham nao</p>
+                            <table class="tableDanhSachDonHang">
+                            </table>
                         </div>
-                        <div class="account__detail__content___thong-tin-tai-khoan__user-numberphone">
-                            <p>Điện thoại</p>
-                            <input type="text" class="account__detail__content___thong-tin-tai-khoan__user-numberphone__input">
+                        <!--Thay doi mat khau-->
+                        <div class="account__detail__content___thay-doi-mat-khau">
+                            <h1>Thay đổi mật khẩu</h1>
+                            <div class="account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai">
+                                <p>Mật khẩu hiện tại</p>
+                                <input class="account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai__input" type="password">
+                            </div>
+                            <div class="account__detail__content___thay-doi-mat-khau__mat-khau-moi-1">
+                                <p>Mật khẩu mới</p>
+                                <input class="account__detail__content___thay-doi-mat-khau__mat-khau-moi-1__input" type="password">
+                            </div>
+                            <div class="account__detail__content___thay-doi-mat-khau__mat-khau-moi-2">
+                                <p>Nhập lại mật khẩu</p>
+                                <input class="account__detail__content___thay-doi-mat-khau__mat-khau-moi-2__input" type="password">
+                            </div>
+                            <div class="war1">- Mật khẩu nhập lại không khớp!</div>
+                            <div class="war2">- Mật khẩu không đúng!</div>
+                            <button class = "button_thaydoimatkhau">
+                                Thay đổi
+                            </button>
                         </div>
-                        <button class="account__detail__content___thong-tin-tai-khoan__submit">
-                            Thay đổi
-                        </button>
-                    </div>
-                    <!--Danh sach don hang-->
-                    <div class="account__detail__content___danh-sach-don-hang">
-                        <p>Khach hang chua mua san pham nao</p>
-                    </div>
-                    <!--Thay doi mat khau-->
-                    <div class="account__detail__content___thay-doi-mat-khau">
-                        <h1>Thay đổi mật khẩu</h1>
-                        <div class="account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai">
-                            <p>Mật khẩu hiện tại</p>
-                            <input class="account__detail__content___thay-doi-mat-khau__mat-khau-hien-tai__input" type="password">
+                        <!--oderDetail-->
+                        <div class="orderDetail">
+                            <div class="idOrder">
+                                <!-- Đơn hàng số #000-10462 -->
+                            </div>
+                            <div class="timeOrder">
+                                <div class="title">
+                                    Ngày đặt mua:
+                                </div>
+                                <div class="time">
+                                </div>
+                            </div>
+                            <div class="statusOrder">
+                                <div class="title">
+                                    Tình trạng:
+                                </div>
+                                <div class="status">
+                                    <!-- - Đang xử lý -->
+                                </div>
+                            </div>
+                            <div class="inforCustomer">
+                                <div class="title">
+                                    Thông tin người mua
+                                </div>
+                                <div class="inforDetail">
+                                    <div class="name">
+                                        <div class="title">Họ và tên:</div>
+                                        <div class="nameText">
+                                            <!-- bien dep zai -->
+                                        </div>
+                                    </div>
+                                    <div class="phone">
+                                        <div class="title">
+                                            Điện thoại:
+                                        </div>
+                                        <div class="phoneNumber">
+                                            <!-- 0919974111 -->
+                                        </div>
+                                    </div>
+                                    <div class="address">
+                                        <div class="title">
+                                            Địa chỉ:
+                                        </div>
+                                        <div class="addressText">
+                                            <!-- Thai Binh -->
+                                        </div>
+                                    </div>
+                                    <div class="note">
+                                        <div class="title">
+                                            Ghi chú:
+                                        </div>
+                                        <div class="noteText">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inforOrder">
+                                <div class="title">
+                                    Thông tin đơn hàng
+                                </div>
+                                <table class="tableOrder">
+                                    <tr class="firstRow">
+                                        <td class="ordinalNumber">STT</td>
+                                        <td class="productImg">Ảnh</td>
+                                        <td class="productName">Tên sản phẩm</td>   
+                                        <td class="productPrice">Giá bán</td>
+                                        <td class="productQuantity">Số lượng</td>
+                                        <td class="totalPrice">Tổng</td>
+                                    </tr>
+                                </table>
+                                <table class="table2">
+                                    <tr class="orderPrice">
+                                        <td class="title">Tổng giá trị đơn hàng</td>
+                                        <td class="soTien">
+                                            <!-- 53.490.000 đ -->
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
-                        <div class="account__detail__content___thay-doi-mat-khau__mat-khau-moi-1">
-                            <p>Mật khẩu mới</p>
-                            <input class="account__detail__content___thay-doi-mat-khau__mat-khau-moi-1__input" type="password">
-                        </div>
-                        <div class="account__detail__content___thay-doi-mat-khau__mat-khau-moi-2">
-                            <p>Nhập lại mật khẩu</p>
-                            <input class="account__detail__content___thay-doi-mat-khau__mat-khau-moi-2__input" type="password">
-                        </div>
-                        <div class="war1">- Mật khẩu nhập lại không khớp!</div>
-                        <div class="war2">- Mật khẩu không đúng!</div>
-                        <button class = "button_thaydoimatkhau">
-                            Thay đổi
-                        </button>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     
-        <script src="js/account__detail.js"></script>
+        <script type="module" src="js/accountDetail.js"></script>
         <script src="js/register__login__or__account.js"></script>
         <script src="js/clear__local__storage.js"></script>
+        <script type="module" src="js/accessToken.js"></script>
+        <script src="js/clickCart.js"></script>
     </body>    
 </html>

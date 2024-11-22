@@ -1,7 +1,9 @@
 package com.group.backend.controller;
 
+import com.group.backend.dto.ChangeLaptopAvailableDTO;
 import com.group.backend.dto.LaptopDTO;
 import com.group.backend.dto.LaptopSummaryDTO;
+import com.group.backend.dto.LaptopTableDTO;
 import com.group.backend.service.LaptopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,5 +26,25 @@ public class LaptopController {
     @GetMapping("/search")
     public ResponseEntity<List<LaptopSummaryDTO>> searchLaptop(@RequestParam String keyword) {
         return ResponseEntity.ok(laptopService.searchLaptop(keyword));
+    }
+
+    @GetMapping("/admin/getAllLaptops")
+    public ResponseEntity<List<LaptopTableDTO>> getAllLaptops() {
+        return ResponseEntity.ok(laptopService.getAllLaptops());
+    }
+
+    @PostMapping("/admin/add")
+    public ResponseEntity<String> addLaptop(@RequestBody LaptopDTO laptopDTO) {
+        return ResponseEntity.ok(laptopService.addLaptop(laptopDTO));
+    }
+
+    @PutMapping("admin/changeAvailable")
+    public ResponseEntity<String> changeLaptopAvailable(@RequestBody ChangeLaptopAvailableDTO changeLaptopAvailableDTO) {
+        return ResponseEntity.ok(laptopService.changeLaptopAvailable(changeLaptopAvailableDTO));
+    }
+
+    @DeleteMapping("admin/deleteLaptops")
+    public ResponseEntity<String> deleteLaptops(@RequestBody List<Long> list) {
+        return ResponseEntity.ok(laptopService.deleteLaptops(list));
     }
 }

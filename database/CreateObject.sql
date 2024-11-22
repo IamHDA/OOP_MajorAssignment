@@ -1,11 +1,12 @@
 CREATE TABLE `User` (
   `ID` BIGINT PRIMARY KEY,
-  `Name` NVARCHAR(255),
+  `Name` VARCHAR(255) UNIQUE,
   `Email` VARCHAR(255) UNIQUE,
-  `Phone` VARCHAR(11),
+  `Phone` VARCHAR(255),
   `Pass` VARCHAR(255),
   `Role` VARCHAR(255),
-  `UserAdress` NVARCHAR(255)
+  `registration_date` DATE,
+  `UserAdress` VARCHAR(255)
 );
 
 CREATE TABLE `Laptop` (
@@ -14,6 +15,7 @@ CREATE TABLE `Laptop` (
   `Name` VARCHAR(255),
   `Brand` VARCHAR(255),
   `Price` INT,
+  `State` VARCHAR(255),
   `Sale` SMALLINT,
   `Available` BOOLEAN
 );
@@ -26,42 +28,46 @@ CREATE TABLE `LaptopCategory` (
 
 CREATE TABLE `Category` (
   `ID` BIGINT PRIMARY KEY,
-  `Name` NVARCHAR(255)
+  `Name` VARCHAR(255)
 );
 
 CREATE TABLE `Status` (
   `ID` BIGINT PRIMARY KEY,
-  `OrderID` BIGINT,
-  `Name` NVARCHAR(255),
-  `Description` NVARCHAR(255)
+  `Name` VARCHAR(255),
+  `Description` VARCHAR(255)
 );
 
 CREATE TABLE `Laptop_Comment` (
   `ID` BIGINT PRIMARY KEY,
   `UserID` BIGINT,
   `LaptopID` BIGINT,
-  `Comment` NVARCHAR(255),
+  `Content` VARCHAR(255),
   `Post_At` TIMESTAMP,
   `Update_At` TIMESTAMP
 );
 
-CREATE TABLE `Shipping_Method` (
+CREATE TABLE `Payment_Method` (
   `ID` BIGINT PRIMARY KEY,
-  `OrderID` BIGINT,
-  `Name` NVARCHAR(255),
-  `Price` INT
+  `Name` VARCHAR(255)
 );
 
 CREATE TABLE `Customer_Order` (
   `ID` BIGINT PRIMARY KEY,
+  `RecieverName` VARCHAR(255),
+  `ReceiverPhone` VARCHAR(11),
+  `ShippingAdress` VARCHAR(255),
+  `Shipping_Address` VARCHAR(255),
+  `OrderDate` DATE,
+  `Note` VARCHAR(255),
+  `Total_Price` BIGINT,
   `UserID` BIGINT,
-  `Shipping_Address` NVARCHAR(255),
-  `Total_Price` INT
+  `StatusID` BIGINT,
+  `Payment_Method_ID` BIGINT
 );
 
 CREATE TABLE `Order_Detail` (
   `ID` BIGINT PRIMARY KEY,
-  `OrderID` BIGINT,
+  `Customer_Order_ID` BIGINT,
   `LaptopID` BIGINT,
   `Unit_Price` INT,
   `Quantity` INT
@@ -75,6 +81,7 @@ CREATE TABLE `Image` (
 
 CREATE TABLE `Cart_Detail` (
   `ID` BIGINT PRIMARY KEY,
+  `UnitPrice` INT,
   `UserID` BIGINT,
   `LaptopID` BIGINT,
   `Quantity` INT
@@ -101,13 +108,13 @@ ALTER TABLE `Cart_Detail` ADD FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
 
 ALTER TABLE `Customer_Order` ADD FOREIGN KEY (`UserID`) REFERENCES `User` (`ID`);
 
+ALTER TABLE `Customer_Order` ADD FOREIGN KEY (`StatusID`) REFERENCES `Status` (`ID`);
+
+ALTER TABLE `Customer_Order` ADD FOREIGN KEY (`Payment_Method_ID`) REFERENCES `Payment_Method` (`ID`);
+
 ALTER TABLE `Cart_Detail` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
 
-ALTER TABLE `Order_Detail` ADD FOREIGN KEY (`OrderID`) REFERENCES `Customer_Order` (`ID`);
-
-ALTER TABLE `Status` ADD FOREIGN KEY (`OrderID`) REFERENCES `Customer_Order` (`ID`);
-
-ALTER TABLE `Shipping_Method` ADD FOREIGN KEY (`OrderID`) REFERENCES `Customer_Order` (`ID`);
+ALTER TABLE `Order_Detail` ADD FOREIGN KEY (`Customer_Order_ID`) REFERENCES `Customer_Order` (`ID`);
 
 ALTER TABLE `Laptop_Comment` ADD FOREIGN KEY (`LaptopID`) REFERENCES `Laptop` (`ID`);
 

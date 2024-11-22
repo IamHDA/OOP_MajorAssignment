@@ -42,13 +42,38 @@ for(let i = 0; i < category.children.length; i++){
 }
 
 let hocTapVanPhongCoBanCategory = document.querySelector('.category__hoctapvanphongcoban');
+let gaming = document.querySelector('.category__gaming');
+let dohoa = document.querySelector('.category__dohoa');
+let mongnhe = document.querySelector('.category__mongnhe');
 
 hocTapVanPhongCoBanCategory.addEventListener('click', function(){
     window.scrollTo({
-        top: 1500,
+        top: 720,
         behavior: 'smooth' // Cuộn mượt mà
     });
 })
+
+gaming.addEventListener('click', function(){
+    window.scrollTo({
+        top: 1280,
+        behavior: 'smooth' // Cuộn mượt mà
+    });
+})
+
+dohoa.addEventListener('click', function(){
+    window.scrollTo({
+        top: 1840,
+        behavior: 'smooth' // Cuộn mượt mà
+    });
+})
+
+mongnhe.addEventListener('click', function(){
+    window.scrollTo({
+        top: 2400,
+        behavior: 'smooth' // Cuộn mượt mà
+    });
+})
+
 
 // Category
 

@@ -1,7 +1,6 @@
 package com.group.backend.dto;
 
 import com.group.backend.entity.Image;
-import com.group.backend.entity.Specification;
 import lombok.Data;
 
 import java.util.List;
@@ -13,5 +12,5 @@ public class LaptopSummaryDTO {
     private int price;
     private int sale;
     private List<Image> images;
-    private Specification specification;
+    private SpecificationDTO specification;
 }

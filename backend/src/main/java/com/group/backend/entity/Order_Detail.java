@@ -3,7 +3,6 @@ package com.group.backend.entity;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.ToString;
 
 @Entity
 @Data

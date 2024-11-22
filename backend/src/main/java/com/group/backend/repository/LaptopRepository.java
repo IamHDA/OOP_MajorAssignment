@@ -10,33 +10,33 @@ import java.util.List;
 @Repository
 public interface LaptopRepository extends JpaRepository<Laptop, Long> {
     List<Laptop> findAll();
-    Laptop findById(long id);
-    List<Laptop> findByBrand(String brand);
-    List<Laptop> findByState(String state);
+    Laptop findByName(String name);
     @Query("""
-    select l from Laptop l
+        select l 
+        from Laptop l
+        order by l.id desc
+    """)
+    List<Laptop> findLastLaptop();
+    @Query("""
+    select l 
+    from Laptop l
     join l.laptopCategories lc
     join lc.category c
     where c.name = :category
     """)
     List<Laptop> findByCategory(String category);
-    @Query("""
-        select l from Laptop l
-        join l.laptopCategories lc
-        join lc.category c
-        where c.name = :categoryName
-    """)
-    List<Laptop> findLaptopByCategory(String categoryName);
 
     @Query("""
-        select l from Laptop l
+        select l 
+        from Laptop l
         join l.specification s
-        where lower(l.name) like lower(concat('%', :keyword, '%'))
-        or lower(l.brand) like lower(concat('%', :keyword, '%'))
+        where lower(l.name) like lower(concat(:keyword, '%'))
+        or lower(l.brand) like lower(concat(:keyword, '%'))
         or lower(s.rom) like lower(concat('%', :keyword, '%'))
         or lower(s.ram) like lower(concat('%', :keyword, '%'))
         or lower(s.cpu) like lower(concat('%', :keyword, '%'))
         or lower(s.graphicsCard) like lower(concat('%', :keyword, '%'))
+        and l.available = true
     """)
     List<Laptop> searchLaptop(String keyword);
 }

@@ -1,6 +1,5 @@
 package com.group.backend.service;
 
-import ch.qos.logback.core.encoder.EchoEncoder;
 import com.group.backend.dto.AuthenticationResponse;
 import com.group.backend.dto.payload.LoginRequest;
 import com.group.backend.dto.payload.RegisterRequest;
@@ -11,35 +10,36 @@ import com.group.backend.repository.UserRepository;
 import com.group.backend.security.JwtTokenProvider;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class AuthenticationService {
 
-    @Autowired
     private final BCryptPasswordEncoder encoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepo;
     private final TokenRepository tokenRepository;
+    private final UserDetailsService userDetailsService;
 
-    public AuthenticationService(BCryptPasswordEncoder encoder, UserRepository userRepo, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, TokenRepository tokenRepository) {
+    public AuthenticationService(BCryptPasswordEncoder encoder, UserRepository userRepo, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, TokenRepository tokenRepository, UserDetailsService userDetailsService) {
         this.encoder = encoder;
         this.userRepo = userRepo;
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
         this.tokenRepository = tokenRepository;
+        this.userDetailsService = userDetailsService;
     }
 
 
@@ -51,7 +51,12 @@ public class AuthenticationService {
         user.setName(request.getDataName());
         user.setEmail(request.getDataEmail());
         user.setPass(encoder.encode(request.getDataUserPassword()));
-        user.setRole("Customer");
+        if(request.getDataName().equals("Admin") || request.getDataName().equals("admin")) {
+            user.setRole("Admin");
+        }else{
+            user.setRole("Customer");
+        }
+        user.setRegistrationDate(LocalDate.now());
 
         userRepo.save(user);
 
@@ -70,7 +75,6 @@ public class AuthenticationService {
         if(user == null){
             return new AuthenticationResponse(null, null, "User not found");
         }
-
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getDataEmail(), request.getDataUserPassword()));
         }catch (BadCredentialsException e) {
@@ -83,7 +87,6 @@ public class AuthenticationService {
         List<Token> validTokenByUser = tokenRepository.findAllAccessTokenByUser(user.getId());
         if (!validTokenByUser.isEmpty()) {
             validTokenByUser.forEach(t -> {
-
                 t.setLoggedOut(true);
             });
         }

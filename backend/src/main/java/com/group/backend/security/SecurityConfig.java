@@ -1,6 +1,5 @@
 package com.group.backend.security;
 
-import com.group.backend.config.Encoder;
 import com.group.backend.config.handler.CustomLogoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -26,6 +26,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true) // Ho tro cho @PreAuthorize
 public class SecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
@@ -49,13 +50,20 @@ public class SecurityConfig {
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(
-                                "/login", "/register",
-                                "/refresh_token",
-                                "/sendMail",
-                                "/laptop",
-                                "/collections",
-                                "/**")
+                                "/login",
+                                "/register",
+                                "/laptop/api/**",
+                                "/refresh-token",
+                                "/collections/**",
+                                "/forgetPassword/**"
+                        )
                         .permitAll()
+                        .requestMatchers(
+                                "/order/admin/**",
+                                "/user/admin/**",
+                                "/laptop/admin/**",
+                                "/comment/admin/**"
+                        ).hasAuthority("Admin")
                         .anyRequest()
                         .authenticated())
                 .httpBasic(Customizer.withDefaults())
@@ -75,7 +83,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource customCorsConfiguration() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:5501"));
+        configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:5500", "http://192.168.0.103:5500"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

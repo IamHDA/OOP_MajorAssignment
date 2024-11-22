@@ -32,14 +32,11 @@
     display: flex;
 }
 
-.product__img{
-    height: auto;
-    width: 380px;
-}
-
 .product__img img{
-    height: auto;
-    width: 100%;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    object-position: center;
 }
 
 .product__img--main{
@@ -93,6 +90,7 @@
     font-weight: 400;
     margin-left: 20px;
     margin-top: 10px;
+    list-style-type: circle;
 }
 
 .product__specifications__see_all h1, .product__specifications__see_all h2{
@@ -246,12 +244,12 @@
 
 .giohang, .muatragop{
     height: 75px;
-    width: 49%;
+    width: 100%;
     background-color: rgb(255, 129, 37);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700;
     color: rgb(255, 255, 255);
     border-radius: 10px;
@@ -358,7 +356,8 @@
 }
 
 .lienhekinhdoanh{
-    height: 190px;
+    height: auto;
+    padding-bottom: 13px;
     width: 270px;
     margin-top: 30px;
     border: 1px solid rgb(25, 136, 236);
@@ -408,7 +407,8 @@
     margin: auto;
     background-color: white;
     margin-top: 50px;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
+    padding-bottom: 20px;
 }
 
 .comment__title{
@@ -486,7 +486,85 @@
     font-weight: 600;
     border-radius: 5px;
     margin: 50px 80px 100px auto;
+    cursor: pointer;
 }
 
+.tab{
+    margin-left: 30px;
+}
 
+.product__comment .status{
+    font-size: 20px;
+    margin-left: 2px;
+    color: rgb(161, 157, 153);
+}
 
+.product__comment .action{
+    margin-top: 5px;
+    display: flex;
+    margin-left: 30px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.product__comment .action .editComment{
+    margin-right: 20px;
+}
+
+.product__comment .input{
+    margin-left: 150px;
+    margin-top: 10px;
+    width: 750px;
+    height: 100px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.product__comment .input textarea{
+    width: 700px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: 500;
+    resize: none;
+    outline: none;
+    border: none;
+}
+
+.product__comment .button{
+   margin-left: 780px; 
+   margin-top: 30px;
+   height: 40px;
+   width: 70px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: red;
+   color: white;
+   cursor: pointer;
+   display: none;
+}
+
+.comment__container{
+    margin-bottom: 20px;
+    
+}
+
+.comment__container .id{
+    display: none;
+}
+
+.comment__input{
+    height: auto;
+    width: 1200px;
+    background-color: white;
+    margin: auto;
+    margin-bottom: 30px;
+    border-radius: 0 0 10px 10px;
+}
+
+.comment__input .inputContent{
+    margin-top: 50px;
+}
