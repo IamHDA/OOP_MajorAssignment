@@ -10,7 +10,7 @@ public interface OrderService {
     List<OrderDTO> getOrderByUser();
     Order getLastOrderByUser();
     Order createOrderFromCart(OrderDTO orderDTO);
-    void deleteOrderUser();
+    String deleteUserOrder();
     long getThisMonthRevenue();
     long countThisMonthOrder();
     String updateStatus(ChangeOrderStatusDTO changeOrderStatusDTO);

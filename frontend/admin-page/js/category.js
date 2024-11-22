@@ -50,7 +50,7 @@ async function getAllCategory() {
         });
         response = await response.json();
         for(let i = 0; i < response.length; i++){
-            allCategory.innerHTML += '<p>' + response[i] + '</p>';
+            allCategory.innerHTML += '<p>' + response[i].name + '</p>';
         }
     }
     catch(error){
@@ -63,15 +63,12 @@ function addCategory(){
     let addCategory = document.querySelector('.add-category');
     let buttonAdd = addCategory.querySelector('.submit');
     buttonAdd.addEventListener('click', async function(){
-        console.log("adfadf");
         let strListCategory = addCategory.querySelector('.input').value;
         let listCategory = getListCategory(strListCategory);
-        let data = {
-            name: []
-        };
-        for(let i = 0; i < listCategory.length; i++){
-           data.name.push(listCategory[i]);
-        };
+        let data = [];
+        for (let i = 0; i < listCategory.length; i++) {
+            data.push({ name: listCategory[i] });
+        }
         try{
             await checkAccessTokenIsvalid();
             let accessToken = localStorage.getItem('accessToken');
@@ -83,8 +80,10 @@ function addCategory(){
                 },
                 body: JSON.stringify(data)
             });
-            response = await response.json();
-            alert("Thêm category thành công!");
+            response = await response.text();
+            if(response == "Category added successfully"){
+                alert("Thêm danh mục thành công")
+            }
             window.location.reload();
         }
         catch(error){
@@ -101,12 +100,10 @@ function deleteCategory(){
         console.log("adfadf");
         let strListCategory = addCategory.querySelector('.input').value;
         let listCategory = getListCategory(strListCategory);
-        let data = {
-            name: []
-        };
-        for(let i = 0; i < listCategory.length; i++){
-           data.name.push(listCategory[i]);
-        };
+        let data = [];
+        for (let i = 0; i < listCategory.length; i++) {
+            data.push({ name: listCategory[i] });
+        }
         try{
             await checkAccessTokenIsvalid();
             let accessToken = localStorage.getItem('accessToken');
@@ -118,8 +115,12 @@ function deleteCategory(){
                 },
                 body: JSON.stringify(data)
             });
-            response = await response.json();
-            alert("Xóa category thành công!");
+            response = await response.text();
+            if(response == "Category removed"){
+                alert("Xóa danh mục thành công")
+            }else if(response == "Category not found"){
+                alert("Danh mục không tồn tại")
+            }
             window.location.reload();
         }
         catch(error){

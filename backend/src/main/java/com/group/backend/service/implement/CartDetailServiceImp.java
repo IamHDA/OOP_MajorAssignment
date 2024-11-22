@@ -47,7 +47,7 @@ public class CartDetailServiceImp implements CartDetailService {
 
     @Override
     public void addToCart(CartDetailDTO cartDetailDTO) {
-        Laptop laptop = laptopRepo.findById(cartDetailDTO.getLaptop().getId());
+        Laptop laptop = laptopRepo.findById(cartDetailDTO.getLaptop().getId()).orElse(null);
         User user = currentUser.getCurrentUser();
         cartDetailDTO.setUnitPrice(formatService.priceFormat(laptop.getDiscountedPrice()));
         Cart_Detail cartDetail = modelMapper.map(cartDetailDTO, Cart_Detail.class);

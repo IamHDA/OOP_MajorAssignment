@@ -68,9 +68,10 @@ public class OrderServiceImp implements OrderService {
 
     @Transactional
     @Override
-    public void deleteOrderUser() {
+    public String deleteUserOrder() {
         User user = currentUser.getCurrentUser();
         orderRepo.deleteByUser(user);
+        return "deleted";
     }
 
     @Override

@@ -41,9 +41,8 @@ public class OrderController {
     }
 
     @DeleteMapping("/deleteUserOrder")
-    public ResponseEntity<Void> deleteOrderUser(){
-        orderService.deleteOrderUser();
-        return ResponseEntity.ok().build();
+    public ResponseEntity<String> deleteUserOrder(){
+        return ResponseEntity.ok(orderService.deleteUserOrder());
     }
 
     @PutMapping("/admin/updateOrderStatus")

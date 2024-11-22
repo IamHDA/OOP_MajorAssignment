@@ -1,4 +1,4 @@
-.order-container{
+.account-container{
     font-size: 18px;
     width: 100%;
     height: 100%;
@@ -8,7 +8,7 @@
     margin-left: 248px;
     padding-top: 80px;
     padding-left: 55px;
-    padding-right: 35px;
+    padding-right: 55px;
 }
 
 .first-row{
@@ -16,26 +16,39 @@
     flex-direction: column;
 }
 
-.order-table{
-    font-size: 15px;
-    border: 1px solid rgb(166, 166, 166);
+.second-row{
+    display: flex;
+    justify-content: space-around;
+}
+
+.title{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.laptop-table{
+    height: auto;
+    border: 2px solid rgb(0, 0, 0);
     border-radius: 10px;
     border-collapse: collapse;
+    padding: 15px;
     margin-top: 10px;
     background-color: white;
 }
 
-.order-table td{
-    border: 1px solid rgb(166, 166, 166);
-    padding: 12px;
-}
-
-.table-other-row{
-    transition: background-color 0.2s;
+.laptop-table td{
+    border: 1px solid rgb(0, 0, 0);
+    padding: 17px;
 }
 
 .table-first-row{
     text-align: center;
+    max-height: 40px;
+}
+
+.table-other-row{
+    max-height: 78px;
+    transition: background-color 0.15s;
 }
 
 .table-other-row:hover{
@@ -43,59 +56,65 @@
 }
 
 .stt{
-    width: 25px;
+    min-width: 20px;
     text-align: center;
 }
 
 .id{
-    width: 10px;
+    min-width: 30px;
     text-align: center;
 }
 
 .name{
-    width: 150px;
+    min-width: 430px;
 }
 
-.payment-method{
-    width: 90px;
-}
-
-.status{
-    width: 120px;
+.price{
+    min-width: 150px;
     text-align: center;
 }
 
-.order-date{
-    width: 85px;
+.sale{
+    min-width: 40px;
     text-align: center;
 }
 
-.note{
-    width: 150px;
-}
-
-.address{
-    width: 150px;
-}
-
-.total-price{
-    width: 142px;
+.state{
+    min-width: 106px;
     text-align: center;
 }
 
-.title{
-    font-size: 22px;
-    font-weight: bold;
+.available{
+    min-width: 70px;
+    text-align: center;
 }
 
-.input{
-    margin-top: 10px;
+.change-available, .delete-laptop{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    width: auto;
     gap: 10px;
 }
 
-.status-input{
+.change-available .title, .delete-laptop .title{
+    font-size: 22px;
+}
+
+.id-input{
+    padding: 10px 40px 10px 10px;
+    width: 280px;
+    font-size: 20px;
+    border-radius: 5px;
+    border-color: black;
+}
+
+.address{
+    min-width: 150px;
+}
+
+.available-input{
+    text-align: center;
     margin: auto;
     padding: 10px 10px 10px 10px;
     width: 200px;
@@ -104,20 +123,11 @@
     border-color: black;
 }
 
-.to{
+.change-available .to{
     margin: auto;
 }
 
-.id-input{
-    margin: auto;
-    padding: 10px 40px 10px 10px;
-    width: 280px;
-    font-size: 20px;
-    border-radius: 5px;
-    border-color: black;
-}
-
-.submit{
+.submit1, .submit2{
     display: block;
     margin: auto;
     font-size: 18px;
@@ -131,6 +141,21 @@
     cursor: pointer;
 }
 
+.submit2{
+    margin-top: 0px;
+}
+
+.new-role{
+    display: block;
+    width: 100px !important;
+}
+
+.pages{
+    width: 1172px;
+    display: flex;
+    overflow-x: hidden;
+}
+
 .pageTransition{
     display: flex;
     margin: 10px 0 0 500px;
@@ -142,3 +167,4 @@
     display: flex;
     gap: 3px;
 }
+

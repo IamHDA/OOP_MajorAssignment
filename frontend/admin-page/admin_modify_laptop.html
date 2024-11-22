@@ -3,7 +3,7 @@
     <head>
         <title>Admin Page</title>
         <meta charset = "UTF-8">
-        <link href="css/admin_account.css" rel="stylesheet">
+        <link href="css/admin_modify_laptop.css" rel="stylesheet">
         <link href="css/header.css" rel="stylesheet">
         <link href="css/general.css" rel="stylesheet">
         <link href="css/side-bar.css" rel="stylesheet">
@@ -29,7 +29,7 @@
                                 <a href="admin_add_laptop.html">
                                     <li class="sub-option-title">Thêm Laptop</li>
                                 </a>
-                                <a href="admin_modify_laptop.html">
+                                <a href="admin_add_laptop.html">
                                     <li class="sub-option-title">Sửa, xóa Laptop</li>
                                 </a>
                             </div>
@@ -44,6 +44,35 @@
                     <div class="first-row">
                         <p class="title">Tài khoản</p>
                         <div class="pages">
+                            <table class="laptop-table">
+                                <tr class="table-first-row">
+                                    <td class="stt">STT</td>
+                                    <td class="id">LaptopID</td>
+                                    <td class="name">Tên Laptop</td>
+                                    <td class="price">Trị giá</td>
+                                    <td class="sale">Giảm giá</td>
+                                    <td class="state">Trạng thái</td>
+                                    <td class="available">Còn hàng</td>
+                                </tr>
+                                <tr class="table-other-row">
+                                    <td class="stt">1</td>
+                                    <td class="id">1</td>
+                                    <td class="name">Dell Precision 15 5570</td>
+                                    <td class="price">57.990.000 VNĐ</td>
+                                    <td class="sale">20%</td>
+                                    <td class="state">New</td>
+                                    <td class="available">Có</td>
+                                </tr>
+                                <tr class="table-other-row">
+                                    <td class="stt">2</td>
+                                    <td class="id">2</td>
+                                    <td class="name">Dell Precision 15 5570</td>
+                                    <td class="price">57.990.000 VNĐ</td>
+                                    <td class="sale">20%</td>
+                                    <td class="state">Like-New</td>
+                                    <td class="available">Không</td>
+                                </tr>
+                            </table>
                         </div>
                         <div class="pageTransition">
                             <div class="left">
@@ -60,16 +89,16 @@
                         </div>
                     </div>
                     <div class="second-row">
-                        <div class="change-role">
-                            <p class="title">Thay đổi vai trò</p>
+                        <div class="change-available">
+                            <p class="title">Thay đổi hàng có sẵn</p>
                             <input class="id-input" type="text" placeholder="Nhập ID cách nhau bằng dấu ,">
                             <p class="to">TO</p>
-                            <input class="role-input" type="text" placeholder="Nhập vai trò mới">
+                            <input class="available-input" type="text" placeholder="Cập nhật hàng có sẵn hoặc không">
                             <button class="submit1">Xác nhận</button>
                             
                         </div>
-                        <div class="delete-account">
-                            <p class="title">Xóa tài khoản</p>
+                        <div class="delete-laptop">
+                            <p class="title">Xóa laptop</p>
                             <input class="id-input" type="text" placeholder="Nhập ID cách nhau bằng dấu ,">
                             <button class="submit2">Xác nhận</button>
                         </div>

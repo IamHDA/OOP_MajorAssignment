@@ -32,7 +32,7 @@ public class CommentServiceImp implements CommentService {
     public String postComment(CommentDTO commentDTO, long laptopId) {
         Comment comment = modelMapper.map(commentDTO, Comment.class);
         User user = currentUser.getCurrentUser();
-        Laptop laptop = laptopRepo.findById(laptopId);
+        Laptop laptop = laptopRepo.findById(laptopId).orElse(null);
         comment.setUser(user);
         comment.setLaptop(laptop);
         comment.setPostAt(LocalDateTime.now());
@@ -42,7 +42,7 @@ public class CommentServiceImp implements CommentService {
 
     @Override
     public String updateComment(CommentDTO commentDTO) {
-        Comment comment = commentRepo.findById(commentDTO.getId()).orElseThrow(() -> new RuntimeException("Can not find comment in the database"));
+        Comment comment = commentRepo.findById(commentDTO.getId()).orElseThrow(() -> new RuntimeException("Comment with id: " + commentDTO.getId() + " not found"));
         comment.setUpdateAt(LocalDateTime.now());
         comment.setContent(commentDTO.getContent());
         commentRepo.save(comment);
@@ -51,7 +51,7 @@ public class CommentServiceImp implements CommentService {
 
     @Override
     public String deleteComment(long id) {
-        Comment comment = commentRepo.findById(id).orElseThrow(() -> new RuntimeException("Can not find comment in the database"));
+        Comment comment = commentRepo.findById(id).orElseThrow(() -> new RuntimeException("Comment with id: " + id + " not found"));
         commentRepo.deleteById(id);
         return "Comment deleted successfully";
     }

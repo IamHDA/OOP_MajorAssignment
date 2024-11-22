@@ -22,6 +22,11 @@ input{
     outline: none;
 }
 
+
+ul {
+    list-style-type: none;
+}
+
 .main-container{
     padding-bottom: 40px;
     margin: 0 auto;

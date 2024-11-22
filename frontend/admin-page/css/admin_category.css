@@ -24,13 +24,13 @@
 
 .all-category{
     margin-top: 10px;
-    padding: 40px 0px 40px 66px;
+    padding: 35px 0px 40px 50px;
     border-radius: 15px;
     background-color: white;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    justify-content: space-between;
-    gap: 30px;
+    row-gap: 20px;
+    column-gap: 31px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 

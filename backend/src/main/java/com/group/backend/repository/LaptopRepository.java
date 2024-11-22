@@ -11,9 +11,6 @@ import java.util.List;
 public interface LaptopRepository extends JpaRepository<Laptop, Long> {
     List<Laptop> findAll();
     Laptop findByName(String name);
-    Laptop findById(long id);
-    List<Laptop> findByBrand(String brand);
-    List<Laptop> findByState(String state);
     @Query("""
         select l 
         from Laptop l
@@ -28,14 +25,6 @@ public interface LaptopRepository extends JpaRepository<Laptop, Long> {
     where c.name = :category
     """)
     List<Laptop> findByCategory(String category);
-    @Query("""
-        select l 
-        from Laptop l
-        join l.laptopCategories lc
-        join lc.category c
-        where c.name = :categoryName
-    """)
-    List<Laptop> findLaptopByCategory(String categoryName);
 
     @Query("""
         select l 
@@ -47,6 +36,7 @@ public interface LaptopRepository extends JpaRepository<Laptop, Long> {
         or lower(s.ram) like lower(concat('%', :keyword, '%'))
         or lower(s.cpu) like lower(concat('%', :keyword, '%'))
         or lower(s.graphicsCard) like lower(concat('%', :keyword, '%'))
+        and l.available = true
     """)
     List<Laptop> searchLaptop(String keyword);
 }

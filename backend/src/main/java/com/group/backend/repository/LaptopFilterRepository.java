@@ -78,6 +78,9 @@ public class LaptopFilterRepository {
             predicates.add(newPredicate);
         }
 
+        Predicate newPredicate = cb.equal(laptop.get("available"), "YES");
+        predicates.add(newPredicate);
+
         cq.where(predicates.toArray(new Predicate[0]));
 
         if("name".equals(filter.getSortBy())){

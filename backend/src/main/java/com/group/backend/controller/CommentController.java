@@ -16,6 +16,12 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+
+    @GetMapping("/admin/getAllComment")
+    public ResponseEntity<List<CommentDTO>> getAllComment(){
+        return ResponseEntity.ok(commentService.getAllComment());
+    }
+
     @PostMapping("/post")
     public ResponseEntity<String> postComment(@RequestBody CommentDTO commentDTO, @RequestParam long laptopId){
         return ResponseEntity.ok(commentService.postComment(commentDTO, laptopId));
@@ -29,10 +35,5 @@ public class CommentController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteComment(@PathVariable long id){
         return ResponseEntity.ok(commentService.deleteComment(id));
-    }
-
-    @GetMapping("/admin/getAllComment")
-    public ResponseEntity<List<CommentDTO>> getAllComment(){
-        return ResponseEntity.ok(commentService.getAllComment());
     }
 }

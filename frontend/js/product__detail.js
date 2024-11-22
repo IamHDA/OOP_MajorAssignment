@@ -155,7 +155,7 @@ async function buildProductDetail(response){
 
 async function getDaTa(){
     let id = localStorage.getItem('id__product'); 
-    let response = await fetch(`http://192.168.0.103:8080/laptop/api/${id}`, {
+    let response = await fetch(`http://192.168.0.103:8080/laptop/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

@@ -18,7 +18,7 @@ function daucham(num){
 
 async function searchProduct(){
     let keyword = localStorage.getItem('valueSearch');
-    let data = await fetch(`http://192.168.0.103:8080/laptop/api/search?keyword=${keyword}`)
+    let data = await fetch(`http://192.168.0.103:8080/laptop/search?keyword=${keyword}`)
     data = await data.json();
     let allLaptop = document.querySelector('.all-laptop');
     for(let i = 0; i < data.length; i++){

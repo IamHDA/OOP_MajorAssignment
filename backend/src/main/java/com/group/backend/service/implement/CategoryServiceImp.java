@@ -62,17 +62,13 @@ public class CategoryServiceImp implements CategoryService {
 
     @Override
     public String removeCategory(List<CategoryDTO> categoryDTOS) {
-        List<Category> categories = categoryDTOS.stream()
-                .map(tmp -> {
-                    Category category = modelMapper.map(tmp, Category.class);
-                    category.setName(formatService.removeSignFromTextFormat(category.getName()));
-                    return category;
-                })
+        categoryDTOS.stream()
+                .peek(tmp -> tmp.setName(formatService.removeSignFromTextFormat(tmp.getName())))
                 .collect(Collectors.toList());
-        for(Category category : categories) {
-            Category tmp = categoryRepo.findByName(category.getName()).orElseThrow(() -> new RuntimeException("Category not found"));
+        for(CategoryDTO category : categoryDTOS) {
+            Category tmp = categoryRepo.findByName(category.getName()).orElseThrow(() -> new RuntimeException("Category with name: " + category.getName() + " not found"));
             categoryRepo.deleteById(tmp.getId());
         }
-        return "";
+        return "Category removed";
     }
 }

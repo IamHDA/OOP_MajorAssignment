@@ -181,10 +181,10 @@ async function updateStatusOrder(){
     let data = {
         statusId: document.querySelector('.status-input').value,
         orderIds: []
-    }
+    };
     for(let i = 0; i < listId.length; i++){
         data.orderIds.push(listId[i]);
-    }
+    };
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
