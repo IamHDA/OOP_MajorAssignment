@@ -45,7 +45,7 @@ function cssRegister(){
 async function saveUserName(){
     var accessToken = localStorage.getItem('accessToken');
     console.log(accessToken);
-    let response = await fetch('http://192.168.0.103:8080/user/info', {
+    let response = await fetch('http://10.20.245.24:8080/user/info', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ async function register(){
             };
 
             // push data ve backend
-            let response = await fetch('http://192.168.0.103:8080/register', {
+            let response = await fetch('http://10.20.245.24:8080/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

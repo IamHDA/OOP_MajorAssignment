@@ -30,7 +30,7 @@ async function getDataUserName() {
     var text = document.querySelector("#taikhoancua");
     await checkAccessTokenIsvalid();
     let accessToken = localStorage.getItem("accessToken");
-    let response = await fetch('http://192.168.0.103:8080/user/info', {
+    let response = await fetch('http://10.20.245.24:8080/user/info', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ async function changeUserInfor() {
 
         await checkAccessTokenIsvalid();
         var accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://192.168.0.103:8080/user/info', {
+        let response = await fetch('http://10.20.245.24:8080/user/info', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -211,7 +211,7 @@ async function changeUserInfor() {
             }
             
             await checkAccessTokenIsvalid();
-            await fetch('http://192.168.0.103:8080/user/changeInfo',{
+            await fetch('http://10.20.245.24:8080/user/changeInfo',{
                 method: 'PUT',
                 headers: {
                 'Content-Type': 'application/json',
@@ -233,7 +233,7 @@ async function buildOder(){
         tableDanhSachDonHang.innerHTML = '<tr class="firstRow"><td class="stt">STT</td><td class="receiverName"></td><td class="receiverPhone"></td><td class="id">Mã đơn hàng</td><td class="totalPrice">Đơn giá</td><td class="dayOrder">Ngày đặt hàng</td><td class="paymentMethod">Phương thức thanh toán</td><td class="status">Trạng thái</td><td class="receiverName"></td><td class="receiverPhone"></td><td class="shippingAddress"></td><td class="note"></td></tr>';
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://192.168.0.103:8080/order/getCurrentUserOrder', {
+        let response = await fetch('http://10.20.245.24:8080/order/getCurrentUserOrder', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -291,7 +291,7 @@ async function getDataOrderDetail(id, idOrder, receiverName, receiverPhone, ship
 
     await checkAccessTokenIsvalid();
     let accessToken = localStorage.getItem('accessToken');
-    let response = await fetch(`http://192.168.0.103:8080/order-detail/${idOrder}`, {
+    let response = await fetch(`http://10.20.245.24:8080/order-detail/${idOrder}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
@@ -382,7 +382,7 @@ async function changePassword(){
             const data = {
                 password: newPass1
             }
-            let response = await fetch('http://192.168.0.103:8080/user/changePass',{
+            let response = await fetch('http://10.20.245.24:8080/user/changePass',{
                 method: 'PUT',
                 headers: {
                 'Content-Type': 'application/json',

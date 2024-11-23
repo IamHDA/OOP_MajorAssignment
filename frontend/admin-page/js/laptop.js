@@ -24,7 +24,7 @@ async function submitImg(){
     try{
         let response = await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        await fetch(`http://192.168.0.103:8080/image/add`,{
+        await fetch(`http://10.20.245.24:8080/image/add`,{
             method: 'POST',
             headers: {
             'Authorization': `Bearer ${accessToken}`
@@ -57,7 +57,7 @@ async function submitLaptop() {
     try{
         let response = await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        await fetch(`http://192.168.0.103:8080/laptop/admin/add`,{
+        await fetch(`http://10.20.245.24:8080/laptop/admin/add`,{
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ async function submitSpecification() {
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch(`http://192.168.0.103:8080/specification/add`,{
+        let response = await fetch(`http://10.20.245.24:8080/specification/add`,{
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -197,7 +197,7 @@ async function submitCategory(){
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch(`http://192.168.0.103:8080/laptopCategory/add`,{
+        let response = await fetch(`http://10.20.245.24:8080/laptopCategory/add`,{
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',

@@ -18,7 +18,7 @@ async function getThisMonthRevenue(){
     let revenue = document.querySelector('.revenue');
     await checkAccessTokenIsvalid();
     let accessToken = localStorage.getItem("accessToken");
-    let response = await fetch('http://192.168.0.103:8080/order/admin/getThisMonthRevenue', {
+    let response = await fetch('http://10.20.245.24:8080/order/admin/getThisMonthRevenue', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ async function getThisMonthUsers() {
     let numberNewUser = document.querySelector('.numberNewUser');
     await checkAccessTokenIsvalid();
     let accessToken = localStorage.getItem("accessToken");
-    let response = await fetch('http://192.168.0.103:8080/user/admin/getThisMonthUsers', {
+    let response = await fetch('http://10.20.245.24:8080/user/admin/getThisMonthUsers', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ async function getCountThisMonthOrder(){
     let numberOrder = document.querySelector('.numberOrder');
     await checkAccessTokenIsvalid();
     let accessToken = localStorage.getItem("accessToken");
-    let response = await fetch('http://192.168.0.103:8080/order/admin/countThisMonthOrder', {
+    let response = await fetch('http://10.20.245.24:8080/order/admin/countThisMonthOrder', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

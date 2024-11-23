@@ -78,7 +78,7 @@ public class LaptopFilterRepository {
             predicates.add(newPredicate);
         }
 
-        Predicate newPredicate = cb.equal(laptop.get("available"), "YES");
+        Predicate newPredicate = cb.equal(laptop.get("available"), true);
         predicates.add(newPredicate);
 
         cq.where(predicates.toArray(new Predicate[0]));

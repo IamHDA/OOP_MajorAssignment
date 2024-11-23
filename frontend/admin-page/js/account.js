@@ -3,7 +3,7 @@ import checkAccessTokenIsvalid from "./accessToken.js";
 async function getAllAccount(){
     await checkAccessTokenIsvalid();
     let accessToken = localStorage.getItem('accessToken');
-    let response = await fetch('http://192.168.0.103:8080/user/admin/getAllUsers',{
+    let response = await fetch('http://10.20.245.24:8080/user/admin/getAllUsers',{
         method: 'GET',
         headers: {
         'Content-Type': 'application/json',
@@ -156,7 +156,7 @@ async function changeUserRole(){
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://192.168.0.103:8080/user/admin/changeUsersRole',{
+        let response = await fetch('http://10.20.245.24:8080/user/admin/changeUsersRole',{
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json',
@@ -188,7 +188,7 @@ async function deleteAccount(){
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://192.168.0.103:8080/user/admin/deleteUsers',{
+        let response = await fetch('http://10.20.245.24:8080/user/admin/deleteUsers',{
             method: 'DELETE',
             headers: {
             'Content-Type': 'application/json',

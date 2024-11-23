@@ -11,7 +11,7 @@ async function getAllComment() {
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://192.168.0.103:8080/comment/admin/getAllComment',{
+        let response = await fetch('http://10.20.245.24:8080/comment/admin/getAllComment',{
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ async function deleteComment(){
                 await checkAccessTokenIsvalid();
                 let accessToken = localStorage.getItem('accessToken');
                 let id = element.querySelector('.commentID').textContent;
-                let response = await fetch(`http://192.168.0.103:8080/comment/delete/${id}`,{
+                let response = await fetch(`http://10.20.245.24:8080/comment/delete/${id}`,{
                     method: 'DELETE',
                     headers: {
                     'Content-Type': 'application/json',
