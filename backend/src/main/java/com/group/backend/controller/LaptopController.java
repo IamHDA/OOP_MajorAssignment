@@ -25,6 +25,7 @@ public class LaptopController {
     
     @GetMapping("/search")
     public ResponseEntity<List<LaptopSummaryDTO>> searchLaptop(@RequestParam String keyword) {
+        if(keyword.length() <= 1) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(laptopService.searchLaptop(keyword));
     }
 

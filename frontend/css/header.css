@@ -283,7 +283,7 @@ a{
 .sugestion{
     height: 100px;
     width: 100%;
-    margin-left: 10px;
+    padding-left: 10px;
     background-color: white;
     display: flex;
     cursor: pointer;
@@ -320,8 +320,10 @@ a{
 }
 
 .sugestion .nameAndPrice .price{
+    height: auto;
     font-size: 17px;
     color: Red;
     margin-top: 10px;
     margin-left: 10px;
+    border: none;
 }
