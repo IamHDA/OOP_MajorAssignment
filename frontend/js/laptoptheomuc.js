@@ -180,7 +180,7 @@ async function getDaTaFilter() {
         var productPrice = '<div class="product__price">' + price + ' đ' + ' </div>'; 
         var productBasePrice = '<div class="product__base__price">' + '<h1>' + basePrice + ' đ' + '</h1>' + '<h2> (Tiết kiệm ' + data[i].sale + '%)</h2>' + '</div>';
         var cart = '<div class="product__cart"> <i class="fa-solid fa-cart-shopping"></i> </div>'
-        var laptopContainer = '<div class="product__container">' + idProduct + imgProduct + nameProduct + productPrice +productBasePrice + cart + '</div>';
+        var laptopContainer = '<div class="product__container">' + idProduct + imgProduct + nameProduct + productPrice + productBasePrice + cart + '</div>';
         allLaptop.innerHTML += laptopContainer;
     }
     selectProduct();

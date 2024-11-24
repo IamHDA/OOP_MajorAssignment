@@ -8,61 +8,73 @@ function selectionCategory() {
     for(let i = 0; i < brand.length; i++){
         brand[i].addEventListener('click', function(){
             if(i == 0){
+                localStorage.setItem('action', 'selectionCategory');
                 localStorage.setItem('brand', 'Dell');
                 localStorage.setItem('state', 'New');
                 localStorage.setItem('category', '');
             }
             else if(i == 1){
+                localStorage.setItem('action', 'selectionCategory');
                 localStorage.setItem('brand', 'HP');
                 localStorage.setItem('state', 'New');
                 localStorage.setItem('category', '');
             }
             else if(i == 2){
+                localStorage.setItem('action', 'selectionCategory');
                 localStorage.setItem('brand', 'MSI');
                 localStorage.setItem('state', 'New');
                 localStorage.setItem('category', '');
             }
             else if(i == 3){
+                localStorage.setItem('action', 'selectionCategory');
                 localStorage.setItem('brand', 'Lenovo');
                 localStorage.setItem('state', 'New');
                 localStorage.setItem('category', '');
             }
             else if(i == 4){
+                localStorage.setItem('action', 'selectionCategory');
                 localStorage.setItem('brand', 'ASUS');
                 localStorage.setItem('state', 'New');
                 localStorage.setItem('category', '');
             }
             else if(i == 5){
+                localStorage.setItem('action', 'selectionCategory');
                 localStorage.setItem('brand', 'ACER');
                 localStorage.setItem('state', 'New');
                 localStorage.setItem('category', '');
             }
             else if(i == 6){
+                localStorage.setItem('action', 'selectionCategory');
                 localStorage.setItem('brand', 'Dell');
                 localStorage.setItem('state', 'Like-New');
                 localStorage.setItem('category', '');
             }
             else if(i == 7){
+                localStorage.setItem('action', 'selectionCategory');
                 localStorage.setItem('brand', 'HP');
                 localStorage.setItem('state', 'Like-New');
                 localStorage.setItem('category', '');
             }
             else if(i == 8){
+                localStorage.setItem('action', 'selectionCategory');
                 localStorage.setItem('brand', 'MSI');
                 localStorage.setItem('state', 'Like-New');
                 localStorage.setItem('category', '');
             }
             else if(i == 9){
+                localStorage.setItem('action', 'selectionCategory');
                 localStorage.setItem('brand', 'Lenovo');
                 localStorage.setItem('state', 'Like-New');
                 localStorage.setItem('category', '');
             }
             else if(i == 10){
+                localStorage.setItem('action', 'selectionCategory');
                 localStorage.setItem('brand', 'ASUS');
                 localStorage.setItem('state', 'Like-New');
                 localStorage.setItem('category', '');
             }
             else if(i == 11){
+                localStorage.setItem('action', 'selectionCategory');
                 localStorage.setItem('brand', 'ACER');
                 localStorage.setItem('state', 'Like-New');
                 localStorage.setItem('category', '');
