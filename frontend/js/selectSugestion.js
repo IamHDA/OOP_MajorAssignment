@@ -40,6 +40,7 @@ function inputTextInSearch(){
             sugestionSearchContainer.innerHTML += sugestion;
         })
         selectSugestion();
+        hiddenSuggestionContainer();
     })
 }
 
@@ -50,6 +51,17 @@ function selectSugestion(){
             localStorage.setItem('id__product', element.querySelector('.id').textContent);
             window.location.href = 'product.html';
         })
+    })
+}
+
+function hiddenSuggestionContainer(){
+    let sugestionSearchContainer = document.querySelector('.sugestion_search__container');
+    document.addEventListener('click', function(event){
+        if(sugestionSearchContainer.style.display == "block"){
+            if(sugestionSearchContainer.contains(event.target)){
+                sugestionSearchContainer.style.display == "none";
+            }
+        }
     })
 }
 
