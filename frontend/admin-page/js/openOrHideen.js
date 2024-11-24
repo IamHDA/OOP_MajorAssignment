@@ -1,4 +1,4 @@
-let option2 = document.querySelector('#option2');
+let option2 = document.querySelector('.option2');
 let subOption = document.querySelector('.sub-option');
 let dau = option2.querySelector('.dau');
 

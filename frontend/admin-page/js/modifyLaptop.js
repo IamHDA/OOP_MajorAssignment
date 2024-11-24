@@ -1,6 +1,6 @@
 import checkAccessTokenIsvalid from "./accessToken.js";
 
-let allLaptop;
+let allLaptop = "";
 let numberPageCurrent = 1;
 let numberPageLaptop = 0;
 let numberPageLaptopHTML = document.querySelector('.numberPage');
@@ -148,3 +148,5 @@ function modifyLaptopMain(){
     buildPage1();
     pageTransition();
 }
+
+modifyLaptopMain();
