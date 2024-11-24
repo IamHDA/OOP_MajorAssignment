@@ -11,6 +11,7 @@ function resetLocalStorage(){
     localStorage.setItem('maxPrice', 0);
     localStorage.setItem('sortBy', '');
     localStorage.setItem('sortOrder', '');
+    localStorage.setItem('hidden', 'true');
 }
 
 resetLocalStorage();
