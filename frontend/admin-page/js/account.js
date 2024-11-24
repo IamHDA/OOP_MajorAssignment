@@ -64,7 +64,7 @@ async function buildAllAccount() {
     right.addEventListener('click', async function(){
         if(currentPageNumber < numberPage){
             currentPageNumber += 1;
-            let numberRow = 0;
+            let numberRow = (currentPageNumber - 1) * 5;
             let accountTable ="";
             for(let i = (currentPageNumber - 1) * 5; i < data.length; i++){
                 numberRow += 1;
@@ -92,7 +92,7 @@ async function buildAllAccount() {
 
 async function buildPage1(data){
     let pages = document.querySelector('.pages');
-    let numberRow = 0;
+    let numberRow = (currentPageNumber - 1) * 5;
     let accountTable ="";
     for(let i = 0; i < data.length; i++){
         numberRow += 1;
