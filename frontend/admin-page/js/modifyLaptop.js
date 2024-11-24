@@ -35,7 +35,6 @@ async function getAllLapTop(){
         });
         response = await response.json();
         allLaptop = response;
-        console.log(allLaptop);
     }
     catch(error){
         alert("Đã xảy ra lỗi! Vui lòng thử lại.");
@@ -44,7 +43,6 @@ async function getAllLapTop(){
 }
 
 async function buildPage1() {
-    console.log
     pageHTML.innerHTML = "";
     if(allLaptop.length % 5 == 0){
         numberPageLaptop = allLaptop.length / 5;
