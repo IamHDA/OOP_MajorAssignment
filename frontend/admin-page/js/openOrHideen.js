@@ -12,7 +12,7 @@ if(localStorage.getItem('hidden') == "false"){
 option2.addEventListener('click', function(){
     if(localStorage.getItem('hidden') == "true"){
         localStorage.getItem('hidden', 'false');
-        subOption.style.display = 'false';
+        subOption.style.display = 'flex';
     }
     if(localStorage.getItem('hidden') == "false"){
         localStorage.getItem('hidden', 'true');
