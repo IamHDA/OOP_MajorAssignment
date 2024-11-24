@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/laptop")
+    @RequestMapping("/laptop")
 public class LaptopController {
 
     @Autowired
@@ -38,13 +38,14 @@ public class LaptopController {
         return ResponseEntity.ok(laptopService.addLaptop(laptopDTO));
     }
 
-    @PutMapping("admin/changeAvailable")
+    @PutMapping("/admin/changeAvailable")
     public ResponseEntity<String> changeLaptopAvailable(@RequestBody ChangeLaptopAvailableDTO changeLaptopAvailableDTO) {
         return ResponseEntity.ok(laptopService.changeLaptopAvailable(changeLaptopAvailableDTO));
     }
 
-    @DeleteMapping("admin/deleteLaptops")
+    @DeleteMapping("/admin/deleteLaptops")
     public ResponseEntity<String> deleteLaptops(@RequestBody List<Long> list) {
+        System.out.println(list);
         return ResponseEntity.ok(laptopService.deleteLaptops(list));
     }
 }

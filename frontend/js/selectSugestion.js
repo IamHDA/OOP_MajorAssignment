@@ -24,7 +24,7 @@ function inputTextInSearch(){
         sugestionSearchContainer.innerHTML = "";
         sugestionSearch.style.display = 'block';
         let keyword = inputSearch.value;
-        let data = await fetch(`http://10.20.245.24:8080/laptop/search?keyword=${keyword}`)
+        let data = await fetch(`http://100.126.61.16:8080/laptop/search?keyword=${keyword}`)
         data = await data.json();
         await data.forEach(function(element){
             let id =  '<div class="id">' + element.id + '</div>';

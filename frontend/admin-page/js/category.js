@@ -41,7 +41,7 @@ async function getAllCategory() {
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://10.20.245.24:8080/collections/admin/getAllCategories',{
+        let response = await fetch('http://100.126.61.16:8080/collections/admin/getAllCategories',{
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ function addCategory(){
         try{
             await checkAccessTokenIsvalid();
             let accessToken = localStorage.getItem('accessToken');
-            let response = await fetch('http://10.20.245.24:8080/collections/admin/add',{
+            let response = await fetch('http://100.126.61.16:8080/collections/admin/add',{
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ function deleteCategory(){
         try{
             await checkAccessTokenIsvalid();
             let accessToken = localStorage.getItem('accessToken');
-            let response = await fetch('http://10.20.245.24:8080/collections/admin/delete',{
+            let response = await fetch('http://100.126.61.16:8080/collections/admin/delete',{
                 method: 'DELETE',
                 headers: {
                 'Content-Type': 'application/json',
