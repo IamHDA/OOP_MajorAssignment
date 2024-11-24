@@ -52,7 +52,7 @@ async function buildAllAccount() {
                 let tableRow = '<tr class="table-other-row">' + stt + id + name + email + contact + address + registrationDate + role + '</tr>';
                 accountTable += tableRow;
                 
-                if(numberRow == 5 || i == data.length - 1){
+                if(numberRow % 5 == 0|| i == data.length - 1){
                     accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
                     pages.innerHTML = accountTable;
                     break;
@@ -79,7 +79,7 @@ async function buildAllAccount() {
                 let tableRow = '<tr class="table-other-row">' + stt + id + name + email + contact + address + registrationDate + role + '</tr>';
                 accountTable += tableRow;
         
-                if(numberRow == 5 || i == data.length - 1){
+                if(numberRow % 5 == 0|| i == data.length - 1){
                     accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
                     pages.innerHTML = accountTable;
                     break;
@@ -92,7 +92,7 @@ async function buildAllAccount() {
 
 async function buildPage1(data){
     let pages = document.querySelector('.pages');
-    let numberRow = (currentPageNumber - 1) * 5;
+    let numberRow = 0;
     let accountTable ="";
     for(let i = 0; i < data.length; i++){
         numberRow += 1;
@@ -107,7 +107,7 @@ async function buildPage1(data){
         let tableRow = '<tr class="table-other-row">' + stt + id + name + email + contact + address + registrationDate + role + '</tr>';
         accountTable += tableRow;
 
-        if(numberRow == 5 || i == data.length - 1){
+        if(numberRow % 5 == 0|| i == data.length - 1){
             accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
             pages.innerHTML = accountTable;
             break;
