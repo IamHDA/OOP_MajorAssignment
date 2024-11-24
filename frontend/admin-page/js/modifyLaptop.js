@@ -101,13 +101,13 @@ function pageTransition(){
                 let rowTableLaptop = '<tr class="table-other-row">' + stt + LaptopId + name + price + sale + state + available  + '</tr>';
                 page += rowTableLaptop;
                 if(indexRow % 5 == 0){
-                    pageHTML.innerHTML = '<div class="page">' + '<table class="Laptop-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="Laptop-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</table>' + '</div>';
+                    pageHTML.innerHTML = '<div class="page">' + '<table class="Laptop-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Tên Laptop</td><td class="price">Giá sản phẩm</td><td class="sale">Giảm giá</td><td class="state">Trạng thái</td><td class="available">Còn hàng</td></tr>'+ page + '</table>' + '</div>';
                     break;
                 }
             }
         
             if(pageHTML.innerHTML == ""){
-                pageHTML.innerHTML = '<div class="page">' + '<table class="Laptop-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="Laptop-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</table>' + '</div>';
+                pageHTML.innerHTML = '<div class="page">' + '<table class="Laptop-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Tên Laptop</td><td class="price">Giá sản phẩm</td><td class="sale">Giảm giá</td><td class="state">Trạng thái</td><td class="available">Còn hàng</td></tr>'+ page + '</table>' + '</div>';
             }
         }
     })
@@ -131,13 +131,13 @@ function pageTransition(){
                 let rowTableLaptop = '<tr class="table-other-row">' + stt + LaptopId + name + price + sale + state + available  + '</tr>';
                 page += rowTableLaptop;
                 if(indexRow % 5 == 0){
-                    pageHTML.innerHTML = '<div class="page">' + '<table class="Laptop-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="Laptop-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</table>' + '</div>';
+                    pageHTML.innerHTML = '<div class="page">' + '<table class="Laptop-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Tên Laptop</td><td class="price">Giá sản phẩm</td><td class="sale">Giảm giá</td><td class="state">Trạng thái</td><td class="available">Còn hàng</td></tr>'+ page + '</table>' + '</div>';
                     break;
                 }
             }
         
             if(pageHTML.innerHTML == ""){
-                pageHTML.innerHTML = '<div class="page">' + '<table class="Laptop-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="total-price">Đơn giá</td><td class="Laptop-date">Ngày đặt</td><td class="note">Ghi chú</td><td class="status">Trạng thái</td><td class="payment-method">Thanh toán</td></tr>'+ page + '</table>' + '</div>';
+                pageHTML.innerHTML = '<div class="page">' + '<table class="Laptop-table">' + '<tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Tên Laptop</td><td class="price">Giá sản phẩm</td><td class="sale">Giảm giá</td><td class="state">Trạng thái</td><td class="available">Còn hàng</td></tr>'+ page + '</table>' + '</div>';
             }
         }
     })
