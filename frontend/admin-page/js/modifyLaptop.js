@@ -186,10 +186,10 @@ async function modifyLapTop(){
     let listId = getListId(strId);
     let data = {
         available: document.querySelector('.available-input').value,
-        laptopIds: []
+        laptopIDs: []
     };
     for(let i = 0; i < listId.length; i++){
-        data.laptopIds.push(listId[i]);
+        data.laptopIDs.push(listId[i]);
     };
     try{
         await checkAccessTokenIsvalid();
