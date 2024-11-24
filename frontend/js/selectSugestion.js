@@ -58,7 +58,7 @@ function hiddenSuggestionContainer(){
     let sugestionSearchContainer = document.querySelector('.sugestion_search__container');
     document.addEventListener('click', function(event){
         if(sugestionSearchContainer.style.display == "block"){
-            if(sugestionSearchContainer.contains(event.target)){
+            if(!sugestionSearchContainer.contains(event.target)){
                 sugestionSearchContainer.style.display == "none";
             }
         }
