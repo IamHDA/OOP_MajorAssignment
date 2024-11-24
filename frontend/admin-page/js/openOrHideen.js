@@ -1,6 +1,7 @@
 let option2 = document.querySelector('.option2');
 let subOption = document.querySelector('.sub-option');
 let dau = option2.querySelector('.dau');
+let idOption2 = document.querySelector('#option2');
 
 if(localStorage.getItem('hidden') == "false"){
     subOption.style.display = 'flex';
@@ -13,7 +14,7 @@ if(localStorage.getItem('hidden') == "false"){
     option2.style.paddingBottom = "10px";
 }
 
-option2.addEventListener('click', function(){
+idOption2.addEventListener('click', function(){
     if(localStorage.getItem('hidden') == "true"){
         localStorage.setItem('hidden', 'false');
         subOption.style.display = 'flex';
