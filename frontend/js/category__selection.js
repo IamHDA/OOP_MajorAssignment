@@ -73,8 +73,10 @@ function selectionCategory() {
 
     // For the "lapTopMoi" element
     let selectionLapTopMoi = lapTopMoi.querySelectorAll('.category__detail__branch__detail');
+    let selectionLapTopLikeNew =
     New.addEventListener('click', function(){
         localStorage.setItem('category', '');
+        localStorage.setItem('brand', '');
         localStorage.setItem('state', 'New');
         localStorage.setItem('action', 'selectionCategory');
         window.location.href='laptoptheomuc.html';
@@ -82,6 +84,7 @@ function selectionCategory() {
 
     like_new.addEventListener('click', function(){
         localStorage.setItem('category', '');
+        localStorage.setItem('brand', '');
         localStorage.setItem('state', 'Like-New');
         localStorage.setItem('action', 'selectionCategory');
         window.location.href='laptoptheomuc.html';
@@ -91,6 +94,7 @@ function selectionCategory() {
         let nameBranch = element.querySelector('.id').textContent;
         element.addEventListener('click', function() {
             localStorage.setItem('category', nameBranch);
+            localStorage.setItem('brand', '');
             localStorage.setItem('state', 'New');
             localStorage.setItem('action', 'selectionCategory');
         });
