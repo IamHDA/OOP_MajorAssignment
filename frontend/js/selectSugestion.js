@@ -55,11 +55,11 @@ function selectSugestion(){
 }
 
 function hiddenSuggestionContainer(){
-    let sugestionSearchContainer = document.querySelector('.sugestion_search__container');
+    let sugestionSearchContainer = document.querySelector('.sugestion_search');
     document.addEventListener('click', function(event){
         if(sugestionSearchContainer.style.display == "block"){
             if(!sugestionSearchContainer.contains(event.target)){
-                sugestionSearchContainer.style.display == "none";
+                sugestionSearchContainer.style.display = "none";
             }
         }
     })
