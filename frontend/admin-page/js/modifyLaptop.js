@@ -184,8 +184,14 @@ function getListId(StrId){
 async function modifyLapTop(){
     let strId = document.querySelector('.id-input').value;
     let listId = getListId(strId);
+    let available = document.querySelector('.available-input').value;
+    if(available == "Còn"){
+        available = true;
+    }else if(available == "Không còn"){
+        available = false;
+    }
     let data = {
-        available: document.querySelector('.available-input').value,
+        available: available,
         laptopIDs: []
     };
     for(let i = 0; i < listId.length; i++){
@@ -218,12 +224,48 @@ async function modifyLapTop(){
     }
 }
 
+async function deleteLapTop(){
+    let strId = document.querySelector('.id-input').value;
+    let listId = getListId(strId);
+    let data = {
+        laptopIDs: []
+    };
+    for(let i = 0; i < listId.length; i++){
+        data.laptopIDs.push(listId[i]);
+    };
+    try{
+        await checkAccessTokenIsvalid();
+        let accessToken = localStorage.getItem('accessToken');
+        let response = await fetch('http://100.126.61.16:8080/laptop/admin/deleteLaptops',{
+            method: 'DELETE',
+            headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify(data)
+        });
+        response = await response.text();
+
+        if(response == "Deleted successfully"){
+            alert("Xóa thành công!");
+            window.location.reload();
+        }
+    }
+    catch(error){
+        alert("Đã có lỗi xảy ra! Vui lòng thử lại.");
+        console.log(error);
+    }
+}
+
 async function modifyLaptopMain(){
     await getAllLapTop();
     await buildPage1();
     pageTransition();
     document.querySelector('.submit1').addEventListener('click', async function(){
         await modifyLapTop();
+    })
+    document.querySelector('.submit2').addEventListener('click', async function(){
+        await deleteLapTop();
     })
 }
 
