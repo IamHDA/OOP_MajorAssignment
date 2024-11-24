@@ -22,8 +22,12 @@
                     <ul class="menu">
                         <a href="admin_overall.html"><li class="option1"><i class="fa-solid fa-chart-simple"></i> <p>Tổng Quan</p></li></a>
                         <div class="option2">
-                            <div class="option-title">
-                                <i class="fa-solid fa-laptop"></i><p>Quản lý Laptop</p><i class="fa-solid fa-chevron-down" id="down-arrow"></i>
+                            <div class="option-title" id="option2">
+                                <i class="fa-solid fa-laptop"></i>
+                                <p>Quản lý Laptop</p>
+                                <div class="dau">
+                                    <i class="fa-solid fa-chevron-down" id="down-arrow"></i>
+                                </div>
                             </div>
                             <div class="sub-option">
                                 <a href="admin_add_laptop.html">
@@ -43,8 +47,8 @@
                 <div class="container">
                     <div class="first-row">
                         <p class="title">Tài khoản</p>
-                        <div class="pages">
-                            <table class="laptop-table">
+                        <div class="page">
+                            <!-- <table class="laptop-table">
                                 <tr class="table-first-row">
                                     <td class="stt">STT</td>
                                     <td class="id">LaptopID</td>
@@ -72,7 +76,7 @@
                                     <td class="state">Like-New</td>
                                     <td class="available">Không</td>
                                 </tr>
-                            </table>
+                            </table> -->
                         </div>
                         <div class="pageTransition">
                             <div class="left">
@@ -108,6 +112,7 @@
         </main>
 
         <script type="module" src="js/accessToken.js"></script>
+        <script type="module" src="js/modifyLaptop.js"></script>
         <script src="js/openOrHideen.js"></script>
     </body>
     </body>
