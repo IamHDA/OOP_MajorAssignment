@@ -158,10 +158,73 @@ function pageTransition(){
     })
 }
 
+function getListId(StrId){
+    let res = [];
+    StrId = StrId.trim();
+    let listIdArr = StrId.split(" ");
+    for(let i = 0; i < listIdArr.length; i++){
+        let tmp = "";
+        let index = 0;
+        while(true){
+            if(listIdArr[i][index] == ","){
+                res.push(tmp);
+                break;
+            }
+            if(index == listIdArr[i].length){
+                res.push(tmp);
+                break;
+            }
+            tmp += listIdArr[i][index];
+            index += 1
+        }
+    }
+    return res;
+}
+
+async function modifyLapTop(){
+    let strId = document.querySelector('.id-input').value;
+    let listId = getListId(strId);
+    let data = {
+        available: document.querySelector('.available-input').value,
+        laptopIds: []
+    };
+    for(let i = 0; i < listId.length; i++){
+        data.laptopIds.push(listId[i]);
+    };
+    try{
+        await checkAccessTokenIsvalid();
+        let accessToken = localStorage.getItem('accessToken');
+        let response = await fetch('http://100.126.61.16:8080/laptop/admin/changeAvailable',{
+            method: 'PUT',
+            headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify(data)
+        });
+        response = await response.text();
+
+        if(response == "changed successfully"){
+            alert("Cập nhật thành công!");
+            window.location.reload();
+        }
+        else{
+            alert("Không tìm thấy laptop! Vui lòng kiểm tra lại.");
+        }
+    }
+    catch(error){
+        alert("Đã có lỗi xảy ra! Vui lòng thử lại.");
+        console.log(error);
+    }
+}
+
 async function modifyLaptopMain(){
     await getAllLapTop();
     await buildPage1();
     pageTransition();
+    document.querySelector('.submit1').addEventListener('click', async function(){
+        await modifyLapTop();
+    })
 }
 
 modifyLaptopMain();
