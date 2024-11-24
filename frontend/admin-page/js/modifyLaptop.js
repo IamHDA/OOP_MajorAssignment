@@ -61,7 +61,7 @@ async function buildPage1() {
         let LaptopId = '<td class="id">' + allLaptop[i].id + '</td>'
         let name = '<td class="name">' + allLaptop[i].name + '</td>'
         let price = '<td class="price">' + daucham(allLaptop[i].price) + ' VNĐ' + '</td>';
-        let sale = '<td class="sale">' + allLaptop[i].sale + ' %' + '</td>';
+        let sale = '<td class="sale">' + allLaptop[i].sale + '%' + '</td>';
         let state = '<td class="state">' + allLaptop[i].state + '</td>';
         if(allLaptop[i].available == true){
             allLaptop[i].available = "Còn"
@@ -100,7 +100,7 @@ function pageTransition(){
                 let LaptopId = '<td class="id">' + allLaptop[i].id + '</td>'
                 let name = '<td class="name">' + allLaptop[i].name + '</td>'
                 let price = '<td class="price">' + daucham(allLaptop[i].price) + ' VNĐ' + '</td>';
-                let sale = '<td class="sale">' + allLaptop[i].sale + ' %' + '</td>';
+                let sale = '<td class="sale">' + allLaptop[i].sale + '%' + '</td>';
                 let state = '<td class="state">' + allLaptop[i].state + '</td>';
                 let available = '<td class="available">' + allLaptop[i].available + '</td>';
                 if(allLaptop[i].available == true){
@@ -135,7 +135,7 @@ function pageTransition(){
                 let LaptopId = '<td class="id">' + allLaptop[i].id + '</td>'
                 let name = '<td class="name">' + allLaptop[i].name + '</td>'
                 let price = '<td class="price">' + daucham(allLaptop[i].price) + ' VNĐ' + '</td>';
-                let sale = '<td class="sale">' + allLaptop[i].sale + ' %' + '</td>';
+                let sale = '<td class="sale">' + allLaptop[i].sale + '%' + '</td>';
                 let state = '<td class="state">' + allLaptop[i].state + '</td>';
                 if(allLaptop[i].available == true){
                     allLaptop[i].available = "Còn"
