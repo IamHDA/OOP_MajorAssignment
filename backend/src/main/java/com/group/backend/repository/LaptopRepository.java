@@ -35,7 +35,7 @@ public interface LaptopRepository extends JpaRepository<Laptop, Long> {
         or lower(s.rom) like lower(concat('%', :keyword, '%'))
         or lower(s.ram) like lower(concat('%', :keyword, '%'))
         or lower(s.cpu) like lower(concat('%', :keyword, '%'))
-        or lower(s.graphicsCard) like lower(concat('%', :keyword, '%'))
+        or lower(s.graphicsCard) like lower(concat(:keyword, '%'))
         and l.available = true
     """)
     List<Laptop> searchLaptop(String keyword);

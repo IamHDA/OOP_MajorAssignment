@@ -24,7 +24,7 @@ function inputTextInSearch(){
         sugestionSearchContainer.innerHTML = "";
         sugestionSearch.style.display = 'block';
         let keyword = inputSearch.value;
-        let data = await fetch(`http://192.168.0.103:8080/laptop/search?keyword=${keyword}`)
+        let data = await fetch(`http://100.126.61.16:8080/laptop/search?keyword=${keyword}`)
         data = await data.json();
         await data.forEach(function(element){
             let id =  '<div class="id">' + element.id + '</div>';
@@ -40,6 +40,7 @@ function inputTextInSearch(){
             sugestionSearchContainer.innerHTML += sugestion;
         })
         selectSugestion();
+        hiddenSuggestionContainer();
     })
 }
 
@@ -50,6 +51,17 @@ function selectSugestion(){
             localStorage.setItem('id__product', element.querySelector('.id').textContent);
             window.location.href = 'product.html';
         })
+    })
+}
+
+function hiddenSuggestionContainer(){
+    let sugestionSearchContainer = document.querySelector('.sugestion_search');
+    document.addEventListener('click', function(event){
+        if(sugestionSearchContainer.style.display == "block"){
+            if(!sugestionSearchContainer.contains(event.target)){
+                sugestionSearchContainer.style.display = "none";
+            }
+        }
     })
 }
 

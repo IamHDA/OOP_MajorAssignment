@@ -31,19 +31,19 @@ async function fetchCatalog(url) {
 
         var slide;
 
-        if(url === 'http://192.168.0.103:8080/collections/laptops-category/Hoc-tap-van-phong'){
+        if(url === 'http://100.126.61.16:8080/collections/laptops-category/Hoc-tap-van-phong'){
             slide = document.querySelector('.hoctapvanphongcoban');
         }
 
-        if(url === 'http://192.168.0.103:8080/collections/laptops-category/Laptop-Gaming'){
+        if(url === 'http://100.126.61.16:8080/collections/laptops-category/Laptop-Gaming'){
             slide = document.querySelector('.laptopgaming');
         }
 
-        if(url ==='http://192.168.0.103:8080/collections/laptops-category/Do-hoa-hieu-nang-cao'){
+        if(url ==='http://100.126.61.16:8080/collections/laptops-category/Do-hoa-hieu-nang-cao'){
             slide = document.querySelector('.laptopdohoa');
         }
 
-        if(url === 'http://192.168.0.103:8080/collections/laptops-category/Mong-nhe-cao-cap'){
+        if(url === 'http://100.126.61.16:8080/collections/laptops-category/Mong-nhe-cao-cap'){
             slide = document.querySelector('.laptopmongnhe');
         }
 
@@ -79,10 +79,10 @@ function seeAll(){
 
 async function fetchAllCatalogs() {
     const urls = [
-        'http://192.168.0.103:8080/collections/laptops-category/Hoc-tap-van-phong',
-        'http://192.168.0.103:8080/collections/laptops-category/Laptop-Gaming',
-        'http://192.168.0.103:8080/collections/laptops-category/Do-hoa-hieu-nang-cao',
-        'http://192.168.0.103:8080/collections/laptops-category/Mong-nhe-cao-cap'
+        'http://100.126.61.16:8080/collections/laptops-category/Hoc-tap-van-phong',
+        'http://100.126.61.16:8080/collections/laptops-category/Laptop-Gaming',
+        'http://100.126.61.16:8080/collections/laptops-category/Do-hoa-hieu-nang-cao',
+        'http://100.126.61.16:8080/collections/laptops-category/Mong-nhe-cao-cap'
     ];
 
     for (const url of urls) {

@@ -3,7 +3,7 @@ import checkAccessTokenIsvalid from "./accessToken.js";
 async function getAllAccount(){
     await checkAccessTokenIsvalid();
     let accessToken = localStorage.getItem('accessToken');
-    let response = await fetch('http://192.168.0.103:8080/user/admin/getAllUsers',{
+    let response = await fetch('http://100.126.61.16:8080/user/admin/getAllUsers',{
         method: 'GET',
         headers: {
         'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ async function buildAllAccount() {
                 let tableRow = '<tr class="table-other-row">' + stt + id + name + email + contact + address + registrationDate + role + '</tr>';
                 accountTable += tableRow;
                 
-                if(numberRow == 5 || i == data.length - 1){
+                if(numberRow % 5 == 0|| i == data.length - 1){
                     accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
                     pages.innerHTML = accountTable;
                     break;
@@ -64,7 +64,7 @@ async function buildAllAccount() {
     right.addEventListener('click', async function(){
         if(currentPageNumber < numberPage){
             currentPageNumber += 1;
-            let numberRow = 0;
+            let numberRow = (currentPageNumber - 1) * 5;
             let accountTable ="";
             for(let i = (currentPageNumber - 1) * 5; i < data.length; i++){
                 numberRow += 1;
@@ -79,7 +79,7 @@ async function buildAllAccount() {
                 let tableRow = '<tr class="table-other-row">' + stt + id + name + email + contact + address + registrationDate + role + '</tr>';
                 accountTable += tableRow;
         
-                if(numberRow == 5 || i == data.length - 1){
+                if(numberRow % 5 == 0|| i == data.length - 1){
                     accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
                     pages.innerHTML = accountTable;
                     break;
@@ -107,7 +107,7 @@ async function buildPage1(data){
         let tableRow = '<tr class="table-other-row">' + stt + id + name + email + contact + address + registrationDate + role + '</tr>';
         accountTable += tableRow;
 
-        if(numberRow == 5 || i == data.length - 1){
+        if(numberRow % 5 == 0|| i == data.length - 1){
             accountTable = '<table class="account-table"><tr class="table-first-row"><td class="stt">STT</td><td class="id">ID</td><td class="name">Họ tên</td><td class="email">Email</td><td class="contact">Số điện thoại</td><td class="address">Địa chỉ</td><td class="registration-date">Ngày đăng ký</td><td class="role">Vai trò</td></tr>' + accountTable + '</table>';
             pages.innerHTML = accountTable;
             break;
@@ -156,7 +156,7 @@ async function changeUserRole(){
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://192.168.0.103:8080/user/admin/changeUsersRole',{
+        let response = await fetch('http://100.126.61.16:8080/user/admin/changeUsersRole',{
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json',
@@ -188,7 +188,7 @@ async function deleteAccount(){
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://192.168.0.103:8080/user/admin/deleteUsers',{
+        let response = await fetch('http://100.126.61.16:8080/user/admin/deleteUsers',{
             method: 'DELETE',
             headers: {
             'Content-Type': 'application/json',

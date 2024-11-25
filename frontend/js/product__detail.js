@@ -45,6 +45,12 @@ async function buildProductDetail(response){
     ulProductSpecification.innerHTML += '<li>Trọng lượng : ' + response.specification.weight + '</li>';
     ulProductSpecification.innerHTML += '<li>Webcam : ' +  response.specification.webcam + '</li>';
     ulProductSpecification.innerHTML += '<li>Hệ điều hành: ' +  response.specification.operatingSystem + '</li>';
+    if(response.muxSwitch == true){
+        ulProductSpecification.innerHTML += '<li>Mux switch: Có</li>'; 
+    }
+    else{
+        ulProductSpecification.innerHTML += '<li>Mux switch: Không</li>';
+    }
     ulProductSpecification.innerHTML += '<li>Cổng kết nối: <br>' + '<div class = "tab">' + response.specification.connectionPort.replace(/\n/g, "<br>") + '</div>' + '</li>';
 
     let basePrice = response.price.toString();
@@ -107,7 +113,7 @@ async function buildProductDetail(response){
         }
     }
     else{
-        currentUser = await fetch('http://192.168.0.103:8080/currentUser', {
+        currentUser = await fetch('http://100.126.61.16:8080/currentUser', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -155,7 +161,7 @@ async function buildProductDetail(response){
 
 async function getDaTa(){
     let id = localStorage.getItem('id__product'); 
-    let response = await fetch(`http://192.168.0.103:8080/laptop/${id}`, {
+    let response = await fetch(`http://100.126.61.16:8080/laptop/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -182,7 +188,7 @@ async function postComment() {
             };
             try{
                 let idProduct = localStorage.getItem('id__product');
-                let response = await fetch(`http://192.168.0.103:8080/comment/post?laptopId=${idProduct}`, {
+                let response = await fetch(`http://100.126.61.16:8080/comment/post?laptopId=${idProduct}`, {
                     method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -221,7 +227,7 @@ async function addProductToCart() {
                 };
                 await checkAccessTokenIsvalid();
                 accessToken = localStorage.getItem("accessToken");
-                const response = await fetch('http://192.168.0.103:8080/cart-detail/add', {
+                const response = await fetch('http://100.126.61.16:8080/cart-detail/add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -264,7 +270,7 @@ async function buyNow() {
                 };
                 await checkAccessTokenIsvalid();
                 accessToken = localStorage.getItem("accessToken");
-                const response = await fetch('http://192.168.0.103:8080/cart-detail/add', {
+                const response = await fetch('http://100.126.61.16:8080/cart-detail/add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -309,7 +315,7 @@ async function editComment(){
                 }
                 await checkAccessTokenIsvalid();
                 accessToken = localStorage.getItem('accessToken');
-                let response = await fetch('http://192.168.0.103:8080/comment/modify', {
+                let response = await fetch('http://100.126.61.16:8080/comment/modify', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -336,7 +342,7 @@ async function deleteComment(){
                 let idComment = parseInt(element.querySelector('.id').textContent, 10);
                 await checkAccessTokenIsvalid();
                 accessToken = localStorage.getItem('accessToken');
-                let response = await fetch(`http://192.168.0.103:8080/comment/delete/${idComment}`, {
+                let response = await fetch(`http://100.126.61.16:8080/comment/delete/${idComment}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',

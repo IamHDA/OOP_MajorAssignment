@@ -66,7 +66,7 @@
 }
 
 .name{
-    min-width: 430px;
+    min-width: 475px;
 }
 
 .price{
@@ -75,17 +75,17 @@
 }
 
 .sale{
-    min-width: 40px;
+    min-width: 73px;
     text-align: center;
 }
 
 .state{
-    min-width: 106px;
+    min-width: 90px;
     text-align: center;
 }
 
 .available{
-    min-width: 70px;
+    min-width: 79px;
     text-align: center;
 }
 

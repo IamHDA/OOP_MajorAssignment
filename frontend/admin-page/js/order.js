@@ -26,7 +26,7 @@ async function getAllOrder() {
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://192.168.0.103:8080/order/admin/getAllOrders',{
+        let response = await fetch('http://100.126.61.16:8080/order/admin/getAllOrders',{
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
@@ -188,7 +188,7 @@ async function updateStatusOrder(){
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
-        let response = await fetch('http://192.168.0.103:8080/order/admin/updateOrderStatus',{
+        let response = await fetch('http://100.126.61.16:8080/order/admin/updateOrderStatus',{
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json',

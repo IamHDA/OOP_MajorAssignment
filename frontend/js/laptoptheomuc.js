@@ -1,3 +1,5 @@
+import addProductToCart from "./addProductToCart.js";
+
 function lamtron(num) {
     return Math.round(num / 100000) * 100000;
 }
@@ -18,7 +20,7 @@ function daucham(num){
 
 async function searchProduct(){
     let keyword = localStorage.getItem('valueSearch');
-    let data = await fetch(`http://192.168.0.103:8080/laptop/search?keyword=${keyword}`)
+    let data = await fetch(`http://100.126.61.16:8080/laptop/search?keyword=${keyword}`)
     data = await data.json();
     let allLaptop = document.querySelector('.all-laptop');
     for(let i = 0; i < data.length; i++){
@@ -44,7 +46,7 @@ async function selectCategoryProduct(){
     let category = localStorage.getItem('category');
     let state = localStorage.getItem('state');
     let brand = localStorage.getItem('brand');
-    let api = 'http://192.168.0.103:8080/collections/filter?category=' + category + '&brand=' + brand + '&state=' + state + '&cpu&vga&ram&ssd&screenSize&sortBy&sortOrder&minPrice=0&maxPrice=0';    
+    let api = 'http://100.126.61.16:8080/collections/filter?category=' + category + '&brand=' + brand + '&state=' + state + '&cpu&vga&ram&ssd&screenSize&sortBy&sortOrder&minPrice=0&maxPrice=0';    
 
     let data = await fetch(`${api}`)
     data = await data.json();
@@ -72,19 +74,19 @@ async function seeAll(){
     let action = localStorage.getItem('action');
     let api;
     if(action == "seeAll0"){
-        api =  'http://192.168.0.103:8080/collections/laptops-category/Hoc-tap-van-phong';   
+        api =  'http://100.126.61.16:8080/collections/laptops-category/Hoc-tap-van-phong';   
         localStorage.setItem('category', "Hoc-tap-van-phong");
     }
     else if(action == "seeAll1"){
-        api =  'http://192.168.0.103:8080/collections/laptops-category/Laptop-Gaming';   
+        api =  'http://100.126.61.16:8080/collections/laptops-category/Laptop-Gaming';   
         localStorage.setItem('category', "Laptop-Gaming");
     }
     else if(action == "seeAll2"){
-        api =  'http://192.168.0.103:8080/collections/laptops-category/Do-hoa-hieu-nang-cao'; 
+        api =  'http://100.126.61.16:8080/collections/laptops-category/Do-hoa-hieu-nang-cao'; 
         localStorage.setItem('category', "Do-hoa-hieu-nang-cao");  
     }
     else{
-        api = 'http://192.168.0.103:8080/collections/laptops-category/Mong-nhe-cao-cap';
+        api = 'http://100.126.61.16:8080/collections/laptops-category/Mong-nhe-cao-cap';
         localStorage.setItem('category', "Mong-nhe-cao-cap");  
     }
 
@@ -160,7 +162,7 @@ async function getDaTaFilter() {
         sortOrder = "";
     }
 
-    let api = 'http://192.168.0.103:8080/collections/filter?category=' + category + '&brand=' + brand +  '&state=' + state + '&cpu=' + cpu + '&vga=' + vga + '&ram=' + ram + '&ssd=' + ssd + '&screenSize=' + screenSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder + '&minPrice=' + minPrice + '&maxPrice=' + maxPrice;
+    let api = 'http://100.126.61.16:8080/collections/filter?category=' + category + '&brand=' + brand +  '&state=' + state + '&cpu=' + cpu + '&vga=' + vga + '&ram=' + ram + '&ssd=' + ssd + '&screenSize=' + screenSize + '&sortBy=' + sortBy + '&sortOrder=' + sortOrder + '&minPrice=' + minPrice + '&maxPrice=' + maxPrice;
     let response = await fetch(`${api}`);
     let data = await response.json()
     let allLaptop = document.querySelector('.all-laptop');
@@ -178,14 +180,14 @@ async function getDaTaFilter() {
         var productPrice = '<div class="product__price">' + price + ' đ' + ' </div>'; 
         var productBasePrice = '<div class="product__base__price">' + '<h1>' + basePrice + ' đ' + '</h1>' + '<h2> (Tiết kiệm ' + data[i].sale + '%)</h2>' + '</div>';
         var cart = '<div class="product__cart"> <i class="fa-solid fa-cart-shopping"></i> </div>'
-        var laptopContainer = '<div class="product__container">' + idProduct + imgProduct + nameProduct + productPrice +productBasePrice + cart + '</div>';
+        var laptopContainer = '<div class="product__container">' + idProduct + imgProduct + nameProduct + productPrice + productBasePrice + cart + '</div>';
         allLaptop.innerHTML += laptopContainer;
     }
     selectProduct();
 }
 
 async function buildFilter(){
-    await getDaTaFilter();
+    // await getDaTaFilter();
     let option1 = document.querySelector('#option1');
     let option2 = document.querySelector('#option2');
     let option3 = document.querySelector('#option3');
@@ -520,6 +522,7 @@ async function laptoptheomucMain(){
     }
     await buildFilter();
     selectProduct();
+    addProductToCart();
 } 
 
 laptoptheomucMain();
