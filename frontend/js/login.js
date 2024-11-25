@@ -53,6 +53,10 @@ async function login(){
 
         if(response.role === "Admin"){
             window.location.href = "admin-page/admin_overall.html";
+            localStorage.setItem('role', 'admin');
+        }
+        else{
+            localStorage.setItem('role', 'user');
         }
 
         localStorage.setItem('name', response.name);
