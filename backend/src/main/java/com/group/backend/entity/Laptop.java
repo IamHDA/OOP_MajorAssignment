@@ -29,7 +29,7 @@ public class Laptop {
     @Column(nullable = false)
     private String state;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "specification_id", nullable = false)
     private Specification specification;
 

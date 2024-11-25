@@ -225,14 +225,13 @@ async function modifyLapTop(){
 }
 
 async function deleteLapTop(){
-    let strId = document.querySelector('.id-input').value;
+    let strId = document.querySelector('#id-input2').value;
     let listId = getListId(strId);
-    let data = {
-        laptopIDs: []
-    };
+    let laptopIDs = [];
     for(let i = 0; i < listId.length; i++){
-        data.laptopIDs.push(listId[i]);
+        laptopIDs.push(listId[i]);
     };
+    console.log(laptopIDs);
     try{
         await checkAccessTokenIsvalid();
         let accessToken = localStorage.getItem('accessToken');
@@ -242,7 +241,7 @@ async function deleteLapTop(){
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(laptopIDs)
         });
         response = await response.text();
 
