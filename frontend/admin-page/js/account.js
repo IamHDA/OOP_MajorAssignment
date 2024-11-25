@@ -168,6 +168,8 @@ async function changeUserRole(){
         if(response == "Change users role successfully"){
             alert("Đã thay đổi vai trò người dùng thành công!");
             window.location.reload();
+        }else if(response == "Can not change main_admin's role"){
+            alert("Không thể thay đổi role của Main Admin");
         }
     }
     catch(error){
