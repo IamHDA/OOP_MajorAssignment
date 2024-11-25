@@ -45,7 +45,7 @@ async function buildProductDetail(response){
     ulProductSpecification.innerHTML += '<li>Trọng lượng : ' + response.specification.weight + '</li>';
     ulProductSpecification.innerHTML += '<li>Webcam : ' +  response.specification.webcam + '</li>';
     ulProductSpecification.innerHTML += '<li>Hệ điều hành: ' +  response.specification.operatingSystem + '</li>';
-    if(response.muxSwitch == true){
+    if(response.specification.muxSwitch == true){
         ulProductSpecification.innerHTML += '<li>Mux switch: Có</li>'; 
     }
     else{
