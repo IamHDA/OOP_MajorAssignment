@@ -43,7 +43,7 @@ async function addProductToCart(){
                 } else if(response.status === 400 && message === "Laptop is already in cart"){
                     alert("Sản phẩm đã tồn tại trong giỏ hàng");
                 }else{
-                    alert("Thất bại");
+                    alert("Bạn cần đăng nhập để thêm vào giỏ hàng");
                 }
             } catch (error) {
                 console.error("Lỗi khi thêm sản phẩm vào giỏ hàng:", error);

@@ -1,5 +1,3 @@
-document.querySelector('.logOut', function(){
-    window.location.href('../index.html');
+document.querySelector('.logOut').addEventListener('click', function(){
     localStorage.clear();
-
 })
