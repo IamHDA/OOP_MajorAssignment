@@ -5,7 +5,7 @@ Trang web bán laptop
 - Framework: Spring Boot
 -Database: MySQL
 # Cài đặt:
-**Frontend**: fe là web tĩnh nên có thể sử dụng Visual Studio Code để chạy file index.html.  
+**Frontend**: sử dụng Visual Studio Code để chạy file index.html.  
 **Backend**:
 * Java: 21
 * MySQL: 5.7
